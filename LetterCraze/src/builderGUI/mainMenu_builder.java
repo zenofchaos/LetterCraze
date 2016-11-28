@@ -1,4 +1,4 @@
-package windowbuilder_test;
+package builderGUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

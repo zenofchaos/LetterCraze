@@ -84,8 +84,13 @@ public abstract class PlayerLevel {
 	}
 	
 	Boolean setStarThresholds(int[] starThresholds){
-		this.starThresholds = starThresholds;
-		return true;
+		if (starThresholds.length == 3){
+			this.starThresholds = starThresholds;
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	Boolean setBestScore(int bestScore){
@@ -120,7 +125,4 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	
-	
-
 }

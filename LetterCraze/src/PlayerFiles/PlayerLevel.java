@@ -7,7 +7,7 @@ public abstract class PlayerLevel {
 	int pointScore;
 	int starCount;
 	ArrayList<PlayerWord[]> wordsEntered;
-	int[] starThresholds = new int[10];
+	int[] starThresholds;
 	int bestScore;
 	int bestStars;
 	PlayerBoard board;
@@ -37,6 +37,13 @@ public abstract class PlayerLevel {
 	}
 	
 	public boolean initBoard(){
+		PlayerSquare[][] squareArray = new PlayerSquare[6][6];
+		for(int row = 0; row < 6; row++){
+			for(int col = 0; col < 6; col++){
+				squareArray[row][col] = new PlayerSquare(row, col);
+				squareArray[row][col].setLetter(new PlayerLetter());
+			}
+		}
 		return true;
 	}
 	

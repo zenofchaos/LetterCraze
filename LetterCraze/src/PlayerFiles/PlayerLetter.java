@@ -217,10 +217,10 @@ public class PlayerLetter {
 		switch (length){
 			case 1: //toCheck is 1 character long, so must be within A-Z or a-z
 				if ((toCheck.charAt(0) >= 'A') && (toCheck.charAt(0) <= 'Z')){
-					return true;
+					return !(toCheck.charAt(0) == 'Q');
 				}
 				else if ((toCheck.charAt(0) >= 'a') && (toCheck.charAt(0) <= 'z')){
-					return true;
+					return !(toCheck.charAt(0) == 'q');
 				}
 				else{
 					return false;

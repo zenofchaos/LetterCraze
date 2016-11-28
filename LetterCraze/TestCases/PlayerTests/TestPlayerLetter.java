@@ -8,16 +8,6 @@ import PlayerFiles.PlayerLetter;
 import junit.framework.TestCase;
 
 public class TestPlayerLetter extends TestCase{
-
-	@Override
-	public void setUp(){
-		
-	}
-	
-	@Override
-	public void tearDown(){
-		
-	}
 	
 	//Test the constructor which takes an input string
 	//	using valid input
@@ -54,9 +44,19 @@ public class TestPlayerLetter extends TestCase{
 	}
 	
 	public void testWithInvalidInput(){
-		String toSet = " ";
+		String toSet = "Q";
 		PlayerLetter letter = new PlayerLetter(toSet);
 		assertEquals(null,letter.getLetter());
 		assertEquals(0,letter.getPoints());
+		
+		String toSet2 = "q";
+		PlayerLetter letter2 = new PlayerLetter(toSet2);
+		assertEquals(null,letter2.getLetter());
+		assertEquals(0,letter2.getPoints());
+		
+		String toSet3 = "]";
+		PlayerLetter letter3 = new PlayerLetter(toSet3);
+		assertEquals(null,letter3.getLetter());
+		assertEquals(0,letter3.getPoints());
 	}
 }

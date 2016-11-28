@@ -134,6 +134,8 @@ public abstract class PlayerLevel {
 				squareArray[row][col].setLetter(new PlayerLetter());
 			}
 		}
+		PlayerBoard newBoard = new PlayerBoard(squareArray);
+		this.board = newBoard;
 		return true;
 	}
 	

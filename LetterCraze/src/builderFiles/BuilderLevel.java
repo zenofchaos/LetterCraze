@@ -1,6 +1,6 @@
-package BuilderFiles;
+package builderFiles;
 
-import BuilderFiles.BuilderSquare;
+import builderFiles.BuilderSquare;
 
 public abstract class BuilderLevel {
 	

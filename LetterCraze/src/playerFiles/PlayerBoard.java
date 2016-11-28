@@ -1,10 +1,9 @@
-package BuilderFiles;
+package playerFiles;
 
-public class BuilderBoard {
-
-BuilderSquare[][] squares;
+public class PlayerBoard {
+	PlayerSquare[][] squares;
 	
-	BuilderBoard(BuilderSquare[][] squares){
+	PlayerBoard(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
 		}
@@ -14,11 +13,11 @@ BuilderSquare[][] squares;
 		
 	}
 	
-	BuilderSquare[][] getSquares(){
+	PlayerSquare[][] getSquares(){
 		return this.squares;
 	}
 	
-	boolean setSquares(BuilderSquare[][] squares){
+	boolean setSquares(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
 			return true;
@@ -27,4 +26,5 @@ BuilderSquare[][] squares;
 			return false;
 		}
 	}
+
 }

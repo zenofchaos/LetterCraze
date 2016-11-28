@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import PlayerFiles.PlayerLetter;
 import junit.framework.TestCase;
+import playerFiles.PlayerLetter;
 
 public class TestPlayerLetter extends TestCase{
 	

@@ -1,4 +1,4 @@
-package BuilderControllers;
+package builderControllers;
 
 public class OpenLevelSelectController {
 

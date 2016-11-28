@@ -1,4 +1,4 @@
-package BuilderFiles;
+package builderFiles;
 
 public class BuilderSquare {
 

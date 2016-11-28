@@ -1,4 +1,4 @@
-package PlayerFiles;
+package playerFiles;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package PlayerFiles;
+package playerFiles;
 
 public class PlayerPuzzleLevel extends PlayerLevel {
 	

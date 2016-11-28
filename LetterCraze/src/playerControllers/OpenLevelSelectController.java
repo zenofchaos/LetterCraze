@@ -1,4 +1,4 @@
-package PlayerControllers;
+package playerControllers;
 
 import java.util.Scanner;
 

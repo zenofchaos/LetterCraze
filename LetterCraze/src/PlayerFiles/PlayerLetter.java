@@ -89,6 +89,7 @@ public class PlayerLetter {
 		}
 	}
 
+	//Returns a random letter based on the provided letter frequency table.
 	String getRandomLetter(){
 		return "TODO";
 	}

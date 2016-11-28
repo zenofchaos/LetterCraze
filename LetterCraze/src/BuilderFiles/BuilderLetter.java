@@ -15,19 +15,23 @@ public class BuilderLetter {
 		points = getPointVal(letter);
 	}
 	
+	//Get method for letter
 	String getLetter(){
 		return this.letter;
 	}
 	
+	//Get method for points
 	int getPoints(){
 		return this.points;
 	}
 	
+	//Set method for letter
 	boolean setLetter(String toSet){
 		this.letter = toSet;
 		return true;
 	}
 	
+	//Set method for points
 	boolean setPoints(int toSet){
 		this.points = toSet;
 		return true;

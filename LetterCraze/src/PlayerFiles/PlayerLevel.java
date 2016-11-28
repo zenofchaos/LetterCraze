@@ -36,6 +36,79 @@ public abstract class PlayerLevel {
 		}
 	}
 	
+	int getPointScore(){
+		return this.pointScore;
+	}
+	
+	int getStarCount(){
+		return this.starCount;
+	}
+	
+	ArrayList<PlayerWord[]> getWordsEntered(){
+		return this.wordsEntered;
+	}
+	
+	int[] getStarThresholds(){
+		return this.starThresholds;
+	}
+	
+	int getBestScore(){
+		return this.bestScore;
+	}
+	
+	int getBestStars(){
+		return this.bestStars;
+	}
+	
+	PlayerBoard getBoard(){
+		return this.board;
+	}
+	
+	Boolean getIsLocked(){
+		return this.isLocked;
+	}
+	
+	Boolean setPointScore(int pointScore){
+		this.pointScore = pointScore;
+		return true;
+	}
+	
+	Boolean setStarCount(int starCount){
+		this.starCount = starCount;
+		return true;
+	}
+	
+	Boolean setWordsEntered(ArrayList<PlayerWord[]> wordsEntered){
+		this.wordsEntered = wordsEntered;
+		return true;
+	}
+	
+	Boolean setStarThresholds(int[] starThresholds){
+		this.starThresholds = starThresholds;
+		return true;
+	}
+	
+	Boolean setBestScore(int bestScore){
+		this.bestScore = bestScore;
+		return true;
+	}
+	
+	Boolean setBestStars(int bestStars){
+		this.bestStars = bestStars;
+		return true;
+	}
+	
+	Boolean setBoard(PlayerBoard board){
+		this.board = board;
+		return true;
+	}
+	
+	Boolean setIsLocked(Boolean isLocked){
+		this.isLocked = isLocked;
+		return true;
+	}
+	
+	
 	public boolean initBoard(){
 		PlayerSquare[][] squareArray = new PlayerSquare[6][6];
 		for(int row = 0; row < 6; row++){

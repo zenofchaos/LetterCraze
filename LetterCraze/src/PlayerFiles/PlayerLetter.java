@@ -10,7 +10,7 @@ public class PlayerLetter {
 	//Constructor for a PlayerLetter object. Generates a random letter
 	//	based on the provided letter frequency chart. Generates points
 	//	for the letter based off of the same table.
-	PlayerLetter(){
+	public PlayerLetter(){
 		letter = getRandomLetter();
 		points = getPointVal(letter);
 	}
@@ -18,31 +18,34 @@ public class PlayerLetter {
 	//Constructor for a PlayerLetter object using the given string. 
 	//	Verifies the given string is a valid letter, and then generates
 	//	a point value for the letter based off of the provided chart.
-	PlayerLetter(String input){
+	public PlayerLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
 			points = getPointVal(letter);
 		}
+		else{
+			System.err.println ("Invalid input to letter");
+		}
 	}
 	
 	//Get method for letter
-	String getLetter(){
+	public String getLetter(){
 		return this.letter;
 	}
 	
 	//Get method for points
-	int getPoints(){
+	public int getPoints(){
 		return this.points;
 	}
 	
 	//Set method for letter
-	boolean setLetter(String toSet){
+	public boolean setLetter(String toSet){
 		this.letter = toSet;
 		return true;
 	}
 	
 	//Set method for points
-	boolean setPoints(int toSet){
+	public boolean setPoints(int toSet){
 		this.points = toSet;
 		return true;
 	}
@@ -226,7 +229,7 @@ public class PlayerLetter {
 			case 2: //toCheck is 2 characters long, so needs to be "Qu"
 				
 				boolean firstIsQ = ((toCheck.charAt(0) == 'Q') || (toCheck.charAt(0) == 'q'));
-				boolean secondIsU = ((toCheck.charAt(0) == 'U') || (toCheck.charAt(0) == 'u'));
+				boolean secondIsU = ((toCheck.charAt(1) == 'U') || (toCheck.charAt(1) == 'u'));
 				
 				return (firstIsQ && secondIsU);
 			

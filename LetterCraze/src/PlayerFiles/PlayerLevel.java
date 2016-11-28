@@ -4,6 +4,7 @@ import java.util.*;
 
 
 public abstract class PlayerLevel {
+	String title;
 	int pointScore;
 	int starCount;
 	ArrayList<PlayerWord[]> wordsEntered;
@@ -13,7 +14,7 @@ public abstract class PlayerLevel {
 	PlayerBoard board;
 	boolean isLocked;
 	
-	PlayerLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked){
+	PlayerLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title){
 		if(!(starThresholds.length == 3)){
 			System.err.println ("incorrect number passed to create PlayerLevel");
 		}
@@ -22,9 +23,11 @@ public abstract class PlayerLevel {
 			this.bestScore = bestScore;
 			this.bestStars = bestStars;
 			this.isLocked = isLocked;
+			this.title = title;
 			this.pointScore = 0;
 			this.starCount = 0;
 			this.wordsEntered = new ArrayList<>();
+			
 			//Initialize the level board
 			if(this.initBoard()){
 				// board initialized 
@@ -34,6 +37,10 @@ public abstract class PlayerLevel {
 			}
 			
 		}
+	}
+	
+	String getTitle(){
+		return this.title;
 	}
 	
 	int getPointScore(){
@@ -64,26 +71,31 @@ public abstract class PlayerLevel {
 		return this.board;
 	}
 	
-	Boolean getIsLocked(){
+	boolean getIsLocked(){
 		return this.isLocked;
 	}
 	
-	Boolean setPointScore(int pointScore){
+	boolean setTitle(String title){
+		this.title = title;
+		return true;
+	}
+	
+	boolean setPointScore(int pointScore){
 		this.pointScore = pointScore;
 		return true;
 	}
 	
-	Boolean setStarCount(int starCount){
+	boolean setStarCount(int starCount){
 		this.starCount = starCount;
 		return true;
 	}
 	
-	Boolean setWordsEntered(ArrayList<PlayerWord[]> wordsEntered){
+	boolean setWordsEntered(ArrayList<PlayerWord[]> wordsEntered){
 		this.wordsEntered = wordsEntered;
 		return true;
 	}
 	
-	Boolean setStarThresholds(int[] starThresholds){
+	boolean setStarThresholds(int[] starThresholds){
 		if (starThresholds.length == 3){
 			this.starThresholds = starThresholds;
 			return true;
@@ -93,22 +105,22 @@ public abstract class PlayerLevel {
 		}
 	}
 	
-	Boolean setBestScore(int bestScore){
+	boolean setBestScore(int bestScore){
 		this.bestScore = bestScore;
 		return true;
 	}
 	
-	Boolean setBestStars(int bestStars){
+	boolean setBestStars(int bestStars){
 		this.bestStars = bestStars;
 		return true;
 	}
 	
-	Boolean setBoard(PlayerBoard board){
+	boolean setBoard(PlayerBoard board){
 		this.board = board;
 		return true;
 	}
 	
-	Boolean setIsLocked(Boolean isLocked){
+	boolean setIsLocked(Boolean isLocked){
 		this.isLocked = isLocked;
 		return true;
 	}

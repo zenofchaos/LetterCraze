@@ -12,5 +12,19 @@ public class PlayerBoard {
 		}
 		
 	}
+	
+	PlayerSquare[][] getSquares(){
+		return this.squares;
+	}
+	
+	Boolean setSquares(PlayerSquare[][] squares){
+		if((squares.length == 6) && squares[0].length == 6){
+			this.squares = squares;
+			return true;
+		}
+		else{ 
+			return false;
+		}
+	}
 
 }

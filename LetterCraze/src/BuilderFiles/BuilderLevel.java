@@ -1,6 +1,5 @@
 package BuilderFiles;
 
-import BuilderFiles.BuilderBoard;
 import BuilderFiles.BuilderSquare;
 
 public abstract class BuilderLevel {

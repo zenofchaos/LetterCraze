@@ -1,7 +1,5 @@
 package BuilderFiles;
 
-import BuilderFiles.BuilderSquare;
-
 public class BuilderBoard {
 
 BuilderSquare[][] squares;

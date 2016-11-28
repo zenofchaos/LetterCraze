@@ -2,15 +2,13 @@ package BuilderFiles;
 
 import java.util.LinkedList;
 
-import PlayerFiles.PlayerBoard;
-
 public class BuilderThemeLevel extends BuilderLevel{
 
 	String theme;
 	LinkedList<String> themeWords;
-	PlayerBoard boardPreset;
+	BuilderBoard boardPreset;
 	
-	BuilderThemeLevel(int[] starThresholds, String theme, LinkedList<String> themeWords, PlayerBoard boardPreset) {
+	BuilderThemeLevel(int[] starThresholds, String theme, LinkedList<String> themeWords, BuilderBoard boardPreset) {
 		super(starThresholds, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
@@ -20,7 +18,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return this.themeWords;
 	}
 	
-	PlayerBoard getBoardPreset(){
+	BuilderBoard getBoardPreset(){
 		return this.boardPreset;
 	}
 	
@@ -29,7 +27,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return true;
 	}
 	
-	boolean setBoardPreset(PlayerBoard boardPreset){
+	boolean setBoardPreset(BuilderBoard boardPreset){
 		this.boardPreset = boardPreset;
 		return true;
 	}

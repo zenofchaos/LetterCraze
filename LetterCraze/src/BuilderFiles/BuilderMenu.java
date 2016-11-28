@@ -35,14 +35,17 @@ List<List<BuilderLevel>> levels;
 			if (toAdd instanceof BuilderPuzzleLevel){
 				List<BuilderLevel> puzzleList = this.levels.get(0);
 				puzzleList.add(toAdd);
+				return true;
 			}
 			else if (toAdd instanceof BuilderLightningLevel){
 				List<BuilderLevel> lightningList = this.levels.get(1);
 				lightningList.add(toAdd);
+				return true;
 			}
 			else if (toAdd instanceof BuilderThemeLevel){
 				List<BuilderLevel> themeList = this.levels.get(2);
 				themeList.add(toAdd);
+				return true;
 			}
 			else{	
 				return false;

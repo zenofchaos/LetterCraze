@@ -25,6 +25,24 @@ public class PlayerLetter {
 		}
 	}
 	
+	String getLetter(){
+		return this.letter;
+	}
+	
+	int getPoints(){
+		return this.points;
+	}
+	
+	boolean setLetter(String toSet){
+		this.letter = toSet;
+		return true;
+	}
+	
+	boolean setPoints(int toSet){
+		this.points = toSet;
+		return true;
+	}
+	
 	//Returns the point value of the given letter (or Qu)
 	// Returns -1 if the given letter is invalid.
 	int getPointVal(String letter) {

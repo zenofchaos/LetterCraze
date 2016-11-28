@@ -14,6 +14,24 @@ public class BuilderLetter {
 		letter = getRandomLetter();
 		points = getPointVal(letter);
 	}
+	
+	String getLetter(){
+		return this.letter;
+	}
+	
+	int getPoints(){
+		return this.points;
+	}
+	
+	boolean setLetter(String toSet){
+		this.letter = toSet;
+		return true;
+	}
+	
+	boolean setPoints(int toSet){
+		this.points = toSet;
+		return true;
+	}
 
 	//Constructor for a PlayerLetter object using the given string. 
 	//	Verifies the given string is a valid letter, and then generates

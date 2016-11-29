@@ -9,12 +9,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class builder_exit extends JPanel {
+public class BuilderExit extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public builder_exit() {
+	public BuilderExit() {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		

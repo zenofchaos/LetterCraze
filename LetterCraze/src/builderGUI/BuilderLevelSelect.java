@@ -7,12 +7,12 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class level_select_builder extends JPanel {
+public class BuilderLevelSelect extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public level_select_builder() {
+	public BuilderLevelSelect() {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		

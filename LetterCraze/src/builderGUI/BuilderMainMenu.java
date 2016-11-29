@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class mainMenu_builder extends JFrame {
+public class BuilderMainMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +23,7 @@ public class mainMenu_builder extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainMenu_builder frame = new mainMenu_builder();
+					BuilderMainMenu frame = new BuilderMainMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class mainMenu_builder extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public mainMenu_builder() {
+	public BuilderMainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

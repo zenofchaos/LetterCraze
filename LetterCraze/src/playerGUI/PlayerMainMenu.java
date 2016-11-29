@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class mainMenu_player extends JFrame {
+public class PlayerMainMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +23,7 @@ public class mainMenu_player extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainMenu_player frame = new mainMenu_player();
+					PlayerMainMenu frame = new PlayerMainMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class mainMenu_player extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public mainMenu_player() {
+	public PlayerMainMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

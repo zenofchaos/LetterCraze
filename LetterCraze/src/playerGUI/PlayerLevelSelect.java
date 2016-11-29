@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
-public class LevelSelectMenu {
+public class PlayerLevelSelect {
 
 	private JFrame frame;
 
@@ -23,7 +23,7 @@ public class LevelSelectMenu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LevelSelectMenu window = new LevelSelectMenu();
+					PlayerLevelSelect window = new PlayerLevelSelect();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class LevelSelectMenu {
 	/**
 	 * Create the application.
 	 */
-	public LevelSelectMenu() {
+	public PlayerLevelSelect() {
 		initialize();
 	}
 

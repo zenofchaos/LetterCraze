@@ -116,11 +116,41 @@ public class PlayerLevelSelect {
 		themeScrollPane.setViewportView(themeInnerPanel);
 		themeInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
+		JButton btnTheme1 = new JButton("1");
+		themeInnerPanel.add(btnTheme1);
+		
+		JButton btnTheme2 = new JButton("2");
+		themeInnerPanel.add(btnTheme2);
+		
+		JButton btnTheme3 = new JButton("3");
+		themeInnerPanel.add(btnTheme3);
+		
+		JButton btnTheme4 = new JButton("4");
+		themeInnerPanel.add(btnTheme4);
+		
+		JButton btnTheme5 = new JButton("5");
+		themeInnerPanel.add(btnTheme5);
+		
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
 		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lightningScrollPane.setViewportView(lightningInnerPanel);
 		lightningInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		
+		JButton btnLightning1 = new JButton("1");
+		lightningInnerPanel.add(btnLightning1);
+		
+		JButton btnLightning2 = new JButton("2");
+		lightningInnerPanel.add(btnLightning2);
+		
+		JButton btnLightning3 = new JButton("3");
+		lightningInnerPanel.add(btnLightning3);
+		
+		JButton btnLightning4 = new JButton("4");
+		lightningInnerPanel.add(btnLightning4);
+		
+		JButton btnLightning5 = new JButton("5");
+		lightningInnerPanel.add(btnLightning5);
 		
 		JPanel puzzleInnerPanel = new JPanel();
 		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -142,11 +172,6 @@ public class PlayerLevelSelect {
 		
 		JButton btnPuzzle5 = new JButton("5");
 		puzzleInnerPanel.add(btnPuzzle5);
-		
-		JPanel puzzle1 = new JPanel();
-		puzzle1.setPreferredSize(new Dimension(100, 64));
-		puzzleInnerPanel.add(puzzle1);
-		puzzle1.setLayout(null);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}

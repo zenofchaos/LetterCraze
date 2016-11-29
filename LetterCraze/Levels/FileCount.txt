@@ -1,0 +1,14 @@
+04
+03
+02
+
+02
+02
+01
+
+
+**************
+
+Line 1 corresponds to lightning levels, 2 to puzzle levels, 3 to theme levels
+First set represents number of levels of each type in the directory
+Second set counts the largest unlocked file in the set

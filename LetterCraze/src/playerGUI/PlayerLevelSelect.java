@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.Component;
 
 public class PlayerLevelSelect {
 
@@ -106,6 +107,21 @@ public class PlayerLevelSelect {
 						.addComponent(themeScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20))
 				);
+		
+		JPanel themeInnerPanel = new JPanel();
+		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
+		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		themeScrollPane.setViewportView(themeInnerPanel);
+		
+		JPanel lightningInnerPanel = new JPanel();
+		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
+		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lightningScrollPane.setViewportView(lightningInnerPanel);
+		
+		JPanel puzzleInnerPanel = new JPanel();
+		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
+		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}

@@ -95,15 +95,15 @@ public class LevelSelectMenu {
 						.addGap(5)
 						.addComponent(lblPuzzleLevels)
 						.addGap(20)
-						.addComponent(puzzleScrollPane, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+						.addComponent(puzzleScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20)
 						.addComponent(lblLightningLevels)
 						.addGap(20)
-						.addComponent(lightningScrollPane, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+						.addComponent(lightningScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20)
 						.addComponent(lblThemeLevels)
 						.addGap(20)
-						.addComponent(themeScrollPane, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+						.addComponent(themeScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20))
 				);
 		panel.setLayout(gl_panel);

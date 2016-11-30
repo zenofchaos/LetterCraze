@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import playerFiles.*;
 
-public class FileAccess {
+public class FileAccessController {
 
 	// Store the number of available levels in the directory.
 	int numL;
@@ -18,7 +18,7 @@ public class FileAccess {
 
 	int i; // handy dandy re-usable iterator through files
 
-	public FileAccess(PlayerMenu menu) throws Exception {
+	public FileAccessController(PlayerMenu menu) throws Exception {
 
 		// Generate FileCount file and its Scanner
 		java.io.File file = new java.io.File("Levels/FileCount.txt");

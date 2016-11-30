@@ -24,8 +24,41 @@ public class PlayerMenu {
 		return true;
 	}
 	
+	//Returns the level corresponding to the given identifier
+	//Identifier should be in one of the following forms:
+	//		T#	L#	P#
+	//Where the first character indicates the type of level,
+	//and number indicates the index in the list of levels.
+	//Returns null if the given letter is not T,L, or P,
+	//	or if the given number is out of bounds of the arrayList
 	public PlayerLevel getLevel(String identifier){
-		Model model = fileAccess.getModel();
+		char type = identifier.charAt(0);
+		int index = (int) identifier.charAt(1);
+		List<PlayerLevel> desiredLevels;
+		
+		//Determine which type of level is desired
+		switch (type){
+			case 'T':
+				desiredLevels = this.levels.get(2);
+				break;
+			case 'L':
+				desiredLevels = this.levels.get(1);
+				break;
+			case 'P':
+				desiredLevels = this.levels.get(0);
+				break;
+			default:
+				return null;
+		}
+		
+		//returns the desired level, or null if the desired
+		//	level does not exist
+		try{
+			return desiredLevels.get(index);
+		}
+		catch (Exception e){
+			return null;
+		}
 	}
 	
 	//Adds the given level to this menu. If the given level is

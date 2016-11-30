@@ -16,7 +16,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class PlayerMainMenuGUI extends JFrame implements IGUI{
+public class PlayerMainMenuGUI extends JFrame implements IPlayerGUI{
 
 	private JPanel contentPane;
 

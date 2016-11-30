@@ -11,6 +11,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
 
 public class PlayerLevelSelect {
 
@@ -106,6 +109,69 @@ public class PlayerLevelSelect {
 						.addComponent(themeScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20))
 				);
+		
+		JPanel themeInnerPanel = new JPanel();
+		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
+		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		themeScrollPane.setViewportView(themeInnerPanel);
+		themeInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		
+		JButton btnTheme1 = new JButton("1");
+		themeInnerPanel.add(btnTheme1);
+		
+		JButton btnTheme2 = new JButton("2");
+		themeInnerPanel.add(btnTheme2);
+		
+		JButton btnTheme3 = new JButton("3");
+		themeInnerPanel.add(btnTheme3);
+		
+		JButton btnTheme4 = new JButton("4");
+		themeInnerPanel.add(btnTheme4);
+		
+		JButton btnTheme5 = new JButton("5");
+		themeInnerPanel.add(btnTheme5);
+		
+		JPanel lightningInnerPanel = new JPanel();
+		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
+		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lightningScrollPane.setViewportView(lightningInnerPanel);
+		lightningInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		
+		JButton btnLightning1 = new JButton("1");
+		lightningInnerPanel.add(btnLightning1);
+		
+		JButton btnLightning2 = new JButton("2");
+		lightningInnerPanel.add(btnLightning2);
+		
+		JButton btnLightning3 = new JButton("3");
+		lightningInnerPanel.add(btnLightning3);
+		
+		JButton btnLightning4 = new JButton("4");
+		lightningInnerPanel.add(btnLightning4);
+		
+		JButton btnLightning5 = new JButton("5");
+		lightningInnerPanel.add(btnLightning5);
+		
+		JPanel puzzleInnerPanel = new JPanel();
+		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
+		puzzleScrollPane.setViewportView(puzzleInnerPanel);
+		puzzleInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		
+		JButton btnPuzzle1 = new JButton("1");
+		puzzleInnerPanel.add(btnPuzzle1);
+		
+		JButton btnPuzzle2 = new JButton("2");
+		puzzleInnerPanel.add(btnPuzzle2);
+		
+		JButton btnPuzzle3 = new JButton("3");
+		puzzleInnerPanel.add(btnPuzzle3);
+		
+		JButton btnPuzzle4 = new JButton("4");
+		puzzleInnerPanel.add(btnPuzzle4);
+		
+		JButton btnPuzzle5 = new JButton("5");
+		puzzleInnerPanel.add(btnPuzzle5);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}

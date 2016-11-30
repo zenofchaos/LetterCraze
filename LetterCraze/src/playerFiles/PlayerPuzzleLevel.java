@@ -4,7 +4,7 @@ public class PlayerPuzzleLevel extends PlayerLevel {
 	
 	int wordLimit;
 
-	PlayerPuzzleLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title, int wordLimit) {
+	public PlayerPuzzleLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title, int wordLimit) {
 		super(starThresholds, bestScore, bestStars, isLocked, title);
 		this.wordLimit = wordLimit;
 	}

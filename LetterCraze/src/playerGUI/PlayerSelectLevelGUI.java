@@ -10,17 +10,14 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
-import playerControllers.PlayerSelectLevelController;
 import playerFiles.PlayerMenu;
 
 import javax.swing.JButton;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.Dimension;
 
-public class PlayerSelectLevelGUI {
+public class PlayerSelectLevelGUI implements IGUI{
 
 	PlayerMenu theMenu;
 	
@@ -199,14 +196,22 @@ public class PlayerSelectLevelGUI {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	
+	@Override
 	// Opens (set visible) this frame
-		public void open(){
-			this.frame.setVisible(true);
-		}
-		
-		// Hides and disposes of this frame
-		public void close(){
-			this.frame.setVisible(false);
-			this.frame.dispose();
-		}
+	public void open(){
+		this.frame.setVisible(true);
+	}
+	
+	@Override
+	// Hides and disposes of this frame
+	public void close(){
+		this.frame.setVisible(false);
+		this.frame.dispose();
+	}
+	
+	@Override
+	// Hides this frame from view
+	public void hide(){
+		this.frame.setVisible(false);
+	}
 }

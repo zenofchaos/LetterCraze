@@ -1,6 +1,5 @@
 package playerGUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,7 +16,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class PlayerMainMenuGUI extends JFrame {
+public class PlayerMainMenuGUI extends JFrame implements IGUI{
 
 	private JPanel contentPane;
 
@@ -74,15 +73,22 @@ public class PlayerMainMenuGUI extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-	
+	@Override
 	// Opens (set visible) this panel
 	public void open(){
 		this.setVisible(true);
 	}
 	
+	@Override
 	// Hide and dispose of this panel
 	public void close(){
 		this.setVisible(false);
 		this.dispose();
+	}
+	
+	@Override
+	// Hide and dispose of this panel
+	public void hide(){
+		this.setVisible(false);
 	}
 }

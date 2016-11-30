@@ -30,6 +30,9 @@ public class FileAccessController {
 	public FileAccessController(PlayerMenu menu) {
 	}
 
+	// Returns an entire model with all the levels generated.
+	// in code: opens the master FileCount file to get metadata about levels,
+	// then iterates through each to open.
 	public PlayerModel getModel() throws Exception {
 		PlayerModel model = new PlayerModel();
 		PlayerMenu menu = model.getMenu();
@@ -67,6 +70,8 @@ public class FileAccessController {
 		return model;
 	}
 
+	// opens the lightning level file corresponding to number, reads, and
+	// returns a lightning level.
 	public PlayerLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
 		input = new Scanner(file);
@@ -77,35 +82,77 @@ public class FileAccessController {
 		String title = input.nextLine();
 
 		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
+		// flagging this as a potential pass-by-reference problem. idk for sure
+		// yet.
 
-		//Now I process the bitmap.
+		// Now I process the bitmap.
+
 		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
-		//(get it? because I added 2 dimensions to a square? lol)
-		for (i = 0; i <= 6; i++){
-			for (j = 0; j <= 6; j++){
+		// (get it? because I added 2 dimensions to a square? lol)
+		for (i = 0; i <= 6; i++) {
+			for (j = 0; j <= 6; j++) {
+				hypercube[i][j] = new PlayerSquare(i, j);
+				hypercube[i][j].setIsActive(input.nextInt() == 1);
+			}
+		}
+		PlayerBoard board = new PlayerBoard(hypercube);
+		// another pass-by-reference flag.
+
+		int maxTime = input.nextInt();
+
+		// That's the last entry in the file, now we're ready to put it all
+		// together.
+
+		PlayerLevel level = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, title, maxTime);
+		level.setBoard(board);
+		return level;
+	}
+
+	// opens the puzzle level file corresponding to number, reads, and
+	// returns a puzzle level.
+	public PlayerLevel readPuzzle(int number) throws Exception {
+		file = new java.io.File("Levels/Puzzle" + number + ".txt");
+		input = new Scanner(file);
+
+		boolean isLocked = (i <= unlockedP);
+		int bestScore = input.nextInt();
+		int bestStars = input.nextInt();
+		String title = input.nextLine();
+
+		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
+		// pass-by-reference? the more I think about it, the more I think we're
+		// safe. but I'm gonna mark this just in case we get related errors.
+
+		// Anyways, now I process the bitmap.
+
+		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
+		for (i = 0; i <= 6; i++) {
+			for (j = 0; j <= 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
 				hypercube[i][j].setIsActive(input.nextInt() == 1);
 			}
 		}
 		PlayerBoard board = new PlayerBoard(hypercube);
 
-		int maxTime = input.nextInt();
-		
-		PlayerLevel level = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, title, maxTime);
-		level.setBoard(board); //flagging this as a potential pass-by-reference problem. idk for sure yet.
+		int moveNumber = input.nextInt();
+
+		// That's the last entry in the file, now we're ready to put it all
+		// together.
+
+		PlayerLevel level = new PlayerPuzzleLevel(starThresholds, bestScore, bestStars, isLocked, title, moveNumber);
+		level.setBoard(board);
+		// pass by reference?
+
 		return level;
 	}
 
-	public PlayerLevel readPuzzle(int number) {
-		int[] starThresholds = { 1, 1, 1 };
-		PlayerLevel level = new PlayerPuzzleLevel(starThresholds, 1, 1, true, "No", 1);
-		return level;
-	}
-
+	// opens the theme level file corresponding to number, reads, and
+	// returns a theme level.
+	//WARNING: NOT IMPLEMENTED YET
 	public PlayerLevel readTheme(int number) {
 		// OH GOD I'M NOT GONNA TOUCH THIS TILL THURSDAY AT LEAST
 		int[] starThresholds = { 1, 1, 1 };
-		PlayerLevel level = new PlayerLightningLevel(starThresholds, 1, 1, true, "No", 1);
+		PlayerLevel level = new PlayerLightningLevel(starThresholds, 1, 1, true, "Placeholder", 1);
 		return level;
 	}
 

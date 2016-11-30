@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import playerFiles.*;
 
-public class OpenLevelSelectController {
+public class FileAccess {
 
 	// Store the number of available levels in the directory.
 	int numL;
@@ -18,7 +18,7 @@ public class OpenLevelSelectController {
 
 	int i; // handy dandy re-usable iterator through files
 
-	public OpenLevelSelectController(PlayerMenu menu) throws Exception {
+	public FileAccess(PlayerMenu menu) throws Exception {
 
 		// Generate FileCount file and its Scanner
 		java.io.File file = new java.io.File("Levels/FileCount.txt");

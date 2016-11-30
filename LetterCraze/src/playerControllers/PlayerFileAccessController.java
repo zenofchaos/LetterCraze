@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import playerFiles.*;
 
-public class FileAccessController {
+public class PlayerFileAccessController {
 
 	/*
 	 * NEEDED METHODS: PlayerModel getModel(); readLightning (int); readPuzzle
@@ -27,7 +27,7 @@ public class FileAccessController {
 	java.io.File file;
 	Scanner input;
 
-	public FileAccessController(PlayerMenu menu) {
+	public PlayerFileAccessController(PlayerMenu menu) {
 	}
 
 	// Returns an entire model with all the levels generated.

@@ -6,6 +6,12 @@ import playerFiles.*;
 
 public class FileAccessController {
 
+	/*
+	 * NEEDED METHODS: PlayerModel getModel(); readLightning (int); readPuzzle
+	 * (int); readTheme (int);
+	 * 
+	 */
+
 	// Store the number of available levels in the directory.
 	int numL;
 	int numP;
@@ -17,12 +23,20 @@ public class FileAccessController {
 	int unlockedT;
 
 	int i; // handy dandy re-usable iterator through files
+	
+	java.io.File file;
+	Scanner input;
 
-	public FileAccessController(PlayerMenu menu) throws Exception {
+	public FileAccessController(PlayerMenu menu) {
+	}
 
-		// Generate FileCount file and its Scanner
-		java.io.File file = new java.io.File("Levels/FileCount.txt");
-		Scanner input = new Scanner(file);
+	public PlayerModel getModel() throws Exception {
+		PlayerModel model = new PlayerModel();
+		PlayerMenu menu = model.getMenu();
+
+		// Open FileCount
+		file = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(file);
 
 		numL = input.nextInt();
 		numP = input.nextInt();
@@ -35,33 +49,41 @@ public class FileAccessController {
 		// Close FileCount
 		input.close();
 
-		// At this point I need to iterate through a loop for each type of file.
-		// This will happen a total of (numL+numP+numT) times.
-
-		// For the player menu, I only need a locked boolean, high score,
-		// corresponding stars, title, and thresholds for each level.
-
-		// I'll start with Puzzle level generation.
+		// Iterate to add Puzzle levels
 		for (i = 1; i <= numP; i++) {
-
-			file = new java.io.File("Levels/Puzzle" + i + ".txt");
-			input = new Scanner(file);
-
-			Boolean isLocked = (i <= unlockedP);
-
-			int maxScore = input.nextInt();
-			int maxStars = input.nextInt();
-			String title = input.nextLine();
-			// WARNING: layout below will possibly break (pass by reference). I
-			// need to put these directly into the level constructor when that
-			// line is made.
-			int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
-
-			PlayerLevel level = new PlayerPuzzleLevel(starThresholds, maxScore, maxStars, isLocked, title, i);
-			
-			menu.addLevel(level);
-			
+			menu.addLevel(readPuzzle(i));
 		}
 
+		// Iterate to add Lightning levels
+		for (i = 1; i <= numL; i++) {
+			menu.addLevel(readLightning(i));
+		}
+		
+		// Iterate to add Theme levels
+		for (i = 1; i <= numT; i++) {
+			menu.addLevel(readTheme(i));
+		}
+
+		return model;
 	}
+
+	
+	public PlayerLevel readLightning(int number) {
+		int[] starThresholds = { 1, 1, 1 };
+		PlayerLevel level = new PlayerLightningLevel(starThresholds, 1, 1, true, "No", 1);
+		return level;
+	}
+
+	public PlayerLevel readPuzzle(int number) {
+		int[] starThresholds = { 1, 1, 1 };
+		PlayerLevel level = new PlayerLightningLevel(starThresholds, 1, 1, true, "No", 1);
+		return level;
+	}
+
+	public PlayerLevel readTheme(int number) {
+		int[] starThresholds = { 1, 1, 1 };
+		PlayerLevel level = new PlayerLightningLevel(starThresholds, 1, 1, true, "No", 1);
+		return level;
+	}
+
 }

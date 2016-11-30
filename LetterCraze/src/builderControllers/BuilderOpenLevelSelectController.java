@@ -23,11 +23,11 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Close menu window
-		menuView.close();
+		menuView.closeWindow();
 		//Generate the model
 		//FileAccessController fileAccess = new FileAccessController(new PlayerMenu());
 		//PlayerModel model = fileAccess.getModel();th
 		BuilderNewLevelGUI selectView = new BuilderNewLevelGUI(new BuilderMenu());
-		selectView.open();
+		selectView.openWindow();
 	}
 }

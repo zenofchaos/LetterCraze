@@ -40,7 +40,7 @@ public class BuilderSplashGUI {
 
 				ActionListener closer = new ActionListener(){
 					public void actionPerformed(ActionEvent ae){
-						menuWindow.open();
+						menuWindow.openWindow();
 						window.frame.setVisible(false);
 						window.frame.dispose();
 					}

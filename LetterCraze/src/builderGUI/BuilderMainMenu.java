@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class BuilderMainMenu extends JFrame {
+public class BuilderMainMenu extends JFrame implements IBuilderGUI {
 
 	private JPanel contentPane;
 
@@ -77,15 +77,24 @@ public class BuilderMainMenu extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
-	// Opens (set visible) this panel
-	public void open(){
+
+	@Override
+	public void openWindow() {
 		this.setVisible(true);
+		
 	}
 
-	// Hide and dispose of this panel
-	public void close(){
+	@Override
+	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
+		
+	}
+
+	@Override
+	public void hideWindow() {
+		this.setVisible(false);
+		
 	}
 
 }

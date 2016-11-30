@@ -21,7 +21,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 
-public class BuilderNewLevelGUI {
+public class BuilderNewLevelGUI implements IBuilderGUI{
 
 	BuilderMenu theMenu;
 	
@@ -211,14 +211,23 @@ public class BuilderNewLevelGUI {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	
-	// Opens (set visible) this frame
-		public void open(){
+
+		@Override
+		public void openWindow() {
 			this.frame.setVisible(true);
+			
 		}
-		
-		// Hides and disposes of this frame
-		public void close(){
+
+		@Override
+		public void closeWindow() {
 			this.frame.setVisible(false);
 			this.frame.dispose();
+			
+		}
+
+		@Override
+		public void hideWindow() {
+			this.frame.setVisible(false);
+			
 		}
 }

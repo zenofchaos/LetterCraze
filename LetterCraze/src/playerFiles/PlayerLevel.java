@@ -115,7 +115,7 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setBoard(PlayerBoard board){
+	public boolean setBoard(PlayerBoard board){
 		this.board = board;
 		return true;
 	}

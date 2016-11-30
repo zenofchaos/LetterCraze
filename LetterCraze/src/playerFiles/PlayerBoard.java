@@ -3,7 +3,7 @@ package playerFiles;
 public class PlayerBoard {
 	PlayerSquare[][] squares;
 	
-	PlayerBoard(PlayerSquare[][] squares){
+	public PlayerBoard(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
 		}

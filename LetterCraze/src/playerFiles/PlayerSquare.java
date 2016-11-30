@@ -53,7 +53,7 @@ public class PlayerSquare {
 	}
 	
 	//Set method for isActive
-	boolean setIsActive(boolean toSet){
+	public boolean setIsActive(boolean toSet){
 		this.isActive = toSet;
 		return true;
 	}

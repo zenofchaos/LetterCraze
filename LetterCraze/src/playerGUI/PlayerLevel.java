@@ -134,4 +134,15 @@ public class PlayerLevel extends JFrame {
 		backButton.setBounds(164, 116, 117, 25);
 		contentPane.add(backButton);
 	}
+	
+	//Opens (sets visible) this window
+	public void open(){
+		this.setVisible(true);
+	}
+	
+	//Hides and disposes of this window
+	public void close(){
+		this.setVisible(false);
+		this.dispose();
+	}
 }

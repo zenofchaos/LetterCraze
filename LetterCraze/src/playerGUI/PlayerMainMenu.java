@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import playerControllers.OpenLevelSelectController;
+import playerControllers.PlayerOpenLevelSelectController;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -55,7 +55,7 @@ public class PlayerMainMenu extends JFrame {
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
 		
 		JButton btnLevels = new JButton("Levels");
-		btnLevels.addActionListener(new OpenLevelSelectController(this));
+		btnLevels.addActionListener(new PlayerOpenLevelSelectController(this));
 		btnLevels.setFont(new Font("Dialog", Font.BOLD, 15));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

@@ -19,7 +19,7 @@ public class PlayerOpenLevelSelectController implements ActionListener{
 		// Close menu window
 		menuView.closeWindow();
 		//Generate the model
-		PlayerFileAccessController fileAccess = new PlayerFileAccessController(new PlayerMenu());
+		/*PlayerFileAccessController fileAccess = new PlayerFileAccessController(new PlayerMenu());
 		try{
 			PlayerModel model = fileAccess.getModel();
 			// Open level select window
@@ -29,8 +29,8 @@ public class PlayerOpenLevelSelectController implements ActionListener{
 		catch (Exception exception){
 			System.out.println("FileAccess threw an exception in PlayerOpenLevelController");
 			exception.printStackTrace();
-		}
-		//PlayerSelectLevelGUI selectView = new PlayerSelectLevelGUI(new PlayerMenu());
-		//selectView.openWindow();
+		}*/
+		PlayerSelectLevelGUI selectView = new PlayerSelectLevelGUI(new PlayerMenu());
+		selectView.openWindow();
 	}
 }

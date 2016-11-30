@@ -7,7 +7,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 	LinkedList<String> themeWords;
 	PlayerBoard boardPreset;
 	
-	PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme, LinkedList<String> themeWords, PlayerBoard boardPreset) {
+	public PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme, LinkedList<String> themeWords, PlayerBoard boardPreset) {
 		super(starThresholds, bestScore, bestStars, isLocked, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;

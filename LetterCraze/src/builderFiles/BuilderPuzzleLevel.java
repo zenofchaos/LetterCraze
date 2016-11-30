@@ -4,7 +4,7 @@ public class BuilderPuzzleLevel extends BuilderLevel{
 
 	int wordLimit;
 
-	BuilderPuzzleLevel(int[] starThresholds, String title, int wordLimit) {
+	public BuilderPuzzleLevel(int[] starThresholds, String title, int wordLimit) {
 		super(starThresholds, title);
 		this.wordLimit = wordLimit;
 	}

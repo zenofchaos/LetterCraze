@@ -8,7 +8,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 	LinkedList<String> themeWords;
 	BuilderBoard boardPreset;
 	
-	BuilderThemeLevel(int[] starThresholds, String theme, LinkedList<String> themeWords, BuilderBoard boardPreset) {
+	public BuilderThemeLevel(int[] starThresholds, String theme, LinkedList<String> themeWords, BuilderBoard boardPreset) {
 		super(starThresholds, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;

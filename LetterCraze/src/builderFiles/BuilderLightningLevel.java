@@ -4,7 +4,7 @@ public class BuilderLightningLevel extends BuilderLevel{
 
 int maxTime;
 	
-	BuilderLightningLevel(int[] starThresholds, String title, int maxTime) {
+	public BuilderLightningLevel(int[] starThresholds, String title, int maxTime) {
 		super(starThresholds, title);
 		this.maxTime = maxTime;
 	}

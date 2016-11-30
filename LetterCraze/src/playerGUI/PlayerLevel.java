@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -13,7 +11,6 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
@@ -28,7 +25,7 @@ public class PlayerLevel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerMainMenu frame = new PlayerMainMenu();
+					PlayerLevel frame = new PlayerLevel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,9 +44,9 @@ public class PlayerLevel extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
@@ -60,32 +57,34 @@ public class PlayerLevel extends JFrame {
 		JLabel titleLabel = new JLabel("Title");
 		titleLabel.setForeground(Color.WHITE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		titleLabel.setBounds(12, 28, 426, 59);
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, 36));
+		titleLabel.setBounds(contentPane.getWidth() / 2, 20, contentPane.getWidth(), 36);
 		contentPane.add(titleLabel);
 		
 		JLabel subtitleLabel = new JLabel("Subtitle text here"); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		subtitleLabel.setBounds(12, 28, 426, 59);
+		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+		subtitleLabel.setBounds(240, 80, 426, 59);
 		contentPane.add(subtitleLabel);
 		
 		JLabel scoreLabel = new JLabel("Score: 0");
 		scoreLabel.setForeground(Color.WHITE);
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scoreLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		scoreLabel.setBounds(12, 28, 426, 59);
+		scoreLabel.setBounds(215, 130, 426, 59);
 		contentPane.add(scoreLabel);
 		
 		JPanel[][] letterPanels = new JPanel[6][6];
 		JLabel[][] letterLabels = new JLabel[6][6];
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
+				letterLabels[i][j] = new JLabel();
 				letterLabels[i][j].setForeground(Color.WHITE);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
 				letterLabels[i][j].setBounds(12, 28, 426, 59);
+				letterPanels[i][j] = new JPanel();
 				letterPanels[i][j].add(letterLabels[i][j]);
 				contentPane.add(letterPanels[i][j]);
 			}
@@ -130,7 +129,7 @@ public class PlayerLevel extends JFrame {
 		resetButton.setBounds(164, 116, 117, 25);
 		contentPane.add(resetButton);
 		
-		JButton backButton = new JButton("Back");
+		JButton backButton = new JButton("Back to Menu");
 		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		backButton.setBounds(164, 116, 117, 25);
 		contentPane.add(backButton);

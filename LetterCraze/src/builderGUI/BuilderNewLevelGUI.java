@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import builderFiles.BuilderMenu;
 import playerControllers.PlayerSelectLevelController;
 import playerFiles.PlayerMenu;
 
@@ -22,7 +23,7 @@ import java.awt.Dimension;
 
 public class BuilderNewLevelGUI {
 
-	PlayerMenu theMenu;
+	BuilderMenu theMenu;
 	
 	private JFrame frame;
 
@@ -33,7 +34,7 @@ public class BuilderNewLevelGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderNewLevelGUI window = new BuilderNewLevelGUI(new PlayerMenu());
+					BuilderNewLevelGUI window = new BuilderNewLevelGUI(new BuilderMenu());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +46,7 @@ public class BuilderNewLevelGUI {
 	/**
 	 * Create the application.
 	 */
-	public BuilderNewLevelGUI(PlayerMenu menu) {
+	public BuilderNewLevelGUI(BuilderMenu menu) {
 		this.theMenu = menu;
 		initialize();
 	}

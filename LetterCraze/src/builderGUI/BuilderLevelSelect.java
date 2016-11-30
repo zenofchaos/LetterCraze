@@ -51,4 +51,5 @@ public class BuilderLevelSelect extends JPanel {
 		setLayout(groupLayout);
 
 	}
+	
 }

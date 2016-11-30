@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class BuilderMainMenu extends JFrame {
+public class BuilderNewLevelGUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -38,7 +38,7 @@ public class BuilderMainMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BuilderMainMenu() {
+	public BuilderNewLevelGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,26 +47,19 @@ public class BuilderMainMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblLetterCrazeBuilder = new JLabel("Letter Craze Builder");
-		lblLetterCrazeBuilder.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblLetterCrazeBuilder.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLetterCrazeBuilder.setForeground(Color.WHITE);
-		lblLetterCrazeBuilder.setBounds(12, 12, 426, 93);
-		contentPane.add(lblLetterCrazeBuilder);
-		
-		JButton btnLevels = new JButton("Levels");
-		btnLevels.addActionListener(new BuilderOpenLevelSelectController(this));
+		JButton btnLevels = new JButton("New Level");
+		//btnLevels.addActionListener(new BuilderOpenLevelSelectController(this));
 		btnLevels.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnLevels.setBounds(167, 117, 117, 25);
 		contentPane.add(btnLevels);
 	}
 	
-	// Opens (set visible) this panel
+	// Opens (set visible) this frame
 	public void open(){
 		this.setVisible(true);
 	}
-	
-	// Hide and dispose of this panel
+			
+	// Hides and disposes of this frame
 	public void close(){
 		this.setVisible(false);
 		this.dispose();

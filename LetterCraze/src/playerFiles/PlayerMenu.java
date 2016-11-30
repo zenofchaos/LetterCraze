@@ -10,7 +10,10 @@ public class PlayerMenu {
 	
 	//Constructor for a PlayerMenu object
 	public PlayerMenu(){
-		this.levels = new ArrayList<List<PlayerLevel>>(3);
+		this.levels = new ArrayList<List<PlayerLevel>>();
+		for (int i = 0; i < 3; i++){
+			this.levels.add(new ArrayList<PlayerLevel>());
+		}
 	}
 	
 	//Get method for levels

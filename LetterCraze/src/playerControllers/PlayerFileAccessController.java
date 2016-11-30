@@ -74,6 +74,7 @@ public class PlayerFileAccessController {
 		boolean isLocked = (i <= unlockedL);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
+		input.nextLine(); //Advances the cursor to the next line
 		String title = input.nextLine();
 
 		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
@@ -82,8 +83,8 @@ public class PlayerFileAccessController {
 
 		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
 		// (get it? because I added 2 dimensions to a square? lol)
-		for (i = 0; i <= 6; i++) {
-			for (j = 0; j <= 6; j++) {
+		for (i = 0; i < 6; i++) {
+			for (j = 0; j < 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
 				hypercube[i][j].setIsActive(input.nextInt() == 1);
 			}
@@ -109,6 +110,7 @@ public class PlayerFileAccessController {
 		boolean isLocked = (i <= unlockedP);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
+		input.nextLine(); //Advances the cursor to the next line
 		String title = input.nextLine();
 
 		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
@@ -116,8 +118,8 @@ public class PlayerFileAccessController {
 		// Now process the bitmap.
 
 		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
-		for (i = 0; i <= 6; i++) {
-			for (j = 0; j <= 6; j++) {
+		for (i = 0; i < 6; i++) {
+			for (j = 0; j < 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
 				hypercube[i][j].setIsActive(input.nextInt() == 1);
 			}

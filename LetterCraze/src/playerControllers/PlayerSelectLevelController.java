@@ -1,26 +1,27 @@
 package playerControllers;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import playerFiles.PlayerLetterCraze;
-import playerFiles.PlayerLevel;
+import java.awt.event.ActionListener;
+import playerGUI.PlayerLevel;
+import playerGUI.PlayerLevelSelect;
 
 public class PlayerSelectLevelController implements ActionListener{
 
-	PlayerLetterCraze theGame;
-	PlayerLevel linkedLevel;
+	PlayerLevelSelect selectView;
+	String btnPressed;
 	
-	public PlayerSelectLevelController(PlayerLetterCraze game, PlayerLevel toLink){
-		this.theGame = game;
-		this.linkedLevel = toLink;
+	public PlayerSelectLevelController(PlayerLevelSelect window, String btnPressed){
+		this.selectView = window;
+		this.btnPressed = btnPressed;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//save active level
-		theGame.setActiveLevel(this.linkedLevel);
-		//close level select window
-		//open 
+		//Access files to build level
+		//potentially for future: close window
+		//open new window
+		PlayerLevel window = new PlayerLevel();
+		window.open();
 	}
 }

@@ -20,7 +20,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 
-public class PlayerLevelSelect {
+public class PlayerSelectLevelGUI {
 
 	PlayerMenu theMenu;
 	
@@ -33,7 +33,7 @@ public class PlayerLevelSelect {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLevelSelect window = new PlayerLevelSelect(new PlayerMenu());
+					PlayerSelectLevelGUI window = new PlayerSelectLevelGUI(new PlayerMenu());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class PlayerLevelSelect {
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevelSelect(PlayerMenu menu) {
+	public PlayerSelectLevelGUI(PlayerMenu menu) {
 		this.theMenu = menu;
 		initialize();
 	}

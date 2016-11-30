@@ -3,14 +3,14 @@ package playerControllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import playerFiles.*;
-import playerGUI.PlayerLevelSelect;
-import playerGUI.PlayerMainMenu;
+import playerGUI.PlayerSelectLevelGUI;
+import playerGUI.PlayerMainMenuGUI;
 
 public class PlayerOpenLevelSelectController implements ActionListener{
 
-	PlayerMainMenu menuView;
+	PlayerMainMenuGUI menuView;
 	
-	public PlayerOpenLevelSelectController(PlayerMainMenu theWindow) {
+	public PlayerOpenLevelSelectController(PlayerMainMenuGUI theWindow) {
 		this.menuView = theWindow;
 	}
 
@@ -23,7 +23,7 @@ public class PlayerOpenLevelSelectController implements ActionListener{
 		try{
 			PlayerModel model = fileAccess.getModel();
 			// Open level select window
-			PlayerLevelSelect selectView = new PlayerLevelSelect(model.getMenu());
+			PlayerSelectLevelGUI selectView = new PlayerSelectLevelGUI(model.getMenu());
 			selectView.open();
 		}
 		catch (Exception exception){

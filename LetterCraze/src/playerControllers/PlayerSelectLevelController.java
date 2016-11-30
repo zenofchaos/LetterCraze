@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 import playerGUI.PlayerLevel;
-import playerGUI.PlayerLevelSelect;
+import playerGUI.PlayerSelectLevelGUI;
 
 public class PlayerSelectLevelController implements ActionListener{
 
-	PlayerLevelSelect selectView;
+	PlayerSelectLevelGUI selectView;
 	String btnPressed;
 	
-	public PlayerSelectLevelController(PlayerLevelSelect window, String btnPressed){
+	public PlayerSelectLevelController(PlayerSelectLevelGUI window, String btnPressed){
 		this.selectView = window;
 		this.btnPressed = btnPressed;
 	}

@@ -9,8 +9,8 @@ import builderGUI.BuilderLevelSelect;
 import builderGUI.BuilderMainMenu;
 import builderGUI.BuilderNewLevelGUI;
 import playerFiles.PlayerMenu;
-import playerGUI.PlayerLevelSelect;
-import playerGUI.PlayerMainMenu;
+import playerGUI.PlayerSelectLevelGUI;
+import playerGUI.PlayerMainMenuGUI;
 
 public class BuilderOpenLevelSelectController implements ActionListener{
 

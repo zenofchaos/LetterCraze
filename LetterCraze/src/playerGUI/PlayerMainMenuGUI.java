@@ -17,7 +17,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class PlayerMainMenu extends JFrame {
+public class PlayerMainMenuGUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class PlayerMainMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerMainMenu frame = new PlayerMainMenu();
+					PlayerMainMenuGUI frame = new PlayerMainMenuGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class PlayerMainMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PlayerMainMenu() {
+	public PlayerMainMenuGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();

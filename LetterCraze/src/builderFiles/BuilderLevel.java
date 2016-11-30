@@ -56,7 +56,7 @@ public abstract class BuilderLevel {
 			}
 		}
 		
-		boolean setBoard(BuilderBoard board){
+		public boolean setBoard(BuilderBoard board){
 			this.board = board;
 			return true;
 		}

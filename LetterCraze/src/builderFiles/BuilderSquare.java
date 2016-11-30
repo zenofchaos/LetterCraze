@@ -5,6 +5,7 @@ public class BuilderSquare {
 	BuilderLetter letter;
 	int row;
 	int col;
+	boolean isActive;
 	
 	//The constructor for a BuilderSquare
 	//	Takes in the square's row and column.
@@ -28,6 +29,11 @@ public class BuilderSquare {
 		return this.col;
 	}
 	
+	//Get method for isActive
+	boolean getIsActive(){
+		return this.isActive;
+	}
+
 	//Set method for letter
 	boolean setLetter(BuilderLetter toSet){
 		this.letter = toSet;
@@ -43,6 +49,12 @@ public class BuilderSquare {
 	//Set method for column
 	boolean setCol (int toSet){
 		this.row = toSet;
+		return true;
+	}
+	
+	//Set method for isActive
+	public boolean setIsActive(boolean toSet){
+		this.isActive = toSet;
 		return true;
 	}
 	

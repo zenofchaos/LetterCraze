@@ -4,7 +4,7 @@ public class BuilderBoard {
 
 BuilderSquare[][] squares;
 	
-	BuilderBoard(BuilderSquare[][] squares){
+	public BuilderBoard(BuilderSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
 		}

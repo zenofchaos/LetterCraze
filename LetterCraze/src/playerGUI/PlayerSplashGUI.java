@@ -30,19 +30,21 @@ public class PlayerSplashGUI {
 
 
 				PlayerSplashGUI window = new PlayerSplashGUI();
+				PlayerMainMenuGUI menuWindow = new PlayerMainMenuGUI();
 				window.initialize();
 				window.frame.setUndecorated(true);
 				window.frame.setVisible(true);
 
 				ActionListener closer = new ActionListener(){
 					public void actionPerformed(ActionEvent ae){
+						menuWindow.openWindow();
 						window.frame.setVisible(false);
 						window.frame.dispose();
 					}
 
 				};
 
-				Timer timer = new Timer(2500, closer);
+				Timer timer = new Timer(5000, closer);
 				timer.setRepeats(false);
 				timer.start();
 			}

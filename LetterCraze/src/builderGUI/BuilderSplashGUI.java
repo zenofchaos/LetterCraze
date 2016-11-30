@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import playerGUI.PlayerMainMenuGUI;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -30,12 +33,14 @@ public class BuilderSplashGUI {
 
 
 				BuilderSplashGUI window = new BuilderSplashGUI();
+				BuilderMainMenu menuWindow = new BuilderMainMenu();
 				window.initialize();
 				window.frame.setUndecorated(true);
 				window.frame.setVisible(true);
 
 				ActionListener closer = new ActionListener(){
 					public void actionPerformed(ActionEvent ae){
+						menuWindow.open();
 						window.frame.setVisible(false);
 						window.frame.dispose();
 					}

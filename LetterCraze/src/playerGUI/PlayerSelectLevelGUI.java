@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.Component;
 import java.awt.FlowLayout;
 
-public class PlayerSelectLevelGUI implements IGUI{
+public class PlayerSelectLevelGUI implements IPlayerGUI{
 
 	PlayerMenu theMenu;
 	

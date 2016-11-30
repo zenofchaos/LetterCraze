@@ -10,6 +10,9 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import playerFiles.PlayerMenu;
+
 import javax.swing.JButton;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -17,6 +20,8 @@ import java.awt.Dimension;
 
 public class PlayerLevelSelect {
 
+	PlayerMenu theMenu;
+	
 	private JFrame frame;
 
 	/**
@@ -26,7 +31,7 @@ public class PlayerLevelSelect {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLevelSelect window = new PlayerLevelSelect();
+					PlayerLevelSelect window = new PlayerLevelSelect(new PlayerMenu());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +43,8 @@ public class PlayerLevelSelect {
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevelSelect() {
+	public PlayerLevelSelect(PlayerMenu menu) {
+		this.theMenu = menu;
 		initialize();
 	}
 
@@ -175,4 +181,15 @@ public class PlayerLevelSelect {
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
+	// Opens (set visible) this frame
+		public void open(){
+			this.frame.setVisible(true);
+		}
+		
+		// Hides and disposes of this frame
+		public void close(){
+			this.frame.setVisible(false);
+			this.frame.dispose();
+		}
 }

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import playerControllers.OpenLevelSelectController;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -52,6 +55,7 @@ public class PlayerMainMenu extends JFrame {
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
 		
 		JButton btnLevels = new JButton("Levels");
+		btnLevels.addActionListener(new OpenLevelSelectController(this));
 		btnLevels.setFont(new Font("Dialog", Font.BOLD, 15));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -69,5 +73,16 @@ public class PlayerMainMenu extends JFrame {
 					.addContainerGap(200, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	// Opens (set visible) this panel
+	public void open(){
+		this.setVisible(true);
+	}
+	
+	// Hide and dispose of this panel
+	public void close(){
+		this.setVisible(false);
+		this.dispose();
 	}
 }

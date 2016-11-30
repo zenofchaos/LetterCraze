@@ -198,20 +198,20 @@ public class PlayerSelectLevelGUI implements IGUI{
 	
 	@Override
 	// Opens (set visible) this frame
-	public void open(){
+	public void openWindow(){
 		this.frame.setVisible(true);
 	}
 	
 	@Override
 	// Hides and disposes of this frame
-	public void close(){
+	public void closeWindow(){
 		this.frame.setVisible(false);
 		this.frame.dispose();
 	}
 	
 	@Override
 	// Hides this frame from view
-	public void hide(){
+	public void hideWindow(){
 		this.frame.setVisible(false);
 	}
 }

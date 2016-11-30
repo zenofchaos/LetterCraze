@@ -75,20 +75,20 @@ public class PlayerMainMenuGUI extends JFrame implements IGUI{
 	}
 	@Override
 	// Opens (set visible) this panel
-	public void open(){
+	public void openWindow(){
 		this.setVisible(true);
 	}
 	
 	@Override
 	// Hide and dispose of this panel
-	public void close(){
+	public void closeWindow(){
 		this.setVisible(false);
 		this.dispose();
 	}
 	
 	@Override
 	// Hide and dispose of this panel
-	public void hide(){
+	public void hideWindow(){
 		this.setVisible(false);
 	}
 }

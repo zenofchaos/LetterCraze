@@ -6,9 +6,9 @@ package playerGUI;
 public interface IGUI {
 
 	//Shows this gui object
-	public void open();
+	public void openWindow();
 	//Closes/disposes of this gui object
-	public void close();
+	public void closeWindow();
 	//Hides but DOES NOT dispose of this gui object
-	public void hide();
+	public void hideWindow();
 }

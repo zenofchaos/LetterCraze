@@ -158,6 +158,7 @@ public class BuilderNewLevelGUI implements IBuilderGUI{
 		lightningInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
 		JButton btnNewLightning = new JButton("New Lightning");
+		btnNewLightning.addActionListener(new BuilderOpenEditorController(this));
 		lightningInnerPanel.add(btnNewLightning);
 		
 		JButton btnLightning1 = new JButton("1");
@@ -187,6 +188,7 @@ public class BuilderNewLevelGUI implements IBuilderGUI{
 		puzzleInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
 		JButton btnNewPuzzle = new JButton("New Puzzle");
+		btnNewPuzzle.addActionListener(new BuilderOpenEditorController(this));
 		puzzleInnerPanel.add(btnNewPuzzle);
 		
 		JButton btnPuzzle1 = new JButton("1");

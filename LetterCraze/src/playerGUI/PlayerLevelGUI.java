@@ -12,10 +12,13 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+
+import playerControllers.PlayerBackBtnController;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class PlayerLevelGUI extends JFrame {
+public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
 	private JPanel contentPane;
 
@@ -144,16 +147,22 @@ public class PlayerLevelGUI extends JFrame {
 		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		backButton.setBounds(20, 20, 150, 25);
 		contentPane.add(backButton);
+		backButton.addActionListener(new PlayerBackBtnController(this));
 	}
-	
-	//Opens (sets visible) this window
-	public void open() {
+
+	@Override
+	public void openWindow() {
 		this.setVisible(true);
 	}
-	
-	//Hides and disposes of this window
-	public void close() {
+
+	@Override
+	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
+	}
+
+	@Override
+	public void hideWindow() {
+		this.setVisible(false);
 	}
 }

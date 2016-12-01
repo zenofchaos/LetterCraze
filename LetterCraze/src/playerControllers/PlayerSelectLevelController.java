@@ -3,7 +3,6 @@ package playerControllers;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
-import playerGUI.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
@@ -23,6 +22,6 @@ public class PlayerSelectLevelController implements ActionListener{
 		//potentially for future: close window
 		//open new window
 		PlayerLevelGUI window = new PlayerLevelGUI();
-		window.open();
+		window.openWindow();
 	}
 }

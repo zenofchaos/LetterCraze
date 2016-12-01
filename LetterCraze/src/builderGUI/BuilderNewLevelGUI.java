@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import builderControllers.BuilderOpenEditorController;
 import builderFiles.BuilderMenu;
 import playerControllers.PlayerSelectLevelController;
 import playerFiles.PlayerMenu;
@@ -126,6 +127,7 @@ public class BuilderNewLevelGUI implements IBuilderGUI{
 		themeInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
 		JButton btnNewTheme = new JButton("New Theme");
+		btnNewTheme.addActionListener(new BuilderOpenEditorController(this));
 		themeInnerPanel.add(btnNewTheme);
 		
 		JButton btnTheme1 = new JButton("1");

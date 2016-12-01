@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 import playerGUI.PlayerLevel;
+import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
 public class PlayerSelectLevelController implements ActionListener{
@@ -21,7 +22,7 @@ public class PlayerSelectLevelController implements ActionListener{
 		//Access files to build level
 		//potentially for future: close window
 		//open new window
-		PlayerLevel window = new PlayerLevel();
+		PlayerLevelGUI window = new PlayerLevelGUI();
 		window.open();
 	}
 }

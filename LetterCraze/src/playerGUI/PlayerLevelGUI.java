@@ -2,7 +2,6 @@ package playerGUI;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,9 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class PlayerLevel extends JFrame {
+public class PlayerLevelGUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class PlayerLevel extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLevel frame = new PlayerLevel();
+					PlayerLevelGUI frame = new PlayerLevelGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class PlayerLevel extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevel() {
+	public PlayerLevelGUI() {
 		initialize();
 	}
 
@@ -47,7 +47,7 @@ public class PlayerLevel extends JFrame {
 	 */
 	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 480);
+		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
@@ -60,22 +60,22 @@ public class PlayerLevel extends JFrame {
 		JLabel titleLabel = new JLabel("Title");
 		titleLabel.setForeground(Color.WHITE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Dialog", Font.BOLD, 36));
-		titleLabel.setBounds(0, 20, w, 80);
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, 30));
+		titleLabel.setBounds(0, 20, w, 40);
 		contentPane.add(titleLabel);
 		
-		JLabel subtitleLabel = new JLabel("Subtitle text here"); // holds moves left (puzzle), time left (lightning), or theme description (theme)
+		JLabel subtitleLabel = new JLabel("Words left, time left, or description"); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 24));
-		subtitleLabel.setBounds(0, 80, w, 80);
+		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		subtitleLabel.setBounds(0, 60, w, 30);
 		contentPane.add(subtitleLabel);
 		
 		JLabel scoreLabel = new JLabel("Score: 0");
 		scoreLabel.setForeground(Color.WHITE);
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scoreLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		scoreLabel.setBounds(0, 140, w, 80);
+		scoreLabel.setBounds(0, 80, w, 30);
 		contentPane.add(scoreLabel);
 		
 		JPanel[][] letterPanels = new JPanel[6][6];
@@ -85,45 +85,50 @@ public class PlayerLevel extends JFrame {
 				letterLabels[i][j] = new JLabel("Qu");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 24));
+				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
 				letterLabels[i][j].setBounds(0, 0, 80, 80);
 				letterPanels[i][j] = new JPanel();
-				letterPanels[i][j].add(letterLabels[i][j]);
 				letterPanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
+				letterPanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
+				letterPanels[i][j].add(letterLabels[i][j]);
 				contentPane.add(letterPanels[i][j]);
 			}
 		}
 		
 		JScrollPane wordsFoundScrollPane = new JScrollPane();
-		wordsFoundScrollPane.setBounds(60, 120, 200, h - 180);
+		wordsFoundScrollPane.setForeground(Color.WHITE);
+		wordsFoundScrollPane.setBackground(Color.DARK_GRAY);
+		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
 		contentPane.add(wordsFoundScrollPane);
 		
 		JProgressBar scoreProgressBar = new JProgressBar(0, 30);
-		scoreProgressBar.setBounds(w - 140, 60, 80, h - 120);
+		scoreProgressBar.setForeground(Color.YELLOW);
+		scoreProgressBar.setBackground(Color.BLACK);
+		scoreProgressBar.setBorder(BorderFactory.createEmptyBorder());
 		scoreProgressBar.setOrientation(SwingConstants.VERTICAL);
-		scoreProgressBar.setStringPainted(true);
+		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
-		
-		JLabel starLabel1 = new JLabel("10");
-		starLabel1.setForeground(Color.WHITE);
-		starLabel1.setHorizontalAlignment(SwingConstants.LEFT);
-		starLabel1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		starLabel1.setBounds(w - 60, 60, 60, 80);
-		contentPane.add(starLabel1);
-		
-		JLabel starLabel2 = new JLabel("20");
-		starLabel2.setForeground(Color.WHITE);
-		starLabel2.setHorizontalAlignment(SwingConstants.LEFT);
-		starLabel2.setFont(new Font("Dialog", Font.PLAIN, 20));
-		starLabel2.setBounds(w - 60, h / 2, 60, 80);
-		contentPane.add(starLabel2);
 		
 		JLabel starLabel3 = new JLabel("30");
 		starLabel3.setForeground(Color.WHITE);
 		starLabel3.setHorizontalAlignment(SwingConstants.LEFT);
 		starLabel3.setFont(new Font("Dialog", Font.PLAIN, 20));
-		starLabel3.setBounds(w - 60, h - 60, 60, 80);
+		starLabel3.setBounds(w - 60, 60 - 20, 60, 20);
 		contentPane.add(starLabel3);
+		
+		JLabel starLabel2 = new JLabel("20");
+		starLabel2.setForeground(Color.WHITE);
+		starLabel2.setHorizontalAlignment(SwingConstants.LEFT);
+		starLabel2.setFont(new Font("Dialog", Font.PLAIN, 20));
+		starLabel2.setBounds(w - 60, h / 2 - 20, 60, 20);
+		contentPane.add(starLabel2);
+		
+		JLabel starLabel1 = new JLabel("10");
+		starLabel1.setForeground(Color.WHITE);
+		starLabel1.setHorizontalAlignment(SwingConstants.LEFT);
+		starLabel1.setFont(new Font("Dialog", Font.PLAIN, 20));
+		starLabel1.setBounds(w - 60, h - 60 - 20, 60, 20);
+		contentPane.add(starLabel1);
 		
 		JButton undoButton = new JButton("Undo");
 		undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -137,17 +142,17 @@ public class PlayerLevel extends JFrame {
 		
 		JButton backButton = new JButton("Back to Menu");
 		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		backButton.setBounds(20, 20, 150, 40);
+		backButton.setBounds(20, 20, 150, 25);
 		contentPane.add(backButton);
 	}
 	
 	//Opens (sets visible) this window
-	public void open(){
+	public void open() {
 		this.setVisible(true);
 	}
 	
 	//Hides and disposes of this window
-	public void close(){
+	public void close() {
 		this.setVisible(false);
 		this.dispose();
 	}

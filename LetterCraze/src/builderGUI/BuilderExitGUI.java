@@ -11,12 +11,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class BuilderExit extends JPanel {
+public class BuilderExitGUI extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public BuilderExit() {
+	public BuilderExitGUI() {
 		setBackground(Color.DARK_GRAY);
 
 		JLabel lblWouldYouLike = new JLabel("Would you like to save and exit?");

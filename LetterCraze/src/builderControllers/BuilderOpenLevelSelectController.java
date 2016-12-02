@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 import builderFiles.*;
-import builderGUI.BuilderMainMenu;
+import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderNewLevelGUI;
 import playerFiles.PlayerMenu;
 import playerGUI.PlayerSelectLevelGUI;
@@ -13,9 +13,9 @@ import playerGUI.PlayerMainMenuGUI;
 
 public class BuilderOpenLevelSelectController implements ActionListener{
 
-	BuilderMainMenu menuView;
+	BuilderMainMenuGUI menuView;
 	
-	public BuilderOpenLevelSelectController(BuilderMainMenu theWindow) {
+	public BuilderOpenLevelSelectController(BuilderMainMenuGUI theWindow) {
 		this.menuView = theWindow;
 	}
 

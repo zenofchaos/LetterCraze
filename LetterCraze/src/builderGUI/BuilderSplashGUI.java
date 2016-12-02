@@ -33,7 +33,7 @@ public class BuilderSplashGUI {
 
 
 				BuilderSplashGUI window = new BuilderSplashGUI();
-				BuilderMainMenu menuWindow = new BuilderMainMenu();
+				BuilderMainMenuGUI menuWindow = new BuilderMainMenuGUI();
 				window.initialize();
 				window.frame.setUndecorated(true);
 				window.frame.setVisible(true);

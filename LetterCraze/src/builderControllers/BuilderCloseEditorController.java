@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderNewLevelGUI;
 
-public class BuilderCloseEditor implements ActionListener{
+public class BuilderCloseEditorController implements ActionListener{
 	BuilderEditorGUI editorView;
 	
-	public BuilderCloseEditor(BuilderEditorGUI editorView) {
+	public BuilderCloseEditorController(BuilderEditorGUI editorView) {
 		this.editorView = editorView;
 	}
 

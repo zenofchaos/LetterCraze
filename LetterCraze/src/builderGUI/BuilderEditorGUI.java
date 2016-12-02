@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-import builderControllers.BuilderCloseEditor;
+import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderOpenEditorController;
 
 import javax.swing.BorderFactory;
@@ -146,7 +146,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI{
 		contentPane.add(clearButton);
 		
 		JButton backButton = new JButton("Back to Menu");
-		backButton.addActionListener(new BuilderCloseEditor(this));
+		backButton.addActionListener(new BuilderCloseEditorController(this));
 		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		backButton.setBounds(20, 20, 150, 25);
 		contentPane.add(backButton);

@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
-public class BuilderMainMenu extends JFrame implements IBuilderGUI {
+public class BuilderMainMenuGUI extends JFrame implements IBuilderGUI {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class BuilderMainMenu extends JFrame implements IBuilderGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderMainMenu frame = new BuilderMainMenu();
+					BuilderMainMenuGUI frame = new BuilderMainMenuGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class BuilderMainMenu extends JFrame implements IBuilderGUI {
 	/**
 	 * Create the frame.
 	 */
-	public BuilderMainMenu() {
+	public BuilderMainMenuGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();

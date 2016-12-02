@@ -58,6 +58,15 @@ public class PlayerSquare {
 		return true;
 	}
 	
+	//returns a string of the letter(s) in this square
+	public String toString(){
+		return this.letter.getLetter();
+	}
+	
+	public int getPoints(){
+		return this.letter.getPoints();
+	}
+	
 	//Replaces the letter held by this square with the given letter.
 	//	Returns the letter previously held by this square (Returns
 	//	null if this square held no letter)

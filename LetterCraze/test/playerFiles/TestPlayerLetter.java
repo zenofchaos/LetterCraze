@@ -1,4 +1,4 @@
-package playerTests;
+package playerFiles;
 
 import static org.junit.Assert.*;
 

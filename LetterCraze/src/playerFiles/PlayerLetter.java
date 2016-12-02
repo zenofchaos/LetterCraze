@@ -1,5 +1,6 @@
 package playerFiles;
 
+import java.util.Hashtable;
 import java.util.Random;
 
 public class PlayerLetter {
@@ -12,7 +13,9 @@ public class PlayerLetter {
 	//	for the letter based off of the same table.
 	public PlayerLetter(){
 		letter = getRandomLetter();
-		points = getPointVal(letter);
+		
+		Hashtable<String,Integer> pointTable = this.generatePointsTable();
+		points = getPointVal(this.formatCapitals(this.letter),pointTable);
 	}
 	
 	//Constructor for a PlayerLetter object using the given string. 
@@ -21,7 +24,9 @@ public class PlayerLetter {
 	public PlayerLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
-			points = getPointVal(letter);
+			
+			Hashtable<String,Integer> pointTable = this.generatePointsTable();
+			points = getPointVal(this.formatCapitals(this.letter),pointTable);
 		}
 		else{
 			System.err.println ("Invalid input to letter");
@@ -52,70 +57,48 @@ public class PlayerLetter {
 	
 	//Returns the point value of the given letter (or Qu)
 	// Returns -1 if the given letter is invalid.
-	int getPointVal(String letter) {
+	int getPointVal(String letter, Hashtable<String,Integer> pointTable) {
 		if (isValid(letter)){
-			switch(letter.charAt(0)){
-			case 'E':
-				return 1;
-			case 'T':
-				return 1;
-			case 'A':
-				return 2;
-			case 'O':
-				return 2;
-			case 'I':
-				return 2;
-			case 'N':
-				return 2;
-			case 'S':
-				return 2;
-			case 'H':
-				return 2;
-			case 'R':
-				return 2;
-			case 'D':
-				return 3;
-			case 'L':
-				return 3;
-			case 'C':
-				return 3;
-			case 'U':
-				return 3;
-			case 'M':
-				return 3;
-			case 'W':
-				return 3;
-			case 'F':
-				return 4;
-			case 'G':
-				return 4;
-			case 'Y':
-				return 4;
-			case 'P':
-				return 4;
-			case 'B':
-				return 4;
-			case 'V':
-				return 5;
-			case 'K':
-				return 5;
-			case 'J':
-				return 7;
-			case 'X':
-				return 7;
-			case 'Q':
-				return 11;
-			case 'Z':
-				return 8;
-			default:
-				return -1;
-			}
+			return pointTable.get(letter);
 		}
 		else{
 			return -1;
 		}
 	}
 
+	Hashtable<String,Integer> generatePointsTable(){
+		Hashtable<String,Integer> pointTable = new Hashtable<String,Integer>();
+		
+		pointTable.put("E", 1);
+		pointTable.put("T", 1);
+		pointTable.put("A", 2);
+		pointTable.put("O", 2);
+		pointTable.put("I", 2);
+		pointTable.put("N", 2);
+		pointTable.put("S", 2);
+		pointTable.put("H", 2);
+		pointTable.put("R", 2);
+		pointTable.put("D", 3);
+		pointTable.put("L", 3);
+		pointTable.put("C", 3);
+		pointTable.put("U", 3);
+		pointTable.put("M", 3);
+		pointTable.put("W", 3);
+		pointTable.put("F", 4);
+		pointTable.put("G", 4);
+		pointTable.put("Y", 4);
+		pointTable.put("P", 4);
+		pointTable.put("B", 4);
+		pointTable.put("V", 5);
+		pointTable.put("K", 5);
+		pointTable.put("J", 7);
+		pointTable.put("X", 7);
+		pointTable.put("Qu", 11);
+		pointTable.put("Z", 8);
+
+		return pointTable;
+	}
+	
 	//Returns a random letter based on the provided letter frequency table.
 	String getRandomLetter(){
 		

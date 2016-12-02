@@ -59,4 +59,11 @@ public class TestPlayerLetter extends TestCase{
 		assertEquals(null,letter3.getLetter());
 		assertEquals(0,letter3.getPoints());
 	}
+	
+	public void testWithoutInput(){
+		for (int i = 0; i < 50; i++){
+			PlayerLetter letter = new PlayerLetter();
+			assertTrue(letter.isValid(letter.getLetter()));
+		}
+	}
 }

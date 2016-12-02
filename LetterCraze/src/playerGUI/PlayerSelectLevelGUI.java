@@ -1,6 +1,8 @@
 package playerGUI;
 
 import java.awt.EventQueue;
+
+import playerControllers.PlayerLSBackController;
 import playerControllers.PlayerSelectLevelController;
 
 import javax.swing.JFrame;
@@ -80,6 +82,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		JLabel lblThemeLevels = new JLabel("Theme Levels");
 
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new PlayerLSBackController(this));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 				gl_panel.createParallelGroup(Alignment.LEADING)

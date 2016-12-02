@@ -1,5 +1,6 @@
 package playerFiles;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,10 +10,19 @@ public class PlayerWord {
 	List<PlayerSquare> squares;
 	String word;
 	
+	//Constructs a word with this given square
+	public PlayerWord(PlayerSquare theSquare){
+		this.squares = new ArrayList<PlayerSquare>();
+		this.squares.add(theSquare);
+		
+		this.updateWord();
+	}
+	
+	//Constructs a word with the given list of squares
 	public PlayerWord(List<PlayerSquare> theSquares){
 		this.squares = theSquares;
-		this.word = toString(this.squares);
-		this.pointVal = calcPoints(this.squares);
+		
+		this.updateWord();
 	}
 	
 	//The get method for pointVal
@@ -40,6 +50,12 @@ public class PlayerWord {
 	//The set method for word
 	public boolean setWord(String toSet){
 		this.word = toSet;
+		return true;
+	}
+	
+	boolean updateWord(){
+		this.word = toString(this.squares);
+		this.pointVal = calcPoints(this.squares);
 		return true;
 	}
 	
@@ -80,7 +96,7 @@ public class PlayerWord {
 	}
 	
 	//Returns true if this word is a valid word
-	public boolean isValid(){
+	public boolean isValidWord(){
 		if (this.word.length() < 3){
 			return false;
 		}
@@ -89,4 +105,27 @@ public class PlayerWord {
 		}
 	}
 	
+	//Adds the given square to the end of this word
+	//Returns false if the square has no letter
+	public boolean addLetter(PlayerSquare square){
+		if (square.hasLetter()){
+			this.squares.add(square);
+			return this.updateWord();
+		}
+		else{
+			return false;
+		}
+	}
+	
+	//Adds the given square to this word at the given index
+	//Returns false if the square has no letter
+	public boolean addLetter(PlayerSquare square, int index){
+		if (square.hasLetter()){
+			this.squares.add(index, square);
+			return this.updateWord();
+		}
+		else{
+			return false;
+		}
+	}
 }

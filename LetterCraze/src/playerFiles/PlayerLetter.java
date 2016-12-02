@@ -103,7 +103,7 @@ public class PlayerLetter {
 	String getRandomLetter(){
 		
 		Random rand = new Random();
-		int val = rand.nextInt(10001); //generates a random value 1-9999
+		int val = rand.nextInt(10000); //generates a random value 0-9999
 		
 		if (val < 0){
 			return "Error: Random Value out of bounds (negative)";

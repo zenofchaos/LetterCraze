@@ -61,7 +61,7 @@ public class TestPlayerLetter extends TestCase{
 	}
 	
 	public void testWithoutInput(){
-		for (int i = 0; i < 50; i++){
+		for (int i = 0; i < 10000; i++){
 			PlayerLetter letter = new PlayerLetter();
 			assertTrue(letter.isValid(letter.getLetter()));
 		}

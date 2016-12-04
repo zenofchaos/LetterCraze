@@ -12,11 +12,12 @@ public class BuilderSquare {
 	public BuilderSquare(int row, int col){
 		this.row = row;
 		this.col = col;
+		this.isActive = false;
 	}
 	
 	//Get method for letter
 	BuilderLetter getLetter(){
-		return this.getLetter();
+		return this.letter;
 	}
 	
 	//Get method for row
@@ -48,7 +49,7 @@ public class BuilderSquare {
 	
 	//Set method for column
 	boolean setCol (int toSet){
-		this.row = toSet;
+		this.col = toSet;
 		return true;
 	}
 	
@@ -63,6 +64,7 @@ public class BuilderSquare {
 	//	null if this square held no letter)
 	public BuilderLetter changeLetter (BuilderLetter toChange){
 		if (this.letter == null){
+			this.letter = toChange;
 			return null;
 		}
 		else{

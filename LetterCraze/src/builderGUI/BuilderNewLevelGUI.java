@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderCloseLevelMenuController;
 import builderControllers.BuilderOpenEditorController;
 import builderFiles.BuilderMenu;
 import playerControllers.PlayerSelectLevelController;
@@ -85,6 +87,7 @@ public class BuilderNewLevelGUI implements IBuilderGUI{
 		JLabel lblThemeLevels = new JLabel("Theme Levels");
 
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new BuilderCloseLevelMenuController(this));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 				gl_panel.createParallelGroup(Alignment.LEADING)

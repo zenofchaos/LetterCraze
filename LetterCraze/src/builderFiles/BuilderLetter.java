@@ -7,7 +7,7 @@ public class BuilderLetter {
 	String letter;
 	int points;
 
-	//Constructor for a PlayerLetter object. Generates a random letter
+	//Constructor for a BuilderLetter object. Generates a random letter
 	//	based on the provided letter frequency chart. Generates points
 	//	for the letter based off of the same table.
 	BuilderLetter(){
@@ -44,6 +44,9 @@ public class BuilderLetter {
 		if (isValid(input)){
 			letter = formatCapitals(input);
 			points = getPointVal(letter);
+		}
+		else{
+			System.err.println ("Invalid input to letter");
 		}
 	}
 
@@ -210,28 +213,28 @@ public class BuilderLetter {
 	//	does NOT affect validity.
 	boolean isValid(String toCheck){
 		int length = toCheck.length();
-
+		
 		switch (length){
-		case 1: //toCheck is 1 character long, so must be within A-Z or a-z
-			if ((toCheck.charAt(0) >= 'A') && (toCheck.charAt(0) <= 'Z')){
-				return true;
-			}
-			else if ((toCheck.charAt(0) >= 'a') && (toCheck.charAt(0) <= 'z')){
-				return true;
-			}
-			else{
+			case 1: //toCheck is 1 character long, so must be within A-Z or a-z
+				if ((toCheck.charAt(0) >= 'A') && (toCheck.charAt(0) <= 'Z')){
+					return !(toCheck.charAt(0) == 'Q');
+				}
+				else if ((toCheck.charAt(0) >= 'a') && (toCheck.charAt(0) <= 'z')){
+					return !(toCheck.charAt(0) == 'q');
+				}
+				else{
+					return false;
+				}
+			
+			case 2: //toCheck is 2 characters long, so needs to be "Qu"
+				
+				boolean firstIsQ = ((toCheck.charAt(0) == 'Q') || (toCheck.charAt(0) == 'q'));
+				boolean secondIsU = ((toCheck.charAt(1) == 'U') || (toCheck.charAt(1) == 'u'));
+				
+				return (firstIsQ && secondIsU);
+			
+			default: //Improper input, so return false
 				return false;
-			}
-
-		case 2: //toCheck is 2 characters long, so needs to be "Qu"
-
-			boolean firstIsQ = ((toCheck.charAt(0) == 'Q') || (toCheck.charAt(0) == 'q'));
-			boolean secondIsU = ((toCheck.charAt(0) == 'U') || (toCheck.charAt(0) == 'u'));
-
-			return (firstIsQ && secondIsU);
-
-		default: //Improper input, so return false
-			return false;
 		}
 	}
 

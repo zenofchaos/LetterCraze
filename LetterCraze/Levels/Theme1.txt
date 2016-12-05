@@ -1,6 +1,6 @@
 00000
 0
-Avian
+Birds
 00006
 00007
 00008
@@ -19,9 +19,6 @@ E E Y F N H
 N L G P E V
 L A L R R A
 
-Birds
-
-8
 QUAIL
 EAGLE
 DOVE

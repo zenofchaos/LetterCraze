@@ -14,7 +14,7 @@ BuilderSquare[][] squares;
 		
 	}
 	
-	BuilderSquare[][] getSquares(){
+	public BuilderSquare[][] getSquares(){
 		return this.squares;
 	}
 	

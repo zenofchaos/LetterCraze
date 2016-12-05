@@ -9,6 +9,7 @@ public class PlayerSquare {
 	
 	//The constructor for a PlayerSquare
 	//	Takes in the square's row and column.
+	//	Squares are inactive by default
 	public PlayerSquare(int row, int col){
 		this.row = row;
 		this.col = col;
@@ -21,17 +22,17 @@ public class PlayerSquare {
 	}
 	
 	//Get method for row
-	int getRow(){
+	public int getRow(){
 		return this.row;
 	}
 	
 	//Get method for column
-	int getCol(){
+	public int getCol(){
 		return this.col;
 	}
 	
 	//Get method for isActive
-	boolean getActive(){
+	public boolean isActive(){
 		return this.active;
 	}
 	
@@ -42,14 +43,14 @@ public class PlayerSquare {
 	}
 	
 	//Set method for row
-	boolean setRow (int toSet){
+	public boolean setRow (int toSet){
 		this.row = toSet;
 		return true;
 	}
 	
 	//Set method for column
 	boolean setCol (int toSet){
-		this.row = toSet;
+		this.col = toSet;
 		return true;
 	}
 	
@@ -57,6 +58,24 @@ public class PlayerSquare {
 	public boolean setActive(boolean toSet){
 		this.active = toSet;
 		return true;
+	}
+	
+	//Returns a string of the letter(s) in this square
+	//Throws a Null Pointer Exception if this square has no letter
+	public String toString(){
+		return this.letter.getLetter();
+	}
+	
+	//Returns the point value of the letter in this square
+	//Throws a Null Pointer Exception if this square has no letter
+	public int getPoints(){
+		return this.letter.getPoints();
+	}
+	
+	//Returns true if this square has a letter
+	//Otherwise, returns false
+	public boolean hasLetter(){
+		return !(this.letter == null);
 	}
 	
 	//Replaces the letter held by this square with the given letter.

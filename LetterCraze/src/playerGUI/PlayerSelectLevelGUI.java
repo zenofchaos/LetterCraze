@@ -6,6 +6,7 @@ import playerControllers.PlayerSelectLevelController;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -15,10 +16,13 @@ import playerFiles.PlayerMenu;
 
 import javax.swing.JButton;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 public class PlayerSelectLevelGUI implements IPlayerGUI{
 
+	int lvlWidth = 80;
+	int lvlHeight = 80;
 	PlayerMenu theMenu;
 	
 	private JFrame frame;
@@ -119,27 +123,49 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
 		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		themeScrollPane.setViewportView(themeInnerPanel);
-		themeInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
-		JButton btnTheme1 = new JButton("1");
-		btnTheme1.addActionListener(new PlayerSelectLevelController(this,"T1"));
-		themeInnerPanel.add(btnTheme1);
+		JPanel t1 = new JPanel();
+		t1.setBackground(Color.gray);
 		
-		JButton btnTheme2 = new JButton("2");
-		btnTheme2.addActionListener(new PlayerSelectLevelController(this,"T2"));
-		themeInnerPanel.add(btnTheme2);
+		GroupLayout gl_themeInnerPanel = new GroupLayout(themeInnerPanel);
 		
-		JButton btnTheme3 = new JButton("3");
-		btnTheme3.addActionListener(new PlayerSelectLevelController(this,"T3"));
-		themeInnerPanel.add(btnTheme3);
+		gl_themeInnerPanel.setHorizontalGroup(
+			gl_themeInnerPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_themeInnerPanel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(t1, 0, lvlWidth, lvlWidth)
+					.addContainerGap(0, Short.MAX_VALUE))
+		);
+		gl_themeInnerPanel.setVerticalGroup(
+			gl_themeInnerPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_themeInnerPanel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(t1, 0, lvlHeight, lvlHeight)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		
-		JButton btnTheme4 = new JButton("4");
-		btnTheme4.addActionListener(new PlayerSelectLevelController(this,"T4"));
-		themeInnerPanel.add(btnTheme4);
+		System.out.print(System.getProperty("user.dir"));
+		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
+
+		JLabel lblImg = new JLabel(fullStar);
 		
-		JButton btnTheme5 = new JButton("5");
-		btnTheme5.addActionListener(new PlayerSelectLevelController(this,"T5"));
-		themeInnerPanel.add(btnTheme5);
+		GroupLayout gl_t1 = new GroupLayout(t1);
+		gl_t1.setHorizontalGroup(
+			gl_t1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_t1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblImg)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_t1.setVerticalGroup(
+			gl_t1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_t1.createSequentialGroup()
+					.addContainerGap(53, Short.MAX_VALUE)
+					.addComponent(lblImg)
+					.addContainerGap())
+		);
+		t1.setLayout(gl_t1);
+		themeInnerPanel.setLayout(gl_themeInnerPanel);
 		
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);

@@ -9,7 +9,7 @@ public class PlayerPuzzleLevel extends PlayerLevel {
 		this.wordLimit = wordLimit;
 	}
 	
-	int getWordLimit(){
+	public int getWordLimit(){
 		return this.wordLimit;
 	}
 	

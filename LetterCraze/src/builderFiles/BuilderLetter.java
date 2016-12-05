@@ -1,5 +1,6 @@
 package builderFiles;
 
+import java.util.Hashtable;
 import java.util.Random;
 
 public class BuilderLetter {
@@ -7,16 +8,17 @@ public class BuilderLetter {
 	String letter;
 	int points;
 
-	//Constructor for a PlayerLetter object. Generates a random letter
+	//Constructor for a BuilderLetter object. Generates a random letter
 	//	based on the provided letter frequency chart. Generates points
 	//	for the letter based off of the same table.
 	BuilderLetter(){
 		letter = getRandomLetter();
-		points = getPointVal(letter);
+		Hashtable<String,Integer> pointTable = this.generatePointsTable();
+		points = getPointVal(letter, pointTable);
 	}
 	
 	//Get method for letter
-	String getLetter(){
+	public String getLetter(){
 		return this.letter;
 	}
 	
@@ -36,77 +38,59 @@ public class BuilderLetter {
 		this.points = toSet;
 		return true;
 	}
+	
+	Hashtable<String,Integer> generatePointsTable(){
+		Hashtable<String,Integer> pointTable = new Hashtable<String,Integer>();
+		
+		pointTable.put("E", 1);
+		pointTable.put("T", 1);
+		pointTable.put("A", 2);
+		pointTable.put("O", 2);
+		pointTable.put("I", 2);
+		pointTable.put("N", 2);
+		pointTable.put("S", 2);
+		pointTable.put("H", 2);
+		pointTable.put("R", 2);
+		pointTable.put("D", 3);
+		pointTable.put("L", 3);
+		pointTable.put("C", 3);
+		pointTable.put("U", 3);
+		pointTable.put("M", 3);
+		pointTable.put("W", 3);
+		pointTable.put("F", 4);
+		pointTable.put("G", 4);
+		pointTable.put("Y", 4);
+		pointTable.put("P", 4);
+		pointTable.put("B", 4);
+		pointTable.put("V", 5);
+		pointTable.put("K", 5);
+		pointTable.put("J", 7);
+		pointTable.put("X", 7);
+		pointTable.put("Qu", 11);
+		pointTable.put("Z", 8);
+
+		return pointTable;
+	}
 
 	//Constructor for a PlayerLetter object using the given string. 
 	//	Verifies the given string is a valid letter, and then generates
 	//	a point value for the letter based off of the provided chart.
-	BuilderLetter(String input){
+	public BuilderLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
-			points = getPointVal(letter);
+			Hashtable<String,Integer> pointTable = this.generatePointsTable();
+			points = getPointVal(letter, pointTable);
+		}
+		else{
+			System.err.println ("Invalid input to letter");
 		}
 	}
 
 	//Returns the point value of the given letter (or Qu)
 	// Returns -1 if the given letter is invalid.
-	int getPointVal(String letter) {
+	int getPointVal(String letter, Hashtable<String,Integer> pointTable) {
 		if (isValid(letter)){
-			switch(letter.charAt(0)){
-			case 'E':
-				return 1;
-			case 'T':
-				return 1;
-			case 'A':
-				return 2;
-			case 'O':
-				return 2;
-			case 'I':
-				return 2;
-			case 'N':
-				return 2;
-			case 'S':
-				return 2;
-			case 'H':
-				return 2;
-			case 'R':
-				return 2;
-			case 'D':
-				return 3;
-			case 'L':
-				return 3;
-			case 'C':
-				return 3;
-			case 'U':
-				return 3;
-			case 'M':
-				return 3;
-			case 'W':
-				return 3;
-			case 'F':
-				return 4;
-			case 'G':
-				return 4;
-			case 'Y':
-				return 4;
-			case 'P':
-				return 4;
-			case 'B':
-				return 4;
-			case 'V':
-				return 5;
-			case 'K':
-				return 5;
-			case 'J':
-				return 7;
-			case 'X':
-				return 7;
-			case 'Q':
-				return 11;
-			case 'Z':
-				return 8;
-			default:
-				return -1;
-			}
+			return pointTable.get(letter);
 		}
 		else{
 			return -1;
@@ -117,7 +101,7 @@ public class BuilderLetter {
 	String getRandomLetter(){
 
 		Random rand = new Random();
-		int val = rand.nextInt(10001); //generates a random value 1-9999
+		int val = rand.nextInt(10000); //generates a random value 1-9999
 
 		if (val < 0){
 			return "Error: Random Value out of bounds (negative)";
@@ -210,28 +194,28 @@ public class BuilderLetter {
 	//	does NOT affect validity.
 	boolean isValid(String toCheck){
 		int length = toCheck.length();
-
+		
 		switch (length){
-		case 1: //toCheck is 1 character long, so must be within A-Z or a-z
-			if ((toCheck.charAt(0) >= 'A') && (toCheck.charAt(0) <= 'Z')){
-				return true;
-			}
-			else if ((toCheck.charAt(0) >= 'a') && (toCheck.charAt(0) <= 'z')){
-				return true;
-			}
-			else{
+			case 1: //toCheck is 1 character long, so must be within A-Z or a-z
+				if ((toCheck.charAt(0) >= 'A') && (toCheck.charAt(0) <= 'Z')){
+					return !(toCheck.charAt(0) == 'Q');
+				}
+				else if ((toCheck.charAt(0) >= 'a') && (toCheck.charAt(0) <= 'z')){
+					return !(toCheck.charAt(0) == 'q');
+				}
+				else{
+					return false;
+				}
+			
+			case 2: //toCheck is 2 characters long, so needs to be "Qu"
+				
+				boolean firstIsQ = ((toCheck.charAt(0) == 'Q') || (toCheck.charAt(0) == 'q'));
+				boolean secondIsU = ((toCheck.charAt(1) == 'U') || (toCheck.charAt(1) == 'u'));
+				
+				return (firstIsQ && secondIsU);
+			
+			default: //Improper input, so return false
 				return false;
-			}
-
-		case 2: //toCheck is 2 characters long, so needs to be "Qu"
-
-			boolean firstIsQ = ((toCheck.charAt(0) == 'Q') || (toCheck.charAt(0) == 'q'));
-			boolean secondIsU = ((toCheck.charAt(0) == 'U') || (toCheck.charAt(0) == 'u'));
-
-			return (firstIsQ && secondIsU);
-
-		default: //Improper input, so return false
-			return false;
 		}
 	}
 

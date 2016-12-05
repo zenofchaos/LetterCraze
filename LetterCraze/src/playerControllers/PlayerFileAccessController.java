@@ -85,7 +85,7 @@ public class PlayerFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				bitmap[i][j] = new PlayerSquare(i, j);
-				bitmap[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		PlayerBoard board = new PlayerBoard(bitmap);
@@ -124,7 +124,7 @@ public class PlayerFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
-				hypercube[i][j].setIsActive(input.nextInt() == 1);
+				hypercube[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		PlayerBoard board = new PlayerBoard(hypercube);
@@ -166,7 +166,7 @@ public class PlayerFileAccessController {
 				// here I create a playerSquare in each cell of the array
 				bitmap[i][j] = new PlayerSquare(i, j);
 				// then I set whether the given square is active or inactive
-				bitmap[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 
@@ -253,54 +253,5 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-}	// opens a lightning level and replaces the previous high scores and stars
-	// with the given values
-	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
-		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
-		rAFile.seek(0);
-		
-		//convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
-		String bestStarsString = String.format("%01d", bestStars);
-		
-		rAFile.writeBytes(bestScoreString);
-		rAFile.writeBytes(bestStarsString);
-		
-		// Close FileCount
-		rAFile.close();
-	}
-	
-	// opens a puzzle level and replaces the previous high scores and stars
-	// with the given values
-	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
-		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
-		rAFile.seek(0);
-		
-		//convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
-		String bestStarsString = String.format("%01d", bestStars);
-		
-		rAFile.writeBytes(bestScoreString);
-		rAFile.writeBytes(bestStarsString);
-		
-		// Close FileCount
-		rAFile.close();
-	}
-
-	// opens a theme level and replaces the previous high scores and stars
-	// with the given values
-	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
-		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
-		rAFile.seek(0);
-		
-		//convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
-		String bestStarsString = String.format("%01d", bestStars);
-		
-		rAFile.writeBytes(bestScoreString);
-		rAFile.writeBytes(bestStarsString);
-		
-		// Close FileCount
-		rAFile.close();
-	}
+}
 

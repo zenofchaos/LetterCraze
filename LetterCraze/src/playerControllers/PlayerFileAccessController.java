@@ -1,6 +1,7 @@
 package playerControllers;
 
 import java.util.Scanner;
+import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import playerFiles.*;
 
@@ -99,7 +100,7 @@ public class PlayerFileAccessController {
 
 		// Close FileCount
 		input.close();
-
+				
 		return level;
 	}
 
@@ -169,8 +170,8 @@ public class PlayerFileAccessController {
 			}
 		}
 
-		//now I add the starting characters
-		
+		// now I add the starting characters
+
 		input.nextLine();
 		String tempString;
 		for (i = 0; i < 6; i++) {
@@ -181,23 +182,75 @@ public class PlayerFileAccessController {
 				// tempString as its letter, then add that playerLetter to the
 				// PlayerSquare of row i and column j.
 				tempString = input.next();
-				if (tempString.equals("Q")) tempString = "QU";
+				if (tempString.equals("Q"))
+					tempString = "QU";
 				PlayerLetter letter = new PlayerLetter(tempString);
 				bitmap[i][j].setLetter(letter);
 			}
 		}
-		
+
 		PlayerBoard board = new PlayerBoard(bitmap);
-		
-		//now generate the linked list
+
+		// now generate the linked list
 		LinkedList<String> list = new LinkedList<String>();
 		while (input.hasNext()) {
 			list.add(input.next());
 		}
-		
+
 		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, list, board);
 
 		return level;
+	}
+
+	// opens a lightning level and replaces the previous high scores and stars
+	// with the given values
+	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
+		rAFile.seek(0);
+		
+		//convert ints to strings
+		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestStarsString = String.format("%01d", bestStars);
+		
+		rAFile.writeBytes(bestScoreString);
+		rAFile.writeBytes(bestStarsString);
+		
+		// Close FileCount
+		rAFile.close();
+	}
+	
+	// opens a puzzle level and replaces the previous high scores and stars
+	// with the given values
+	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
+		rAFile.seek(0);
+		
+		//convert ints to strings
+		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestStarsString = String.format("%01d", bestStars);
+		
+		rAFile.writeBytes(bestScoreString);
+		rAFile.writeBytes(bestStarsString);
+		
+		// Close FileCount
+		rAFile.close();
+	}
+
+	// opens a theme level and replaces the previous high scores and stars
+	// with the given values
+	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
+		rAFile.seek(0);
+		
+		//convert ints to strings
+		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestStarsString = String.format("%01d", bestStars);
+		
+		rAFile.writeBytes(bestScoreString);
+		rAFile.writeBytes(bestStarsString);
+		
+		// Close FileCount
+		rAFile.close();
 	}
 
 }

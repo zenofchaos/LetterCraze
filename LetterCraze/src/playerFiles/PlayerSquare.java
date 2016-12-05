@@ -50,7 +50,7 @@ public class PlayerSquare {
 	
 	//Set method for column
 	boolean setCol (int toSet){
-		this.row = toSet;
+		this.col = toSet;
 		return true;
 	}
 	

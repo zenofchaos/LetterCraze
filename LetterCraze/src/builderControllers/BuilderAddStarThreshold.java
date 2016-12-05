@@ -2,14 +2,18 @@ package builderControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import builderFiles.BuilderLevel;
 import builderGUI.BuilderEditorGUI;
 
 public class BuilderAddStarThreshold implements ActionListener {
 	BuilderEditorGUI builderEditorView;
+	//BuilderLevel level;
 	int starNum;
 	
 	public BuilderAddStarThreshold(BuilderEditorGUI builderEditorView, int starNum){
 		this.builderEditorView = builderEditorView;
+		//this.level = builderEditorView.l();
 		this.starNum = starNum;
 	}
 	

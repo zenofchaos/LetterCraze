@@ -86,7 +86,7 @@ public class PlayerFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
-				hypercube[i][j].setIsActive(input.nextInt() == 1);
+				hypercube[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		PlayerBoard board = new PlayerBoard(hypercube);
@@ -121,7 +121,7 @@ public class PlayerFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				hypercube[i][j] = new PlayerSquare(i, j);
-				hypercube[i][j].setIsActive(input.nextInt() == 1);
+				hypercube[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		PlayerBoard board = new PlayerBoard(hypercube);

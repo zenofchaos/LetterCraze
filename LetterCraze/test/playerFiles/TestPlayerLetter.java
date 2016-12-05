@@ -1,4 +1,4 @@
-package playerTests;
+package playerFiles;
 
 import static org.junit.Assert.*;
 
@@ -58,5 +58,12 @@ public class TestPlayerLetter extends TestCase{
 		PlayerLetter letter3 = new PlayerLetter(toSet3);
 		assertEquals(null,letter3.getLetter());
 		assertEquals(0,letter3.getPoints());
+	}
+	
+	public void testWithoutInput(){
+		for (int i = 0; i < 10000; i++){
+			PlayerLetter letter = new PlayerLetter();
+			assertTrue(letter.isValid(letter.getLetter()));
+		}
 	}
 }

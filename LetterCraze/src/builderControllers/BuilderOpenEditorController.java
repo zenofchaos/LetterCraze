@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import builderFiles.BuilderMenu;
 import builderGUI.BuilderEditorGUI;
-import builderGUI.BuilderMainMenu;
+import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderNewLevelGUI;
 
 public class BuilderOpenEditorController implements ActionListener{

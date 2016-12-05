@@ -59,6 +59,10 @@ public class BuilderSquare {
 		return true;
 	}
 	
+	public boolean hasLetter(){
+		return !(this.letter == null);
+	}
+	
 	//Replaces the letter held by this square with the given letter.
 	//	Returns the letter previously held by this square (Returns
 	//	null if this square held no letter)

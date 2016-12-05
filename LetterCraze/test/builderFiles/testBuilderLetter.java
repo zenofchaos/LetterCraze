@@ -198,4 +198,11 @@ public class testBuilderLetter extends TestCase{
 		assertEquals(null,letter32.getLetter());
 		assertEquals(0,letter32.getPoints());
 	}
+	
+	public void testWithoutInput(){
+		for (int i = 0; i < 10000; i++){
+			BuilderLetter letter = new BuilderLetter();
+			assertTrue(letter.isValid(letter.getLetter()));
+		}
+	}
 }

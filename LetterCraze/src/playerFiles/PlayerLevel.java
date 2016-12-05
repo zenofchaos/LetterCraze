@@ -39,11 +39,11 @@ public abstract class PlayerLevel {
 		}
 	}
 	
-	String getTitle(){
+	public String getTitle(){
 		return this.title;
 	}
 	
-	int getPointScore(){
+	public int getPointScore(){
 		return this.pointScore;
 	}
 	
@@ -55,7 +55,7 @@ public abstract class PlayerLevel {
 		return this.wordsEntered;
 	}
 	
-	int[] getStarThresholds(){
+	public int[] getStarThresholds(){
 		return this.starThresholds;
 	}
 	
@@ -67,7 +67,7 @@ public abstract class PlayerLevel {
 		return this.bestStars;
 	}
 	
-	PlayerBoard getBoard(){
+	public PlayerBoard getBoard(){
 		return this.board;
 	}
 	

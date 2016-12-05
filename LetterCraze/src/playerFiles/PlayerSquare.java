@@ -15,7 +15,7 @@ public class PlayerSquare {
 	}
 	
 	//Get method for letter
-	PlayerLetter getLetter(){
+	public PlayerLetter getLetter(){
 		return this.getLetter();
 	}
 	

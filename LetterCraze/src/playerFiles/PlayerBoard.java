@@ -13,7 +13,7 @@ public class PlayerBoard {
 		
 	}
 	
-	PlayerSquare[][] getSquares(){
+	public PlayerSquare[][] getSquares(){
 		return this.squares;
 	}
 	

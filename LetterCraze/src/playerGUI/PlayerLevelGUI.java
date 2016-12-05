@@ -14,6 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerBackBtnController;
+import playerFiles.PlayerLevel;
+import playerFiles.PlayerLightningLevel;
+import playerFiles.PlayerPuzzleLevel;
+import playerFiles.PlayerThemeLevel;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -21,6 +25,7 @@ import javax.swing.JButton;
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
 	private JPanel contentPane;
+	private static PlayerLevel level;
 
 	/**
 	 * Launch the application.
@@ -29,7 +34,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLevelGUI frame = new PlayerLevelGUI();
+					PlayerLevelGUI frame = new PlayerLevelGUI(level);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,10 +46,18 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevelGUI() {
+	public PlayerLevelGUI(PlayerLevel l) {
+		PlayerLevelGUI.level = l;
 		initialize();
 	}
 
+	/**
+	 * A shortcut for getting the level to be displayed.
+	 */
+	private PlayerLevel l() {
+		return PlayerLevelGUI.level;
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -60,21 +73,21 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
 		
-		JLabel titleLabel = new JLabel("Title");
+		JLabel titleLabel = new JLabel(l().getTitle());
 		titleLabel.setForeground(Color.WHITE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Dialog", Font.BOLD, 30));
 		titleLabel.setBounds(0, 20, w, 40);
 		contentPane.add(titleLabel);
 		
-		JLabel subtitleLabel = new JLabel("Words left, time left, or description"); // holds moves left (puzzle), time left (lightning), or theme description (theme)
+		JLabel subtitleLabel = new JLabel(properSubtitle()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
 		subtitleLabel.setBounds(0, 60, w, 30);
 		contentPane.add(subtitleLabel);
 		
-		JLabel scoreLabel = new JLabel("Score: 0");
+		JLabel scoreLabel = new JLabel("Score: " + l().getPointScore());
 		scoreLabel.setForeground(Color.WHITE);
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		scoreLabel.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -85,7 +98,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel[][] letterLabels = new JLabel[6][6];
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
-				letterLabels[i][j] = new JLabel("Qu");
+				letterLabels[i][j] = new JLabel(l().getBoard().getSquares()[i][j].getLetter().getLetter());
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
@@ -104,7 +117,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
 		contentPane.add(wordsFoundScrollPane);
 		
-		JProgressBar scoreProgressBar = new JProgressBar(0, 30);
+		JProgressBar scoreProgressBar = new JProgressBar(0, l().getStarThresholds()[3]);
 		scoreProgressBar.setForeground(Color.YELLOW);
 		scoreProgressBar.setBackground(Color.BLACK);
 		scoreProgressBar.setBorder(BorderFactory.createEmptyBorder());
@@ -112,21 +125,21 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
 		
-		JLabel starLabel3 = new JLabel("30");
+		JLabel starLabel3 = new JLabel("" + l().getStarThresholds()[3]);
 		starLabel3.setForeground(Color.WHITE);
 		starLabel3.setHorizontalAlignment(SwingConstants.LEFT);
 		starLabel3.setFont(new Font("Dialog", Font.PLAIN, 20));
 		starLabel3.setBounds(w - 60, 60 - 20, 60, 20);
 		contentPane.add(starLabel3);
 		
-		JLabel starLabel2 = new JLabel("20");
+		JLabel starLabel2 = new JLabel("" + l().getStarThresholds()[2]);
 		starLabel2.setForeground(Color.WHITE);
 		starLabel2.setHorizontalAlignment(SwingConstants.LEFT);
 		starLabel2.setFont(new Font("Dialog", Font.PLAIN, 20));
 		starLabel2.setBounds(w - 60, h / 2 - 20, 60, 20);
 		contentPane.add(starLabel2);
 		
-		JLabel starLabel1 = new JLabel("10");
+		JLabel starLabel1 = new JLabel("" + l().getStarThresholds()[1]);
 		starLabel1.setForeground(Color.WHITE);
 		starLabel1.setHorizontalAlignment(SwingConstants.LEFT);
 		starLabel1.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -148,6 +161,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		backButton.setBounds(20, 20, 150, 25);
 		contentPane.add(backButton);
 		backButton.addActionListener(new PlayerBackBtnController(this));
+	}
+	
+	private String properSubtitle() {
+		if (l() instanceof PlayerPuzzleLevel) {
+			return "Words Left: " + ((PlayerPuzzleLevel)l()).getWordLimit();
+		} else if (l() instanceof PlayerLightningLevel) {
+			return "Time Left: " + ((PlayerLightningLevel)l()).getMaxTime();
+		} else if (l() instanceof PlayerThemeLevel) {
+			return ((PlayerThemeLevel)l()).getDescription();
+		} else return "";
 	}
 
 	@Override

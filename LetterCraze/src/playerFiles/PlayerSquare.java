@@ -35,7 +35,7 @@ public class PlayerSquare {
 	}
 	
 	//Set method for letter
-	boolean setLetter(PlayerLetter toSet){
+	public boolean setLetter(PlayerLetter toSet){
 		this.letter = toSet;
 		return true;
 	}

@@ -1,5 +1,6 @@
 package builderControllers;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import builderFiles.*;
@@ -72,15 +73,14 @@ public class BuilderFileAccessController {
 
 		// Now I process the bitmap.
 
-		BuilderSquare[][] hypercube = new BuilderSquare[6][6];
-		// (get it? because I added 2 dimensions to a square? lol)
+		BuilderSquare[][] bitmap = new BuilderSquare[6][6];
 		for (i = 0; i <= 6; i++) {
 			for (j = 0; j <= 6; j++) {
-				hypercube[i][j] = new BuilderSquare(i, j);
-				hypercube[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j] = new BuilderSquare(i, j);
+				bitmap[i][j].setIsActive(input.nextInt() == 1);
 			}
 		}
-		BuilderBoard board = new BuilderBoard(hypercube);
+		BuilderBoard board = new BuilderBoard(bitmap);
 
 		int maxTime = input.nextInt();
 
@@ -107,14 +107,14 @@ public class BuilderFileAccessController {
 
 		// Now process the bitmap.
 
-		BuilderSquare[][] hypercube = new BuilderSquare[6][6];
+		BuilderSquare[][] bitmap = new BuilderSquare[6][6];
 		for (i = 0; i <= 6; i++) {
 			for (j = 0; j <= 6; j++) {
-				hypercube[i][j] = new BuilderSquare(i, j);
-				hypercube[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j] = new BuilderSquare(i, j);
+				bitmap[i][j].setIsActive(input.nextInt() == 1);
 			}
 		}
-		BuilderBoard board = new BuilderBoard(hypercube);
+		BuilderBoard board = new BuilderBoard(bitmap);
 
 		int moveNumber = input.nextInt();
 
@@ -129,12 +129,60 @@ public class BuilderFileAccessController {
 
 	// opens the theme level file corresponding to number, reads, and
 	// returns a theme level.
-	//WARNING: NOT IMPLEMENTED YET
-	public BuilderLevel readTheme(int number) {
-//this is going to take more work and isn't required for Phase 1, which is why I'm giving it a lower priority
-		int[] starThresholds = { 1, 1, 1 };
-		BuilderLevel level = new BuilderLightningLevel(starThresholds, "Placeholder", 1);
+	public BuilderLevel readTheme(int number) throws Exception {
+		file = new java.io.File("Levels/Theme" + number + ".txt");
+		input = new Scanner(file);
+
+		//skip highest score and stars
+		input.nextInt();
+		input.nextInt();
+		input.nextLine(); // Advances the cursor to the next line
+		String title = input.nextLine();
+
+		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
+
+		// Now process the bitmap.
+
+		// first create the bitmap
+		BuilderSquare[][] bitmap = new BuilderSquare[6][6];
+		for (i = 0; i < 6; i++) {
+			for (j = 0; j < 6; j++) {
+				// here I create a playerSquare in each cell of the array
+				bitmap[i][j] = new BuilderSquare(i, j);
+				// then I set whether the given square is active or inactive
+				bitmap[i][j].setIsActive(input.nextInt() == 1);
+			}
+		}
+
+		//now I add the starting characters
+		
+		input.nextLine();
+		String tempString;
+		for (i = 0; i < 6; i++) {
+			input.nextLine();
+			for (j = 0; j < 6; j++) {
+				// here I put the next char into tempString, check if tempString
+				// is actually supposed to be QU, create a letter with
+				// tempString as its letter, then add that playerLetter to the
+				// PlayerSquare of row i and column j.
+				tempString = input.next();
+				if (tempString.equals("Q")) tempString = "QU";
+				BuilderLetter letter = new BuilderLetter(tempString);
+				bitmap[i][j].setLetter(letter);
+			}
+		}
+		
+		BuilderBoard board = new BuilderBoard(bitmap);
+		
+		//now generate the linked list
+		LinkedList<String> list = new LinkedList<String>();
+		while (input.hasNext()) {
+			list.add(input.next());
+		}
+		
+		BuilderLevel level = new BuilderThemeLevel(starThresholds, title, list, board);
+
 		return level;
 	}
-
+	
 }

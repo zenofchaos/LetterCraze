@@ -41,7 +41,6 @@ G O N A N O
 
 Theme, String
 
-Number of Words used in the level, int
 //List of words used in the level, in all caps (example below)
 PUMPKIN
 AVOCADO

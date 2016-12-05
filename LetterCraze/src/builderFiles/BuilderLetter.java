@@ -40,7 +40,7 @@ public class BuilderLetter {
 	//Constructor for a PlayerLetter object using the given string. 
 	//	Verifies the given string is a valid letter, and then generates
 	//	a point value for the letter based off of the provided chart.
-	BuilderLetter(String input){
+	public BuilderLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
 			points = getPointVal(letter);

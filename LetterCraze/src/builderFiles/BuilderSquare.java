@@ -35,7 +35,7 @@ public class BuilderSquare {
 	}
 
 	//Set method for letter
-	boolean setLetter(BuilderLetter toSet){
+	public boolean setLetter(BuilderLetter toSet){
 		this.letter = toSet;
 		return true;
 	}

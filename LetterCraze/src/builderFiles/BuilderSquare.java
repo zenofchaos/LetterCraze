@@ -15,7 +15,7 @@ public class BuilderSquare {
 	}
 	
 	//Get method for letter
-	BuilderLetter getLetter(){
+	public BuilderLetter getLetter(){
 		return this.getLetter();
 	}
 	

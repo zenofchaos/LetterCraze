@@ -16,7 +16,7 @@ public class BuilderLetter {
 	}
 	
 	//Get method for letter
-	String getLetter(){
+	public String getLetter(){
 		return this.letter;
 	}
 	

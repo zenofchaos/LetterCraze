@@ -1,5 +1,6 @@
 package builderControllers;
 
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -92,6 +93,7 @@ public class BuilderFileAccessController {
 		return level;
 	}
 
+	
 	// opens the puzzle level file corresponding to number, reads, and
 	// returns a puzzle level.
 	public BuilderLevel readPuzzle(int number) throws Exception {
@@ -184,5 +186,34 @@ public class BuilderFileAccessController {
 
 		return level;
 	}
+
 	
+	public void saveLightning(int levelNum, BuilderLightningLevel level) throws Exception {
+		file = new java.io.File("Levels/Lightning" + levelNum + ".txt");
+		file.createNewFile();
+		
+		PrintWriter writer = new PrintWriter(file);
+
+		writer.format("00000\r\n");
+		writer.format("0\r\n");
+		writer.format("%s\r\n", level.getTitle());
+		writer.format("%d\r\n", level.getStarThresholds()[1]);
+		writer.format("%d\r\n", level.getStarThresholds()[2]);
+		writer.format("%d\r\n\n", level.getStarThresholds()[3]);
+
+		//bitmap
+		for (i = 0; i <= 6; i++) {
+			for (j = 0; j <= 6; j++) {
+				writer.format(level.getBoard().getSquares()[i][j].getLetter().getLetter() + " ");
+			}
+			writer.format("\r\n");
+		}
+		writer.format("\r\n");
+		
+		// Close FileCount
+		writer.close();
+
+
+		
+	}
 }

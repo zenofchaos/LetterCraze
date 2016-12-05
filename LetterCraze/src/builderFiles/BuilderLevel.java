@@ -27,16 +27,16 @@ public abstract class BuilderLevel {
 			}
 		}
 		
-		String getTitle(){
+		public String getTitle(){
 			return this.title;
 		}
 		
 		
-		int[] getStarThresholds(){
+		public int[] getStarThresholds(){
 			return this.starThresholds;
 		}
 		
-		BuilderBoard getBoard(){
+		public BuilderBoard getBoard(){
 			return this.board;
 		}
 		

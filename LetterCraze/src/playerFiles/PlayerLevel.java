@@ -47,7 +47,7 @@ public abstract class PlayerLevel {
 		return this.pointScore;
 	}
 	
-	int getStarCount(){
+	public int getStarCount(){
 		return this.starCount;
 	}
 	
@@ -63,7 +63,7 @@ public abstract class PlayerLevel {
 		return this.bestScore;
 	}
 	
-	int getBestStars(){
+	public int getBestStars(){
 		return this.bestStars;
 	}
 	

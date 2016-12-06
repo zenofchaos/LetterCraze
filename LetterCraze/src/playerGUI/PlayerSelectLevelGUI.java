@@ -73,12 +73,14 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
 		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
-		JLabel fullLabelStar1 = new JLabel(fullStar);
-		JLabel fullLabelStar2 = new JLabel(fullStar);
-		JLabel fullLabelStar3 = new JLabel(emptyStar);
+
+		String[] levelTypes = new String[3];
+		levelTypes[0] = "Puzzle";
+		levelTypes[1] = "Lightning";
+		levelTypes[2] = "Theme";
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
@@ -144,174 +146,97 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
 		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		themeScrollPane.setViewportView(themeInnerPanel);
-
-		//JPanel t1 = new JPanel();
-		//t1.setBackground(Color.gray);
-
-		System.out.print(System.getProperty("user.dir"));
-
-		/*JLabel t1Label = new JLabel("The Theme of this Level is Colors");
-		t1Label.setHorizontalAlignment(SwingConstants.CENTER);
-		t1Label.setToolTipText("The Theme of this Level is Colors");
-		t1Label.setFont(new Font("Dialog", Font.BOLD, 10));
-		t1Label.setForeground(Color.WHITE);
-
-		JLabel lblHighScore = new JLabel("<html><center>High Score: <br> 159 </center></html>");
-		lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHighScore.setForeground(Color.WHITE);
-		lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
-
-		GroupLayout gl_t1 = new GroupLayout(t1);
-		gl_t1.setHorizontalGroup(
-				gl_t1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_t1.createSequentialGroup()
-						.addContainerGap(10, Short.MAX_VALUE)
-						.addComponent(fullLabelStar1, starSize, starSize, Short.MAX_VALUE)
-						.addComponent(fullLabelStar2, starSize, starSize, Short.MAX_VALUE)
-						.addComponent(fullLabelStar3, starSize, starSize, Short.MAX_VALUE)
-						.addContainerGap(10, Short.MAX_VALUE))
-				.addGroup(gl_t1.createSequentialGroup()
-						.addContainerGap(5, Short.MAX_VALUE)
-						.addComponent(t1Label, 70, 70, Short.MAX_VALUE)
-						.addContainerGap(5, Short.MAX_VALUE))
-				.addGroup(gl_t1.createSequentialGroup()
-						.addContainerGap(5, Short.MAX_VALUE)
-						.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
-						.addContainerGap(5, Short.MAX_VALUE))
-				);
-		gl_t1.setVerticalGroup(
-				gl_t1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_t1.createSequentialGroup()
-						.addContainerGap(5, Short.MAX_VALUE)
-						.addComponent(t1Label, 10, 10, 10)
-						.addContainerGap(5, Short.MAX_VALUE)
-						.addComponent(lblHighScore, 20, 20, 20)
-						.addContainerGap(20, Short.MAX_VALUE)
-						.addGroup(gl_t1.createParallelGroup(Alignment.LEADING)
-								.addComponent(fullLabelStar1, starSize, starSize, starSize)
-								.addComponent(fullLabelStar2, starSize, starSize, starSize)
-								.addComponent(fullLabelStar3, starSize, starSize, starSize))
-						.addContainerGap(0, Short.MAX_VALUE))
-				);
-		t1.setLayout(gl_t1);*/
 		
-		themeInnerPanel.setLayout(new GridLayout(1, 0, 5, 0));
-		
-		PlayerMenuIterator menuIterator = theMenu.iterator();
-		while(menuIterator.hasNext("Lightning")){
-			PlayerLevel tempLevel = menuIterator.next("Lightning");
-			
-			JPanel thePanel = new JPanel();
-			thePanel.setBackground(Color.gray);
-			
-			JLabel label = new JLabel(tempLevel.getTitle());
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			label.setToolTipText(tempLevel.getTitle());
-			label.setFont(new Font("Dialog", Font.BOLD, 10));
-			label.setForeground(Color.WHITE);
-
-			JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
-			lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-			lblHighScore.setForeground(Color.WHITE);
-			lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
-
-			GroupLayout gl_thePanel = new GroupLayout(thePanel);
-			gl_thePanel.setHorizontalGroup(
-					gl_thePanel.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_thePanel.createSequentialGroup()
-							.addContainerGap(10, Short.MAX_VALUE)
-							.addComponent(fullLabelStar1, starSize, starSize, Short.MAX_VALUE)
-							.addComponent(fullLabelStar2, starSize, starSize, Short.MAX_VALUE)
-							.addComponent(fullLabelStar3, starSize, starSize, Short.MAX_VALUE)
-							.addContainerGap(10, Short.MAX_VALUE))
-					.addGroup(gl_thePanel.createSequentialGroup()
-							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(label, 70, 70, Short.MAX_VALUE)
-							.addContainerGap(5, Short.MAX_VALUE))
-					.addGroup(gl_thePanel.createSequentialGroup()
-							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
-							.addContainerGap(5, Short.MAX_VALUE))
-					);
-			gl_thePanel.setVerticalGroup(
-					gl_thePanel.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_thePanel.createSequentialGroup()
-							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(label, 10, 10, 10)
-							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(lblHighScore, 20, 20, 20)
-							.addContainerGap(20, Short.MAX_VALUE)
-							.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
-									.addComponent(fullLabelStar1, starSize, starSize, starSize)
-									.addComponent(fullLabelStar2, starSize, starSize, starSize)
-									.addComponent(fullLabelStar3, starSize, starSize, starSize))
-							.addContainerGap(0, Short.MAX_VALUE))
-					);
-			thePanel.setLayout(gl_thePanel);
-			themeInnerPanel.add(thePanel);
-			
-		}
-		
-		
-
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
 		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lightningScrollPane.setViewportView(lightningInnerPanel);
-
-		JButton btnLightning1 = new JButton("1");
-		btnLightning1.addActionListener(new PlayerSelectLevelController(this,"L1"));
-		lightningInnerPanel.setLayout(new GridLayout(1, 0, 5, 0));
-		lightningInnerPanel.add(btnLightning1);
-
-		JButton btnLightning2 = new JButton("2");
-		btnLightning2.addActionListener(new PlayerSelectLevelController(this,"L2"));
-		lightningInnerPanel.add(btnLightning2);
-
-		JButton btnLightning3 = new JButton("3");
-		btnLightning3.addActionListener(new PlayerSelectLevelController(this,"L3"));
-		lightningInnerPanel.add(btnLightning3);
-
-		JButton btnLightning4 = new JButton("4");
-		btnLightning4.addActionListener(new PlayerSelectLevelController(this,"L4"));
-		lightningInnerPanel.add(btnLightning4);
-
-		JButton btnLightning5 = new JButton("5");
-		btnLightning5.addActionListener(new PlayerSelectLevelController(this,"L5"));
-		lightningInnerPanel.add(btnLightning5);
-
+		
 		JPanel puzzleInnerPanel = new JPanel();
-		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
+		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
-		puzzleInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 
-		/*for(int pLevel = 1; pLevel <= btnPuzzle.length; pLevel++){	
-			btnPuzzle[pLevel] = new JButton("Puzzle" + pLevel);
-			btnPuzzle[pLevel].addActionListener(new PlayerSelectLevelController(this,"P" + pLevel));
-			puzzleInnerPanel.add(btnPuzzle[pLevel]);
-		}*/
-		/*
-		JButton btnPuzzle1 = new JButton("1");
-		btnPuzzle1.addActionListener(new PlayerSelectLevelController(this,"P1"));
-		puzzleInnerPanel.add(btnPuzzle1);
+		PlayerMenuIterator menuIterator = theMenu.iterator();
+		
+		int numLevels = 0;
 
-		JButton btnPuzzle2 = new JButton("2");
-		btnPuzzle2.addActionListener(new PlayerSelectLevelController(this,"P2"));
-		puzzleInnerPanel.add(btnPuzzle2);
+		for(int lType = 0; lType < levelTypes.length; lType++){
+			while(menuIterator.hasNext(levelTypes[lType])){
+				numLevels++;
+				
+				PlayerLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
-		JButton btnPuzzle3 = new JButton("3");
-		btnPuzzle3.addActionListener(new PlayerSelectLevelController(this,"P3"));
-		puzzleInnerPanel.add(btnPuzzle3);
+				JLabel[] star = new JLabel[3];
 
-		JButton btnPuzzle4 = new JButton("4");
-		btnPuzzle4.addActionListener(new PlayerSelectLevelController(this,"P4"));
-		puzzleInnerPanel.add(btnPuzzle4);
+				for(int i = 0; i < tempLevel.getBestStars(); i++){
+					star[i] = new JLabel(fullStar);
+				}
 
-		JButton btnPuzzle5 = new JButton("5");
-		btnPuzzle5.addActionListener(new PlayerSelectLevelController(this,"P5"));
-		puzzleInnerPanel.add(btnPuzzle5);
-		 */
+				for (int i = tempLevel.getBestStars(); i < star.length; i++){
+					star[i] = new JLabel(emptyStar);
+				}
+
+				JPanel thePanel = new JPanel();
+				thePanel.setBackground(Color.gray);
+
+				JLabel label = new JLabel(tempLevel.getTitle());
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setToolTipText(tempLevel.getTitle());
+				label.setFont(new Font("Dialog", Font.BOLD, 10));
+				label.setForeground(Color.WHITE);
+
+				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
+				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
+				lblHighScore.setForeground(Color.WHITE);
+				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
+
+				GroupLayout gl_thePanel = new GroupLayout(thePanel);
+				gl_thePanel.setHorizontalGroup(
+						gl_thePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(10, Short.MAX_VALUE)
+								.addComponent(star[0], starSize, starSize, Short.MAX_VALUE)
+								.addComponent(star[1], starSize, starSize, Short.MAX_VALUE)
+								.addComponent(star[2], starSize, starSize, Short.MAX_VALUE)
+								.addContainerGap(10, Short.MAX_VALUE))
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(label, 70, 70, Short.MAX_VALUE)
+								.addContainerGap(5, Short.MAX_VALUE))
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
+								.addContainerGap(5, Short.MAX_VALUE))
+						);
+				gl_thePanel.setVerticalGroup(
+						gl_thePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(label, 10, 10, 10)
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(lblHighScore, 20, 20, 20)
+								.addContainerGap(20, Short.MAX_VALUE)
+								.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(star[0], starSize, starSize, starSize)
+										.addComponent(star[1], starSize, starSize, starSize)
+										.addComponent(star[2], starSize, starSize, starSize))
+								.addContainerGap(0, Short.MAX_VALUE))
+						);
+				thePanel.setLayout(gl_thePanel);
+				
+				if(levelTypes[lType].equals("Theme")){
+					themeInnerPanel.add(thePanel);			
+				}
+				else if(levelTypes[lType].equals("Puzzle")){
+					puzzleInnerPanel.add(thePanel);
+				}
+				else if(levelTypes[lType].equals("Lightning")){
+					lightningInnerPanel.add(thePanel);
+				}
+			}
+		}
+		System.out.println("number of Levels: " + numLevels);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}

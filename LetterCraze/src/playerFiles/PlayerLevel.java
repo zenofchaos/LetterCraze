@@ -59,7 +59,7 @@ public abstract class PlayerLevel {
 		return this.starThresholds;
 	}
 	
-	int getBestScore(){
+	public int getBestScore(){
 		return this.bestScore;
 	}
 	

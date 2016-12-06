@@ -12,7 +12,9 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
+import playerFiles.PlayerLevel;
 import playerFiles.PlayerMenu;
+import playerFiles.PlayerMenuIterator;
 
 import javax.swing.JButton;
 import java.awt.Component;
@@ -21,12 +23,13 @@ import java.awt.FlowLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 
 public class PlayerSelectLevelGUI implements IPlayerGUI{
 
-	JButton[] panelsPuzzle;
-	JButton[] panelsTheme;
-	JButton[] panelsLightning;
+	JPanel[] panelsPuzzle;
+	JPanel[] panelsTheme;
+	JPanel[] panelsLightning;
 
 	final int lvlWidth = 80;
 	final int lvlHeight = 80;
@@ -57,9 +60,9 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	 */
 	public PlayerSelectLevelGUI(PlayerMenu menu) {
 		this.theMenu = menu;
-		//this.btnPuzzle = new JButton[theMenu.numLevel("Puzzle")];
-		//this.btnTheme = new JButton[theMenu.numLevel("Theme")];
-		//this.btnLightning = new JButton[theMenu.numLevel("Lightning")];
+		this.panelsPuzzle = new JPanel[theMenu.numLevel("Puzzle")];
+		this.panelsTheme = new JPanel[theMenu.numLevel("Theme")];
+		this.panelsLightning = new JPanel[theMenu.numLevel("Lightning")];
 		initialize();
 	}
 
@@ -142,30 +145,12 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		themeScrollPane.setViewportView(themeInnerPanel);
 
-		JPanel t1 = new JPanel();
-		t1.setBackground(Color.gray);
-
-		GroupLayout gl_themeInnerPanel = new GroupLayout(themeInnerPanel);
-
-		gl_themeInnerPanel.setHorizontalGroup(
-				gl_themeInnerPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_themeInnerPanel.createSequentialGroup()
-						.addGap(5)
-						.addComponent(t1, 0, lvlWidth, Short.MAX_VALUE)
-						.addContainerGap(0, Short.MAX_VALUE))
-				);
-		gl_themeInnerPanel.setVerticalGroup(
-				gl_themeInnerPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_themeInnerPanel.createSequentialGroup()
-						.addGap(5)
-						.addComponent(t1, 0, lvlHeight, Short.MAX_VALUE)
-						.addContainerGap(0, Short.MAX_VALUE))
-				);
+		//JPanel t1 = new JPanel();
+		//t1.setBackground(Color.gray);
 
 		System.out.print(System.getProperty("user.dir"));
 
-
-		JLabel t1Label = new JLabel("The Theme of this Level is Colors");
+		/*JLabel t1Label = new JLabel("The Theme of this Level is Colors");
 		t1Label.setHorizontalAlignment(SwingConstants.CENTER);
 		t1Label.setToolTipText("The Theme of this Level is Colors");
 		t1Label.setFont(new Font("Dialog", Font.BOLD, 10));
@@ -208,65 +193,75 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 								.addComponent(fullLabelStar3, starSize, starSize, starSize))
 						.addContainerGap(0, Short.MAX_VALUE))
 				);
-		t1.setLayout(gl_t1);
+		t1.setLayout(gl_t1);*/
+		
+		themeInnerPanel.setLayout(new GridLayout(1, 0, 5, 0));
+		
+		PlayerMenuIterator menuIterator = theMenu.iterator();
+		while(menuIterator.hasNext("Lightning")){
+			PlayerLevel tempLevel = menuIterator.next("Lightning");
+			
+			JPanel thePanel = new JPanel();
+			thePanel.setBackground(Color.gray);
+			
+			JLabel label = new JLabel(tempLevel.getTitle());
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setToolTipText(tempLevel.getTitle());
+			label.setFont(new Font("Dialog", Font.BOLD, 10));
+			label.setForeground(Color.WHITE);
 
-		for(int lightningLevels; lightningLevels <= panelsLightning.length; lightningLevels++){
-			JLabel t1Label = new JLabel("The Theme of this Level is Colors");
-			t1Label.setHorizontalAlignment(SwingConstants.CENTER);
-			t1Label.setToolTipText("The Theme of this Level is Colors");
-			t1Label.setFont(new Font("Dialog", Font.BOLD, 10));
-			t1Label.setForeground(Color.WHITE);
-
-			JLabel lblHighScore = new JLabel("<html><center>High Score: <br> 159 </center></html>");
+			JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
 			lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHighScore.setForeground(Color.WHITE);
 			lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
 
-			GroupLayout gl_t1 = new GroupLayout(t1);
-			gl_t1.setHorizontalGroup(
-					gl_t1.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_t1.createSequentialGroup()
+			GroupLayout gl_thePanel = new GroupLayout(thePanel);
+			gl_thePanel.setHorizontalGroup(
+					gl_thePanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_thePanel.createSequentialGroup()
 							.addContainerGap(10, Short.MAX_VALUE)
 							.addComponent(fullLabelStar1, starSize, starSize, Short.MAX_VALUE)
 							.addComponent(fullLabelStar2, starSize, starSize, Short.MAX_VALUE)
 							.addComponent(fullLabelStar3, starSize, starSize, Short.MAX_VALUE)
 							.addContainerGap(10, Short.MAX_VALUE))
-					.addGroup(gl_t1.createSequentialGroup()
+					.addGroup(gl_thePanel.createSequentialGroup()
 							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(t1Label, 70, 70, Short.MAX_VALUE)
+							.addComponent(label, 70, 70, Short.MAX_VALUE)
 							.addContainerGap(5, Short.MAX_VALUE))
-					.addGroup(gl_t1.createSequentialGroup()
+					.addGroup(gl_thePanel.createSequentialGroup()
 							.addContainerGap(5, Short.MAX_VALUE)
 							.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
 							.addContainerGap(5, Short.MAX_VALUE))
 					);
-			gl_t1.setVerticalGroup(
-					gl_t1.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_t1.createSequentialGroup()
+			gl_thePanel.setVerticalGroup(
+					gl_thePanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_thePanel.createSequentialGroup()
 							.addContainerGap(5, Short.MAX_VALUE)
-							.addComponent(t1Label, 10, 10, 10)
+							.addComponent(label, 10, 10, 10)
 							.addContainerGap(5, Short.MAX_VALUE)
 							.addComponent(lblHighScore, 20, 20, 20)
 							.addContainerGap(20, Short.MAX_VALUE)
-							.addGroup(gl_t1.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
 									.addComponent(fullLabelStar1, starSize, starSize, starSize)
 									.addComponent(fullLabelStar2, starSize, starSize, starSize)
 									.addComponent(fullLabelStar3, starSize, starSize, starSize))
 							.addContainerGap(0, Short.MAX_VALUE))
 					);
-			t1.setLayout(gl_t1);
+			thePanel.setLayout(gl_thePanel);
+			themeInnerPanel.add(thePanel);
+			
 		}
-
-		themeInnerPanel.setLayout(gl_themeInnerPanel);
+		
+		
 
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
 		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lightningScrollPane.setViewportView(lightningInnerPanel);
-		lightningInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 
 		JButton btnLightning1 = new JButton("1");
 		btnLightning1.addActionListener(new PlayerSelectLevelController(this,"L1"));
+		lightningInnerPanel.setLayout(new GridLayout(1, 0, 5, 0));
 		lightningInnerPanel.add(btnLightning1);
 
 		JButton btnLightning2 = new JButton("2");
@@ -285,7 +280,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		btnLightning5.addActionListener(new PlayerSelectLevelController(this,"L5"));
 		lightningInnerPanel.add(btnLightning5);
 
-		JPanel puzzleInnerPanel = new JPanel();20
+		JPanel puzzleInnerPanel = new JPanel();
 		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);

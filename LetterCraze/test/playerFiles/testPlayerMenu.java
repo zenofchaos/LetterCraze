@@ -41,11 +41,25 @@ public class testPlayerMenu extends TestCase{
 		assertEquals(2,menu.numLevel("Puzzle"));
 		
 		//add another puzzle level and check if it was done properly
-		PlayerLevel Lightning = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, "Lighting", wordLimit);
+		PlayerLevel Lightning = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, "Lightning", wordLimit);
 		assertTrue(menu.addLevel(Lightning));
-		assertEquals("Lighting",menu.getLevels().get(1).get(0).getTitle());
+		assertEquals("Lightning",menu.getLevels().get(1).get(0).getTitle());
+		assertEquals(1,menu.numLevel("Lightning"));
+		
+		//add another puzzle level and check if it was done properly
+		PlayerLevel Theme = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, "Theme", null, null);
+		assertTrue(menu.addLevel(Theme));
+		assertEquals("Theme", menu.getLevels().get(2).get(0).getTitle());
+		assertEquals(1,menu.numLevel("Theme"));
 		
 		//Adding a null level should throw an exception
 		assertFalse(menu.addLevel(null));
+	}
+	
+	public void testGetLevel(){
+		PlayerLevel Plevel = new PlayerPuzzleLevel(null, 0, 0, true, "Puzzle", 5);
+		
+		//add a puzzle level and verify it was added correctly
+		assertTrue(menu.addLevel(Plevel));
 	}
 }

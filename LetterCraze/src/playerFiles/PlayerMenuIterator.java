@@ -25,11 +25,29 @@ public class PlayerMenuIterator {
 	public boolean hasNext(String levelType){
 		switch(levelType){
 		case "Puzzle":
-			return !(this.puzzleList.get(puzzleIndex) == null);
+			try{
+				this.puzzleList.get(puzzleIndex);
+				return true;
+			}
+			catch (Exception e){
+				return false;
+			}
 		case "Lightning":
-			return !(this.lightningList.get(lightningIndex) == null);
+			try{
+				this.lightningList.get(lightningIndex);
+				return true;
+			}
+			catch (Exception e){
+				return false;
+			}
 		case "Theme":
-			return !(this.themeList.get(themeIndex) == null);
+			try{
+				this.themeList.get(themeIndex);
+				return true;
+			}
+			catch (Exception e){
+				return false;
+			}
 		default:
 			System.out.println("MenuIterator.hasNext: Level Type unknown.");
 			return false;

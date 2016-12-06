@@ -9,7 +9,6 @@ import javax.swing.JProgressBar;
 
 import java.awt.Color;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +20,7 @@ import playerFiles.PlayerPuzzleLevel;
 import playerFiles.PlayerThemeLevel;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
@@ -95,20 +95,34 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreLabel.setBounds(0, 80, w, 30);
 		contentPane.add(scoreLabel);
 		
-		JPanel[][] letterPanels = new JPanel[6][6];
 		JLabel[][] letterLabels = new JLabel[6][6];
+		JLabel[][] pointLabels = new JLabel[6][6];
+		JPanel[][] squarePanels = new JPanel[6][6];
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
+				squarePanels[i][j] = new JPanel();
+				if (l.getBoard().getSquares()[i][j].isActive()) {
+					squarePanels[i][j].setBackground(Color.WHITE);
+				} else {
+					squarePanels[i][j].setBackground(Color.BLACK);
+				}
+				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
+				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
 				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].getLetter().getLetter());
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
 				letterLabels[i][j].setBounds(0, 0, 80, 80);
-				letterPanels[i][j] = new JPanel();
-				letterPanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
-				letterPanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
-				letterPanels[i][j].add(letterLabels[i][j]);
-				contentPane.add(letterPanels[i][j]);
+				squarePanels[i][j].add(letterLabels[i][j]);
+				if (l instanceof PlayerPuzzleLevel) {
+					pointLabels[i][j] = new JLabel("" + l.getBoard().getSquares()[i][j].getLetter().getPoints());
+					pointLabels[i][j].setForeground(Color.BLACK);
+					pointLabels[i][j].setHorizontalAlignment(SwingConstants.LEFT);
+					pointLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, 6));
+					pointLabels[i][j].setBounds(0, 0, 6, 6);
+					squarePanels[i][j].add(pointLabels[i][j]);
+				}
+				contentPane.add(squarePanels[i][j]);
 			}
 		}
 		
@@ -136,14 +150,23 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
 		
-		JLabel[] starLabels = new JLabel[3];
+		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
+		ImageIcon emptyStar = new ImageIcon("/images/emptyStar.png");
+		JLabel[] starImageLabels = new JLabel[3];
+		JLabel[] starThresholdLabels = new JLabel[3];
 		for (int i = 1; i <= 3; i++) {
-			starLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
-			starLabels[i].setForeground(Color.WHITE);
-			starLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
-			starLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[3]) * (h - 120), 60, 20);
-			contentPane.add(starLabels[i]);
+			if (l.getStarCount() >= i) {
+				starImageLabels[i] = new JLabel(fullStar);
+			} else {
+				starImageLabels[i] = new JLabel(emptyStar);
+			}
+			contentPane.add(starImageLabels[i]);
+			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
+			starThresholdLabels[i].setForeground(Color.WHITE);
+			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
+			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
+			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[3]) * (h - 120), 60, 20);
+			contentPane.add(starThresholdLabels[i]);
 		}
 		
 		JButton undoButton = new JButton("Undo");

@@ -47,7 +47,7 @@ public abstract class PlayerLevel {
 		return this.pointScore;
 	}
 	
-	int getStarCount(){
+	public int getStarCount(){
 		return this.starCount;
 	}
 	

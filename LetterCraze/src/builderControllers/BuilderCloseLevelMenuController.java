@@ -4,12 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import builderGUI.BuilderMainMenuGUI;
-import builderGUI.BuilderNewLevelGUI;
+import builderGUI.BuilderSelectLevelGUI;
 
 public class BuilderCloseLevelMenuController implements ActionListener {
-	BuilderNewLevelGUI levelMenuView;
+	BuilderSelectLevelGUI levelMenuView;
 	
-	public BuilderCloseLevelMenuController(BuilderNewLevelGUI levelMenuView){
+	public BuilderCloseLevelMenuController(BuilderSelectLevelGUI levelMenuView){
 		this.levelMenuView = levelMenuView;
 	}
 	

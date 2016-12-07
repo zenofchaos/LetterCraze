@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
-import builderGUI.BuilderNewLevelGUI;
+import builderGUI.BuilderSelectLevelGUI;
 import playerFiles.PlayerMenu;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
@@ -26,7 +26,7 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 		//Generate the model
 		//FileAccessController fileAccess = new FileAccessController(new PlayerMenu());
 		//PlayerModel model = fileAccess.getModel();th
-		BuilderNewLevelGUI selectView = new BuilderNewLevelGUI(new BuilderMenu());
+		BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(new BuilderMenu());
 		selectView.openWindow();
 	}
 }

@@ -98,13 +98,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel[][] letterLabels = new JLabel[6][6];
 		JLabel[][] pointLabels = new JLabel[6][6];
 		JPanel[][] squarePanels = new JPanel[6][6];
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				squarePanels[i][j] = new JPanel();
 				if (l.getBoard().getSquares()[i][j].isActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
-					squarePanels[i][j].setBackground(Color.BLACK);
+					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
 				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
@@ -128,11 +128,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		
 		String wordsFound = "";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound = wordsFound + l.getWordsEntered().get(i) + "\n";
+			wordsFound += l.getWordsEntered().get(i) + "\n";
 		}
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
 		wordsFoundLabel.setForeground(Color.WHITE);
-		wordsFoundLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
 		wordsFoundLabel.setBounds(0, 0, w - 500, 20 * l.getWordsEntered().size());
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
@@ -141,7 +141,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
 		contentPane.add(wordsFoundScrollPane);
 		
-		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[3]);
+		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[2]);
 		scoreProgressBar.setValue(l.getPointScore());
 		scoreProgressBar.setForeground(Color.YELLOW);
 		scoreProgressBar.setBackground(Color.BLACK);
@@ -152,20 +152,27 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		
 		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
 		ImageIcon emptyStar = new ImageIcon("/images/emptyStar.png");
-		JLabel[] starImageLabels = new JLabel[3];
+		JLabel[] starIconLabels = new JLabel[3];
+		JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (l.getStarCount() >= i) {
-				starImageLabels[i] = new JLabel(fullStar);
+				starIconLabels[i] = new JLabel(fullStar);
 			} else {
-				starImageLabels[i] = new JLabel(emptyStar);
+				starIconLabels[i] = new JLabel(emptyStar);
 			}
-			contentPane.add(starImageLabels[i]);
+			contentPane.add(starIconLabels[i]);
+			starLineLabels[i] = new JLabel("----------");
+			starLineLabels[i].setForeground(Color.WHITE);
+			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
+			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 50, 20);
+			contentPane.add(starLineLabels[i]);
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[3]) * (h - 120), 60, 20);
+			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 60, 20);
 			contentPane.add(starThresholdLabels[i]);
 		}
 		
@@ -213,8 +220,8 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	@Override
-	public void refresh(Object l) {
-		l = (PlayerLevel)l;
+	public void refresh(Object level) {
+		l = (PlayerLevel)level;
 		initialize();
 	}
 }

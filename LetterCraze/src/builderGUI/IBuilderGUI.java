@@ -11,4 +11,6 @@ public interface IBuilderGUI {
 	public void closeWindow();
 	//Hides but DOES NOT dispose of this gui object
 	public void hideWindow();
+	//Refreshes display
+	public void refresh(Object o);
 }

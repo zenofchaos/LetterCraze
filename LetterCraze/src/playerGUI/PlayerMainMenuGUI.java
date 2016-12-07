@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import playerControllers.PlayerOpenLevelSelectController;
+import playerControllers.PlayerMMController;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -54,7 +54,7 @@ public class PlayerMainMenuGUI extends JFrame implements IPlayerGUI{
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
 		
 		JButton btnLevels = new JButton("Levels");
-		btnLevels.addActionListener(new PlayerOpenLevelSelectController(this));
+		btnLevels.addActionListener(new PlayerMMController(this));
 		btnLevels.setFont(new Font("Dialog", Font.BOLD, 15));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -90,5 +90,11 @@ public class PlayerMainMenuGUI extends JFrame implements IPlayerGUI{
 	// Hide and dispose of this panel
 	public void hideWindow(){
 		this.setVisible(false);
+	}
+
+	@Override
+	public void refresh(Object o) {
+		// TODO Auto-generated method stub
+		
 	}
 }

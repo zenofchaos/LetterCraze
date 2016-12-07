@@ -6,11 +6,11 @@ import playerFiles.*;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
 
-public class PlayerOpenLevelSelectController implements ActionListener{
+public class PlayerMMController implements ActionListener{
 
 	PlayerMainMenuGUI menuView;
 	
-	public PlayerOpenLevelSelectController(PlayerMainMenuGUI theWindow) {
+	public PlayerMMController(PlayerMainMenuGUI theWindow) {
 		this.menuView = theWindow;
 	}
 

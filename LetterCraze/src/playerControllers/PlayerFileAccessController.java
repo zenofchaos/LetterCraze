@@ -98,7 +98,7 @@ public class PlayerFileAccessController {
 		PlayerLevel level = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, title, maxTime);
 		level.setBoard(board);
 
-		// Close FileCount
+		// Close File
 		input.close();
 				
 		return level;
@@ -120,14 +120,14 @@ public class PlayerFileAccessController {
 
 		// Now process the bitmap.
 
-		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
+		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				hypercube[i][j] = new PlayerSquare(i, j);
-				hypercube[i][j].setActive(input.nextInt() == 1);
+				bitmap[i][j] = new PlayerSquare(i, j);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
-		PlayerBoard board = new PlayerBoard(hypercube);
+		PlayerBoard board = new PlayerBoard(bitmap);
 
 		int moveNumber = input.nextInt();
 
@@ -137,7 +137,7 @@ public class PlayerFileAccessController {
 		PlayerLevel level = new PlayerPuzzleLevel(starThresholds, bestScore, bestStars, isLocked, title, moveNumber);
 		level.setBoard(board);
 
-		// Close FileCount
+		// Close File
 		input.close();
 
 		return level;
@@ -198,6 +198,9 @@ public class PlayerFileAccessController {
 		}
 
 		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, list, board);
+
+		// Close File
+		input.close();
 
 		return level;
 	}

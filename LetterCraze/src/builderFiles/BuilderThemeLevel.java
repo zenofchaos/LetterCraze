@@ -14,7 +14,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		this.boardPreset = boardPreset;
 	}
 	
-	LinkedList<String> getThemeWords(){
+	public LinkedList<String> getThemeWords(){
 		return this.themeWords;
 	}
 	

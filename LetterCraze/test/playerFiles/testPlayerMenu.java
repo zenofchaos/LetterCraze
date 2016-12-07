@@ -61,14 +61,14 @@ public class testPlayerMenu extends TestCase{
 		starThresholds[0] = 1;
 		starThresholds[1] = 2;
 		starThresholds[2] = 3;
-		PlayerLevel P1 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "P1", 5);
-		PlayerLevel P2 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "P2", 5);
+		PlayerLevel P1 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "Puz1", 5);
+		PlayerLevel P2 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "Puz2", 5);
 		
-		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T1", null, null);
+		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "Theme1", null, null);
 		
-		PlayerLevel L1 = new PlayerLightningLevel(starThresholds, 0, 0, true, "L1", 5);
-		PlayerLevel L2 = new PlayerLightningLevel(starThresholds, 0, 0, true, "L2", 5);
-		PlayerLevel L3 = new PlayerLightningLevel(starThresholds, 0, 0, true, "L3", 5);
+		PlayerLevel L1 = new PlayerLightningLevel(starThresholds, 0, 0, true, "Light1", 5);
+		PlayerLevel L2 = new PlayerLightningLevel(starThresholds, 0, 0, true, "Light2", 5);
+		PlayerLevel L3 = new PlayerLightningLevel(starThresholds, 0, 0, true, "Light3", 5);
 		
 		assertTrue(menu.addLevel(P1));
 		assertTrue(menu.addLevel(P2));
@@ -77,9 +77,16 @@ public class testPlayerMenu extends TestCase{
 		assertTrue(menu.addLevel(L2));
 		assertTrue(menu.addLevel(L3));
 		
-		assertEquals("P2",menu.getLevel("P2"));
-		assertEquals("T1",menu.getLevel("T1"));
-		assertEquals("L3",menu.getLevel("L3"));
+		assertEquals("Puz2",menu.getLevel("P2").getTitle());
+		assertEquals("Theme1",menu.getLevel("T1").getTitle());
+		assertEquals("Light3",menu.getLevel("L3").getTitle());
 		assertEquals(null,menu.getLevel("T4"));
+		
+		assertTrue(menu.removeLevel("P1"));
+		assertEquals("Puz2",menu.getLevel("P1").getTitle());
+		assertEquals(null,menu.getLevel("P2"));
+		
+		assertTrue(menu.removeLevel("T1"));
+		assertFalse(menu.removeLevel("L4"));
 	}
 }

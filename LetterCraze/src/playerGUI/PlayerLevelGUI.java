@@ -141,7 +141,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
 		contentPane.add(wordsFoundScrollPane);
 		
-		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[3]);
+		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[2]);
 		scoreProgressBar.setValue(l.getPointScore());
 		scoreProgressBar.setForeground(Color.YELLOW);
 		scoreProgressBar.setBackground(Color.BLACK);
@@ -155,7 +155,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel[] starIconLabels = new JLabel[3];
 		JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (l.getStarCount() >= i) {
 				starIconLabels[i] = new JLabel(fullStar);
 			} else {
@@ -166,13 +166,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[3]) * (h - 120), 50, 20);
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 50, 20);
 			contentPane.add(starLineLabels[i]);
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[3]) * (h - 120), 60, 20);
+			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 60, 20);
 			contentPane.add(starThresholdLabels[i]);
 		}
 		

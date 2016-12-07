@@ -158,19 +158,19 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		JLabel[] starIconLabels = new JLabel[3];
 		JLabel[] starLineLabels = new JLabel[3];
 		JTextField[] starThresholdTextFields = new JTextField[3];
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			starIconLabels[i] = new JLabel(fullStar);
 			contentPane.add(starIconLabels[i]);
 			starLineLabels[i] = new JLabel("----------");
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (i / 3) * (h - 120), 50, 20);
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - ((i + 1) / 3) * (h - 120), 50, 20);
 			contentPane.add(starLineLabels[i]);
 			starThresholdTextFields[i] = new JTextField("" + l.getStarThresholds()[i]);
 			starThresholdTextFields[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - (i / 3) * (h - 120), 60, 20);
+			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - ((i + 1) / 3) * (h - 120), 60, 20);
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		

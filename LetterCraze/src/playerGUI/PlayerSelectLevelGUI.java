@@ -203,6 +203,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				thePanel.setBackground(Color.gray);
 
 				JLabel label = new JLabel(tempLevel.getTitle());
+				label.addMouseListener(new PlayerLSController(this, levelLabel));
 				label.setHorizontalAlignment(SwingConstants.CENTER);
 				label.setToolTipText(tempLevel.getTitle());
 				label.setFont(new Font("Dialog", Font.BOLD, 10));

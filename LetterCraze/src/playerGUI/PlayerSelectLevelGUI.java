@@ -3,7 +3,7 @@ package playerGUI;
 import java.awt.EventQueue;
 
 import playerControllers.PlayerLSBackController;
-import playerControllers.PlayerSelectLevelController;
+import playerControllers.PlayerLSController;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -161,9 +161,10 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 
 		PlayerMenuIterator menuIterator = theMenu.iterator();
 		
-		int numLevels = 0;
+		
 
 		for(int lType = 0; lType < levelTypes.length; lType++){
+			int numLevels = 0;
 			while(menuIterator.hasNext(levelTypes[lType])){
 				numLevels++;
 				
@@ -180,6 +181,25 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				}
 
 				JPanel thePanel = new JPanel();
+				String type = levelTypes[lType];
+				String levelLabel = "";
+				switch(type){
+					case "Puzzle":
+						levelLabel = "P";
+						levelLabel+= numLevels;
+						break;
+					case "Lightning":
+						levelLabel = "L";
+						levelLabel+= numLevels;
+						break;
+					case "Theme":
+						levelLabel = "T";
+						levelLabel+= numLevels;
+						break;
+					default:
+						System.out.println("switch statement error in Player Select Level GUI for determining level type");
+				}
+				thePanel.addMouseListener(new PlayerLSController(this, levelLabel));
 				thePanel.setBackground(Color.gray);
 
 				JLabel label = new JLabel(tempLevel.getTitle());
@@ -239,7 +259,6 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 			}
 		}
 		
-		System.out.println("number of Levels: " + numLevels);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
@@ -261,5 +280,15 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	// Hides this frame from view
 	public void hideWindow(){
 		this.frame.setVisible(false);
+	}
+
+	@Override
+	public void refresh(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public PlayerMenu getMenu(){
+		return this.theMenu;
 	}
 }

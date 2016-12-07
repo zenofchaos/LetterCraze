@@ -1,7 +1,7 @@
 package builderGUI;
 
 import java.awt.EventQueue;
-import playerControllers.PlayerSelectLevelController;
+import playerControllers.PlayerLSController;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -16,7 +16,7 @@ import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderCloseLevelMenuController;
 import builderControllers.BuilderOpenEditorController;
 import builderFiles.BuilderMenu;
-import playerControllers.PlayerSelectLevelController;
+import playerControllers.PlayerLSController;
 import playerFiles.PlayerMenu;
 
 import javax.swing.JButton;

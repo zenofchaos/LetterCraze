@@ -18,7 +18,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return this.themeWords;
 	}
 	
-	BuilderBoard getBoardPreset(){
+	public BuilderBoard getBoardPreset(){
 		return this.boardPreset;
 	}
 	
@@ -38,7 +38,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return true;
 	}
 	
-	boolean addThemeWord(String word){
+	public boolean addThemeWord(String word){
 		return themeWords.add(word);
 	}
 }

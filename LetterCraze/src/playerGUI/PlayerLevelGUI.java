@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-import playerControllers.PlayerBackBtnController;
+import playerControllers.PlayerLvlBackController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
@@ -108,7 +108,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				}
 				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
 				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
-				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].getLetter().getLetter());
+				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].toString());
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
@@ -183,7 +183,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		backButton.setBounds(20, 20, 150, 25);
 		contentPane.add(backButton);
-		backButton.addActionListener(new PlayerBackBtnController(this));
+		backButton.addActionListener(new PlayerLvlBackController(this));
 	}
 	
 	private String properSubtitle() {

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import builderGUI.BuilderEditorGUI;
-import builderGUI.BuilderNewLevelGUI;
+import builderGUI.BuilderSelectLevelGUI;
 
 public class BuilderCloseEditorController implements ActionListener{
 	BuilderEditorGUI editorView;

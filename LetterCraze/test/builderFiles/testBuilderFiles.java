@@ -1,5 +1,8 @@
 package builderFiles;
 
-public class testBuilderFiles {
+import junit.framework.TestCase;
+import playerFiles.PlayerLetter;
 
+public class testBuilderFiles{
+	
 }

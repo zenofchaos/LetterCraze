@@ -3,7 +3,7 @@ package playerFiles;
 import java.util.LinkedList;
 
 public class PlayerThemeLevel extends PlayerLevel {
-	String theme;
+	String description;
 	LinkedList<String> themeWords;
 	PlayerBoard boardPreset;
 	
@@ -11,6 +11,10 @@ public class PlayerThemeLevel extends PlayerLevel {
 		super(starThresholds, bestScore, bestStars, isLocked, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
+	}
+	
+	public String getDescription(){
+		return this.description;
 	}
 	
 	LinkedList<String> getThemeWords(){

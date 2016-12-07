@@ -8,21 +8,37 @@ import playerControllers.PlayerSelectLevelController;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
+import playerFiles.PlayerLevel;
 import playerFiles.PlayerMenu;
+import playerFiles.PlayerMenuIterator;
 
 import javax.swing.JButton;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
 
 public class PlayerSelectLevelGUI implements IPlayerGUI{
 
+	JPanel[] panelsPuzzle;
+	JPanel[] panelsTheme;
+	JPanel[] panelsLightning;
+
+	final int lvlWidth = 80;
+	final int lvlHeight = 80;
+	final int starSize = 20;
+
 	PlayerMenu theMenu;
-	
+
 	private JFrame frame;
 
 	/**
@@ -46,6 +62,9 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	 */
 	public PlayerSelectLevelGUI(PlayerMenu menu) {
 		this.theMenu = menu;
+		this.panelsPuzzle = new JPanel[theMenu.numLevel("Puzzle")];
+		this.panelsTheme = new JPanel[theMenu.numLevel("Theme")];
+		this.panelsLightning = new JPanel[theMenu.numLevel("Lightning")];
 		initialize();
 	}
 
@@ -56,6 +75,14 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
+		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
+
+		String[] levelTypes = new String[3];
+		levelTypes[0] = "Puzzle";
+		levelTypes[1] = "Lightning";
+		levelTypes[2] = "Theme";
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
@@ -117,101 +144,119 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 						.addComponent(themeScrollPane, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 						.addGap(20))
 				);
-		
+
 		JPanel themeInnerPanel = new JPanel();
 		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
-		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		themeScrollPane.setViewportView(themeInnerPanel);
-		themeInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-		
-		JButton btnTheme1 = new JButton("1");
-		btnTheme1.addActionListener(new PlayerSelectLevelController(this,"T1"));
-		themeInnerPanel.add(btnTheme1);
-		
-		JButton btnTheme2 = new JButton("2");
-		btnTheme2.addActionListener(new PlayerSelectLevelController(this,"T2"));
-		themeInnerPanel.add(btnTheme2);
-		
-		JButton btnTheme3 = new JButton("3");
-		btnTheme3.addActionListener(new PlayerSelectLevelController(this,"T3"));
-		themeInnerPanel.add(btnTheme3);
-		
-		JButton btnTheme4 = new JButton("4");
-		btnTheme4.addActionListener(new PlayerSelectLevelController(this,"T4"));
-		themeInnerPanel.add(btnTheme4);
-		
-		JButton btnTheme5 = new JButton("5");
-		btnTheme5.addActionListener(new PlayerSelectLevelController(this,"T5"));
-		themeInnerPanel.add(btnTheme5);
 		
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
 		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lightningScrollPane.setViewportView(lightningInnerPanel);
-		lightningInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-		
-		JButton btnLightning1 = new JButton("1");
-		btnLightning1.addActionListener(new PlayerSelectLevelController(this,"L1"));
-		lightningInnerPanel.add(btnLightning1);
-		
-		JButton btnLightning2 = new JButton("2");
-		btnLightning2.addActionListener(new PlayerSelectLevelController(this,"L2"));
-		lightningInnerPanel.add(btnLightning2);
-		
-		JButton btnLightning3 = new JButton("3");
-		btnLightning3.addActionListener(new PlayerSelectLevelController(this,"L3"));
-		lightningInnerPanel.add(btnLightning3);
-		
-		JButton btnLightning4 = new JButton("4");
-		btnLightning4.addActionListener(new PlayerSelectLevelController(this,"L4"));
-		lightningInnerPanel.add(btnLightning4);
-		
-		JButton btnLightning5 = new JButton("5");
-		btnLightning5.addActionListener(new PlayerSelectLevelController(this,"L5"));
-		lightningInnerPanel.add(btnLightning5);
 		
 		JPanel puzzleInnerPanel = new JPanel();
-		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
+		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
-		puzzleInnerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+
+		PlayerMenuIterator menuIterator = theMenu.iterator();
 		
-		JButton btnPuzzle1 = new JButton("1");
-		btnPuzzle1.addActionListener(new PlayerSelectLevelController(this,"P1"));
-		puzzleInnerPanel.add(btnPuzzle1);
+		int numLevels = 0;
+
+		for(int lType = 0; lType < levelTypes.length; lType++){
+			while(menuIterator.hasNext(levelTypes[lType])){
+				numLevels++;
+				
+				PlayerLevel tempLevel = menuIterator.next(levelTypes[lType]);
+
+				JLabel[] star = new JLabel[3];
+
+				for(int i = 0; i < tempLevel.getBestStars(); i++){
+					star[i] = new JLabel(fullStar);
+				}
+
+				for (int i = tempLevel.getBestStars(); i < star.length; i++){
+					star[i] = new JLabel(emptyStar);
+				}
+
+				JPanel thePanel = new JPanel();
+				thePanel.setBackground(Color.gray);
+
+				JLabel label = new JLabel(tempLevel.getTitle());
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setToolTipText(tempLevel.getTitle());
+				label.setFont(new Font("Dialog", Font.BOLD, 10));
+				label.setForeground(Color.WHITE);
+
+				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
+				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
+				lblHighScore.setForeground(Color.WHITE);
+				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
+
+				GroupLayout gl_thePanel = new GroupLayout(thePanel);
+				gl_thePanel.setHorizontalGroup(
+						gl_thePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(10, Short.MAX_VALUE)
+								.addComponent(star[0], starSize, starSize, Short.MAX_VALUE)
+								.addComponent(star[1], starSize, starSize, Short.MAX_VALUE)
+								.addComponent(star[2], starSize, starSize, Short.MAX_VALUE)
+								.addContainerGap(10, Short.MAX_VALUE))
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(label, 70, 70, Short.MAX_VALUE)
+								.addContainerGap(5, Short.MAX_VALUE))
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
+								.addContainerGap(5, Short.MAX_VALUE))
+						);
+				gl_thePanel.setVerticalGroup(
+						gl_thePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_thePanel.createSequentialGroup()
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(label, 10, 10, 10)
+								.addContainerGap(5, Short.MAX_VALUE)
+								.addComponent(lblHighScore, 20, 20, 20)
+								.addContainerGap(20, Short.MAX_VALUE)
+								.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
+										.addComponent(star[0], starSize, starSize, starSize)
+										.addComponent(star[1], starSize, starSize, starSize)
+										.addComponent(star[2], starSize, starSize, starSize))
+								.addContainerGap(0, Short.MAX_VALUE))
+						);
+				thePanel.setLayout(gl_thePanel);
+				
+				if(levelTypes[lType].equals("Theme")){
+					themeInnerPanel.add(thePanel);			
+				}
+				else if(levelTypes[lType].equals("Puzzle")){
+					puzzleInnerPanel.add(thePanel);
+				}
+				else if(levelTypes[lType].equals("Lightning")){
+					lightningInnerPanel.add(thePanel);
+				}
+			}
+		}
 		
-		JButton btnPuzzle2 = new JButton("2");
-		btnPuzzle2.addActionListener(new PlayerSelectLevelController(this,"P2"));
-		puzzleInnerPanel.add(btnPuzzle2);
-		
-		JButton btnPuzzle3 = new JButton("3");
-		btnPuzzle3.addActionListener(new PlayerSelectLevelController(this,"P3"));
-		puzzleInnerPanel.add(btnPuzzle3);
-		
-		JButton btnPuzzle4 = new JButton("4");
-		btnPuzzle4.addActionListener(new PlayerSelectLevelController(this,"P4"));
-		puzzleInnerPanel.add(btnPuzzle4);
-		
-		JButton btnPuzzle5 = new JButton("5");
-		btnPuzzle5.addActionListener(new PlayerSelectLevelController(this,"P5"));
-		puzzleInnerPanel.add(btnPuzzle5);
+		System.out.println("number of Levels: " + numLevels);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-	
+
 	@Override
 	// Opens (set visible) this frame
 	public void openWindow(){
 		this.frame.setVisible(true);
 	}
-	
+
 	@Override
 	// Hides and disposes of this frame
 	public void closeWindow(){
 		this.frame.setVisible(false);
 		this.frame.dispose();
 	}
-	
+
 	@Override
 	// Hides this frame from view
 	public void hideWindow(){

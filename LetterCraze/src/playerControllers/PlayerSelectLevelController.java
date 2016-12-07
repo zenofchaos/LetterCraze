@@ -3,6 +3,8 @@ package playerControllers;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+
+import playerFiles.PlayerLightningLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
@@ -21,7 +23,7 @@ public class PlayerSelectLevelController implements ActionListener{
 		//Access files to build level
 		//potentially for future: close window
 		//open new window
-		PlayerLevelGUI window = new PlayerLevelGUI();
+		PlayerLevelGUI window = new PlayerLevelGUI(new PlayerLightningLevel(null, 3, 3, true,"test", 3));
 		window.openWindow();
 	}
 }

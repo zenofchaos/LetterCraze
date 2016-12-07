@@ -8,7 +8,7 @@ public class PlayerLightningLevel extends PlayerLevel {
 		this.maxTime = maxTime;
 	}
 	
-	int getMaxTime(){
+	public int getMaxTime(){
 		return this.maxTime;
 	}
 	

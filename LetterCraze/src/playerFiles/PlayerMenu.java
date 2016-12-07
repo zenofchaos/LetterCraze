@@ -27,6 +27,20 @@ public class PlayerMenu {
 		return true;
 	}
 	
+	//returns the number of levels held in this menu of the given levelType
+	public int numLevel(String levelType){
+		switch(levelType){
+		case "Puzzle":
+			return this.levels.get(0).size();
+		case "Lightning":
+			return this.levels.get(1).size();
+		case "Theme":
+			return this.levels.get(2).size();
+		default:
+			return -1;
+		}
+	}
+	
 	//Returns the level corresponding to the given identifier
 	//Identifier should be in one of the following forms:
 	//		T#	L#	P#
@@ -93,27 +107,41 @@ public class PlayerMenu {
 		}
 	}
 	
-	//Removes the level with the given title from this menu. Returns true
-	//	if successful. Returns false if the given title does not match any level.
-	boolean removeLevel(String toRemove){
-		//Iterate through the array
-		Iterator<List<PlayerLevel>> arrayIterator = this.levels.iterator();
-		while (arrayIterator.hasNext()){
-			//Iterate through the list
-			List<PlayerLevel> currentList = arrayIterator.next();
-			Iterator<PlayerLevel> listIterator = currentList.iterator();
-			
-			int listIndex = 0;
-			
-			while (listIterator.hasNext()){
-				PlayerLevel toCheck = listIterator.next();
-				if (toCheck.getTitle() == toRemove){
-					currentList.remove(listIndex);
-					return true;
-				}
-			}
+	//Removes the level corresponding to the given indicator from this menu. Returns true
+	//	if successful. Returns false if there is no level for the given indicator.
+	boolean removeLevel(String indicator){
+		char type = indicator.charAt(0);
+		int index = (int) indicator.charAt(1);
+		List<PlayerLevel> indicatedLevels;
+		
+		//Determine which type of level is desired
+		switch (type){
+			case 'T':
+				indicatedLevels = this.levels.get(2);
+				break;
+			case 'L':
+				indicatedLevels = this.levels.get(1);
+				break;
+			case 'P':
+				indicatedLevels = this.levels.get(0);
+				break;
+			default:
+				return false;
 		}
-		//Executes only if the title does not match any levels
-		return false;
+		
+		//returns the desired level, or null if the desired
+		//	level does not exist
+		try{
+			indicatedLevels.remove(index);
+			return true;
+		}
+		catch (Exception e){
+			return false;
+		}
+	}
+	
+	//Returns an iterator for this menu
+	public PlayerMenuIterator iterator(){
+		return new PlayerMenuIterator(this.levels);
 	}
 }

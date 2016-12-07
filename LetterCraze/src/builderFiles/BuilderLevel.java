@@ -27,16 +27,16 @@ public abstract class BuilderLevel {
 			}
 		}
 		
-		String getTitle(){
+		public String getTitle(){
 			return this.title;
 		}
 		
 		
-		int[] getStarThresholds(){
+		public int[] getStarThresholds(){
 			return this.starThresholds;
 		}
 		
-		BuilderBoard getBoard(){
+		public BuilderBoard getBoard(){
 			return this.board;
 		}
 		
@@ -47,7 +47,7 @@ public abstract class BuilderLevel {
 		
 		
 		boolean setStarThresholds(int[] starThresholds){
-			if (starThresholds.length == 3){
+			if(starThresholds.length == 3){
 				this.starThresholds = starThresholds;
 				return true;
 			}

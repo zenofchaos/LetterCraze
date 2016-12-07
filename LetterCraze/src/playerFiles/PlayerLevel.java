@@ -7,7 +7,7 @@ public abstract class PlayerLevel {
 	String title;
 	int pointScore;
 	int starCount;
-	ArrayList<PlayerWord[]> wordsEntered;
+	ArrayList<PlayerWord> wordsEntered;
 	int[] starThresholds;
 	int bestScore;
 	int bestStars;
@@ -39,35 +39,35 @@ public abstract class PlayerLevel {
 		}
 	}
 	
-	String getTitle(){
+	public String getTitle(){
 		return this.title;
 	}
 	
-	int getPointScore(){
+	public int getPointScore(){
 		return this.pointScore;
 	}
 	
-	int getStarCount(){
+	public int getStarCount(){
 		return this.starCount;
 	}
 	
-	ArrayList<PlayerWord[]> getWordsEntered(){
+	public ArrayList<PlayerWord> getWordsEntered(){
 		return this.wordsEntered;
 	}
 	
-	int[] getStarThresholds(){
+	public int[] getStarThresholds(){
 		return this.starThresholds;
 	}
 	
-	int getBestScore(){
+	public int getBestScore(){
 		return this.bestScore;
 	}
 	
-	int getBestStars(){
+	public int getBestStars(){
 		return this.bestStars;
 	}
 	
-	PlayerBoard getBoard(){
+	public PlayerBoard getBoard(){
 		return this.board;
 	}
 	
@@ -90,7 +90,7 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setWordsEntered(ArrayList<PlayerWord[]> wordsEntered){
+	boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
 		this.wordsEntered = wordsEntered;
 		return true;
 	}

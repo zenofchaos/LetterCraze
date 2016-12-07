@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderAddStarThreshold;
+import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderOpenEditorController;
 
@@ -70,6 +72,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI{
 		contentPane.add(titleLabel);
 		
 		JTextField titleTextField = new JTextField("Your title here");
+		titleTextField.addActionListener(new BuilderAddTitle(this));
 		titleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		titleTextField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		titleTextField.setBounds(200, 60, h / 2, 24);
@@ -117,18 +120,21 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI{
 		contentPane.add(scoreProgressBar);
 		
 		JTextField starTextField3 = new JTextField();
+		starTextField3.addActionListener(new BuilderAddStarThreshold(this, 3));
 		starTextField3.setHorizontalAlignment(SwingConstants.LEFT);
 		starTextField3.setFont(new Font("Dialog", Font.PLAIN, 20));
 		starTextField3.setBounds(w - 60, 60 - 20, 60, 20);
 		contentPane.add(starTextField3);
 		
 		JTextField starTextField2 = new JTextField();
+		starTextField2.addActionListener(new BuilderAddStarThreshold(this, 2));
 		starTextField2.setHorizontalAlignment(SwingConstants.LEFT);
 		starTextField2.setFont(new Font("Dialog", Font.PLAIN, 20));
 		starTextField2.setBounds(w - 60, h / 2 - 20, 60, 20);
 		contentPane.add(starTextField2);
 		
 		JTextField starTextField1 = new JTextField();
+		starTextField1.addActionListener(new BuilderAddStarThreshold(this, 1));
 		starTextField1.setForeground(Color.BLACK);
 		starTextField1.setHorizontalAlignment(SwingConstants.LEFT);
 		starTextField1.setFont(new Font("Dialog", Font.PLAIN, 20));

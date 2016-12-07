@@ -144,7 +144,6 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 
 		JPanel themeInnerPanel = new JPanel();
 		themeInnerPanel.setBackground(Color.LIGHT_GRAY);
-		themeInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		themeScrollPane.setViewportView(themeInnerPanel);
 		
 		JPanel lightningInnerPanel = new JPanel();
@@ -236,6 +235,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				}
 			}
 		}
+		
 		System.out.println("number of Levels: " + numLevels);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);

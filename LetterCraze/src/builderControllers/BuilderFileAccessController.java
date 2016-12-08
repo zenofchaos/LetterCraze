@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import builderFiles.*;
+import playerFiles.PlayerPuzzleLevel;
 
 /**
  * BuilderFileAccessController is used to load and save information about the
@@ -13,7 +14,7 @@ import builderFiles.*;
  * which levels are unlocked. Each of the other files contain ASCII data about
  * one level.
  * 
- * @author Javario
+ * @author Linda
  */
 public class BuilderFileAccessController {
 
@@ -146,6 +147,9 @@ public class BuilderFileAccessController {
 		// Close File
 		input.close();
 
+		//WILL BE USED TO TEST THE SAVE METHODS ONCE I CAN COMPILE
+//		savePuzzle(number + 10, (BuilderPuzzleLevel) level);		
+		
 		return level;
 	}
 
@@ -220,21 +224,27 @@ public class BuilderFileAccessController {
 		writer.format("00000\r\n");
 		writer.format("0\r\n");
 		writer.format("%s\r\n", level.getTitle());
+		writer.format("%d\r\n", level.getStarThresholds()[0]);
 		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n", level.getStarThresholds()[2]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[3]);
+		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				writer.format(level.getBoard().getSquares()[i][j].toString() + " ");
+				if (level.getBoard().getSquares()[i][j].getIsActive()) {
+					writer.format("1 ");
+				} else {
+					writer.format("0 ");
+				}
 			}
 			writer.format("\r\n");
 		}
 		writer.format("\r\n");
 
-		writer.format("%d", level.getMaxTime());
-
+		
+		
+		writer.format("%d", ((BuilderLightningLevel) level).getMaxTime());
+		
 		/// and now the file is finished.
 
 		// Close FileCount
@@ -250,20 +260,25 @@ public class BuilderFileAccessController {
 		writer.format("00000\r\n");
 		writer.format("0\r\n");
 		writer.format("%s\r\n", level.getTitle());
+		writer.format("%d\r\n", level.getStarThresholds()[0]);
 		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n", level.getStarThresholds()[2]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[3]);
+		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				writer.format(level.getBoard().getSquares()[i][j].toString() + " ");
+				if (level.getBoard().getSquares()[i][j].getIsActive()) {
+					writer.format("1 ");
+				} else {
+					writer.format("0 ");
+				}
 			}
 			writer.format("\r\n");
 		}
 		writer.format("\r\n");
 
-		writer.format("%d", level.getWordLimit());
+		
+		writer.format("%d", ((BuilderPuzzleLevel) level).getWordLimit());
 
 		/// and now the file is finished.
 
@@ -280,9 +295,9 @@ public class BuilderFileAccessController {
 		writer.format("00000\r\n");
 		writer.format("0\r\n");
 		writer.format("%s\r\n", level.getTitle());
+		writer.format("%d\r\n", level.getStarThresholds()[0]);
 		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n", level.getStarThresholds()[2]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[3]);
+		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
@@ -300,18 +315,21 @@ public class BuilderFileAccessController {
 		// charmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				writer.format(level.getBoard().getSquares()[i][j].toString() + " ");
+				String buffer = level.getBoard().getSquares()[i][j].toString();
+				if (buffer == "QU"){
+					writer.format("Q ");
+				} else {
+					writer.format(buffer + " ");
+				}
 			}
 			writer.format("\r\n");
 		}
 		writer.format("\r\n");
 
-		//Wordlist (OH BOY.)
-		
-		for (String s : level.getThemeWords()){
+		for (String s : level.getThemeWords()) {
 			writer.format(s + "\r\n");
 		}
-		
+
 		/// and now the file is finished.
 
 		// Close FileCount

@@ -48,17 +48,17 @@ public class PlayerFileAccessController {
 		input.close();
 
 		// Iterate to add Puzzle levels
-		for (i = 1; i <= numP; i++) {
+		for (int i = 1; i <= numP; i++) {
 			menu.addLevel(readPuzzle(i));
 		}
 
 		// Iterate to add Lightning levels
-		for (i = 1; i <= numL; i++) {
+		for (int i = 1; i <= numL; i++) {
 			menu.addLevel(readLightning(i));
 		}
 
 		// Iterate to add Theme levels
-		for (i = 1; i <= numT; i++) {
+		for (int i = 1; i <= numT; i++) {
 			menu.addLevel(readTheme(i));
 		}
 

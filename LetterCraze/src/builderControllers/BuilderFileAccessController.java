@@ -1,6 +1,7 @@
 package builderControllers;
 
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -147,9 +148,9 @@ public class BuilderFileAccessController {
 		// Close File
 		input.close();
 
-		//WILL BE USED TO TEST THE SAVE METHODS ONCE I CAN COMPILE
-//		savePuzzle(number + 10, (BuilderPuzzleLevel) level);		
-		
+		// WILL BE USED TO TEST THE SAVE METHODS ONCE I CAN COMPILE
+		// savePuzzle(number + 10, (BuilderPuzzleLevel) level);
+
 		return level;
 	}
 
@@ -217,7 +218,7 @@ public class BuilderFileAccessController {
 
 	public void saveLightning(int levelNum, BuilderLightningLevel level) throws Exception {
 		file = new java.io.File("Levels/Lightning" + levelNum + ".txt");
-		// file.createNewFile();
+		file.createNewFile();
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -241,10 +242,8 @@ public class BuilderFileAccessController {
 		}
 		writer.format("\r\n");
 
-		
-		
 		writer.format("%d", ((BuilderLightningLevel) level).getMaxTime());
-		
+
 		/// and now the file is finished.
 
 		// Close FileCount
@@ -253,7 +252,7 @@ public class BuilderFileAccessController {
 
 	public void savePuzzle(int levelNum, BuilderPuzzleLevel level) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + levelNum + ".txt");
-		// file.createNewFile();
+		file.createNewFile();
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -277,7 +276,6 @@ public class BuilderFileAccessController {
 		}
 		writer.format("\r\n");
 
-		
 		writer.format("%d", ((BuilderPuzzleLevel) level).getWordLimit());
 
 		/// and now the file is finished.
@@ -288,7 +286,7 @@ public class BuilderFileAccessController {
 
 	public void saveTheme(int levelNum, BuilderThemeLevel level) throws Exception {
 		file = new java.io.File("Levels/Theme" + levelNum + ".txt");
-		// file.createNewFile();
+		file.createNewFile();
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -316,7 +314,7 @@ public class BuilderFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				String buffer = level.getBoard().getSquares()[i][j].toString();
-				if (buffer == "QU"){
+				if (buffer == "QU") {
 					writer.format("Q ");
 				} else {
 					writer.format(buffer + " ");
@@ -335,4 +333,39 @@ public class BuilderFileAccessController {
 		// Close FileCount
 		writer.close();
 	}
+
+	public void adjustLightningCount(int offset) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(0); // the Lightning Count is always the first (2) byte(s)
+						// in FileCount.
+
+		String newCount = String.format("%02d", (numL + offset));
+
+		rAFile.writeBytes(newCount);
+
+		rAFile.close();
+	}
+
+	public void adjustPuzzleCount(int offset) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(4);
+
+		String newCount = String.format("%02d", (numP + offset));
+
+		rAFile.writeBytes(newCount);
+
+		rAFile.close();
+	}
+
+	public void adjustThemeCount(int offset) throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(8);
+
+		String newCount = String.format("%02d", (numT + offset));
+
+		rAFile.writeBytes(newCount);
+
+		rAFile.close();
+	}
+
 }

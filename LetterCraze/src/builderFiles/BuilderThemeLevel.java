@@ -3,8 +3,7 @@ package builderFiles;
 import java.util.LinkedList;
 
 public class BuilderThemeLevel extends BuilderLevel{
-
-	String theme;
+	String description;
 	LinkedList<String> themeWords;
 	BuilderBoard boardPreset;
 	
@@ -12,6 +11,10 @@ public class BuilderThemeLevel extends BuilderLevel{
 		super(starThresholds, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
+	}
+	
+	public String getDescription() {
+		return this.description;
 	}
 	
 	public LinkedList<String> getThemeWords(){

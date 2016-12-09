@@ -9,7 +9,7 @@ int maxTime;
 		this.maxTime = maxTime;
 	}
 	
-	int getMaxTime(){
+	public int getMaxTime(){
 		return this.maxTime;
 	}
 	

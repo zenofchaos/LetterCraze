@@ -9,7 +9,7 @@ public class BuilderPuzzleLevel extends BuilderLevel{
 		this.wordLimit = wordLimit;
 	}
 	
-	int getWordLimit(){
+	public int getWordLimit(){
 		return this.wordLimit;
 	}
 	

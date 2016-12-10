@@ -15,16 +15,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
-import builderControllers.BuilderOpenEditorController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
-import playerFiles.PlayerLevel;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -104,23 +100,23 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		JTextField subtitleTextField = new JTextField(properSubtitle());
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, 16));
-		subtitleTextField.setBounds(200, 90, properSubtitleWidth()/*h / 2*/, 24);
+		subtitleTextField.setBounds(200, 90, properSubtitleWidth(h), 24);
 		contentPane.add(subtitleTextField);
 		
 		JTextField[][] letterTextFields = new JTextField[6][6];
 		JPanel[][] squarePanels = new JPanel[6][6];
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) { // i is the row number
+			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
-				if (l.getBoard().getSquares()[i][j].isActive()) {
+				if (l.getBoard().getSquares()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
-				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
+				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12, h * (i + 3) / 12, h / 12, h / 12);
 				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
 				if (l instanceof BuilderThemeLevel) {
-					letterTextFields[i][j] = new JTextField(properLetter(i, j)/*"   "*/);
+					letterTextFields[i][j] = new JTextField(properLetter(i, j));
 					letterTextFields[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 					letterTextFields[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
 					letterTextFields[i][j].setBounds(0, 0, h / 12, 30);
@@ -154,7 +150,8 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
 		
-		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
+		final int starSize = 20;
+		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
 		JLabel[] starIconLabels = new JLabel[3];
 		JLabel[] starLineLabels = new JLabel[3];
 		JTextField[] starThresholdTextFields = new JTextField[3];
@@ -165,12 +162,12 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - ((i + 1) / 3) * (h - 120), 50, 20);
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (h - 120) * (i + 1) / 3, 50, 20);
 			contentPane.add(starLineLabels[i]);
 			starThresholdTextFields[i] = new JTextField("" + l.getStarThresholds()[i]);
 			starThresholdTextFields[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - ((i + 1) / 3) * (h - 120), 60, 20);
+			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * (i + 1) / 3, 60, 20);
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
@@ -179,10 +176,10 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		saveButton.setBounds(w / 2 - 110, h - 100, 100, 40);
 		contentPane.add(saveButton);
 		
-		JButton clearButton = new JButton("Clear");
-		clearButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		clearButton.setBounds(w / 2 + 10, h - 100, 100, 40);
-		contentPane.add(clearButton);
+		JButton previewButton = new JButton("Preview");
+		previewButton.setFont(new Font("Dialog", Font.BOLD, 15));
+		previewButton.setBounds(w / 2 + 10, h - 100, 100, 40);
+		contentPane.add(previewButton);
 		
 		JButton backButton = new JButton("Back to Menu");
 		backButton.addActionListener(new BuilderCloseEditorController(this));
@@ -208,6 +205,42 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			return "Description:";
 		} else {
 			return "";
+		}
+	}
+	
+	private String properSubtitle() {
+		try {
+			if (l instanceof BuilderPuzzleLevel) {
+				return "" + ((BuilderPuzzleLevel)l).getWordLimit();
+			} else if (l instanceof BuilderLightningLevel) {
+				return "" + ((BuilderLightningLevel)l).getMaxTime();
+			} else if (l instanceof BuilderThemeLevel) {
+				return ((BuilderThemeLevel)l).getDescription();
+			} else {
+				return "";
+			}
+		} catch (NullPointerException e) {
+			return "";
+		}
+	}
+	
+	private int properSubtitleWidth(int h) {
+		if (l instanceof BuilderPuzzleLevel) {
+			return 40;
+		} else if (l instanceof BuilderLightningLevel) {
+			return 40;
+		} else if (l instanceof BuilderThemeLevel) {
+			return h / 2;
+		} else {
+			return h / 2;
+		}
+	}
+	
+	private String properLetter(int i, int j) {
+		try {
+			return l.getBoard().getSquares()[i][j].getLetter().getLetter();
+		} catch (NullPointerException e) {
+			return "   ";
 		}
 	}
 	

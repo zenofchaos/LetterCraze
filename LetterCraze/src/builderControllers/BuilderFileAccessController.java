@@ -13,7 +13,7 @@ import builderFiles.*;
  * which levels are unlocked. Each of the other files contain ASCII data about
  * one level.
  * 
- * @author Javario
+ * @author Linda
  */
 public class BuilderFileAccessController {
 

@@ -98,17 +98,17 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel[][] letterLabels = new JLabel[6][6];
 		JLabel[][] pointLabels = new JLabel[6][6];
 		JPanel[][] squarePanels = new JPanel[6][6];
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) { // i is the row number
+			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
 				if (l.getBoard().getSquares()[i][j].isActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
-				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
+				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12, h * (i + 3) / 12, h / 12, h / 12);
 				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
-				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].toString());
+				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].getLetter().getLetter());
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
@@ -118,7 +118,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 					pointLabels[i][j] = new JLabel("" + l.getBoard().getSquares()[i][j].getLetter().getPoints());
 					pointLabels[i][j].setForeground(Color.BLACK);
 					pointLabels[i][j].setHorizontalAlignment(SwingConstants.LEFT);
-					pointLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, 6));
+					pointLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, 12));
 					pointLabels[i][j].setBounds(0, 0, 6, 6);
 					squarePanels[i][j].add(pointLabels[i][j]);
 				}
@@ -150,8 +150,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
 		
-		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
-		ImageIcon emptyStar = new ImageIcon("/images/emptyStar.png");
+		final int starSize = 20;
+		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
+		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
 		JLabel[] starIconLabels = new JLabel[3];
 		JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
@@ -161,29 +162,32 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			} else {
 				starIconLabels[i] = new JLabel(emptyStar);
 			}
+			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
+			starIconLabels[i].setBounds(w - 110, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
 			contentPane.add(starIconLabels[i]);
 			starLineLabels[i] = new JLabel("----------");
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 50, 20);
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 50, 20);
 			contentPane.add(starLineLabels[i]);
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 60, 20);
+			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 60, 20);
 			contentPane.add(starThresholdLabels[i]);
 		}
-		
-		JButton undoButton = new JButton("Undo");
-		undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		undoButton.setBounds(w / 2 - 110, h - 100, 100, 40);
-		contentPane.add(undoButton);
+		if (!(l instanceof PlayerLightningLevel)) {
+			JButton undoButton = new JButton("Undo");
+			undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
+			undoButton.setBounds(w / 2 - 110, h - 100, 100, 40);
+			contentPane.add(undoButton);
+		}
 		
 		JButton resetButton = new JButton("Reset");
 		resetButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		resetButton.setBounds(w / 2 + 10, h - 100, 100, 40);
+		resetButton.setBounds(properResetX(w), h - 100, 100, 40);
 		contentPane.add(resetButton);
 		
 		JButton backButton = new JButton("Back to Menu");
@@ -201,6 +205,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else if (l instanceof PlayerThemeLevel) {
 			return ((PlayerThemeLevel)l).getDescription();
 		} else return "";
+	}
+	
+	private int properResetX(int w) {
+		if (l instanceof PlayerPuzzleLevel) {
+			return w / 2 + 10;
+		} else if (l instanceof PlayerLightningLevel) {
+			return w / 2 - 50;
+		} else if (l instanceof PlayerThemeLevel) {
+			return w / 2 + 10;
+		} else return w / 2 + 10;
 	}
 
 	@Override

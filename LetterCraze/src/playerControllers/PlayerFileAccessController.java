@@ -192,6 +192,10 @@ public class PlayerFileAccessController {
 		}
 
 		PlayerBoard board = new PlayerBoard(bitmap);
+		
+		//now get the theme
+		input.nextLine();
+		String description = input.nextLine();
 
 		// now generate the linked list
 		LinkedList<String> list = new LinkedList<String>();
@@ -199,7 +203,7 @@ public class PlayerFileAccessController {
 			list.add(input.next());
 		}
 
-		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, list, board);
+		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, description, list, board);
 
 		// Close File
 		input.close();

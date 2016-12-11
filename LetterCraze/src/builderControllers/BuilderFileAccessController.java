@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import builderFiles.*;
+import playerFiles.PlayerLevel;
 import playerFiles.PlayerPuzzleLevel;
+import playerFiles.PlayerThemeLevel;
 
 /**
  * BuilderFileAccessController is used to load and save information about the
@@ -93,7 +95,7 @@ public class BuilderFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				bitmap[i][j] = new BuilderSquare(i, j);
-				bitmap[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		BuilderBoard board = new BuilderBoard(bitmap);
@@ -132,7 +134,7 @@ public class BuilderFileAccessController {
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
 				bitmap[i][j] = new BuilderSquare(i, j);
-				bitmap[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 		BuilderBoard board = new BuilderBoard(bitmap);
@@ -177,7 +179,7 @@ public class BuilderFileAccessController {
 				// here I create a playerSquare in each cell of the array
 				bitmap[i][j] = new BuilderSquare(i, j);
 				// then I set whether the given square is active or inactive
-				bitmap[i][j].setIsActive(input.nextInt() == 1);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
 
@@ -202,13 +204,18 @@ public class BuilderFileAccessController {
 
 		BuilderBoard board = new BuilderBoard(bitmap);
 
+		//now get the theme
+		input.nextLine();
+		String description = input.nextLine();
+		
 		// now generate the linked list
 		LinkedList<String> list = new LinkedList<String>();
 		while (input.hasNext()) {
 			list.add(input.next());
 		}
 
-		BuilderLevel level = new BuilderThemeLevel(starThresholds, title, list, board);
+		
+		BuilderLevel level = new BuilderThemeLevel(starThresholds, title, description, list, board);
 
 		// Close File
 		input.close();
@@ -232,7 +239,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getIsActive()) {
+				if (level.getBoard().getSquares()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -266,7 +273,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getIsActive()) {
+				if (level.getBoard().getSquares()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -300,7 +307,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getIsActive()) {
+				if (level.getBoard().getSquares()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -324,6 +331,10 @@ public class BuilderFileAccessController {
 		}
 		writer.format("\r\n");
 
+		//write theme
+		writer.format(level.getDescription() + "\r\n");
+		
+		//iterate through theme words
 		for (String s : level.getThemeWords()) {
 			writer.format(s + "\r\n");
 		}

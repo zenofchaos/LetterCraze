@@ -115,7 +115,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				}
 				final int borderSize = 6;
 				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12 + borderSize, h * (i + 3) / 12 + borderSize, h / 12 - borderSize, h / 12 - borderSize);
-				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properPoints(i, j) + "</html>");
+				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j)));
@@ -127,7 +127,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		
 		String wordsFound = "";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound += l.getWordsEntered().get(i) + "\n";
+			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "\n";
 		}
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
 		wordsFoundLabel.setForeground(Color.WHITE);
@@ -214,7 +214,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		}
 	}
 	
-	private String properPoints(int i, int j) {
+	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
 		if (l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") {
 			spaceIfNotQu = "";
@@ -228,6 +228,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else if (l instanceof PlayerThemeLevel) {
 			return "";
 		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+	}
+	
+	private String properWordPoints(int i) {
+		if (l instanceof PlayerPuzzleLevel) {
+			return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
+		} else if (l instanceof PlayerLightningLevel) {
+			return "";
+		} else if (l instanceof PlayerThemeLevel) {
+			return "";
+		} else return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
 	}
 	
 	private int properResetX(int w) {

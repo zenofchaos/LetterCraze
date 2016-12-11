@@ -16,4 +16,9 @@ public class PlayerLightningLevel extends PlayerLevel {
 		this.maxTime = maxTime;
 		return true;
 	}
+
+	@Override
+	int wordScore(PlayerWord w) {
+		return 1;
+	}
 }

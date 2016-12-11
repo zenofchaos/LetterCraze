@@ -17,5 +17,4 @@ public class PlayerPuzzleLevel extends PlayerLevel {
 		this.wordLimit = wordLimit;
 		return true;
 	}
-
 }

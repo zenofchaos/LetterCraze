@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerLvlBackController;
+import playerControllers.PlayerOutsideGridController;
+import playerControllers.PlayerSquareController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
@@ -66,6 +68,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new PlayerOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,39 +99,35 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(scoreLabel);
 		
 		JLabel[][] letterLabels = new JLabel[6][6];
-		JLabel[][] pointLabels = new JLabel[6][6];
 		JPanel[][] squarePanels = new JPanel[6][6];
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) { // i is the row number
+			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
+				squarePanels[i][j].addMouseListener(new PlayerSquareController(this, i, j));
 				if (l.getBoard().getSquares()[i][j].isActive()) {
-					squarePanels[i][j].setBackground(Color.WHITE);
+					if (l.squareIsSelected(l.getBoard().getSquares()[i][j])) {
+						squarePanels[i][j].setBackground(Color.YELLOW);
+					} else {
+						squarePanels[i][j].setBackground(Color.WHITE);
+					}
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
-				squarePanels[i][j].setBounds(w / 2 + h * (i - 3) / 12, h * (j + 3) / 12, h / 12, h / 12);
-				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
-				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].toString());
+				final int borderSize = 6;
+				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12 + borderSize, h * (i + 3) / 12 + borderSize, h / 12 - borderSize, h / 12 - borderSize);
+				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
+				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j)));
 				letterLabels[i][j].setBounds(0, 0, 80, 80);
 				squarePanels[i][j].add(letterLabels[i][j]);
-				if (l instanceof PlayerPuzzleLevel) {
-					pointLabels[i][j] = new JLabel("" + l.getBoard().getSquares()[i][j].getLetter().getPoints());
-					pointLabels[i][j].setForeground(Color.BLACK);
-					pointLabels[i][j].setHorizontalAlignment(SwingConstants.LEFT);
-					pointLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, 6));
-					pointLabels[i][j].setBounds(0, 0, 6, 6);
-					squarePanels[i][j].add(pointLabels[i][j]);
-				}
 				contentPane.add(squarePanels[i][j]);
 			}
 		}
 		
 		String wordsFound = "";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound += l.getWordsEntered().get(i) + "\n";
+			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "\n";
 		}
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
 		wordsFoundLabel.setForeground(Color.WHITE);
@@ -150,8 +149,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
 		contentPane.add(scoreProgressBar);
 		
-		ImageIcon fullStar = new ImageIcon("/images/fullStar.png");
-		ImageIcon emptyStar = new ImageIcon("/images/emptyStar.png");
+		final int starSize = 20;
+		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
+		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
 		JLabel[] starIconLabels = new JLabel[3];
 		JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
@@ -161,29 +161,32 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			} else {
 				starIconLabels[i] = new JLabel(emptyStar);
 			}
+			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
+			starIconLabels[i].setBounds(w - 110, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
 			contentPane.add(starIconLabels[i]);
 			starLineLabels[i] = new JLabel("----------");
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 50, 20);
+			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 50, 20);
 			contentPane.add(starLineLabels[i]);
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (l.getStarThresholds()[i] / l.getStarThresholds()[2]) * (h - 120), 60, 20);
+			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 60, 20);
 			contentPane.add(starThresholdLabels[i]);
 		}
-		
-		JButton undoButton = new JButton("Undo");
-		undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		undoButton.setBounds(w / 2 - 110, h - 100, 100, 40);
-		contentPane.add(undoButton);
+		if (!(l instanceof PlayerLightningLevel)) {
+			JButton undoButton = new JButton("Undo");
+			undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
+			undoButton.setBounds(w / 2 - 110, h - 100, 100, 40);
+			contentPane.add(undoButton);
+		}
 		
 		JButton resetButton = new JButton("Reset");
 		resetButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		resetButton.setBounds(w / 2 + 10, h - 100, 100, 40);
+		resetButton.setBounds(properResetX(w), h - 100, 100, 40);
 		contentPane.add(resetButton);
 		
 		JButton backButton = new JButton("Back to Menu");
@@ -201,6 +204,82 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else if (l instanceof PlayerThemeLevel) {
 			return ((PlayerThemeLevel)l).getDescription();
 		} else return "";
+	}
+	
+	private int properLetterSize(int i, int j) {
+		if ((l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
+			return 16;
+		} else {
+			return 20;
+		}
+	}
+	
+	private String properLetterPoints(int i, int j) {
+		String spaceIfNotQu;
+		if (l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") {
+			spaceIfNotQu = "";
+		} else {
+			spaceIfNotQu = " ";
+		}
+		if (l instanceof PlayerPuzzleLevel) {
+			return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+		} else if (l instanceof PlayerLightningLevel) {
+			return "";
+		} else if (l instanceof PlayerThemeLevel) {
+			return "";
+		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+	}
+	
+	private String properWordPoints(int i) {
+		if (l instanceof PlayerPuzzleLevel) {
+			return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
+		} else if (l instanceof PlayerLightningLevel) {
+			return "";
+		} else if (l instanceof PlayerThemeLevel) {
+			return "";
+		} else return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
+	}
+	
+	private int properResetX(int w) {
+		if (l instanceof PlayerPuzzleLevel) {
+			return w / 2 + 10;
+		} else if (l instanceof PlayerLightningLevel) {
+			return w / 2 - 50;
+		} else if (l instanceof PlayerThemeLevel) {
+			return w / 2 + 10;
+		} else return w / 2 + 10;
+	}
+	
+	private String makeSubscript(int n) {
+		String regulars = "" + n;
+		String subscripts = "";
+		for (int i = 0; i < regulars.length(); i++) {
+			switch (regulars.charAt(i)) {
+			case '0': subscripts += '\u2080';
+			break;
+			case '1': subscripts += '\u2081';
+			break;
+			case '2': subscripts += '\u2082';
+			break;
+			case '3': subscripts += '\u2083';
+			break;
+			case '4': subscripts += '\u2084';
+			break;
+			case '5': subscripts += '\u2085';
+			break;
+			case '6': subscripts += '\u2086';
+			break;
+			case '7': subscripts += '\u2087';
+			break;
+			case '8': subscripts += '\u2088';
+			break;
+			case '9': subscripts += '\u2089';
+			break;
+			default: subscripts += '\u2093';
+			break;
+			}
+		}
+		return subscripts;
 	}
 
 	@Override

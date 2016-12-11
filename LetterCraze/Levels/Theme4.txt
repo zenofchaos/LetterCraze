@@ -1,0 +1,23 @@
+00000
+0
+Placeholder Level
+Everybody loves placeholders!
+1
+2
+3
+
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ

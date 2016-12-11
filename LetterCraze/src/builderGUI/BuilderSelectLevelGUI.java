@@ -261,4 +261,10 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 	public void hideWindow(){
 		this.frame.setVisible(false);
 	}
+	
+	@Override
+	public void refresh(Object o) {
+		// TODO Auto-generated method stub
+		
+	}
 }

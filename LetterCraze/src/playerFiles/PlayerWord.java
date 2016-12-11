@@ -11,6 +11,13 @@ public class PlayerWord {
 	String word;
 	
 	//Constructs a word with this given square
+	public PlayerWord() {
+		this.squares = new ArrayList<PlayerSquare>();
+		
+		this.updateWord();
+	}
+	
+	//Constructs a word with this given square
 	public PlayerWord(PlayerSquare theSquare){
 		this.squares = new ArrayList<PlayerSquare>();
 		this.squares.add(theSquare);
@@ -107,7 +114,7 @@ public class PlayerWord {
 	
 	//Adds the given square to the end of this word
 	//Returns false if the square has no letter
-	public boolean addLetter(PlayerSquare square){
+	public boolean addSquare(PlayerSquare square) {
 		if (square.hasLetter()){
 			this.squares.add(square);
 			return this.updateWord();
@@ -119,12 +126,23 @@ public class PlayerWord {
 	
 	//Adds the given square to this word at the given index
 	//Returns false if the square has no letter
-	public boolean addLetter(PlayerSquare square, int index){
+	public boolean addSquare(PlayerSquare square, int index) {
 		if (square.hasLetter()){
 			this.squares.add(index, square);
 			return this.updateWord();
 		}
 		else{
+			return false;
+		}
+	}
+	
+	//Removes the last square from the end of this word
+	//Returns false if there are no squares to remove
+	public boolean removeSquare() {
+		if (squares.size() > 0) {
+			squares.remove(squares.size() - 1);
+			return updateWord();
+		} else {
 			return false;
 		}
 	}

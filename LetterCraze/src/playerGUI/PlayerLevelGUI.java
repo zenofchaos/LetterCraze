@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerLvlBackController;
+import playerControllers.PlayerSquareController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
@@ -101,6 +102,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		for (int i = 0; i < 6; i++) { // i is the row number
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
+				squarePanels[i][j].addMouseListener(new PlayerSquareController(this));
 				if (l.getBoard().getSquares()[i][j].isActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {

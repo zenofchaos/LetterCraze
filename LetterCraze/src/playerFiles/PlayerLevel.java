@@ -12,7 +12,9 @@ public abstract class PlayerLevel {
 	int bestScore;
 	int bestStars;
 	PlayerBoard board;
+	PlayerWord selectedWord;
 	boolean isLocked;
+	boolean mouseHeld;
 	
 	PlayerLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title){
 		if(!(starThresholds.length == 3)){
@@ -27,6 +29,7 @@ public abstract class PlayerLevel {
 			this.pointScore = 0;
 			this.starCount = 0;
 			this.wordsEntered = new ArrayList<>();
+			this.selectedWord = new PlayerWord();
 			
 			//Initialize the level board
 			if(this.initBoard()){
@@ -71,8 +74,12 @@ public abstract class PlayerLevel {
 		return this.board;
 	}
 	
-	boolean getIsLocked(){
+	public boolean getIsLocked(){
 		return this.isLocked;
+	}
+	
+	public boolean getMouseHeld(){
+		return this.mouseHeld;
 	}
 	
 	boolean setTitle(String title){
@@ -120,11 +127,15 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setIsLocked(Boolean isLocked){
+	boolean setIsLocked(boolean isLocked){
 		this.isLocked = isLocked;
 		return true;
 	}
 	
+	boolean setMouseHeld(boolean mouseHeld){
+		this.mouseHeld = mouseHeld;
+		return true;
+	}
 	
 	public boolean initBoard(){
 		PlayerSquare[][] squareArray = new PlayerSquare[6][6];
@@ -139,4 +150,15 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
+	public boolean submitWord() {
+		if (isValidWord(selectedWord)) {
+			
+		} else {
+			return false;
+		}
+	}
+
+	protected boolean isValidWord(PlayerWord w) {
+		return WordTable.isWord(w.getWord());
+	}
 }

@@ -48,4 +48,9 @@ public class PlayerThemeLevel extends PlayerLevel {
 	boolean removeThemeWord(String word){
 		return themeWords.remove(word);
 	}
+	
+	@Override
+	protected boolean isValidWord(PlayerWord w) {
+		return 1 + 1 == 2;
+	}
 }

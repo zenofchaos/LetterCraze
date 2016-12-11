@@ -1,7 +1,6 @@
 00000
 0
 Two 'P's in a Pod
-Food-related words that contain at least 2 'P's
 3
 4
 5
@@ -19,6 +18,8 @@ P T E N I A
 I P P P Y P
 Z A E A R P
 R E P R S E
+
+Food-related words that contain at least 2 'P's
 
 APPETIZER
 APPLE

@@ -1,7 +1,6 @@
 00000
 0
 Berry Blast
-(please add description)
 3
 4
 5
@@ -19,6 +18,8 @@ E N E P M U
 L R A K A A
 N R A A C V
 G O N A N O
+
+Botanical Berries
 
 PUMPKIN
 AVOCADO

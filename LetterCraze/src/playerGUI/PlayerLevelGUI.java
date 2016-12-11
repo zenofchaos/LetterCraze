@@ -99,7 +99,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(scoreLabel);
 		
 		JLabel[][] letterLabels = new JLabel[6][6];
-		JLabel[][] pointLabels = new JLabel[6][6];
 		JPanel[][] squarePanels = new JPanel[6][6];
 		for (int i = 0; i < 6; i++) { // i is the row number
 			for (int j = 0; j < 6; j++) { // j is the column number
@@ -116,20 +115,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				}
 				final int borderSize = 6;
 				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12 + borderSize, h * (i + 3) / 12 + borderSize, h / 12 - borderSize, h / 12 - borderSize);
-				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].getLetter().getLetter());
+				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properPoints(i, j) + "</html>");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-				letterLabels[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
+				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j)));
 				letterLabels[i][j].setBounds(0, 0, 80, 80);
 				squarePanels[i][j].add(letterLabels[i][j]);
-				if (l instanceof PlayerPuzzleLevel) {
-					pointLabels[i][j] = new JLabel("" + l.getBoard().getSquares()[i][j].getLetter().getPoints());
-					pointLabels[i][j].setForeground(Color.BLACK);
-					pointLabels[i][j].setHorizontalAlignment(SwingConstants.LEFT);
-					pointLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, 12));
-					pointLabels[i][j].setBounds(0, 0, 6, 6);
-					squarePanels[i][j].add(pointLabels[i][j]);
-				}
 				contentPane.add(squarePanels[i][j]);
 			}
 		}
@@ -215,6 +206,30 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return "";
 	}
 	
+	private int properLetterSize(int i, int j) {
+		if ((l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
+			return 16;
+		} else {
+			return 20;
+		}
+	}
+	
+	private String properPoints(int i, int j) {
+		String spaceIfNotQu;
+		if (l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") {
+			spaceIfNotQu = "";
+		} else {
+			spaceIfNotQu = " ";
+		}
+		if (l instanceof PlayerPuzzleLevel) {
+			return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+		} else if (l instanceof PlayerLightningLevel) {
+			return "";
+		} else if (l instanceof PlayerThemeLevel) {
+			return "";
+		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+	}
+	
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
 			return w / 2 + 10;
@@ -223,6 +238,38 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else if (l instanceof PlayerThemeLevel) {
 			return w / 2 + 10;
 		} else return w / 2 + 10;
+	}
+	
+	private String makeSubscript(int n) {
+		String regulars = "" + n;
+		String subscripts = "";
+		for (int i = 0; i < regulars.length(); i++) {
+			switch (regulars.charAt(i)) {
+			case '0': subscripts += '\u2080';
+			break;
+			case '1': subscripts += '\u2081';
+			break;
+			case '2': subscripts += '\u2082';
+			break;
+			case '3': subscripts += '\u2083';
+			break;
+			case '4': subscripts += '\u2084';
+			break;
+			case '5': subscripts += '\u2085';
+			break;
+			case '6': subscripts += '\u2086';
+			break;
+			case '7': subscripts += '\u2087';
+			break;
+			case '8': subscripts += '\u2088';
+			break;
+			case '9': subscripts += '\u2089';
+			break;
+			default: subscripts += '\u2093';
+			break;
+			}
+		}
+		return subscripts;
 	}
 
 	@Override

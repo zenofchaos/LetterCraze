@@ -154,6 +154,7 @@ public class PlayerFileAccessController {
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
 		String title = input.nextLine();
+		String description = input.nextLine();
 
 		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
 
@@ -197,7 +198,7 @@ public class PlayerFileAccessController {
 			list.add(input.next());
 		}
 
-		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, list, board);
+		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, description, list, board);
 
 		return level;
 	}

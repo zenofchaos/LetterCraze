@@ -53,19 +53,19 @@ public class TestPlayerWord extends TestCase{
 		assertEquals(0, word.getPointVal());
 		assertEquals("M",word.getWord());
 		
-		word.addLetter(E);
+		word.addSquare(E);
 		assertEquals("ME",word.getWord());
 		assertEquals(0, word.getPointVal());
 		assertFalse(word.isValidWord());
 		
-		word.addLetter(O,1);
-		word.addLetter(S,2);
+		word.addSquare(O,1);
+		word.addSquare(S,2);
 		
 		assertEquals("MOSE",word.getWord());
 		assertEquals(16, word.getPointVal());
 		assertFalse(word.isValidWord());
 		
-		word.addLetter(U,2);
+		word.addSquare(U,2);
 		assertEquals("MOUSE",word.getWord());
 		assertEquals(33, word.getPointVal());
 		assertTrue(word.isValidWord());

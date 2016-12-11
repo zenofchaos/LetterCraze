@@ -7,8 +7,9 @@ public class PlayerThemeLevel extends PlayerLevel {
 	LinkedList<String> themeWords;
 	PlayerBoard boardPreset;
 	
-	public PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme, LinkedList<String> themeWords, PlayerBoard boardPreset) {
+	public PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme, String description, LinkedList<String> themeWords, PlayerBoard boardPreset) {
 		super(starThresholds, bestScore, bestStars, isLocked, theme);
+		this.description = description;
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
 	}
@@ -47,5 +48,15 @@ public class PlayerThemeLevel extends PlayerLevel {
 	
 	boolean removeThemeWord(String word){
 		return themeWords.remove(word);
+	}
+	
+	@Override
+	boolean isValidWord(PlayerWord w) {
+		return themeWords.contains(w);
+	}
+	
+	@Override
+	int wordScore(PlayerWord w) {
+		return 1;
 	}
 }

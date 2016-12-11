@@ -16,8 +16,10 @@ public class PlayerSquareController implements MouseListener {
 	int row;
 	int col;
 	
-	public PlayerSquareController(PlayerLevelGUI window){
+	public PlayerSquareController(PlayerLevelGUI window, int i, int j){
 		this.levelView = window;
+		this.row = i;
+		this.col = j;
 	}
 
 	@Override

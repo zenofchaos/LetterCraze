@@ -51,6 +51,6 @@ public class PlayerThemeLevel extends PlayerLevel {
 	
 	@Override
 	protected boolean isValidWord(PlayerWord w) {
-		return 1 + 1 == 2;
+		return something else;
 	}
 }

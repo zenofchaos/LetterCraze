@@ -139,11 +139,11 @@ public class PlayerWord {
 	//Removes the last square from the end of this word
 	//Returns false if there are no squares to remove
 	public boolean removeSquare() {
-		if (squares.size() > 0) {
+		if (squares.isEmpty()) {
+			return false;
+		} else {
 			squares.remove(squares.size() - 1);
 			return updateWord();
-		} else {
-			return false;
 		}
 	}
 }

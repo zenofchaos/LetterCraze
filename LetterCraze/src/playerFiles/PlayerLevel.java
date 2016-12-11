@@ -159,6 +159,11 @@ public abstract class PlayerLevel {
 	}
 
 	protected boolean isValidWord(PlayerWord w) {
+		something about three letters
 		return WordTable.isWord(w.getWord());
+	}
+	
+	public boolean squareIsSelected(PlayerSquare s) {
+		return selectedWord.getSquares().contains(s);
 	}
 }

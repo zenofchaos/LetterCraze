@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerLvlBackController;
+import playerControllers.PlayerOutsideGridController;
 import playerControllers.PlayerSquareController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
@@ -67,7 +68,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
-		contentPane.addMouseListener(new PlayerOutsideGridController());
+		contentPane.addMouseListener(new PlayerOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,14 +104,18 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		for (int i = 0; i < 6; i++) { // i is the row number
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
-				squarePanels[i][j].addMouseListener(new PlayerSquareController(this));
+				squarePanels[i][j].addMouseListener(new PlayerSquareController(this, i, j));
 				if (l.getBoard().getSquares()[i][j].isActive()) {
-					squarePanels[i][j].setBackground(Color.WHITE);
+					if (l.squareIsSelected(l.getBoard().getSquares()[i][j])) {
+						squarePanels[i][j].setBackground(Color.YELLOW);
+					} else {
+						squarePanels[i][j].setBackground(Color.WHITE);
+					}
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
-				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12, h * (i + 3) / 12, h / 12, h / 12);
-				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
+				final int borderSize = 6;
+				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12 + borderSize, h * (i + 3) / 12 + borderSize, h / 12 - borderSize, h / 12 - borderSize);
 				letterLabels[i][j] = new JLabel(l.getBoard().getSquares()[i][j].getLetter().getLetter());
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);

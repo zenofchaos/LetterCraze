@@ -8,7 +8,6 @@ import playerGUI.PlayerLevelGUI;
 import javax.swing.SwingUtilities;
 
 import playerFiles.PlayerLevel;
-import playerFiles.PlayerWord;
 
 public class PlayerOutsideGridController implements MouseListener {
 

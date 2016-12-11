@@ -8,6 +8,7 @@ import playerGUI.PlayerLevelGUI;
 import javax.swing.SwingUtilities;
 
 import playerFiles.PlayerLevel;
+import playerFiles.PlayerSquare;
 import playerFiles.PlayerWord;
 
 public class PlayerSquareController implements MouseListener {
@@ -34,7 +35,7 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if ((l().getMouseHeld()) && (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)))) {
-			if (l.squareIsSelected(thisSquare())) {
+			if (l().squareIsSelected(thisSquare())) {
 				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
 					l().getSelectedWord().removeSquare();
 				}
@@ -64,5 +65,9 @@ public class PlayerSquareController implements MouseListener {
 	
 	private PlayerLevel l() {
 		return levelView.getLevel();
+	}
+	
+	private PlayerSquare thisSquare() {
+		return l().getBoard().getSquares()[row][col];
 	}
 }

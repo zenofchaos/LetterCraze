@@ -50,7 +50,12 @@ public class PlayerThemeLevel extends PlayerLevel {
 	}
 	
 	@Override
-	protected boolean isValidWord(PlayerWord w) {
-		return something else;
+	boolean isValidWord(PlayerWord w) {
+		return themeWords.contains(w);
+	}
+	
+	@Override
+	int wordScore(PlayerWord w) {
+		return 1;
 	}
 }

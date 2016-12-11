@@ -74,6 +74,10 @@ public abstract class PlayerLevel {
 		return this.board;
 	}
 	
+	public PlayerWord getSelectedWord() {
+		return this.selectedWord;
+	}
+	
 	public boolean getIsLocked(){
 		return this.isLocked;
 	}
@@ -127,12 +131,17 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
+	public boolean setSelectedWord(PlayerWord selectedWord){
+		this.selectedWord = selectedWord;
+		return true;
+	}
+	
 	boolean setIsLocked(boolean isLocked){
 		this.isLocked = isLocked;
 		return true;
 	}
 	
-	boolean setMouseHeld(boolean mouseHeld){
+	public boolean setMouseHeld(boolean mouseHeld){
 		this.mouseHeld = mouseHeld;
 		return true;
 	}
@@ -150,17 +159,23 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	public boolean submitWord() {
+	public boolean submitSelectedWord() {
 		if (isValidWord(selectedWord)) {
-			
+			wordsEntered.add(selectedWord);
+			pointScore += wordScore(selectedWord);
+			selectedWord = new PlayerWord();
+			return true;
 		} else {
 			return false;
 		}
 	}
 
-	protected boolean isValidWord(PlayerWord w) {
-		something about three letters
-		return WordTable.isWord(w.getWord());
+	boolean isValidWord(PlayerWord w) { // overridable
+		return ((w.getSquares().size() >= 3) && WordTable.isWord(w.getWord()));
+	}
+	
+	int wordScore(PlayerWord w) { // overridable
+		return w.getPointVal();
 	}
 	
 	public boolean squareIsSelected(PlayerSquare s) {

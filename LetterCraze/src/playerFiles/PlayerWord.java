@@ -146,4 +146,15 @@ public class PlayerWord {
 			return updateWord();
 		}
 	}
+	
+	/**
+	 * @return the nth-most recently added square in this word, or null if out of bounds
+	 */
+	public PlayerSquare recentSquare(int n) {
+		if (squares.size() < n) {
+			return null;
+		} else {
+			return squares.get(squares.size() - n);
+		}
+	}
 }

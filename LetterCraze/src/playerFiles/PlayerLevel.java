@@ -14,7 +14,6 @@ public abstract class PlayerLevel {
 	PlayerBoard board;
 	PlayerWord selectedWord;
 	boolean isLocked;
-	boolean mouseHeld;
 	
 	PlayerLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title){
 		if(!(starThresholds.length == 3)){
@@ -82,10 +81,6 @@ public abstract class PlayerLevel {
 		return this.isLocked;
 	}
 	
-	public boolean getMouseHeld(){
-		return this.mouseHeld;
-	}
-	
 	boolean setTitle(String title){
 		this.title = title;
 		return true;
@@ -138,11 +133,6 @@ public abstract class PlayerLevel {
 	
 	boolean setIsLocked(boolean isLocked){
 		this.isLocked = isLocked;
-		return true;
-	}
-	
-	public boolean setMouseHeld(boolean mouseHeld){
-		this.mouseHeld = mouseHeld;
 		return true;
 	}
 	

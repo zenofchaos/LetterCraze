@@ -68,7 +68,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
-		contentPane.addMouseListener(new PlayerOutsideGridController(this));
+		//contentPane.addMouseListener(new PlayerOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

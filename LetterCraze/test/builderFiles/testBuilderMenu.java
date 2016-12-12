@@ -44,7 +44,7 @@ public class testBuilderMenu extends TestCase{
 		assertEquals(1,menu.numLevel("Lightning"));
 
 		//add another puzzle level and check if it was done properly
-		BuilderLevel Theme = new BuilderThemeLevel(starThresholds, "Theme", null, null);
+		BuilderLevel Theme = new BuilderThemeLevel(starThresholds, "Theme","", null, null);
 		assertTrue(menu.addLevel(Theme));
 		assertEquals("Theme", menu.getLevels().get(2).get(0).getTitle());
 		assertEquals(1,menu.numLevel("Theme"));
@@ -61,7 +61,7 @@ public class testBuilderMenu extends TestCase{
 		BuilderLevel P1 = new BuilderPuzzleLevel(starThresholds, "Puz1", 5);
 		BuilderLevel P2 = new BuilderPuzzleLevel(starThresholds, "Puz2", 5);
 
-		BuilderLevel T1 = new BuilderThemeLevel(starThresholds, "Theme1", null, null);
+		BuilderLevel T1 = new BuilderThemeLevel(starThresholds, "Theme1","", null, null);
 
 		BuilderLevel L1 = new BuilderLightningLevel(starThresholds, "Light1", 5);
 		BuilderLevel L2 = new BuilderLightningLevel(starThresholds, "Light2", 5);

@@ -1,33 +1,24 @@
 package builderGUI;
 
 import java.awt.EventQueue;
-import playerControllers.PlayerSelectLevelController;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
-import playerFiles.PlayerLevel;
-import playerFiles.PlayerMenu;
-import playerFiles.PlayerMenuIterator;
 import playerGUI.IPlayerGUI;
 
 import javax.swing.JButton;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
-
-import java.awt.GridLayout;
+import builderFiles.BuilderMenuIterator;
 
 public class BuilderSelectLevelGUI implements IPlayerGUI{
 
@@ -156,7 +147,7 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 		
 		JLabel plusSign = new JLabel("./LetterCraze/images/plusSign.png");
 		
-		for(int j; j < levelTypes.length; j++){
+		for(int j = 0; j < levelTypes.length; j++){
 			JPanel newLevel = new JPanel();
 			newLevel.setBackground(Color.gray);
 			
@@ -184,14 +175,14 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 			}
 		}
 		
-		PlayerMenuIterator menuIterator = theMenu.iterator();
+		BuilderMenuIterator menuIterator = theMenu.iterator();
 
 		for(int lType = 0; lType < levelTypes.length; lType++){
 			int numLevels = 0;
 			while(menuIterator.hasNext(levelTypes[lType])){
 				numLevels++;
 				
-				PlayerLevel tempLevel = menuIterator.next(levelTypes[lType]);
+				BuilderLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
 				JPanel thePanel = new JPanel();
 				thePanel.setBackground(Color.gray);

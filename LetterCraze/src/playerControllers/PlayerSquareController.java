@@ -33,7 +33,9 @@ public class PlayerSquareController implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if ((e.getModifiers() == MouseEvent.BUTTON1_MASK) && (thisSquare().isActive()) && (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)))) {
+		if (   (e.getModifiers() == MouseEvent.BUTTON1_MASK)
+			&& (thisSquare().isActive())
+			&& (adjacencyRuleIsFollowed())) {
 			if (l().squareIsSelected(thisSquare())) {
 				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
 					l().getSelectedWord().removeSquare();
@@ -66,5 +68,10 @@ public class PlayerSquareController implements MouseListener {
 	
 	private PlayerSquare thisSquare() {
 		return l().getBoard().getSquares()[row][col];
+	}
+	
+	private boolean adjacencyRuleIsFollowed() {
+		return     (l().getSelectedWord().getSquares().isEmpty())
+				|| (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)));
 	}
 }

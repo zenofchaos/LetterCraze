@@ -19,13 +19,8 @@ import playerFiles.PlayerMenu;
 import playerFiles.PlayerMenuIterator;
 
 import javax.swing.JButton;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.GridLayout;
 
 public class PlayerSelectLevelGUI implements IPlayerGUI{
 
@@ -151,12 +146,10 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		
 		JPanel lightningInnerPanel = new JPanel();
 		lightningInnerPanel.setBackground(Color.LIGHT_GRAY);
-		lightningInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lightningScrollPane.setViewportView(lightningInnerPanel);
 		
 		JPanel puzzleInnerPanel = new JPanel();
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
-		puzzleInnerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 
 		PlayerMenuIterator menuIterator = theMenu.iterator();

@@ -10,8 +10,11 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
+<<<<<<< HEAD
 import playerGUI.IPlayerGUI;
 
+=======
+>>>>>>> refs/remotes/origin/playerLevelSelectGUI
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -20,7 +23,11 @@ import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
 import builderFiles.BuilderMenuIterator;
 
+<<<<<<< HEAD
 public class BuilderSelectLevelGUI implements IPlayerGUI{
+=======
+public class BuilderSelectLevelGUI implements IBuilderGUI{
+>>>>>>> refs/remotes/origin/playerLevelSelectGUI
 
 	JPanel[] panelsPuzzle;
 	JPanel[] panelsTheme;
@@ -145,24 +152,30 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 		
-		JLabel plusSign = new JLabel("./LetterCraze/images/plusSign.png");
 		
+<<<<<<< HEAD
+=======
+		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
+		
+>>>>>>> refs/remotes/origin/playerLevelSelectGUI
 		for(int j = 0; j < levelTypes.length; j++){
 			JPanel newLevel = new JPanel();
 			newLevel.setBackground(Color.gray);
 			
+			JLabel add = new JLabel(plusSign);
+			
 			GroupLayout gl_newLevel = new GroupLayout(newLevel);
 			gl_newLevel.setHorizontalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(plusSign)
-					.addContainerGap());
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			gl_newLevel.setVerticalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(plusSign)
-					.addContainerGap());
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			if(levelTypes[j].equals("Puzzle")){
 				puzzleInnerPanel.add(newLevel);
@@ -252,7 +265,11 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 	public void hideWindow(){
 		this.frame.setVisible(false);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/playerLevelSelectGUI
 	@Override
 	public void refresh(Object o) {
 		// TODO Auto-generated method stub

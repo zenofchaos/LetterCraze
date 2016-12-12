@@ -5,16 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
-<<<<<<< HEAD
-import playerGUI.IPlayerGUI;
-
-=======
->>>>>>> refs/remotes/origin/playerLevelSelectGUI
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -23,11 +19,7 @@ import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
 import builderFiles.BuilderMenuIterator;
 
-<<<<<<< HEAD
-public class BuilderSelectLevelGUI implements IPlayerGUI{
-=======
 public class BuilderSelectLevelGUI implements IBuilderGUI{
->>>>>>> refs/remotes/origin/playerLevelSelectGUI
 
 	JPanel[] panelsPuzzle;
 	JPanel[] panelsTheme;
@@ -153,11 +145,8 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 		
 		
-<<<<<<< HEAD
-=======
 		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
 		
->>>>>>> refs/remotes/origin/playerLevelSelectGUI
 		for(int j = 0; j < levelTypes.length; j++){
 			JPanel newLevel = new JPanel();
 			newLevel.setBackground(Color.gray);
@@ -265,11 +254,7 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 	public void hideWindow(){
 		this.frame.setVisible(false);
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> refs/remotes/origin/playerLevelSelectGUI
 	@Override
 	public void refresh(Object o) {
 		// TODO Auto-generated method stub

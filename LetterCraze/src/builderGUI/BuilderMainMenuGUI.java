@@ -99,15 +99,7 @@ public class BuilderMainMenuGUI extends JFrame implements IBuilderGUI {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void refresh(Object o) {
-		// TODO Auto-generated method stub
-		
+		//BuilderMainMenu does not need to ever be updated		
 	}
-=======
-	public void refresh(Object o) {		
-		//BuilderMainMenu does not need to ever be updated
-	}
-
->>>>>>> refs/remotes/origin/playerLevelSelectGUI
 }

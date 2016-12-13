@@ -28,7 +28,9 @@ public class PlayerOutsideGridController implements MouseListener {
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+		levelView.refresh(l());
+	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {}

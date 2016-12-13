@@ -81,26 +81,27 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	private void showComponents() {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
+		int borderSize = h * 1/80;
 		
 		JLabel titleLabel = new JLabel(l.getTitle());
 		titleLabel.setForeground(Color.WHITE);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Dialog", Font.BOLD, 30));
-		titleLabel.setBounds(0, 20, w, 40);
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/16));
+		titleLabel.setBounds(0, h * 1/24, w, h * 1/12);
 		contentPane.add(titleLabel);
 		
 		JLabel subtitleLabel = new JLabel(properSubtitle()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, properSubtitleSize()));
-		subtitleLabel.setBounds(0, 60, w, 30);
+		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, properSubtitleSize(h)));
+		subtitleLabel.setBounds(0, h * 1/8, w, h * 1/16);
 		contentPane.add(subtitleLabel);
 		
 		JLabel scoreLabel = new JLabel("Score: " + l.getPointScore());
 		scoreLabel.setForeground(Color.WHITE);
 		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		scoreLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		scoreLabel.setBounds(0, 80, w, 30);
+		scoreLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/24));
+		scoreLabel.setBounds(0, h * 1/6, w, h * 1/16);
 		contentPane.add(scoreLabel);
 		
 		JLabel[][] letterLabels = new JLabel[6][6];
@@ -118,13 +119,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
-				final int borderSize = 6;
-				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12 + borderSize, h * (i + 3) / 12 + borderSize, h / 12 - borderSize, h / 12 - borderSize);
+				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
 				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j)));
-				letterLabels[i][j].setBounds(0, 0, 80, 80);
+				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j, h)));
+				letterLabels[i][j].setBounds(0, 0, h * 1/6, h * 1/6);
 				squarePanels[i][j].add(letterLabels[i][j]);
 				contentPane.add(squarePanels[i][j]);
 			}
@@ -137,21 +137,21 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
 		wordsFoundLabel.setForeground(Color.WHITE);
 		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
-		wordsFoundLabel.setBounds(0, 0, w - 500, 20 * l.getWordsEntered().size());
+		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
+		wordsFoundLabel.setBounds(0, 0, w * 15/64, l.getWordsEntered().size() * h * 7/240);
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
 		wordsFoundScrollPane.getVerticalScrollBar().setValue(wordsFoundScrollPane.getVerticalScrollBar().getMaximum());
 		wordsFoundScrollPane.setForeground(Color.WHITE);
 		wordsFoundScrollPane.setBackground(Color.DARK_GRAY);
-		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
+		wordsFoundScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 		contentPane.add(wordsFoundScrollPane);
 		
 		String selectedWord = l.getSelectedWord().getWord();
 		JLabel selectedWordLabel = new JLabel(selectedWord);
 		selectedWordLabel.setForeground(Color.WHITE);
 		selectedWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		selectedWordLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-		selectedWordLabel.setBounds(20, h - 100, w - 500, 30);
+		selectedWordLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/24));
+		selectedWordLabel.setBounds(w * 1/32, h * 19/24, w * 15/64, h * 1/16);
 		contentPane.add(selectedWordLabel);
 		
 		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[2]);
@@ -160,10 +160,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setBackground(Color.BLACK);
 		scoreProgressBar.setBorder(BorderFactory.createEmptyBorder());
 		scoreProgressBar.setOrientation(SwingConstants.VERTICAL);
-		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
+		scoreProgressBar.setBounds(w * 13/16, h * 1/16, w * 5/64, h * 13/16);
 		contentPane.add(scoreProgressBar);
 		
-		final int starSize = 20;
+		final int starSize = h * 1/24;
 		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
 		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
 		JLabel[] starIconLabels = new JLabel[3];
@@ -176,36 +176,36 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				starIconLabels[i] = new JLabel(emptyStar);
 			}
 			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
-			starIconLabels[i].setBounds(w - 110, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
+			starIconLabels[i].setBounds(w * 53/64, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
 			contentPane.add(starIconLabels[i]);
 			starLineLabels[i] = new JLabel("----------");
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 50, 20);
+			starLineLabels[i].setBounds(w * 109/128, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 5/64, h * 1/24);
 			contentPane.add(starLineLabels[i]);
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdLabels[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * l.getStarThresholds()[i] / l.getStarThresholds()[2], 60, 20);
+			starThresholdLabels[i].setBounds(w * 29/32, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 3/32, h * 1/24);
 			contentPane.add(starThresholdLabels[i]);
 		}
 		if (!(l instanceof PlayerLightningLevel)) {
 			JButton undoButton = new JButton("Undo");
-			undoButton.setFont(new Font("Dialog", Font.BOLD, 15));
-			undoButton.setBounds(w / 2 - 110, h - 100, 100, 40);
+			undoButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+			undoButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 			contentPane.add(undoButton);
 		}
 		
 		JButton resetButton = new JButton("Reset");
-		resetButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		resetButton.setBounds(properResetX(w), h - 100, 100, 40);
+		resetButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		resetButton.setBounds(properResetX(w), h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(resetButton);
 		
 		JButton backButton = new JButton("Back to Menu");
-		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		backButton.setBounds(20, 20, 150, 25);
+		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
 		backButton.addActionListener(new PlayerLvlBackController(this));
 	}
@@ -220,21 +220,21 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return "";
 	}
 	
-	private int properSubtitleSize() {
+	private int properSubtitleSize(int h) {
 		if (l instanceof PlayerPuzzleLevel) {
-			return 20;
+			return h * 1/24;
 		} else if (l instanceof PlayerLightningLevel) {
-			return 20;
+			return h * 1/24;
 		} else if (l instanceof PlayerThemeLevel) {
-			return 14;
-		} else return 20;
+			return h * 7/240;
+		} else return h * 1/24;
 	}
 	
-	private int properLetterSize(int i, int j) {
+	private int properLetterSize(int i, int j, int h) {
 		if ((l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
-			return 16;
+			return h * 1/30;
 		} else {
-			return 20;
+			return h * 1/24;
 		}
 	}
 	
@@ -266,12 +266,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
-			return w / 2 + 10;
+			return w * 33/64;
 		} else if (l instanceof PlayerLightningLevel) {
-			return w / 2 - 50;
+			return w * 27/64;
 		} else if (l instanceof PlayerThemeLevel) {
-			return w / 2 + 10;
-		} else return w / 2 + 10;
+			return w * 33/64;
+		} else return w * 33/64;
 	}
 	
 	private String makeSubscript(int n) {

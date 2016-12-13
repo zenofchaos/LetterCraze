@@ -2,6 +2,8 @@ package playerControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import builderFiles.BuilderLightningLevel;
 import playerFiles.*;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
@@ -22,6 +24,7 @@ public class PlayerMMController implements ActionListener{
 		PlayerFileAccessController fileAccess = new PlayerFileAccessController(new PlayerMenu());
 		try{
 			PlayerModel model = fileAccess.getModel();
+			
 			// Open level select window
 			PlayerSelectLevelGUI selectView = new PlayerSelectLevelGUI(model.getMenu());
 			selectView.openWindow();

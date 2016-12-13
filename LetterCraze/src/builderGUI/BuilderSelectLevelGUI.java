@@ -1,7 +1,6 @@
 package builderGUI;
 
 import java.awt.EventQueue;
-import playerControllers.PlayerSelectLevelController;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -12,24 +11,15 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
-import playerFiles.PlayerLevel;
-import playerFiles.PlayerMenu;
-import playerFiles.PlayerMenuIterator;
-import playerGUI.IPlayerGUI;
-
 import javax.swing.JButton;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
+import builderFiles.BuilderMenuIterator;
 
-import java.awt.GridLayout;
-
-public class BuilderSelectLevelGUI implements IPlayerGUI{
+public class BuilderSelectLevelGUI implements IBuilderGUI{
 
 	JPanel[] panelsPuzzle;
 	JPanel[] panelsTheme;
@@ -154,24 +144,27 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 		
-		JLabel plusSign = new JLabel("./LetterCraze/images/plusSign.png");
 		
-		for(int j; j < levelTypes.length; j++){
+		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
+		
+		for(int j = 0; j < levelTypes.length; j++){
 			JPanel newLevel = new JPanel();
 			newLevel.setBackground(Color.gray);
+			
+			JLabel add = new JLabel(plusSign);
 			
 			GroupLayout gl_newLevel = new GroupLayout(newLevel);
 			gl_newLevel.setHorizontalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(plusSign)
-					.addContainerGap());
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			gl_newLevel.setVerticalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(plusSign)
-					.addContainerGap());
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			if(levelTypes[j].equals("Puzzle")){
 				puzzleInnerPanel.add(newLevel);
@@ -184,14 +177,14 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 			}
 		}
 		
-		PlayerMenuIterator menuIterator = theMenu.iterator();
+		BuilderMenuIterator menuIterator = theMenu.iterator();
 
 		for(int lType = 0; lType < levelTypes.length; lType++){
 			int numLevels = 0;
 			while(menuIterator.hasNext(levelTypes[lType])){
 				numLevels++;
 				
-				PlayerLevel tempLevel = menuIterator.next(levelTypes[lType]);
+				BuilderLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
 				JPanel thePanel = new JPanel();
 				thePanel.setBackground(Color.gray);
@@ -260,5 +253,11 @@ public class BuilderSelectLevelGUI implements IPlayerGUI{
 	// Hides this frame from view
 	public void hideWindow(){
 		this.frame.setVisible(false);
+	}
+
+	@Override
+	public void refresh(Object o) {
+		// TODO Auto-generated method stub
+		
 	}
 }

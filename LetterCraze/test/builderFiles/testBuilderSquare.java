@@ -9,10 +9,10 @@ public class testBuilderSquare extends TestCase{
 		
 		assertEquals(1, square1.getRow());
 		assertEquals(2, square1.getCol());
-		assertEquals(false, square1.getIsActive());
+		assertEquals(false, square1.getActive());
 		
-		square1.setIsActive(true);
-		assertEquals(true, square1.getIsActive());
+		square1.setActive(true);
+		assertEquals(true, square1.getActive());
 		
 		square1.setCol(3);
 		square1.setRow(5);

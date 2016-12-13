@@ -47,7 +47,7 @@ public class testPlayerMenu extends TestCase{
 		assertEquals(1,menu.numLevel("Lightning"));
 		
 		//add another puzzle level and check if it was done properly
-		PlayerLevel Theme = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, "Theme", null, null);
+		PlayerLevel Theme = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, "Theme","", null, null);
 		assertTrue(menu.addLevel(Theme));
 		assertEquals("Theme", menu.getLevels().get(2).get(0).getTitle());
 		assertEquals(1,menu.numLevel("Theme"));
@@ -64,7 +64,7 @@ public class testPlayerMenu extends TestCase{
 		PlayerLevel P1 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "Puz1", 5);
 		PlayerLevel P2 = new PlayerPuzzleLevel(starThresholds, 0, 0, true, "Puz2", 5);
 		
-		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "Theme1", null, null);
+		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "Theme1","", null, null);
 		
 		PlayerLevel L1 = new PlayerLightningLevel(starThresholds, 0, 0, true, "Light1", 5);
 		PlayerLevel L2 = new PlayerLightningLevel(starThresholds, 0, 0, true, "Light2", 5);

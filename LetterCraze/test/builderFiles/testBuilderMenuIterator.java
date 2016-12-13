@@ -23,9 +23,9 @@ public class testBuilderMenuIterator extends TestCase{
 		BuilderLevel L2 = new BuilderLightningLevel(starThresholds, "L2", 0);
 		BuilderLevel L3 = new BuilderLightningLevel(starThresholds, "L3", 0);
 		
-		BuilderLevel T1 = new BuilderThemeLevel(starThresholds, "T1", null, null);
-		BuilderLevel T2 = new BuilderThemeLevel(starThresholds, "T2", null, null);
-		BuilderLevel T3 = new BuilderThemeLevel(starThresholds, "T3", null, null);
+		BuilderLevel T1 = new BuilderThemeLevel(starThresholds, "T1","", null, null);
+		BuilderLevel T2 = new BuilderThemeLevel(starThresholds, "T2","", null, null);
+		BuilderLevel T3 = new BuilderThemeLevel(starThresholds, "T3","", null, null);
 		
 		menu.addLevel(P1);
 		menu.addLevel(P2);

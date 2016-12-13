@@ -5,14 +5,14 @@ public class BuilderSquare {
 	BuilderLetter letter;
 	int row;
 	int col;
-	boolean isActive;
+	boolean active;
 	
 	//The constructor for a BuilderSquare
 	//	Takes in the square's row and column.
 	public BuilderSquare(int row, int col){
 		this.row = row;
 		this.col = col;
-		this.isActive = false;
+		this.active = false;
 	}
 	
 	//Get method for letter
@@ -31,8 +31,8 @@ public class BuilderSquare {
 	}
 	
 	//Get method for isActive
-	public boolean getIsActive(){
-		return this.isActive;
+	public boolean getActive(){
+		return this.active;
 	}
 
 	//Set method for letter
@@ -54,8 +54,8 @@ public class BuilderSquare {
 	}
 	
 	//Set method for isActive
-	public boolean setIsActive(boolean toSet){
-		this.isActive = toSet;
+	public boolean setActive(boolean toSet){
+		this.active = toSet;
 		return true;
 	}
 	

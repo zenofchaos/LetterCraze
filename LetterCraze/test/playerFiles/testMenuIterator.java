@@ -24,9 +24,9 @@ public class testMenuIterator extends TestCase{
 		PlayerLevel L2 = new PlayerLightningLevel(starThresholds, 0, 0, true, "L2", 0);
 		PlayerLevel L3 = new PlayerLightningLevel(starThresholds, 0, 0, true, "L3", 0);
 		
-		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T1", null, null);
-		PlayerLevel T2 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T2", null, null);
-		PlayerLevel T3 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T3", null, null);
+		PlayerLevel T1 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T1","", null, null);
+		PlayerLevel T2 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T2","", null, null);
+		PlayerLevel T3 = new PlayerThemeLevel(starThresholds, 0, 0, true, "T3","", null, null);
 		
 		menu.addLevel(P1);
 		menu.addLevel(P2);

@@ -4,24 +4,34 @@ import java.util.LinkedList;
 
 public class BuilderThemeLevel extends BuilderLevel{
 
-	String theme;
+	String description;
 	LinkedList<String> themeWords;
 	BuilderBoard boardPreset;
 	
-	public BuilderThemeLevel(int[] starThresholds, String theme, LinkedList<String> themeWords, BuilderBoard boardPreset) {
+	public BuilderThemeLevel(int[] starThresholds, String theme, String description, LinkedList<String> themeWords, BuilderBoard boardPreset) {
 		super(starThresholds, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return this.description;
 	}
 	
 	public LinkedList<String> getThemeWords(){
 		return this.themeWords;
 	}
 	
-	BuilderBoard getBoardPreset(){
+	public BuilderBoard getBoardPreset(){
 		return this.boardPreset;
 	}
 	
+	public boolean setDescription(String description){
+		this.description = description;
+		return true;
+		
+	}
 	boolean setThemeWords(LinkedList<String> themeWords){
 		this.themeWords = themeWords;
 		return true;
@@ -38,7 +48,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return true;
 	}
 	
-	boolean addThemeWord(String word){
+	public boolean addThemeWord(String word){
 		return themeWords.add(word);
 	}
 }

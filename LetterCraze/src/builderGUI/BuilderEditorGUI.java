@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderSquareController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
@@ -108,6 +109,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		for (int i = 0; i < 6; i++) { // i is the row number
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
+				squarePanels[i][j].addMouseListener(new BuilderSquareController(this, i, j));
 				if (l.getBoard().getSquares()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {

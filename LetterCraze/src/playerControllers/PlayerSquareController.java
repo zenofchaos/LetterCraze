@@ -25,25 +25,25 @@ public class PlayerSquareController implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if ((SwingUtilities.isRightMouseButton(e)) && (e.getModifiers() != MouseEvent.BUTTON1_MASK)) {
+		if (SwingUtilities.isRightMouseButton(e)) {
 			l().submitSelectedWord();
-			//levelView.refresh(l());
+			levelView.refresh(l());
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if (   (e.getModifiers() == MouseEvent.BUTTON1_MASK)
-			&& (thisSquare().isActive())
+			&& (thisSquare().getActive())
 			&& (adjacencyRuleIsFollowed())) {
 			if (l().squareIsSelected(thisSquare())) {
 				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
 					l().getSelectedWord().removeSquare();
-					//levelView.refresh(l());
+					levelView.refresh(l());
 				}
 			} else {
 				l().getSelectedWord().addSquare(thisSquare());
-				//levelView.refresh(l());
+				levelView.refresh(l());
 			}
 		}
 	}
@@ -55,7 +55,7 @@ public class PlayerSquareController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			l().setSelectedWord(new PlayerWord(thisSquare()));
-			//levelView.refresh(l());
+			levelView.refresh(l());
 		}
 	}
 

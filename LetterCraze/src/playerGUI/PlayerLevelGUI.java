@@ -68,7 +68,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
-		//contentPane.addMouseListener(new PlayerOutsideGridController(this));
+		contentPane.addMouseListener(new PlayerOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,7 +92,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel subtitleLabel = new JLabel(properSubtitle()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, properSubtitleSize()));
 		subtitleLabel.setBounds(0, 60, w, 30);
 		contentPane.add(subtitleLabel);
 		
@@ -109,7 +109,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
 				squarePanels[i][j].addMouseListener(new PlayerSquareController(this, i, j));
-				if (l.getBoard().getSquares()[i][j].isActive()) {
+				if (l.getBoard().getSquares()[i][j].getActive()) {
 					if (l.squareIsSelected(l.getBoard().getSquares()[i][j])) {
 						squarePanels[i][j].setBackground(Color.YELLOW);
 					} else {
@@ -211,6 +211,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return "";
 	}
 	
+	private int properSubtitleSize() {
+		if (l instanceof PlayerPuzzleLevel) {
+			return 20;
+		} else if (l instanceof PlayerLightningLevel) {
+			return 20;
+		} else if (l instanceof PlayerThemeLevel) {
+			return 14;
+		} else return 20;
+	}
+	
 	private int properLetterSize(int i, int j) {
 		if ((l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
 			return 16;
@@ -260,27 +270,27 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		String subscripts = "";
 		for (int i = 0; i < regulars.length(); i++) {
 			switch (regulars.charAt(i)) {
-			case '0': subscripts += '\u2080';
-			break;
-			case '1': subscripts += '\u2081';
-			break;
-			case '2': subscripts += '\u2082';
-			break;
-			case '3': subscripts += '\u2083';
-			break;
-			case '4': subscripts += '\u2084';
-			break;
-			case '5': subscripts += '\u2085';
-			break;
-			case '6': subscripts += '\u2086';
-			break;
-			case '7': subscripts += '\u2087';
-			break;
-			case '8': subscripts += '\u2088';
-			break;
-			case '9': subscripts += '\u2089';
-			break;
-			default: subscripts += '\u2093';
+				case '0': subscripts += '\u2080';
+				break;
+				case '1': subscripts += '\u2081';
+				break;
+				case '2': subscripts += '\u2082';
+				break;
+				case '3': subscripts += '\u2083';
+				break;
+				case '4': subscripts += '\u2084';
+				break;
+				case '5': subscripts += '\u2085';
+				break;
+				case '6': subscripts += '\u2086';
+				break;
+				case '7': subscripts += '\u2087';
+				break;
+				case '8': subscripts += '\u2088';
+				break;
+				case '9': subscripts += '\u2089';
+				break;
+				default: subscripts += '\u2093';
 			break;
 			}
 		}

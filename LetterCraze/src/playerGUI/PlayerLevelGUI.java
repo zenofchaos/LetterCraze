@@ -74,6 +74,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		showComponents();
+	}
+	
+	private void showComponents() {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
 		
@@ -301,6 +306,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	@Override
 	public void refresh(Object level) {
 		l = (PlayerLevel)level;
-		initialize();
+		showComponents();
+		contentPane.repaint();
 	}
 }

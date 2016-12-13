@@ -15,13 +15,7 @@ public class BuilderCloseEditorController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Close menu window
 		editorView.closeWindow();
-		//Generate the model
-		//FileAccessController fileAccess = new FileAccessController(new PlayerMenu());
-		//PlayerModel model = fileAccess.getModel();th
-		//BuilderEditorGUI selectView = new BuilderEditorGUI();
-		//selectView.openWindow();
 	}
 	
 	

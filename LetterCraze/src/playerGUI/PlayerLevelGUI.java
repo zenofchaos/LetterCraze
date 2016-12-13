@@ -26,7 +26,6 @@ import playerFiles.PlayerPuzzleLevel;
 import playerFiles.PlayerThemeLevel;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -173,7 +172,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		scoreProgressBar.setValue(l.getPointScore());
 		scoreProgressBar.setForeground(Color.YELLOW);
 		scoreProgressBar.setBackground(Color.BLACK);
-		scoreProgressBar.setBorder(BorderFactory.createEmptyBorder());
 		scoreProgressBar.setOrientation(SwingConstants.VERTICAL);
 		scoreProgressBar.setBounds(w * 13/16, h * 1/16, w * 5/64, h * 13/16);
 		contentPane.add(scoreProgressBar);
@@ -192,7 +190,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		ImageIcon fullStar = new ImageIcon(fullStarResized);
 		ImageIcon emptyStar = new ImageIcon(emptyStarResized);
 		JLabel[] starIconLabels = new JLabel[3];
-		//JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
 		for (int i = 0; i < 3; i++) {
 			if (l.getStarCount() > i) {
@@ -203,12 +200,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starIconLabels[i].setBounds(w * 49/64, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
 			contentPane.add(starIconLabels[i]);
-			/*starLineLabels[i] = new JLabel("----------");
-			starLineLabels[i].setForeground(Color.WHITE);
-			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
-			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w * 109/128, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 5/64, h * 1/24);
-			contentPane.add(starLineLabels[i]);*/
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			if (l.getStarCount() > i) {
 				starThresholdLabels[i].setForeground(Color.YELLOW);
@@ -234,10 +225,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(resetButton);
 		
 		JButton backButton = new JButton("Back to Menu");
+		backButton.addActionListener(new PlayerLvlBackController(this));
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
-		backButton.addActionListener(new PlayerLvlBackController(this));
 	}
 	
 	private String properSubtitle() {

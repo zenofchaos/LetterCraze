@@ -24,12 +24,7 @@ public class PlayerSquareController implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (SwingUtilities.isRightMouseButton(e)) {
-			l().submitSelectedWord();
-			levelView.refresh(l());
-		}
-	}
+	public void mouseClicked(MouseEvent e) {}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
@@ -53,10 +48,12 @@ public class PlayerSquareController implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e)) {
+		if ((SwingUtilities.isLeftMouseButton(e)) && (thisSquare().getActive())) {
 			l().setSelectedWord(new PlayerWord(thisSquare()));
-			levelView.refresh(l());
+		} else if (SwingUtilities.isRightMouseButton(e)) {
+			l().submitSelectedWord();
 		}
+		levelView.refresh(l());
 	}
 
 	@Override

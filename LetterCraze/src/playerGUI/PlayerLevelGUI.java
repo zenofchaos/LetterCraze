@@ -171,9 +171,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		JLabel[] starThresholdLabels = new JLabel[3];
 		for (int i = 0; i < 3; i++) {
 			if (l.getStarCount() >= i) {
-				starIconLabels[i] = new JLabel(fullStar);
+				starIconLabels[i] = new JLabel("", fullStar, JLabel.CENTER);
 			} else {
-				starIconLabels[i] = new JLabel(emptyStar);
+				starIconLabels[i] = new JLabel("", emptyStar, JLabel.CENTER);
 			}
 			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starIconLabels[i].setBounds(w * 53/64, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
@@ -187,7 +187,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
 			starThresholdLabels[i].setForeground(Color.WHITE);
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
-			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
+			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, h * 1/24));
 			starThresholdLabels[i].setBounds(w * 29/32, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 3/32, h * 1/24);
 			contentPane.add(starThresholdLabels[i]);
 		}
@@ -328,5 +328,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.removeAll();
 		showComponents();
 		contentPane.repaint();
+		contentPane.validate();
 	}
 }

@@ -140,6 +140,15 @@ public abstract class PlayerLevel {
 		if (isValidWord(selectedWord)) {
 			wordsEntered.add(selectedWord);
 			pointScore += wordScore(selectedWord);
+			if (pointScore >= starThresholds[2]){
+				starCount = 3;
+			}
+			else if (pointScore >= starThresholds[1]){
+				starCount = 2;
+			}
+			else if (pointScore >= starThresholds[0]){
+				starCount = 1;
+			}
 			selectedWord = new PlayerWord();
 			return true;
 		} else {

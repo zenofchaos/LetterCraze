@@ -14,8 +14,9 @@ public class BuilderSaveController implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("save button pressed");
+		// code goes here to save the level information
+		editorView.closeWindow();
 	}
 
 }

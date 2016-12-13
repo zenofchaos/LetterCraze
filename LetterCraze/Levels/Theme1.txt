@@ -1,31 +1,24 @@
 00000
 0
-Avian
-6
-7
-8
+Placeholder Level
+1
+2
+3
 
 1 1 1 1 1 1
 1 1 1 1 1 1
 1 1 1 1 1 1
 1 1 1 1 1 1
-1 0 1 0 1 0
-0 0 0 0 0 0
+1 1 1 1 1 1
+1 1 1 1 1 1
 
-Q W O O V N
-W I D E E O
-A R E I S C
-E E Y F N H
-N L G P E V
-L A L R R A
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
+Q Q Q Q Q Q
 
-Birds
+Everybody loves placeholders!
 
-QUAIL
-EAGLE
-DOVE
-FINCH
-RAVEN
-OWL
-WREN
-OSPREY
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ

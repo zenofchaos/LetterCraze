@@ -110,7 +110,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
 				squarePanels[i][j].addMouseListener(new BuilderSquareController(this, i, j));
-				if (l.getBoard().getSquares()[i][j].getActive()) {
+				if (l.getBoard().getSquareArray()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
@@ -240,7 +240,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	
 	private String properLetter(int i, int j) {
 		try {
-			return l.getBoard().getSquares()[i][j].getLetter().getLetter();
+			return l.getBoard().getSquareArray()[i][j].getLetter().getLetter();
 		} catch (NullPointerException e) {
 			return "   ";
 		}

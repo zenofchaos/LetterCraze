@@ -13,11 +13,11 @@ public class PlayerBoard {
 		
 	}
 	
-	public PlayerSquare[][] getSquares(){
+	public PlayerSquare[][] getSquareArray(){
 		return this.squares;
 	}
 	
-	boolean setSquares(PlayerSquare[][] squares){
+	boolean setSquareArray(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
 			return true;
@@ -25,6 +25,15 @@ public class PlayerBoard {
 		else{ 
 			return false;
 		}
+	}
+	
+	public PlayerSquare getSquare(int row, int col){
+		return this.squares[row][col];
+	}
+	
+	public boolean setSquare(PlayerSquare toSet, int row, int col){
+		this.squares[row][col] = toSet;
+		return true;
 	}
 	
 	//Implements 'gravity' in this board by raising 

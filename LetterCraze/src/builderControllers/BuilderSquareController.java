@@ -51,7 +51,7 @@ public class BuilderSquareController implements MouseListener {
 	}
 	
 	private BuilderSquare thisSquare() {
-		return l().getBoard().getSquares()[row][col];
+		return l().getBoard().getSquareArray()[row][col];
 	}
 	
 	private void toggle() {

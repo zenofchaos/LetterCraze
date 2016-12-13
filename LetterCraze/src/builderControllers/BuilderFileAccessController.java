@@ -264,7 +264,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getActive()) {
+				if (level.getBoard().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -298,7 +298,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getActive()) {
+				if (level.getBoard().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -332,7 +332,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoardPreset().getSquares()[i][j].getActive()) {
+				if (level.getBoardPreset().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -345,7 +345,7 @@ public class BuilderFileAccessController {
 		// charmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				String buffer = level.getBoardPreset().getSquares()[i][j].getLetter().getLetter();
+				String buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
 				if (buffer == "Qu") {
 					writer.format("Q ");
 				} else {

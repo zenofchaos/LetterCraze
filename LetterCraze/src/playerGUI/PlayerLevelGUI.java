@@ -2,6 +2,10 @@ package playerGUI;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +25,7 @@ import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
 import playerFiles.PlayerThemeLevel;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -148,11 +153,21 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		
 		String selectedWord = l.getSelectedWord().getWord();
 		JLabel selectedWordLabel = new JLabel(selectedWord);
-		selectedWordLabel.setForeground(Color.WHITE);
+		selectedWordLabel.setForeground(Color.YELLOW);
 		selectedWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		selectedWordLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/24));
 		selectedWordLabel.setBounds(w * 1/32, h * 19/24, w * 15/64, h * 1/16);
 		contentPane.add(selectedWordLabel);
+		
+		if ((l instanceof PlayerPuzzleLevel) && (l.getSelectedWord().getPointVal() > 0)) {
+			int selectedWordScore = l.getSelectedWord().getPointVal();
+			JLabel selectedWordScoreLabel = new JLabel("" + selectedWordScore);
+			selectedWordScoreLabel.setForeground(Color.YELLOW);
+			selectedWordScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			selectedWordScoreLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/24));
+			selectedWordScoreLabel.setBounds(w * 1/32, h * 41/48, w * 15/64, h * 1/16);
+			contentPane.add(selectedWordScoreLabel);
+		}
 		
 		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[2]);
 		scoreProgressBar.setValue(l.getPointScore());
@@ -164,33 +179,48 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(scoreProgressBar);
 		
 		final int starSize = h * 1/24;
-		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
-		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
+		BufferedImage fullStarOriginal = null;
+		BufferedImage emptyStarOriginal = null;
+		try {
+			fullStarOriginal = ImageIO.read(new File("./images/fullStar.png"));
+			emptyStarOriginal = ImageIO.read(new File("./images/emptyStar.png"));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		Image fullStarResized = fullStarOriginal.getScaledInstance(starSize, starSize, Image.SCALE_SMOOTH);
+		Image emptyStarResized = emptyStarOriginal.getScaledInstance(starSize, starSize, Image.SCALE_SMOOTH);
+		ImageIcon fullStar = new ImageIcon(fullStarResized);
+		ImageIcon emptyStar = new ImageIcon(emptyStarResized);
 		JLabel[] starIconLabels = new JLabel[3];
-		JLabel[] starLineLabels = new JLabel[3];
+		//JLabel[] starLineLabels = new JLabel[3];
 		JLabel[] starThresholdLabels = new JLabel[3];
 		for (int i = 0; i < 3; i++) {
-			if (l.getStarCount() >= i) {
+			if (l.getStarCount() > i) {
 				starIconLabels[i] = new JLabel("", fullStar, JLabel.CENTER);
 			} else {
 				starIconLabels[i] = new JLabel("", emptyStar, JLabel.CENTER);
 			}
 			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
-			starIconLabels[i].setBounds(w * 53/64, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
+			starIconLabels[i].setBounds(w * 49/64, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], starSize, starSize);
 			contentPane.add(starIconLabels[i]);
-			starLineLabels[i] = new JLabel("----------");
+			/*starLineLabels[i] = new JLabel("----------");
 			starLineLabels[i].setForeground(Color.WHITE);
 			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
 			starLineLabels[i].setBounds(w * 109/128, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 5/64, h * 1/24);
-			contentPane.add(starLineLabels[i]);
+			contentPane.add(starLineLabels[i]);*/
 			starThresholdLabels[i] = new JLabel("" + l.getStarThresholds()[i]);
-			starThresholdLabels[i].setForeground(Color.WHITE);
+			if (l.getStarCount() > i) {
+				starThresholdLabels[i].setForeground(Color.YELLOW);
+			} else {
+				starThresholdLabels[i].setForeground(Color.WHITE);
+			}
 			starThresholdLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdLabels[i].setFont(new Font("Dialog", Font.PLAIN, h * 1/24));
 			starThresholdLabels[i].setBounds(w * 29/32, h * 5/6 - (h * 3/4) * l.getStarThresholds()[i] / l.getStarThresholds()[2], w * 3/32, h * 1/24);
 			contentPane.add(starThresholdLabels[i]);
 		}
+		
 		if (!(l instanceof PlayerLightningLevel)) {
 			JButton undoButton = new JButton("Undo");
 			undoButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));

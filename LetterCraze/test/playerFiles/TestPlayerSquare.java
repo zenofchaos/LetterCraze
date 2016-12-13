@@ -72,9 +72,9 @@ public class TestPlayerSquare extends TestCase{
 		int col = 2;
 		
 		PlayerSquare square = new PlayerSquare(row,col);
-		assertFalse(square.isActive());
+		assertFalse(square.getActive());
 		square.setActive(true);
-		assertTrue(square.isActive());
+		assertTrue(square.getActive());
 	}
 	
 	//Tests the isNeighbor function of PlayerSquare

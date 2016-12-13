@@ -50,7 +50,7 @@ public class PlayerMenu {
 	//	or if the given number is out of bounds of the arrayList
 	public PlayerLevel getLevel(String identifier){
 		char type = identifier.charAt(0);
-		int index = (int) identifier.charAt(1);
+		int index = ((int) identifier.charAt(1)) - 48 - 1;
 		List<PlayerLevel> desiredLevels;
 		
 		//Determine which type of level is desired
@@ -111,7 +111,7 @@ public class PlayerMenu {
 	//	if successful. Returns false if there is no level for the given indicator.
 	boolean removeLevel(String indicator){
 		char type = indicator.charAt(0);
-		int index = (int) indicator.charAt(1);
+		int index = ((int) indicator.charAt(1)) - 48 - 1;
 		List<PlayerLevel> indicatedLevels;
 		
 		//Determine which type of level is desired

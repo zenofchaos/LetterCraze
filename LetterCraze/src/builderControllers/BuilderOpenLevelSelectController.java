@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
-import builderGUI.BuilderNewLevelGUI;
+import builderGUI.BuilderSelectLevelGUI;
 import playerFiles.PlayerMenu;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
@@ -24,9 +24,17 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 		// Close menu window
 		menuView.closeWindow();
 		//Generate the model
-		//FileAccessController fileAccess = new FileAccessController(new PlayerMenu());
-		//PlayerModel model = fileAccess.getModel();th
-		BuilderNewLevelGUI selectView = new BuilderNewLevelGUI(new BuilderMenu());
-		selectView.openWindow();
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		BuilderModel model;
+		try{
+			model = fileAccess.getModel();
+			BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(model.getMenu());
+			selectView.openWindow();
+			
+		}
+		catch (Exception exception){
+			System.out.println("Builder File Access threw an exception");
+			exception.printStackTrace();
+		}
 	}
 }

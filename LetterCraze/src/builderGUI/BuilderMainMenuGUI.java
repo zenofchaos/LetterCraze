@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import builderControllers.BuilderOpenLevelSelectController;
+import builderFiles.BuilderLevel;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -97,4 +98,8 @@ public class BuilderMainMenuGUI extends JFrame implements IBuilderGUI {
 		
 	}
 
+	@Override
+	public void refresh(Object o) {
+		//BuilderMainMenu does not need to ever be updated		
+	}
 }

@@ -1,0 +1,37 @@
+00000
+0
+Two 'P's in a Pod
+3
+4
+5
+
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+
+E L P P A U
+E P A P E P
+P T E N I A
+I P P P Y P
+Z A E A R P
+R E P R S E
+
+Food-related words that contain at least 2 'P's
+
+APPETIZER
+APPLE
+PAPAYA
+PAPAYAS
+PEPPER
+PEPPER
+PEPPERS
+PEPPERY
+PINEAPPLE
+PPAP
+PPAP
+PPAP
+PPAP
+SUPPER

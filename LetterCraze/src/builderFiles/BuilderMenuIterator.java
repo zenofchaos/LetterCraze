@@ -1,26 +1,26 @@
-package playerFiles;
+package builderFiles;
 
 import java.util.List;
 
-public class PlayerMenuIterator {
+public class BuilderMenuIterator {
 
-	List<PlayerLevel> puzzleList;
-	List<PlayerLevel> lightningList;
-	List<PlayerLevel> themeList;
+	List<BuilderLevel> puzzleList;
+	List<BuilderLevel> lightningList;
+	List<BuilderLevel> themeList;
 	int puzzleIndex;
 	int lightningIndex;
 	int themeIndex;
-	
-	public PlayerMenuIterator(List<List<PlayerLevel>> givenMenuList){
+
+	public BuilderMenuIterator(List<List<BuilderLevel>> givenMenuList){
 		this.puzzleList = givenMenuList.get(0);
 		this.lightningList = givenMenuList.get(1);
 		this.themeList = givenMenuList.get(2);
-		
+
 		this.puzzleIndex = 0;
 		this.lightningIndex = 0;
 		this.themeIndex = 0;
 	}
-	
+
 	//Returns true if there is another level of the given type in the menu
 	public boolean hasNext(String levelType){
 		switch(levelType){
@@ -53,10 +53,10 @@ public class PlayerMenuIterator {
 			return false;
 		}
 	}
-	
+
 	//Returns the next level of the given type in the menu
-	public PlayerLevel next(String levelType){
-		PlayerLevel levelToReturn;
+	public BuilderLevel next(String levelType){
+		BuilderLevel levelToReturn;
 		switch(levelType){
 		case "Puzzle":
 			levelToReturn = puzzleList.get(puzzleIndex);

@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import playerGUI.PlayerLevelGUI;
 
-public class PlayerBackBtnController implements ActionListener{
+public class PlayerLvlBackController implements ActionListener{
 
 	PlayerLevelGUI levelView;
 	
-	public PlayerBackBtnController(PlayerLevelGUI window){
+	public PlayerLvlBackController(PlayerLevelGUI window){
 		this.levelView = window;
 	}
 	

@@ -40,7 +40,7 @@ public abstract class BuilderLevel {
 			return this.board;
 		}
 		
-		boolean setTitle(String title){
+		public boolean setTitle(String title){
 			this.title = title;
 			return true;
 		}

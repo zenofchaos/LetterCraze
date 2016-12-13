@@ -1,9 +1,6 @@
-package playerGUI;
+package builderGUI;
 
 import java.awt.EventQueue;
-
-import playerControllers.PlayerLSBackController;
-import playerControllers.PlayerLSController;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -14,15 +11,15 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
-import playerFiles.PlayerLevel;
-import playerFiles.PlayerMenu;
-import playerFiles.PlayerMenuIterator;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class PlayerSelectLevelGUI implements IPlayerGUI{
+import builderFiles.BuilderLevel;
+import builderFiles.BuilderMenu;
+import builderFiles.BuilderMenuIterator;
+
+public class BuilderSelectLevelGUI implements IBuilderGUI{
 
 	JPanel[] panelsPuzzle;
 	JPanel[] panelsTheme;
@@ -30,9 +27,8 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 
 	final int lvlWidth = 80;
 	final int lvlHeight = 80;
-	final int starSize = 20;
 
-	PlayerMenu theMenu;
+	BuilderMenu theMenu;
 
 	private JFrame frame;
 
@@ -43,7 +39,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerSelectLevelGUI window = new PlayerSelectLevelGUI(new PlayerMenu());
+					BuilderSelectLevelGUI window = new BuilderSelectLevelGUI(new BuilderMenu());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +51,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	/**
 	 * Create the application.
 	 */
-	public PlayerSelectLevelGUI(PlayerMenu menu) {
+	public BuilderSelectLevelGUI(BuilderMenu menu) {
 		this.theMenu = menu;
 		this.panelsPuzzle = new JPanel[theMenu.numLevel("Puzzle")];
 		this.panelsTheme = new JPanel[theMenu.numLevel("Theme")];
@@ -70,9 +66,6 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 640, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
-		ImageIcon emptyStar = new ImageIcon("./images/emptyStar.png");
 
 		String[] levelTypes = new String[3];
 		levelTypes[0] = "Puzzle";
@@ -104,7 +97,6 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		JLabel lblThemeLevels = new JLabel("Theme Levels");
 
 		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new PlayerLSBackController(this));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 				gl_panel.createParallelGroup(Alignment.LEADING)
@@ -151,48 +143,50 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		JPanel puzzleInnerPanel = new JPanel();
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
-
-		PlayerMenuIterator menuIterator = theMenu.iterator();
 		
 		
+		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
+		
+		for(int j = 0; j < levelTypes.length; j++){
+			JPanel newLevel = new JPanel();
+			newLevel.setBackground(Color.gray);
+			
+			JLabel add = new JLabel(plusSign);
+			
+			GroupLayout gl_newLevel = new GroupLayout(newLevel);
+			gl_newLevel.setHorizontalGroup(
+					gl_newLevel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
+			
+			gl_newLevel.setVerticalGroup(
+					gl_newLevel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
+			
+			if(levelTypes[j].equals("Puzzle")){
+				puzzleInnerPanel.add(newLevel);
+			}
+			else if(levelTypes[j].equals("Lightning")){
+				lightningInnerPanel.add(newLevel);
+			}
+			else if(levelTypes[j].equals("Theme")){
+				themeInnerPanel.add(newLevel);
+			}
+		}
+		
+		BuilderMenuIterator menuIterator = theMenu.iterator();
 
 		for(int lType = 0; lType < levelTypes.length; lType++){
 			int numLevels = 0;
 			while(menuIterator.hasNext(levelTypes[lType])){
 				numLevels++;
 				
-				PlayerLevel tempLevel = menuIterator.next(levelTypes[lType]);
-
-				JLabel[] star = new JLabel[3];
-
-				for(int i = 0; i < tempLevel.getBestStars(); i++){
-					star[i] = new JLabel(fullStar);
-				}
-
-				for (int i = tempLevel.getBestStars(); i < star.length; i++){
-					star[i] = new JLabel(emptyStar);
-				}
+				BuilderLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
 				JPanel thePanel = new JPanel();
-				String type = levelTypes[lType];
-				String levelLabel = "";
-				switch(type){
-					case "Puzzle":
-						levelLabel = "P";
-						levelLabel+= numLevels;
-						break;
-					case "Lightning":
-						levelLabel = "L";
-						levelLabel+= numLevels;
-						break;
-					case "Theme":
-						levelLabel = "T";
-						levelLabel+= numLevels;
-						break;
-					default:
-						System.out.println("switch statement error in Player Select Level GUI for determining level type");
-				}
-				thePanel.addMouseListener(new PlayerLSController(this, levelLabel));
 				thePanel.setBackground(Color.gray);
 
 				JLabel label = new JLabel(tempLevel.getTitle());
@@ -200,43 +194,31 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				label.setToolTipText(tempLevel.getTitle());
 				label.setFont(new Font("Dialog", Font.BOLD, 10));
 				label.setForeground(Color.WHITE);
-
-				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
-				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-				lblHighScore.setForeground(Color.WHITE);
-				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
-
+				
+				JButton btnDelete = new JButton();
+				btnDelete.setText("Delete");
+				btnDelete.setFont(new Font("Dialog", Font.BOLD, 10));
+				
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
-								.addContainerGap(10, Short.MAX_VALUE)
-								.addComponent(star[0], starSize, starSize, Short.MAX_VALUE)
-								.addComponent(star[1], starSize, starSize, Short.MAX_VALUE)
-								.addComponent(star[2], starSize, starSize, Short.MAX_VALUE)
-								.addContainerGap(10, Short.MAX_VALUE))
+								.addContainerGap(0, Short.MAX_VALUE)
+								.addComponent(label)
+								.addContainerGap(0, Short.MAX_VALUE))
 						.addGroup(gl_thePanel.createSequentialGroup()
-								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(label, 70, 70, Short.MAX_VALUE)
-								.addContainerGap(5, Short.MAX_VALUE))
-						.addGroup(gl_thePanel.createSequentialGroup()
-								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
-								.addContainerGap(5, Short.MAX_VALUE))
+								.addContainerGap(0, Short.MAX_VALUE)
+								.addComponent(btnDelete)
+								.addContainerGap(0, Short.MAX_VALUE))
 						);
 				gl_thePanel.setVerticalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
 								.addComponent(label, 10, 10, 10)
-								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(lblHighScore, 20, 20, 20)
-								.addContainerGap(20, Short.MAX_VALUE)
-								.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(star[0], starSize, starSize, starSize)
-										.addComponent(star[1], starSize, starSize, starSize)
-										.addComponent(star[2], starSize, starSize, starSize))
-								.addContainerGap(0, Short.MAX_VALUE))
+								.addGap(25)
+								.addComponent(btnDelete)
+								.addContainerGap(20, Short.MAX_VALUE))
 						);
 				thePanel.setLayout(gl_thePanel);
 				
@@ -256,20 +238,18 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
-	@Override
+	
 	// Opens (set visible) this frame
 	public void openWindow(){
 		this.frame.setVisible(true);
 	}
 
-	@Override
 	// Hides and disposes of this frame
 	public void closeWindow(){
 		this.frame.setVisible(false);
 		this.frame.dispose();
 	}
 
-	@Override
 	// Hides this frame from view
 	public void hideWindow(){
 		this.frame.setVisible(false);
@@ -279,9 +259,5 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	public void refresh(Object o) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	public PlayerMenu getMenu(){
-		return this.theMenu;
 	}
 }

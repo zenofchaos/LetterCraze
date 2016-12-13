@@ -7,11 +7,12 @@ public abstract class PlayerLevel {
 	String title;
 	int pointScore;
 	int starCount;
-	ArrayList<PlayerWord[]> wordsEntered;
+	ArrayList<PlayerWord> wordsEntered;
 	int[] starThresholds;
 	int bestScore;
 	int bestStars;
 	PlayerBoard board;
+	PlayerWord selectedWord;
 	boolean isLocked;
 	
 	PlayerLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String title){
@@ -27,6 +28,7 @@ public abstract class PlayerLevel {
 			this.pointScore = 0;
 			this.starCount = 0;
 			this.wordsEntered = new ArrayList<>();
+			this.selectedWord = new PlayerWord();
 			
 			//Initialize the level board
 			if(this.initBoard()){
@@ -47,11 +49,11 @@ public abstract class PlayerLevel {
 		return this.pointScore;
 	}
 	
-	int getStarCount(){
+	public int getStarCount(){
 		return this.starCount;
 	}
 	
-	ArrayList<PlayerWord[]> getWordsEntered(){
+	public ArrayList<PlayerWord> getWordsEntered(){
 		return this.wordsEntered;
 	}
 	
@@ -59,11 +61,11 @@ public abstract class PlayerLevel {
 		return this.starThresholds;
 	}
 	
-	int getBestScore(){
+	public int getBestScore(){
 		return this.bestScore;
 	}
 	
-	int getBestStars(){
+	public int getBestStars(){
 		return this.bestStars;
 	}
 	
@@ -71,7 +73,11 @@ public abstract class PlayerLevel {
 		return this.board;
 	}
 	
-	boolean getIsLocked(){
+	public PlayerWord getSelectedWord() {
+		return this.selectedWord;
+	}
+	
+	public boolean getIsLocked(){
 		return this.isLocked;
 	}
 	
@@ -90,7 +96,7 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setWordsEntered(ArrayList<PlayerWord[]> wordsEntered){
+	boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
 		this.wordsEntered = wordsEntered;
 		return true;
 	}
@@ -120,11 +126,15 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setIsLocked(Boolean isLocked){
-		this.isLocked = isLocked;
+	public boolean setSelectedWord(PlayerWord selectedWord){
+		this.selectedWord = selectedWord;
 		return true;
 	}
 	
+	boolean setIsLocked(boolean isLocked){
+		this.isLocked = isLocked;
+		return true;
+	}
 	
 	public boolean initBoard(){
 		PlayerSquare[][] squareArray = new PlayerSquare[6][6];
@@ -139,4 +149,26 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
+	public boolean submitSelectedWord() {
+		if (isValidWord(selectedWord)) {
+			wordsEntered.add(selectedWord);
+			pointScore += wordScore(selectedWord);
+			selectedWord = new PlayerWord();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	boolean isValidWord(PlayerWord w) { // overridable
+		return w.isValidWord();
+	}
+	
+	int wordScore(PlayerWord w) { // overridable
+		return w.getPointVal();
+	}
+	
+	public boolean squareIsSelected(PlayerSquare s) {
+		return selectedWord.getSquares().contains(s);
+	}
 }

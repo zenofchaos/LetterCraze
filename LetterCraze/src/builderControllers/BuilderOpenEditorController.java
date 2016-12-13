@@ -4,15 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import builderFiles.BuilderMenu;
+import builderFiles.BuilderModel;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderMainMenuGUI;
-import builderGUI.BuilderNewLevelGUI;
+import builderGUI.BuilderSelectLevelGUI;
 
 public class BuilderOpenEditorController implements ActionListener{
 
-	BuilderNewLevelGUI editorView;
+	BuilderSelectLevelGUI editorView;
 	
-	public BuilderOpenEditorController(BuilderNewLevelGUI editorView) {
+	public BuilderOpenEditorController(BuilderSelectLevelGUI editorView) {
 		this.editorView = editorView;
 	}
 
@@ -21,9 +22,9 @@ public class BuilderOpenEditorController implements ActionListener{
 		// Close menu window
 		//editorView.closeWindow();
 		//Generate the model
-		//FileAccessController fileAccess = new FileAccessController(new PlayerMenu());
-		//PlayerModel model = fileAccess.getModel();th
-		BuilderEditorGUI selectView = new BuilderEditorGUI();
-		selectView.openWindow();
+		//BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		//BuilderModel model = fileAccess.getModel();
+		//BuilderEditorGUI selectView = new BuilderEditorGUI(model);
+		//selectView.openWindow();
 	}
 }

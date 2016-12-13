@@ -140,10 +140,19 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
 		wordsFoundLabel.setBounds(0, 0, w - 500, 20 * l.getWordsEntered().size());
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
+		wordsFoundScrollPane.getVerticalScrollBar().setValue(wordsFoundScrollPane.getVerticalScrollBar().getMaximum());
 		wordsFoundScrollPane.setForeground(Color.WHITE);
 		wordsFoundScrollPane.setBackground(Color.DARK_GRAY);
 		wordsFoundScrollPane.setBounds(20, 120, w - 500, h / 2);
 		contentPane.add(wordsFoundScrollPane);
+		
+		String selectedWord = l.getSelectedWord().getWord();
+		JLabel selectedWordLabel = new JLabel(selectedWord);
+		selectedWordLabel.setForeground(Color.WHITE);
+		selectedWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		selectedWordLabel.setFont(new Font("Dialog", Font.BOLD, 20));
+		selectedWordLabel.setBounds(20, h - 100, w - 500, 30);
+		contentPane.add(selectedWordLabel);
 		
 		JProgressBar scoreProgressBar = new JProgressBar(0, l.getStarThresholds()[2]);
 		scoreProgressBar.setValue(l.getPointScore());
@@ -316,6 +325,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	@Override
 	public void refresh(Object level) {
 		l = (PlayerLevel)level;
+		contentPane.removeAll();
 		showComponents();
 		contentPane.repaint();
 	}

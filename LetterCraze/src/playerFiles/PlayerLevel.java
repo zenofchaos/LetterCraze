@@ -161,7 +161,7 @@ public abstract class PlayerLevel {
 	}
 
 	boolean isValidWord(PlayerWord w) { // overridable
-		return ((w.getSquares().size() >= 3) && WordTable.isWord(w.getWord()));
+		return ((w.getSquares().size() >= 3) && WordTable.isWord(w.getWord().toLowerCase()));
 	}
 	
 	int wordScore(PlayerWord w) { // overridable

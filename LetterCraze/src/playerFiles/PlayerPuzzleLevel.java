@@ -20,7 +20,7 @@ public class PlayerPuzzleLevel extends PlayerLevel {
 	
 	@Override
 	public boolean submitSelectedWord(){
-		if ((isValidWord(selectedWord)) && (wordsEntered.size() <= wordLimit)) {
+		if ((isValidWord(selectedWord)) && (wordsEntered.size() < wordLimit)) {
 			wordsEntered.add(selectedWord);
 			pointScore += wordScore(selectedWord);
 			if (pointScore >= starThresholds[2]){

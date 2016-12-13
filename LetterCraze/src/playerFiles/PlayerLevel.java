@@ -28,16 +28,7 @@ public abstract class PlayerLevel {
 			this.pointScore = 0;
 			this.starCount = 0;
 			this.wordsEntered = new ArrayList<>();
-			this.selectedWord = new PlayerWord();
-			
-			//Initialize the level board
-			if(this.initBoard()){
-				// board initialized 
-			}
-			else{
-				System.err.println ("board initialization failed");
-			}
-			
+			this.selectedWord = new PlayerWord();			
 		}
 	}
 	
@@ -137,15 +128,11 @@ public abstract class PlayerLevel {
 	}
 	
 	public boolean initBoard(){
-		PlayerSquare[][] squareArray = new PlayerSquare[6][6];
 		for(int row = 0; row < 6; row++){
 			for(int col = 0; col < 6; col++){
-				squareArray[row][col] = new PlayerSquare(row, col);
-				squareArray[row][col].setLetter(new PlayerLetter());
+				this.board.getSquareArray()[row][col].setLetter(new PlayerLetter());
 			}
 		}
-		PlayerBoard newBoard = new PlayerBoard(squareArray);
-		this.board = newBoard;
 		return true;
 	}
 	
@@ -153,6 +140,15 @@ public abstract class PlayerLevel {
 		if (isValidWord(selectedWord)) {
 			wordsEntered.add(selectedWord);
 			pointScore += wordScore(selectedWord);
+			if (pointScore >= starThresholds[2]){
+				starCount = 3;
+			}
+			else if (pointScore >= starThresholds[1]){
+				starCount = 2;
+			}
+			else if (pointScore >= starThresholds[0]){
+				starCount = 1;
+			}
 			selectedWord = new PlayerWord();
 			return true;
 		} else {

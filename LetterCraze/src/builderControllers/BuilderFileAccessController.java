@@ -39,9 +39,16 @@ public class BuilderFileAccessController {
 	public BuilderFileAccessController(BuilderMenu menu) {
 	}
 
-	// Returns an entire model with all the levels generated.
-	// in code: opens the master FileCount file to get metadata about levels,
-	// then iterates through each to open.
+	/**
+	 * Returns an entire model with all the levels generated. in code: opens the
+	 * master FileCound file to get metadata about levels, then iterates through
+	 * each to open and load into the menu.
+	 * 
+	 * @return the fully-fleshed model
+	 * @throws Exception
+	 *             because unless I made a mistake, the only exception I have to
+	 *             account for is 404 file not found.
+	 */
 	public BuilderModel getModel() throws Exception {
 		BuilderModel model = new BuilderModel();
 		BuilderMenu menu = model.getMenu();
@@ -75,8 +82,12 @@ public class BuilderFileAccessController {
 		return model;
 	}
 
-	// opens the lightning level file corresponding to number, reads, and
-	// returns a lightning level.
+	/**
+	 * Opens the lightning level file corresponding to the input number, reads it, and returns a lightning level.
+	 * @param number the number of the level/file to open (i.e. passing 3 here reads Levels/Lightning3.txt)
+	 * @return One builder lightning level with all the proper data.
+	 * @throws Exception because there's always a remote possibility that the file doesn't exist.
+	 */
 	public BuilderLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
 		input = new Scanner(file);
@@ -114,8 +125,12 @@ public class BuilderFileAccessController {
 		return level;
 	}
 
-	// opens the puzzle level file corresponding to number, reads, and
-	// returns a puzzle level.
+	/**
+	 * Opens the puzzle level file corresponding to the input number, reads it, and returns a lightning level.
+	 * @param number the number of the level/file to open (i.e. 5 opens Levels/Puzzle5.txt)
+	 * @return builder puzzle level with all fields filled
+	 * @throws Exception in case someone deletes the file
+	 */
 	public BuilderLevel readPuzzle(int number) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
 		input = new Scanner(file);
@@ -156,8 +171,12 @@ public class BuilderFileAccessController {
 		return level;
 	}
 
-	// opens the theme level file corresponding to number, reads, and
-	// returns a theme level.
+	/**
+	 * Opens the theme level file corresponding to the input number, reads it, and returns a lightning level.
+	 * @param number opens the number-th level/file in the directory
+	 * @return complete builder theme level, ready to be deployed
+	 * @throws Exception for the slim "file not found" possibility
+	 */
 	public BuilderLevel readTheme(int number) throws Exception {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
 		input = new Scanner(file);
@@ -204,17 +223,17 @@ public class BuilderFileAccessController {
 
 		BuilderBoard board = new BuilderBoard(bitmap);
 
-		//now get the theme
+		// now get the theme
+		input.nextLine();
 		input.nextLine();
 		String description = input.nextLine();
-		
+
 		// now generate the linked list
 		LinkedList<String> list = new LinkedList<String>();
 		while (input.hasNext()) {
 			list.add(input.next());
 		}
 
-		
 		BuilderLevel level = new BuilderThemeLevel(starThresholds, title, description, list, board);
 
 		// Close File
@@ -223,6 +242,12 @@ public class BuilderFileAccessController {
 		return level;
 	}
 
+	/**
+	 * "saves" (completely re-writes) an edited lightning level back to disk
+	 * @param levelNum number you want to save the level to (like, a 3 would save it over Levels/Lightning3.txt)
+	 * @param level the level you want to save
+	 * @throws Exception the omni-present concern for losing a file that happens EVERY SINGLE TIME I open a file
+	 */
 	public void saveLightning(int levelNum, BuilderLightningLevel level) throws Exception {
 		file = new java.io.File("Levels/Lightning" + levelNum + ".txt");
 		file.createNewFile();
@@ -307,7 +332,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquares()[i][j].getActive()) {
+				if (level.getBoardPreset().getSquares()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -320,8 +345,8 @@ public class BuilderFileAccessController {
 		// charmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				String buffer = level.getBoard().getSquares()[i][j].toString();
-				if (buffer == "QU") {
+				String buffer = level.getBoardPreset().getSquares()[i][j].getLetter().getLetter();
+				if (buffer == "Qu") {
 					writer.format("Q ");
 				} else {
 					writer.format(buffer + " ");
@@ -331,10 +356,10 @@ public class BuilderFileAccessController {
 		}
 		writer.format("\r\n");
 
-		//write theme
-		writer.format(level.getDescription() + "\r\n");
-		
-		//iterate through theme words
+		// write theme
+		writer.format(level.getDescription() + "\r\n\n");
+
+		// iterate through theme words
 		for (String s : level.getThemeWords()) {
 			writer.format(s + "\r\n");
 		}
@@ -359,7 +384,7 @@ public class BuilderFileAccessController {
 
 	public void adjustPuzzleCount(int offset) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(4);
+		rAFile.seek(3);
 
 		String newCount = String.format("%02d", (numP + offset));
 
@@ -370,7 +395,7 @@ public class BuilderFileAccessController {
 
 	public void adjustThemeCount(int offset) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(8);
+		rAFile.seek(6);
 
 		String newCount = String.format("%02d", (numT + offset));
 

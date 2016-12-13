@@ -12,6 +12,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		super(starThresholds, theme);
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
+		this.description = description;
 	}
 	
 	public String getDescription() {
@@ -26,6 +27,11 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return this.boardPreset;
 	}
 	
+	public boolean setDescription(String description){
+		this.description = description;
+		return true;
+		
+	}
 	boolean setThemeWords(LinkedList<String> themeWords){
 		this.themeWords = themeWords;
 		return true;

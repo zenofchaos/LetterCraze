@@ -264,7 +264,7 @@ public class PlayerFileAccessController {
 
 	public void unlockLightning() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(14); // Pretty sure it reads like  ##\r\n##\r\n##\r\n\r\n but I might need to subtract 1.
+		rAFile.seek(10); //maybe someday I'll remember to explain these numbers (hint: it's the number of characters I have to jump forward)
 
 		String newNum = String.format("%02d", (unlockedL + 1));
 
@@ -275,7 +275,7 @@ public class PlayerFileAccessController {
 
 	public void unlockPuzzle() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(18); // Pretty sure it reads like  ##\r\n##\r\n##\r\n\r\n##\r\n but I might need to subtract 1.
+		rAFile.seek(13);
 
 		String newNum = String.format("%02d", (unlockedP + 1));
 
@@ -286,7 +286,7 @@ public class PlayerFileAccessController {
 
 	public void unlockTheme() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(22); // Pretty sure it reads like  ##\r\n##\r\n##\r\n\r\n##\r\n##\r\n but I might need to subtract 1.
+		rAFile.seek(16);
 
 		String newNum = String.format("%02d", (unlockedT + 1));
 

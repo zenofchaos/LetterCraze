@@ -8,6 +8,7 @@ import playerGUI.PlayerLevelGUI;
 import javax.swing.SwingUtilities;
 
 import playerFiles.PlayerLevel;
+import playerFiles.PlayerWord;
 
 public class PlayerOutsideGridController implements MouseListener {
 
@@ -22,14 +23,17 @@ public class PlayerOutsideGridController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (SwingUtilities.isRightMouseButton(e)) {
-			if (!(l().getMouseHeld())) {
-				l().submitSelectedWord();
-			}
+			l().submitSelectedWord();
+		} else {
+			l().setSelectedWord(new PlayerWord());
 		}
+		levelView.refresh(l());
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+		levelView.refresh(l());
+	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
@@ -38,11 +42,7 @@ public class PlayerOutsideGridController implements MouseListener {
 	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e)) {
-			l().setMouseHeld(false);
-		}
-	}
+	public void mouseReleased(MouseEvent e) {}
 	
 	private PlayerLevel l() {
 		return levelView.getLevel();

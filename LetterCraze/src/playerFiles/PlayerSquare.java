@@ -32,7 +32,7 @@ public class PlayerSquare {
 	}
 	
 	//Get method for isActive
-	public boolean isActive(){
+	public boolean getActive(){
 		return this.active;
 	}
 	

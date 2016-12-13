@@ -26,21 +26,24 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (SwingUtilities.isRightMouseButton(e)) {
-			if (!(l().getMouseHeld())) {
-				l().submitSelectedWord();
-			}
+			l().submitSelectedWord();
+			levelView.refresh(l());
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if ((l().getMouseHeld()) && (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)))) {
+		if (   (e.getModifiers() == MouseEvent.BUTTON1_MASK)
+			&& (thisSquare().getActive())
+			&& (adjacencyRuleIsFollowed())) {
 			if (l().squareIsSelected(thisSquare())) {
 				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
 					l().getSelectedWord().removeSquare();
+					levelView.refresh(l());
 				}
 			} else {
 				l().getSelectedWord().addSquare(thisSquare());
+				levelView.refresh(l());
 			}
 		}
 	}
@@ -52,16 +55,12 @@ public class PlayerSquareController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			l().setSelectedWord(new PlayerWord(thisSquare()));
-			l().setMouseHeld(true);
+			levelView.refresh(l());
 		}
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e)) {
-			l().setMouseHeld(false);
-		}
-	}
+	public void mouseReleased(MouseEvent e) {}
 	
 	private PlayerLevel l() {
 		return levelView.getLevel();
@@ -69,5 +68,10 @@ public class PlayerSquareController implements MouseListener {
 	
 	private PlayerSquare thisSquare() {
 		return l().getBoard().getSquares()[row][col];
+	}
+	
+	private boolean adjacencyRuleIsFollowed() {
+		return     (l().getSelectedWord().getSquares().isEmpty())
+				|| (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)));
 	}
 }

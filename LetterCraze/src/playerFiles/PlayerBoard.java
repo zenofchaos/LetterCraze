@@ -1,5 +1,8 @@
 package playerFiles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerBoard {
 	PlayerSquare[][] squares;
 	
@@ -78,5 +81,34 @@ public class PlayerBoard {
 			}
 		}
 		return true;
+	}
+	
+	public PlayerBoard addWord(PlayerWord toAdd){
+		List<PlayerSquare> squaresToAdd = toAdd.getSquares();
+		
+		//while there are still squares to add
+		while(squaresToAdd.size() > 0){
+			PlayerSquare next = squaresToAdd.get(0);
+
+			//make the next square to add the one highest up in the board (lowest column val)
+			for(int i = 1; i < squaresToAdd.size(); i++){
+				if (squaresToAdd.get(i).getCol() < next.getCol()){
+					next = squaresToAdd.get(i);
+				}
+			}
+			
+			int rowToUpdate = next.getRow();
+			int colToUpdate = next.getRow();
+			PlayerLetter letterToAdd = next.getLetter();
+			
+			while(colToUpdate < 6){
+				//replace the current square with the letter to add, saving the letter it held previously
+				letterToAdd = this.squares[rowToUpdate][colToUpdate].changeLetter(letterToAdd);
+				//increment the column
+				colToUpdate++;
+			}
+		}
+		
+		return null;
 	}
 }

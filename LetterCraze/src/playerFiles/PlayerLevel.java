@@ -81,27 +81,27 @@ public abstract class PlayerLevel {
 		return this.isLocked;
 	}
 	
-	boolean setTitle(String title){
+	public boolean setTitle(String title){
 		this.title = title;
 		return true;
 	}
 	
-	boolean setPointScore(int pointScore){
+	public boolean setPointScore(int pointScore){
 		this.pointScore = pointScore;
 		return true;
 	}
 	
-	boolean setStarCount(int starCount){
+	public boolean setStarCount(int starCount){
 		this.starCount = starCount;
 		return true;
 	}
 	
-	boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
+	public boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
 		this.wordsEntered = wordsEntered;
 		return true;
 	}
 	
-	boolean setStarThresholds(int[] starThresholds){
+	public boolean setStarThresholds(int[] starThresholds){
 		if (starThresholds.length == 3){
 			this.starThresholds = starThresholds;
 			return true;
@@ -111,12 +111,12 @@ public abstract class PlayerLevel {
 		}
 	}
 	
-	boolean setBestScore(int bestScore){
+	public boolean setBestScore(int bestScore){
 		this.bestScore = bestScore;
 		return true;
 	}
 	
-	boolean setBestStars(int bestStars){
+	public boolean setBestStars(int bestStars){
 		this.bestStars = bestStars;
 		return true;
 	}
@@ -131,7 +131,7 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setIsLocked(boolean isLocked){
+	public boolean setIsLocked(boolean isLocked){
 		this.isLocked = isLocked;
 		return true;
 	}
@@ -148,7 +148,7 @@ public abstract class PlayerLevel {
 		this.board = newBoard;
 		return true;
 	}
-	
+
 	public boolean submitSelectedWord() {
 		if (isValidWord(selectedWord)) {
 			wordsEntered.add(selectedWord);

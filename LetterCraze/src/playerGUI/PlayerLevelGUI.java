@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import playerControllers.PlayerLvlBackController;
 import playerControllers.PlayerOutsideGridController;
 import playerControllers.PlayerSquareController;
+import playerControllers.PlayerUndoController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
@@ -226,6 +227,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			undoButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 			undoButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 			contentPane.add(undoButton);
+			undoButton.addActionListener(new PlayerUndoController(this));
 		}
 		
 		JButton resetButton = new JButton("Reset");

@@ -1,30 +1,81 @@
 package builderControllers;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderMenu;
-import builderFiles.BuilderModel;
+import builderFiles.BuilderPuzzleLevel;
+import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
-import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-public class BuilderOpenEditorController implements ActionListener{
+public class BuilderOpenNewEditorController implements MouseListener{
 
-	BuilderSelectLevelGUI editorView;
+	BuilderSelectLevelGUI menuView;
+	String type;
+	BuilderMenu menu;
 	
-	public BuilderOpenEditorController(BuilderSelectLevelGUI editorView) {
-		this.editorView = editorView;
+	
+	public BuilderOpenNewEditorController(BuilderSelectLevelGUI menuView, String type) {
+		this.menuView = menuView;
+		this.type = type;
+		this.menu = menuView.getMenu();
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// Close menu window
-		//editorView.closeWindow();
-		//Generate the model
-		//BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
-		//BuilderModel model = fileAccess.getModel();
-		//BuilderEditorGUI selectView = new BuilderEditorGUI(model);
-		//selectView.openWindow();
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if(this.type == "P"){
+			int[] empty = new int[3];
+			BuilderPuzzleLevel level = new BuilderPuzzleLevel(empty, "", 0);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			window.openWindow();
+		}
+		else if(this.type == "T"){
+			int[] empty = new int[3];
+			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", null, null);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			window.openWindow();
+		}
+		else if(this.type == "L"){
+			int[] empty = new int[3];
+			BuilderLightningLevel level = new BuilderLightningLevel(empty, "", 0);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			window.openWindow();
+		}
+		else{
+			System.out.println("Invalid type sent to BuilderOpenNewEditorController");
+		}
+		
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

@@ -1,6 +1,7 @@
 package builderFiles;
 
 import builderFiles.BuilderSquare;
+import playerFiles.PlayerLetter;
 
 public abstract class BuilderLevel {
 	
@@ -74,15 +75,11 @@ public abstract class BuilderLevel {
 		}
 		
 		public boolean initBoard(){
-			BuilderSquare[][] squareArray = new BuilderSquare[6][6];
 			for(int row = 0; row < 6; row++){
 				for(int col = 0; col < 6; col++){
-					squareArray[row][col] = new BuilderSquare(row, col);
-					squareArray[row][col].setLetter(new BuilderLetter());
+					this.board.getSquareArray()[row][col].setLetter(new BuilderLetter());
 				}
 			}
-			BuilderBoard newBoard = new BuilderBoard(squareArray);
-			this.board = newBoard;
 			return true;
 		}
 	

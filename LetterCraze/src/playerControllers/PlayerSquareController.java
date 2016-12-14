@@ -32,7 +32,7 @@ public class PlayerSquareController implements MouseListener {
 			&& (thisSquare().getActive())
 			&& (adjacencyRuleIsFollowed())) {
 			if (l().squareIsSelected(thisSquare())) {
-				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
+				if (thisSquare().equals(l().getSelectedWord().recentSquare(2))) {
 					l().getSelectedWord().removeSquare();
 					levelView.refresh(l());
 				}

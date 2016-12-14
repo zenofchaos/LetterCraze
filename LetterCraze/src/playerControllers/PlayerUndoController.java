@@ -41,5 +41,19 @@ public class PlayerUndoController implements ActionListener{
 		//add the extracted word back to the board
 		PlayerBoard theBoard = this.level.getBoard();
 		this.level.setBoard(theBoard.addWord(toUndo));
+		
+		this.level.setPointScore(this.level.getPointScore() - this.level.wordScore(toUndo));
+		if (this.level.getPointScore() >= this.level.getStarThresholds()[2]){
+			this.level.setStarCount(3);
+		}
+		else if (this.level.getPointScore() >= this.level.getStarThresholds()[1]){
+			this.level.setStarCount(2);
+		}
+		else if (this.level.getPointScore() >= this.level.getStarThresholds()[0]){
+			this.level.setStarCount(1);
+		}
+		else{
+			this.level.setStarCount(0);
+		}
 	}
 }

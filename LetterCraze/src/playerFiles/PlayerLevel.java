@@ -165,11 +165,11 @@ public abstract class PlayerLevel {
 		return w.isValidWord();
 	}
 	
-	int wordScore(PlayerWord w) { // overridable
+	public int wordScore(PlayerWord w) { // overridable
 		return w.getPointVal();
 	}
 	
 	public boolean squareIsSelected(PlayerSquare s) {
-		return selectedWord.getSquares().contains(s);
+		return selectedWord.contains(s);
 	}
 }

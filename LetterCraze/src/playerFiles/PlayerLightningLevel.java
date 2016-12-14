@@ -18,7 +18,7 @@ public class PlayerLightningLevel extends PlayerLevel {
 	}
 
 	@Override
-	int wordScore(PlayerWord w) {
+	public int wordScore(PlayerWord w) {
 		return 1;
 	}
 }

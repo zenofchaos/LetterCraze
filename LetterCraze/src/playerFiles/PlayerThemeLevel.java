@@ -68,7 +68,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 	//Only the number of words matters for lightning levels,
 	//	so their point values are all 1
 	@Override
-	int wordScore(PlayerWord w) {
+	public int wordScore(PlayerWord w) {
 		return 1;
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import builderGUI.BuilderEditorGUI;
 
+//TODO: actually add the title to the level object that also needs to be passed to the controller
+
 public class BuilderAddTitle implements ActionListener {
 	BuilderEditorGUI builderEditorView;
 	
@@ -15,7 +17,9 @@ public class BuilderAddTitle implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	String title = e.getActionCommand();
+	title.trim();
 	System.out.println(title);
 	}
+
 	
 }

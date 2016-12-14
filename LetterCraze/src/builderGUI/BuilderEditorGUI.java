@@ -19,9 +19,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
+import builderControllers.BuilderTypeSpecificInfoController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
@@ -111,6 +114,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(subtitleLabel);
 		
 		JTextField subtitleTextField = new JTextField(properSubtitle());
+		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this, gettypeIdentifier()));
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
 		subtitleTextField.setBounds(w * 5/16, h * 3/16, properSubtitleWidth(w, h), h * 1/20);
@@ -184,10 +188,12 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			starThresholdTextFields[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, h * 1/24));
 			starThresholdTextFields[i].setBounds(w * 29/32, h * 5/6 - (h * 3/4) * (i + 1) / 3, w * 3/32, h * 1/24);
+			starThresholdTextFields[i].addActionListener(new BuilderAddStarThreshold(this, i));
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
 		JButton saveButton = new JButton("Save");
+		saveButton.addActionListener(new BuilderSaveController(this));
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);
@@ -202,6 +208,18 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
+	}
+	
+	private String gettypeIdentifier() {
+		if (l instanceof BuilderPuzzleLevel) {
+			return "P";
+		} else if (l instanceof BuilderLightningLevel) {
+			return "L";
+		} else if (l instanceof BuilderThemeLevel) {
+			return "T";
+		} else {
+			return "";
+		}
 	}
 	
 	private String properTitle() {

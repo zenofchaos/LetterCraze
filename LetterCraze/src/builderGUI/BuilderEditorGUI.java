@@ -2,6 +2,10 @@ package builderGUI;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +26,9 @@ import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
-import javax.swing.BorderFactory;
+import playerFiles.PlayerLevel;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -74,34 +80,40 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		showComponents();
+	}
+	
+	private void showComponents() {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
+		int borderSize = h * 1/80;
 		
 		JLabel titleLabel = new JLabel("Level Title:");
 		titleLabel.setForeground(Color.WHITE);
 		titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		titleLabel.setFont(new Font("Dialog", Font.BOLD, 16));
-		titleLabel.setBounds(0, 55, 190, 30);
+		titleLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/30));
+		titleLabel.setBounds(0, h * 11/96, w * 19/64, h * 1/16);
 		contentPane.add(titleLabel);
 		
 		JTextField titleTextField = new JTextField(properTitle());
 		titleTextField.addActionListener(new BuilderAddTitle(this));
 		titleTextField.setHorizontalAlignment(SwingConstants.LEFT);
-		titleTextField.setFont(new Font("Dialog", Font.PLAIN, 16));
-		titleTextField.setBounds(200, 60, h / 2, 24);
+		titleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
+		titleTextField.setBounds(w * 5/16, h * 1/8, h * 1/2, h * 1/20);
 		contentPane.add(titleTextField);
 		
 		JLabel subtitleLabel = new JLabel(properSubtitleType()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, 16));
-		subtitleLabel.setBounds(0, 85, 190, 30);
+		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/30));
+		subtitleLabel.setBounds(0, h * 17/96, w * 19/64, h * 1/16);
 		contentPane.add(subtitleLabel);
 		
 		JTextField subtitleTextField = new JTextField(properSubtitle());
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
-		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, 16));
-		subtitleTextField.setBounds(200, 90, properSubtitleWidth(h), 24);
+		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
+		subtitleTextField.setBounds(w * 5/16, h * 3/16, properSubtitleWidth(w, h), h * 1/20);
 		contentPane.add(subtitleTextField);
 		
 		JTextField[][] letterTextFields = new JTextField[6][6];
@@ -113,15 +125,15 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 				if (l.getBoard().getSquareArray()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
-					squarePanels[i][j].setBackground(Color.DARK_GRAY);
+					squarePanels[i][j].setBackground(Color.GRAY);
 				}
-				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12, h * (i + 3) / 12, h / 12, h / 12);
-				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
+				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
 				if (l instanceof BuilderThemeLevel) {
 					letterTextFields[i][j] = new JTextField(properLetter(i, j));
+					letterTextFields[i][j].setForeground(Color.BLACK);
 					letterTextFields[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-					letterTextFields[i][j].setFont(new Font("Dialog", Font.BOLD, 20));
-					letterTextFields[i][j].setBounds(0, 0, h / 12, 30);
+					letterTextFields[i][j].setFont(new Font("Dialog", Font.BOLD, h * 1/24));
+					letterTextFields[i][j].setBounds(0, 0, h * 1/12, h * 1/16);
 					squarePanels[i][j].add(letterTextFields[i][j]);
 				}
 				contentPane.add(squarePanels[i][j]);
@@ -135,58 +147,60 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			}
 			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
 			wordsToFindTextPane.setForeground(Color.WHITE);
-			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, 14));
-			wordsToFindTextPane.setBounds(0, 0, w - 500, 20 * ((BuilderThemeLevel)l).getThemeWords().size());
+			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
+			wordsToFindTextPane.setBounds(0, 0, w * 15/64, ((BuilderThemeLevel)l).getThemeWords().size() * h * 7/240);
 			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindTextPane);
+			wordsToFindScrollPane.getVerticalScrollBar().setValue(wordsToFindScrollPane.getVerticalScrollBar().getMaximum());
 			wordsToFindScrollPane.setForeground(Color.WHITE);
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
-			wordsToFindScrollPane.setBounds(20, 120, w - 500, h / 2);
+			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
 		}
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
 		scoreProgressBar.setForeground(Color.YELLOW);
 		scoreProgressBar.setBackground(Color.BLACK);
-		scoreProgressBar.setBorder(BorderFactory.createEmptyBorder());
 		scoreProgressBar.setOrientation(SwingConstants.VERTICAL);
-		scoreProgressBar.setBounds(w - 120, 30, 50, h - 90);
+		scoreProgressBar.setBounds(w * 13/16, h * 1/16, w * 5/64, h * 13/16);
 		contentPane.add(scoreProgressBar);
 		
-		final int starSize = 20;
-		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
+		final int starSize = h * 1/24;
+		BufferedImage fullStarOriginal = null;
+		try {
+			fullStarOriginal = ImageIO.read(new File("./images/fullStar.png"));
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		Image fullStarResized = fullStarOriginal.getScaledInstance(starSize, starSize, Image.SCALE_SMOOTH);
+		ImageIcon fullStar = new ImageIcon(fullStarResized);
 		JLabel[] starIconLabels = new JLabel[3];
-		JLabel[] starLineLabels = new JLabel[3];
 		JTextField[] starThresholdTextFields = new JTextField[3];
 		for (int i = 0; i < 3; i++) {
 			starIconLabels[i] = new JLabel(fullStar);
+			starIconLabels[i].setHorizontalAlignment(SwingConstants.LEFT);
+			starIconLabels[i].setBounds(w * 49/64, h * 5/6 - (h * 3/4) * (i + 1) / 3, starSize, starSize);
 			contentPane.add(starIconLabels[i]);
-			starLineLabels[i] = new JLabel("----------");
-			starLineLabels[i].setForeground(Color.WHITE);
-			starLineLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
-			starLineLabels[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starLineLabels[i].setBounds(w - 95, (h - 60) - 20 - (h - 120) * (i + 1) / 3, 50, 20);
-			contentPane.add(starLineLabels[i]);
 			starThresholdTextFields[i] = new JTextField("" + l.getStarThresholds()[i]);
 			starThresholdTextFields[i].setHorizontalAlignment(SwingConstants.LEFT);
-			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, 20));
-			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * (i + 1) / 3, 60, 20);
+			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, h * 1/24));
+			starThresholdTextFields[i].setBounds(w * 29/32, h * 5/6 - (h * 3/4) * (i + 1) / 3, w * 3/32, h * 1/24);
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
 		JButton saveButton = new JButton("Save");
-		saveButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		saveButton.setBounds(w / 2 - 110, h - 100, 100, 40);
+		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);
 		
 		JButton previewButton = new JButton("Preview");
-		previewButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		previewButton.setBounds(w / 2 + 10, h - 100, 100, 40);
+		previewButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		previewButton.setBounds(w * 33/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(previewButton);
 		
 		JButton backButton = new JButton("Back to Menu");
 		backButton.addActionListener(new BuilderCloseEditorController(this));
-		backButton.setFont(new Font("Dialog", Font.BOLD, 15));
-		backButton.setBounds(20, 20, 150, 25);
+		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
 	}
 	
@@ -226,15 +240,15 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
-	private int properSubtitleWidth(int h) {
+	private int properSubtitleWidth(int w, int h) {
 		if (l instanceof BuilderPuzzleLevel) {
-			return 40;
+			return w * 1/16;
 		} else if (l instanceof BuilderLightningLevel) {
-			return 40;
+			return w * 1/16;
 		} else if (l instanceof BuilderThemeLevel) {
-			return h / 2;
+			return h * 1/2;
 		} else {
-			return h / 2;
+			return h * 1/2;
 		}
 	}
 	
@@ -249,25 +263,25 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
-		
 	}
 
 	@Override
 	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
-		
 	}
 
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
-		
 	}
 	
 	@Override
 	public void refresh(Object level) {
 		l = (BuilderLevel)level;
-		initialize();
+		contentPane.removeAll();
+		showComponents();
+		contentPane.repaint();
+		contentPane.validate();
 	}
 }

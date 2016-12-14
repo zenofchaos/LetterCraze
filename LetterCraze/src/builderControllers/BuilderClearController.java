@@ -4,19 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import builderGUI.BuilderEditorGUI;
-import builderGUI.BuilderSelectLevelGUI;
 
-public class BuilderCloseEditorController implements ActionListener{
-	BuilderEditorGUI editorView;
+public class BuilderClearController implements ActionListener{
+BuilderEditorGUI editorView;
 	
-	public BuilderCloseEditorController(BuilderEditorGUI editorView) {
+	public BuilderClearController(BuilderEditorGUI editorView) {
 		this.editorView = editorView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		editorView.closeWindow();
+		// TODO Auto-generated method stub
+		
 	}
-	
-	
+
 }

@@ -92,23 +92,24 @@ public class PlayerBoard {
 
 			//make the next square to add the one highest up in the board (lowest column val)
 			for(int i = 1; i < squaresToAdd.size(); i++){
-				if (squaresToAdd.get(i).getCol() < next.getCol()){
+				if (squaresToAdd.get(i).getRow() < next.getRow()){
 					next = squaresToAdd.get(i);
 				}
 			}
 			
 			int rowToUpdate = next.getRow();
-			int colToUpdate = next.getRow();
+			int colToUpdate = next.getCol();
 			PlayerLetter letterToAdd = next.getLetter();
 			
-			while(colToUpdate < 6){
+			while(rowToUpdate < 6){
 				//replace the current square with the letter to add, saving the letter it held previously
 				letterToAdd = this.squares[rowToUpdate][colToUpdate].changeLetter(letterToAdd);
 				//increment the column
-				colToUpdate++;
+				rowToUpdate++;
 			}
+			squaresToAdd.remove(next);
 		}
-		return null;
+		return this;
 	}
 	
 	public boolean removeWord(PlayerWord word){

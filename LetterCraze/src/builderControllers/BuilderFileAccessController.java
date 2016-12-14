@@ -33,7 +33,7 @@ public class BuilderFileAccessController {
 	 * 
 	 * @param menu
 	 */
-	public BuilderFileAccessController(BuilderMenu menu) {
+	public BuilderFileAccessController() {
 	}
 
 	/**

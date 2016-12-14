@@ -26,7 +26,7 @@ public class BuilderSaveController implements ActionListener{
 		// TODO: NEED TO SOMEHOW HAVE THE WHOLE MENU HERE TO MAKE THE FILE ACCESS CONTROLLER
 		//TODO: ALSO NEED SOME WAY TO GET THE NUMBER THE LEVEL IS FROM THE MENU, MAYBE WE SHOULD ADD THAT TO 
 		//THE STORED INFO IN EACH LEVEL? SO EACH LEVEL KNOWS IT'S T1 OR P4 FOR EXAMPLE?
-		//BuilderFileAccessController fileAccessController = new BuilderFileAccessController();
+		BuilderFileAccessController fileAccessController = new BuilderFileAccessController();
 		if (level instanceof BuilderPuzzleLevel){
 			fileAccessController.savePuzzle(levelNum, level);
 			

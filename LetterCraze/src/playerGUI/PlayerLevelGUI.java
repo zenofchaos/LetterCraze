@@ -135,17 +135,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			}
 		}
 		
-		String wordsFound = "<html>";
+		String wordsFound = "";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			if (i > 0){
-				wordsFound += "<br>";
-			}
-			wordsFound += l.getWordsEntered().get(i).getWord() + " : " + properWordPoints(i);
+			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "\n";
 		}
-		wordsFound += "</html>";
-		
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
-		wordsFoundLabel.setForeground(Color.BLACK);
+		wordsFoundLabel.setForeground(Color.WHITE);
 		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 		wordsFoundLabel.setBounds(0, 0, w * 15/64, l.getWordsEntered().size() * h * 7/240);
@@ -240,9 +235,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
-			int maxWords = ((PlayerPuzzleLevel)l).getWordLimit();
-			int wordsEntered = ((PlayerPuzzleLevel)l).getWordsEntered().size();
-			return "Words Left: " + (maxWords - wordsEntered);
+			return "Words Left: " + ((PlayerPuzzleLevel)l).getWordLimit();
 		} else if (l instanceof PlayerLightningLevel) {
 			return "Time Left: " + ((PlayerLightningLevel)l).getMaxTime();
 		} else if (l instanceof PlayerThemeLevel) {

@@ -28,8 +28,8 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	JPanel[] panelsTheme;
 	JPanel[] panelsLightning;
 
-	final int lvlWidth = 80;
-	final int lvlHeight = 80;
+	final int lvlWidth = 100;
+	final int lvlHeight = 100;
 	final int starSize = 20;
 
 	PlayerMenu theMenu;
@@ -68,7 +68,7 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 480);
+		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ImageIcon fullStar = new ImageIcon("./images/fullStar.png");
@@ -198,13 +198,13 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				JLabel label = new JLabel(tempLevel.getTitle());
 				label.setHorizontalAlignment(SwingConstants.CENTER);
 				label.setToolTipText(tempLevel.getTitle());
-				label.setFont(new Font("Dialog", Font.BOLD, 10));
+				label.setFont(new Font("Dialog", Font.BOLD, 12));
 				label.setForeground(Color.WHITE);
 
 				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
 				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
 				lblHighScore.setForeground(Color.WHITE);
-				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
+				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 12));
 
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(
@@ -217,20 +217,20 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 								.addContainerGap(10, Short.MAX_VALUE))
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(label, 70, 70, Short.MAX_VALUE)
+								.addComponent(label, 90, 90, Short.MAX_VALUE)
 								.addContainerGap(5, Short.MAX_VALUE))
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(lblHighScore, 70, 70, Short.MAX_VALUE)
+								.addComponent(lblHighScore, 90, 90, Short.MAX_VALUE)
 								.addContainerGap(5, Short.MAX_VALUE))
 						);
 				gl_thePanel.setVerticalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(label, 10, 10, 10)
+								.addComponent(label, 20, 20, 20)
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(lblHighScore, 20, 20, 20)
+								.addComponent(lblHighScore, 30, 30, 30)
 								.addContainerGap(20, Short.MAX_VALUE)
 								.addGroup(gl_thePanel.createParallelGroup(Alignment.LEADING)
 										.addComponent(star[0], starSize, starSize, starSize)

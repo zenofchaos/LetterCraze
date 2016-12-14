@@ -42,6 +42,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 
 	private JPanel contentPane;
 	private static BuilderLevel l;
+	private static String levelIdentifier;
 
 	/**
 	 * Launch the application.
@@ -50,7 +51,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderEditorGUI frame = new BuilderEditorGUI(l);
+					BuilderEditorGUI frame = new BuilderEditorGUI(l, levelIdentifier);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,8 +63,9 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	/**
 	 * Create the application.
 	 */
-	public BuilderEditorGUI(BuilderLevel level) {
+	public BuilderEditorGUI(BuilderLevel level, String levelIdentifier) {
 		BuilderEditorGUI.l = level;
+		BuilderEditorGUI.levelIdentifier = levelIdentifier;
 		initialize();
 	}
 
@@ -198,7 +200,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		
 		JButton saveButton = new JButton("Save");
-		//saveButton.addActionListener(new BuilderSaveController(this));
+		saveButton.addActionListener(new BuilderSaveController(this, levelIdentifier));
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);

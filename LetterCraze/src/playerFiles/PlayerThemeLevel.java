@@ -1,5 +1,6 @@
 package playerFiles;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PlayerThemeLevel extends PlayerLevel {
@@ -52,9 +53,20 @@ public class PlayerThemeLevel extends PlayerLevel {
 	
 	@Override
 	boolean isValidWord(PlayerWord w) {
-		return themeWords.contains(w);
+		String toMatch = w.getWord();
+		Iterator<String> iterator = themeWords.iterator();
+		
+		while(iterator.hasNext()){
+			if(iterator.next() == toMatch){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
+	//Only the number of words matters for lightning levels,
+	//	so their point values are all 1
 	@Override
 	int wordScore(PlayerWord w) {
 		return 1;

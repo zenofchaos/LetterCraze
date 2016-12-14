@@ -1,23 +1,28 @@
 00000
 0
-Placeholder Level
-Everybody loves placeholders!
-1
-2
+Berry Blast
 3
+4
+5
 
-1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
+0 1 1 1 1 1
+1 0 1 1 1 1
+1 1 0 1 1 1
+1 1 1 0 1 1
+1 1 1 1 0 1
+1 1 1 1 1 0
 
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
+J W A T D O
+M B I P E P
+E N E P M U
+L R A K A A
+N R A A C V
+G O N A N O
 
-QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+Botanical Berries
+
+PUMPKIN
+AVOCADO
+BANANA
+GRAPE
+WATERMELON

@@ -100,7 +100,6 @@ public class BuilderMainMenuGUI extends JFrame implements IBuilderGUI {
 
 	@Override
 	public void refresh(Object o) {
-		// TODO Auto-generated method stub
-		
+		//BuilderMainMenu does not need to ever be updated		
 	}
 }

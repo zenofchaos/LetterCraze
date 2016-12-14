@@ -1,6 +1,8 @@
 package playerControllers;
 
 import java.util.Scanner;
+
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import playerFiles.*;
@@ -98,9 +100,9 @@ public class PlayerFileAccessController {
 		PlayerLevel level = new PlayerLightningLevel(starThresholds, bestScore, bestStars, isLocked, title, maxTime);
 		level.setBoard(board);
 
-		// Close FileCount
+		// Close File
 		input.close();
-				
+
 		return level;
 	}
 
@@ -120,14 +122,14 @@ public class PlayerFileAccessController {
 
 		// Now process the bitmap.
 
-		PlayerSquare[][] hypercube = new PlayerSquare[6][6];
+		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				hypercube[i][j] = new PlayerSquare(i, j);
-				hypercube[i][j].setActive(input.nextInt() == 1);
+				bitmap[i][j] = new PlayerSquare(i, j);
+				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
 		}
-		PlayerBoard board = new PlayerBoard(hypercube);
+		PlayerBoard board = new PlayerBoard(bitmap);
 
 		int moveNumber = input.nextInt();
 
@@ -137,7 +139,7 @@ public class PlayerFileAccessController {
 		PlayerLevel level = new PlayerPuzzleLevel(starThresholds, bestScore, bestStars, isLocked, title, moveNumber);
 		level.setBoard(board);
 
-		// Close FileCount
+		// Close File
 		input.close();
 
 		return level;
@@ -154,7 +156,6 @@ public class PlayerFileAccessController {
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
 		String title = input.nextLine();
-		String description = input.nextLine();
 
 		int[] starThresholds = { input.nextInt(), input.nextInt(), input.nextInt() };
 
@@ -191,6 +192,10 @@ public class PlayerFileAccessController {
 		}
 
 		PlayerBoard board = new PlayerBoard(bitmap);
+		
+		//now get the theme
+		input.nextLine();
+		String description = input.nextLine();
 
 		// now generate the linked list
 		LinkedList<String> list = new LinkedList<String>();
@@ -200,6 +205,9 @@ public class PlayerFileAccessController {
 
 		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, description, list, board);
 
+		// Close File
+		input.close();
+
 		return level;
 	}
 
@@ -208,31 +216,31 @@ public class PlayerFileAccessController {
 	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
-		
-		//convert ints to strings
+
+		// convert ints to strings
 		String bestScoreString = String.format("%05d\r\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
-		
+
 		rAFile.writeBytes(bestScoreString);
 		rAFile.writeBytes(bestStarsString);
-		
+
 		// Close FileCount
 		rAFile.close();
 	}
-	
+
 	// opens a puzzle level and replaces the previous high scores and stars
 	// with the given values
 	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
-		
-		//convert ints to strings
+
+		// convert ints to strings
 		String bestScoreString = String.format("%05d\r\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
-		
+
 		rAFile.writeBytes(bestScoreString);
 		rAFile.writeBytes(bestStarsString);
-		
+
 		// Close FileCount
 		rAFile.close();
 	}
@@ -242,17 +250,49 @@ public class PlayerFileAccessController {
 	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
-		
-		//convert ints to strings
+
+		// convert ints to strings
 		String bestScoreString = String.format("%05d\r\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
-		
+
 		rAFile.writeBytes(bestScoreString);
 		rAFile.writeBytes(bestStarsString);
-		
+
 		// Close FileCount
 		rAFile.close();
 	}
 
-}
+	public void unlockLightning() throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(10); //maybe someday I'll remember to explain these numbers (hint: it's the number of characters I have to jump forward)
 
+		String newNum = String.format("%02d", (unlockedL + 1));
+
+		rAFile.writeBytes(newNum);
+
+		rAFile.close();
+	}
+
+	public void unlockPuzzle() throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(13);
+
+		String newNum = String.format("%02d", (unlockedP + 1));
+
+		rAFile.writeBytes(newNum);
+
+		rAFile.close();
+	}
+
+	public void unlockTheme() throws Exception {
+		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
+		rAFile.seek(16);
+
+		String newNum = String.format("%02d", (unlockedT + 1));
+
+		rAFile.writeBytes(newNum);
+
+		rAFile.close();
+	}
+
+}

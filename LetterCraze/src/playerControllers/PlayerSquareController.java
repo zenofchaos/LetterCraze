@@ -64,7 +64,7 @@ public class PlayerSquareController implements MouseListener {
 	}
 	
 	private PlayerSquare thisSquare() {
-		return l().getBoard().getSquares()[row][col];
+		return l().getBoard().getSquareArray()[row][col];
 	}
 	
 	private boolean adjacencyRuleIsFollowed() {

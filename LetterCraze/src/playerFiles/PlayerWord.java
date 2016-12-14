@@ -104,12 +104,7 @@ public class PlayerWord {
 	
 	//Returns true if this word is a valid word
 	public boolean isValidWord(){
-		if (this.word.length() < 3){
-			return false;
-		}
-		else{
-			return WordTable.isWord(this.word);
-		}
+		return (this.word.length() >= 3) && (WordTable.isWord(this.word.toLowerCase()));
 	}
 	
 	//Adds the given square to the end of this word

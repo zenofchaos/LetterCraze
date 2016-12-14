@@ -66,7 +66,6 @@ public abstract class BuilderLevel {
 			for(int row = 0; row < 6; row++){
 				for(int col = 0; col < 6; col++){
 					squareArray[row][col] = new BuilderSquare(row, col);
-					squareArray[row][col] = null;
 				}
 			}
 			BuilderBoard newBoard = new BuilderBoard(squareArray);

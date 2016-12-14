@@ -25,7 +25,10 @@ public class BuilderSquareController implements MouseListener {
 	public void mouseClicked(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e) && ((e.getModifiers() == MouseEvent.BUTTON1_MASK))) {
 			toggle();
 			levelView.refresh(l());
@@ -33,18 +36,15 @@ public class BuilderSquareController implements MouseListener {
 	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		if (SwingUtilities.isLeftMouseButton(e)) {
+	public void mouseReleased(MouseEvent e) {
+		/*if (SwingUtilities.isLeftMouseButton(e))*/ {
 			toggle();
 			levelView.refresh(l());
 		}
 	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
 	
 	private BuilderLevel l() {
 		return levelView.getLevel();

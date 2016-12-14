@@ -108,7 +108,17 @@ public class PlayerBoard {
 				colToUpdate++;
 			}
 		}
-		
 		return null;
+	}
+	
+	public boolean removeWord(PlayerWord word){
+		List<PlayerSquare> squares = word.getSquares();
+		PlayerSquare toRemove;
+		for(int i = 0; i < squares.size(); i++){
+			toRemove = squares.get(i);
+			int row = toRemove.getRow();
+			int col = toRemove.getCol();
+		}
+		return false;
 	}
 }

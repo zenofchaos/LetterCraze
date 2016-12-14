@@ -149,6 +149,11 @@ public abstract class PlayerLevel {
 			else if (pointScore >= starThresholds[0]){
 				starCount = 1;
 			}
+			
+			this.board.removeWord(selectedWord);
+			this.board.rise();
+			this.board.replace();
+			
 			selectedWord = new PlayerWord();
 			return true;
 		} else {

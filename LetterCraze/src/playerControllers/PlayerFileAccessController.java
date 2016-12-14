@@ -176,6 +176,7 @@ public class PlayerFileAccessController {
 
 		input.nextLine();
 		String tempString;
+		PlayerLetter letter;
 		for (i = 0; i < 6; i++) {
 			input.nextLine();
 			for (j = 0; j < 6; j++) {
@@ -184,16 +185,25 @@ public class PlayerFileAccessController {
 				// tempString as its letter, then add that playerLetter to the
 				// PlayerSquare of row i and column j.
 				tempString = input.next();
-				if (tempString.equals("Q"))
-					tempString = "QU";
-				PlayerLetter letter = new PlayerLetter(tempString);
-				bitmap[i][j].setLetter(letter);
+				if (tempString.equals("*")){
+				// event of no letter being specified, necessitating use of
+				// a random letter. in this case we want to leave the letter
+				// null for this square. do nothing.
+				}
+				else if (tempString.equals("Q")) {
+					// just the Q. need to add the u.
+					letter = new PlayerLetter("QU");
+					bitmap[i][j].setLetter(letter);
+				} else {// any other letter
+					letter = new PlayerLetter(tempString);
+					bitmap[i][j].setLetter(letter);
+				}
 			}
 		}
 
 		PlayerBoard board = new PlayerBoard(bitmap);
-		
-		//now get the theme
+
+		// now get the theme
 		input.nextLine();
 		input.nextLine();
 		String description = input.nextLine();
@@ -204,7 +214,8 @@ public class PlayerFileAccessController {
 			list.add(input.next());
 		}
 
-		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, description, list, board);
+		PlayerLevel level = new PlayerThemeLevel(starThresholds, bestScore, bestStars, isLocked, title, description,
+				list, board);
 
 		// Close File
 		input.close();
@@ -265,7 +276,9 @@ public class PlayerFileAccessController {
 
 	public void unlockLightning() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(10); //maybe someday I'll remember to explain these numbers (hint: it's the number of characters I have to jump forward)
+		rAFile.seek(10); // maybe someday I'll remember to explain these numbers
+							// (hint: it's the number of characters I have to
+							// jump forward)
 
 		String newNum = String.format("%02d", (unlockedL + 1));
 

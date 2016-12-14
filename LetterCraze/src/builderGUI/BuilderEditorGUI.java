@@ -125,7 +125,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 				if (l.getBoard().getSquareArray()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
-					squarePanels[i][j].setBackground(Color.DARK_GRAY);
+					squarePanels[i][j].setBackground(Color.GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
 				if (l instanceof BuilderThemeLevel) {

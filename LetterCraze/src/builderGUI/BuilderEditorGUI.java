@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderOutsideGridController;
 import builderControllers.BuilderSquareController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
@@ -75,6 +76,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new BuilderOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

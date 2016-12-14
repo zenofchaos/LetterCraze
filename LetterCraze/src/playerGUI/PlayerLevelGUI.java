@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -79,10 +81,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		showComponents();
+		showComponents(0);
 	}
 	
-	private void showComponents() {
+	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
 		int borderSize = h * 1/80;
@@ -136,7 +138,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		
 		String wordsFound = "<html>";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "<br>";
+			wordsFound += l.getWordsEntered().get(i).getWord().toUpperCase() + properWordPoints(i) + "<br>";
 		}
 		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
@@ -146,13 +148,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 		wordsFoundLabel.setBounds(0, 0, w * 15/64, l.getWordsEntered().size() * h * 7/240);
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
-		wordsFoundScrollPane.getVerticalScrollBar().setValue(wordsFoundScrollPane.getVerticalScrollBar().getMaximum());
+		wordsFoundScrollPane.getVerticalScrollBar().setValue(placeToScroll);
 		wordsFoundScrollPane.setForeground(Color.WHITE);
 		wordsFoundScrollPane.setBackground(Color.DARK_GRAY);
 		wordsFoundScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 		contentPane.add(wordsFoundScrollPane);
 		
-		String selectedWord = l.getSelectedWord().getWord();
+		String selectedWord = l.getSelectedWord().getWord().toUpperCase();
 		JLabel selectedWordLabel = new JLabel(selectedWord);
 		selectedWordLabel.setForeground(Color.YELLOW);
 		selectedWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -166,7 +168,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			selectedWordScoreLabel.setForeground(Color.YELLOW);
 			selectedWordScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			selectedWordScoreLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/24));
-			selectedWordScoreLabel.setBounds(w * 1/32, h * 41/48, w * 15/64, h * 1/16);
+			selectedWordScoreLabel.setBounds(w * 1/32, h * 27/32, w * 15/64, h * 1/16);
 			contentPane.add(selectedWordScoreLabel);
 		}
 		
@@ -328,6 +330,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		}
 		return subscripts;
 	}
+	
+	private JScrollPane getScrollPane() {
+		Component[] components = contentPane.getComponents();
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JScrollPane) {
+				return (JScrollPane)components[i];
+			}
+		}
+		return new JScrollPane();
+	}
 
 	@Override
 	public void openWindow() {
@@ -347,9 +359,19 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	@Override
 	public void refresh(Object level) {
+		int placeToScroll = getScrollPane().getVerticalScrollBar().getValue();
 		l = (PlayerLevel)level;
 		contentPane.removeAll();
-		showComponents();
+		showComponents(placeToScroll);
+		contentPane.repaint();
+		contentPane.validate();
+	}
+	
+	public void refreshAndScroll(Object level) {
+		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();
+		l = (PlayerLevel)level;
+		contentPane.removeAll();
+		showComponents(placeToScroll);
 		contentPane.repaint();
 		contentPane.validate();
 	}

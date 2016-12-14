@@ -116,8 +116,7 @@ public class PlayerBoard {
 		PlayerSquare toRemove;
 		for(int i = 0; i < squares.size(); i++){
 			toRemove = squares.get(i);
-			int row = toRemove.getRow();
-			int col = toRemove.getCol();
+			this.squares[toRemove.getRow()][toRemove.getCol()].removeLetter();
 		}
 		return false;
 	}

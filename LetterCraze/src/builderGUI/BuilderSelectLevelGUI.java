@@ -149,49 +149,13 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		puzzleInnerPanel.setBackground(Color.LIGHT_GRAY);
 		puzzleScrollPane.setViewportView(puzzleInnerPanel);
 		
-		
-		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
-		
-		for(int j = 0; j < levelTypes.length; j++){
-			JPanel newLevel = new JPanel();
-			newLevel.setBackground(Color.gray);
-			
-			JLabel add = new JLabel(plusSign);
-			
-			GroupLayout gl_newLevel = new GroupLayout(newLevel);
-			gl_newLevel.setHorizontalGroup(
-					gl_newLevel.createSequentialGroup()
-					.addGap(20)
-					.addComponent(add)
-					.addGap(20));
-			
-			gl_newLevel.setVerticalGroup(
-					gl_newLevel.createSequentialGroup()
-					.addGap(20)
-					.addComponent(add)
-					.addGap(20));
-			
-			if(levelTypes[j].equals("Puzzle")){
-				puzzleInnerPanel.add(newLevel);
-				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "P"));
-			}
-			else if(levelTypes[j].equals("Lightning")){
-				lightningInnerPanel.add(newLevel);
-				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "L"));
-			}
-			else if(levelTypes[j].equals("Theme")){
-				themeInnerPanel.add(newLevel);
-				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "T"));
-			}
-		}
-		
 		BuilderMenuIterator menuIterator = theMenu.iterator();
 
+		int numPLevels = 0;
+		int numTLevels = 0;
+		int numLLevels = 0;
 		for(int lType = 0; lType < levelTypes.length; lType++){
-			int numLevels = 0;
 			while(menuIterator.hasNext(levelTypes[lType])){
-				numLevels++;
-				
 				BuilderLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
 				JPanel thePanel = new JPanel();
@@ -199,16 +163,19 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				String levelLabel = "";
 				switch(type){
 					case "Puzzle":
+						numPLevels++;
 						levelLabel = "P";
-						levelLabel+= numLevels;
+						levelLabel+= numPLevels;
 						break;
 					case "Lightning":
+						numLLevels++;
 						levelLabel = "L";
-						levelLabel+= numLevels;
+						levelLabel+= numLLevels;
 						break;
 					case "Theme":
+						numTLevels++;
 						levelLabel = "T";
-						levelLabel+= numLevels;
+						levelLabel+= numTLevels;
 						break;
 					default:
 						System.out.println("switch statement error in Player Select Level GUI for determining level type");
@@ -258,6 +225,47 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				else if(levelTypes[lType].equals("Lightning")){
 					lightningInnerPanel.add(thePanel);
 				}
+			}
+		}
+		
+		ImageIcon plusSign = new ImageIcon("./images/plusSign.png");
+		
+		for(int j = 0; j < levelTypes.length; j++){
+			JPanel newLevel = new JPanel();
+			newLevel.setBackground(Color.gray);
+			
+			JLabel add = new JLabel(plusSign);
+			
+			GroupLayout gl_newLevel = new GroupLayout(newLevel);
+			gl_newLevel.setHorizontalGroup(
+					gl_newLevel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
+			
+			gl_newLevel.setVerticalGroup(
+					gl_newLevel.createSequentialGroup()
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
+			
+			if(levelTypes[j].equals("Puzzle")){
+				puzzleInnerPanel.add(newLevel);
+				String levelIdentifier = "P";
+				levelIdentifier+= numPLevels + 1;
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, levelIdentifier));
+			}
+			else if(levelTypes[j].equals("Lightning")){
+				lightningInnerPanel.add(newLevel);
+				String levelIdentifier = "L";
+				levelIdentifier+= numLLevels + 1;
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, levelIdentifier));
+			}
+			else if(levelTypes[j].equals("Theme")){
+				themeInnerPanel.add(newLevel);
+				String levelIdentifier = "T";
+				levelIdentifier+= numTLevels + 1;
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, levelIdentifier));
 			}
 		}
 		

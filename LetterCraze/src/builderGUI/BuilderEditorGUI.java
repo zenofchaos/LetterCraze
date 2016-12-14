@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -88,10 +90,10 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		showComponents();
+		showComponents(0);
 	}
 	
-	private void showComponents() {
+	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
 		int borderSize = h * 1/80;
@@ -150,16 +152,18 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		
 		if (l instanceof BuilderThemeLevel) {
-			String wordsToFind = "";
+			String wordsToFind = "<html>";
 			for (int i = 0; i < ((BuilderThemeLevel)l).getThemeWords().size(); i++) {
-				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i) + "\n";
+				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "<br>";
 			}
+			wordsToFind += "</html>";
 			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
-			wordsToFindTextPane.setForeground(Color.WHITE);
+			wordsToFindTextPane.setBackground(Color.WHITE);
+			wordsToFindTextPane.setForeground(Color.BLACK);
 			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 			wordsToFindTextPane.setBounds(0, 0, w * 15/64, ((BuilderThemeLevel)l).getThemeWords().size() * h * 7/240);
 			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindTextPane);
-			wordsToFindScrollPane.getVerticalScrollBar().setValue(wordsToFindScrollPane.getVerticalScrollBar().getMaximum());
+			wordsToFindScrollPane.getVerticalScrollBar().setValue(placeToScroll);
 			wordsToFindScrollPane.setForeground(Color.WHITE);
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
@@ -271,6 +275,16 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	private JScrollPane getScrollPane() {
+		Component[] components = contentPane.getComponents();
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JScrollPane) {
+				return (JScrollPane)components[i];
+			}
+		}
+		return new JScrollPane();
+	}
+	
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
@@ -289,9 +303,19 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	
 	@Override
 	public void refresh(Object level) {
+		int placeToScroll = getScrollPane().getVerticalScrollBar().getValue();
 		l = (BuilderLevel)level;
 		contentPane.removeAll();
-		showComponents();
+		showComponents(placeToScroll);
+		contentPane.repaint();
+		contentPane.validate();
+	}
+	
+	public void refreshAndScroll(Object level) {
+		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();
+		l = (BuilderLevel)level;
+		contentPane.removeAll();
+		showComponents(placeToScroll);
 		contentPane.repaint();
 		contentPane.validate();
 	}

@@ -142,6 +142,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		}
 		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
+		wordsFoundLabel.setBackground(Color.WHITE);
 		wordsFoundLabel.setForeground(Color.BLACK);
 		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		wordsFoundLabel.setVerticalAlignment(SwingConstants.TOP);

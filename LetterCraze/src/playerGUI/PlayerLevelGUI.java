@@ -114,8 +114,8 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
 				squarePanels[i][j].addMouseListener(new PlayerSquareController(this, i, j));
-				if (l.getBoard().getSquares()[i][j].getActive()) {
-					if (l.squareIsSelected(l.getBoard().getSquares()[i][j])) {
+				if (l.getBoard().getSquareArray()[i][j].getActive()) {
+					if (l.squareIsSelected(l.getBoard().getSquareArray()[i][j])) {
 						squarePanels[i][j].setBackground(Color.YELLOW);
 					} else {
 						squarePanels[i][j].setBackground(Color.WHITE);
@@ -124,7 +124,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquares()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j, h)));
@@ -252,7 +252,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	private int properLetterSize(int i, int j, int h) {
-		if ((l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
+		if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
 			return h * 1/30;
 		} else {
 			return h * 1/24;
@@ -261,18 +261,18 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
-		if (l.getBoard().getSquares()[i][j].getLetter().getLetter() == "Qu") {
+		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
 			spaceIfNotQu = "";
 		} else {
 			spaceIfNotQu = " ";
 		}
 		if (l instanceof PlayerPuzzleLevel) {
-			return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+			return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
 		} else if (l instanceof PlayerLightningLevel) {
 			return "";
 		} else if (l instanceof PlayerThemeLevel) {
 			return "";
-		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquares()[i][j].getLetter().getPoints());
+		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
 	}
 	
 	private String properWordPoints(int i) {

@@ -13,7 +13,7 @@ int maxTime;
 		return this.maxTime;
 	}
 	
-	boolean setMaxTime(int maxTime){
+	public boolean setMaxTime(int maxTime){
 		this.maxTime = maxTime;
 		return true;
 	}

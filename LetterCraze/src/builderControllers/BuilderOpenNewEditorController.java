@@ -2,6 +2,7 @@ package builderControllers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.LinkedList;
 
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderMenu;
@@ -40,7 +41,8 @@ public class BuilderOpenNewEditorController implements MouseListener{
 		}
 		else if(this.type == "T"){
 			int[] empty = new int[3];
-			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", null, null);
+			LinkedList<String> words = new LinkedList<String>();
+			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", words, null);
 			level.initEmptyBoard();
 			BuilderEditorGUI window = new BuilderEditorGUI(level);
 			window.openWindow();

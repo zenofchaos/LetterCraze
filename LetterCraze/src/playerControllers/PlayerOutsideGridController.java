@@ -35,10 +35,14 @@ public class PlayerOutsideGridController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			l().setSelectedWord(new PlayerWord());
+			levelView.refresh(l());
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			l().submitSelectedWord();
+			if (l().submitSelectedWord()) {
+				levelView.refreshAndScroll(l());
+			} else {
+				levelView.refresh(l());
+			}
 		}
-		levelView.refresh(l());
 	}
 
 	@Override

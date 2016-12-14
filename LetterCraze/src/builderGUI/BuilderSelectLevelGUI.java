@@ -21,7 +21,6 @@ import builderControllers.BuilderOpenNewEditorController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
 import builderFiles.BuilderMenuIterator;
-import playerControllers.PlayerLSController;
 
 public class BuilderSelectLevelGUI implements IBuilderGUI{
 
@@ -81,11 +80,11 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
 				);
 		groupLayout.setVerticalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
 				);
 
 		JScrollPane puzzleScrollPane = new JScrollPane();
@@ -161,15 +160,15 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 			GroupLayout gl_newLevel = new GroupLayout(newLevel);
 			gl_newLevel.setHorizontalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addGap(30)
-					.addComponent(add, 80, 80, Short.MAX_VALUE)
-					.addGap(30));
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			gl_newLevel.setVerticalGroup(
 					gl_newLevel.createSequentialGroup()
-					.addGap(30)
-					.addComponent(add, 80, 80, Short.MAX_VALUE)
-					.addGap(30));
+					.addGap(20)
+					.addComponent(add)
+					.addGap(20));
 			
 			if(levelTypes[j].equals("Puzzle")){
 				puzzleInnerPanel.add(newLevel);
@@ -231,21 +230,21 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(label, 90, 90, Short.MAX_VALUE)
+								.addComponent(label, 90, 90, 90)
 								.addContainerGap(5, Short.MAX_VALUE))
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
-								.addComponent(btnDelete)
+								.addComponent(btnDelete, 90, 90, 90)
 								.addContainerGap(5, Short.MAX_VALUE))
 						);
 				gl_thePanel.setVerticalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
-								.addContainerGap(5, Short.MAX_VALUE)
+								.addGap(25)
 								.addComponent(label, 20, 20, 20)
-								.addGap(35)
-								.addComponent(btnDelete)
-								.addContainerGap(20, Short.MAX_VALUE))
+								.addGap(25)
+								.addComponent(btnDelete, 20, 20, 20)
+								.addGap(20))
 						);
 				thePanel.setLayout(gl_thePanel);
 				

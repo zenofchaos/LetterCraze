@@ -195,6 +195,7 @@ public class PlayerFileAccessController {
 		
 		//now get the theme
 		input.nextLine();
+		input.nextLine();
 		String description = input.nextLine();
 
 		// now generate the linked list

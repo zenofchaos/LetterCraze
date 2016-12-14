@@ -50,10 +50,14 @@ public class PlayerSquareController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		if ((SwingUtilities.isLeftMouseButton(e)) && (thisSquare().getActive())) {
 			l().setSelectedWord(new PlayerWord(thisSquare()));
+			levelView.refresh(l());
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			l().submitSelectedWord();
+			if (l().submitSelectedWord()) {
+				levelView.refreshAndScroll(l());
+			} else {
+				levelView.refresh(l());
+			}
 		}
-		levelView.refresh(l());
 	}
 
 	@Override

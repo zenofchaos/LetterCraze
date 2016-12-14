@@ -10,12 +10,12 @@ import builderGUI.BuilderEditorGUI;
 
 public class BuilderAddStarThreshold implements ActionListener {
 	BuilderEditorGUI builderEditorView;
-	//BuilderLevel level;
+	BuilderLevel level;
 	int starNum;
 	
 	public BuilderAddStarThreshold(BuilderEditorGUI builderEditorView, int starNum){
 		this.builderEditorView = builderEditorView;
-		//this.level = builderEditorView.l();
+		this.level = builderEditorView.getLevel();
 		this.starNum = starNum;
 	}
 	
@@ -36,8 +36,14 @@ public class BuilderAddStarThreshold implements ActionListener {
 		if (validNum){
 			int starThreshold = Integer.parseInt(threshold);
 			System.out.println(starThreshold);
+			int[] thresholds = level.getStarThresholds();
+			thresholds[starNum] = starThreshold;
+			level.setStarThresholds(thresholds);
+			builderEditorView.refresh(level);
+			
 		}
 		else{ 
+			builderEditorView.refresh(level);
 			System.out.println("star Threshold value entered not a valid number");
 		}
 	}

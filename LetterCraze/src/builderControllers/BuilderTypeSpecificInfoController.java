@@ -9,15 +9,13 @@ import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
+//TODO:WEIRD CASTING STUFF GOING ON WITH LEVEL TYPES HERE, NOT SURE THIS IS GOOD.... MIGHT WANT TO MAKE THREE DIFFERENT CONTROLLERS
+
 public class BuilderTypeSpecificInfoController implements ActionListener {
 	BuilderEditorGUI builderEditorView;
-	String type;
-	BuilderLevel level;
 	
-	public BuilderTypeSpecificInfoController(BuilderEditorGUI builderEditorView, String type){
+	public BuilderTypeSpecificInfoController(BuilderEditorGUI builderEditorView){
 		this.builderEditorView = builderEditorView;
-		this.type = type;
-		this.level = builderEditorView.getLevel();
 	}
 	
 	
@@ -25,39 +23,39 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
 		input.trim();
-		if(this.type == "P"){
-			System.out.println("puzzle specific input");
-			System.out.println(input);
+		if (builderEditorView.getLevel() instanceof BuilderPuzzleLevel){
+			BuilderPuzzleLevel level = (BuilderPuzzleLevel) builderEditorView.getLevel();
 			if(isValidNumber(input)){
 				int maxMoves = Integer.parseInt(input);
-				// store max moves in level info
-				// refresh screen
+				level.setWordLimit(maxMoves);
+				builderEditorView.refresh(level);
 			}
 			else{
 				System.out.println("max number of moves not a valid input");
-				// refresh screen
+				builderEditorView.refresh(level);
 			}
 		}
-		else if(this.type == "T"){
-			System.out.println("theme specific input");
-			System.out.println(input);
-			// save description somewhere
+		else if(builderEditorView.getLevel() instanceof BuilderThemeLevel){
+			BuilderThemeLevel level = (BuilderThemeLevel) builderEditorView.getLevel();
+			level.setDescription(input);
+			builderEditorView.refresh(level);
+			
 		}
-		else if(this.type == "L"){
-			System.out.println("Lightning specific input");
-			System.out.println(input);
+		else if(builderEditorView.getLevel() instanceof BuilderLightningLevel){
+			BuilderLightningLevel level = (BuilderLightningLevel) builderEditorView.getLevel();
 			if(isValidNumber(input)){
 				int maxTime = Integer.parseInt(input);
-				// store max moves in level info
-				// refresh screen
+				level.setMaxTime(maxTime);
+				builderEditorView.refresh(level);
 			}
 			else{
 				System.out.println("max time of moves not a valid input");
-				// refresh screen
+				builderEditorView.refresh(level);
+				
 			}
 		}
 		else{
-			System.out.println("Invalid type sent to BuilderOpenNewEditorController");
+			System.out.println("Invalid level type sent to BuilderOpenNewEditorController");
 		}
 
 	}

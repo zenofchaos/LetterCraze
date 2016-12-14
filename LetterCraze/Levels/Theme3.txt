@@ -1,24 +1,28 @@
 00000
 0
-Placeholder Level
-1
-2
+Go Down in History
 3
+4
+5
 
+1 1 1 0 0 0
 1 1 1 1 1 1
+1 1 1 0 0 0
 1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
-1 1 1 1 1 1
+0 0 0 0 0 0
 1 1 1 1 1 1
 
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
+C K H U D H
+A I S O O T
+J N X B A M
+R A N O N A
+D I T F A W
+G N A M S I
 
-Everybody loves placeholders!
+Last names of U.S. presidents
 
-QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+HARDING
+JACKSON
+NIXON
+OBAMA
+TAFT

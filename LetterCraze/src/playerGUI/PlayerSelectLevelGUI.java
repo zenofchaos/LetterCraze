@@ -84,11 +84,11 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
 				);
 		groupLayout.setVerticalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
 				);
 
 		JScrollPane puzzleScrollPane = new JScrollPane();
@@ -198,23 +198,23 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 				JLabel label = new JLabel(tempLevel.getTitle());
 				label.setHorizontalAlignment(SwingConstants.CENTER);
 				label.setToolTipText(tempLevel.getTitle());
-				label.setFont(new Font("Dialog", Font.BOLD, 12));
+				label.setFont(new Font("Dialog", Font.BOLD, 10));
 				label.setForeground(Color.WHITE);
 
 				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
 				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
 				lblHighScore.setForeground(Color.WHITE);
-				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 12));
+				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
 
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_thePanel.createSequentialGroup()
-								.addContainerGap(10, Short.MAX_VALUE)
+								.addContainerGap(20, Short.MAX_VALUE)
 								.addComponent(star[0], starSize, starSize, Short.MAX_VALUE)
 								.addComponent(star[1], starSize, starSize, Short.MAX_VALUE)
 								.addComponent(star[2], starSize, starSize, Short.MAX_VALUE)
-								.addContainerGap(10, Short.MAX_VALUE))
+								.addContainerGap(20, Short.MAX_VALUE))
 						.addGroup(gl_thePanel.createSequentialGroup()
 								.addContainerGap(5, Short.MAX_VALUE)
 								.addComponent(label, 90, 90, Short.MAX_VALUE)

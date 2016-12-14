@@ -134,13 +134,15 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			}
 		}
 		
-		String wordsFound = "";
+		String wordsFound = "<html>";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "\n";
+			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "<br>";
 		}
+		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
-		wordsFoundLabel.setForeground(Color.WHITE);
+		wordsFoundLabel.setForeground(Color.BLACK);
 		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		wordsFoundLabel.setVerticalAlignment(SwingConstants.TOP);
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 		wordsFoundLabel.setBounds(0, 0, w * 15/64, l.getWordsEntered().size() * h * 7/240);
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
@@ -277,12 +279,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
-			return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
+			return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
 		} else if (l instanceof PlayerLightningLevel) {
 			return "";
 		} else if (l instanceof PlayerThemeLevel) {
 			return "";
-		} else return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
+		} else return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
 	}
 	
 	private int properResetX(int w) {

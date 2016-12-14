@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import builderControllers.BuilderDeleteLevelController;
+import builderControllers.BuilderOpenLevelSelectController;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
@@ -198,6 +202,8 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				JButton btnDelete = new JButton();
 				btnDelete.setText("Delete");
 				btnDelete.setFont(new Font("Dialog", Font.BOLD, 10));
+//				btnDelete.addActionListener(new BuilderDeleteLevelController());
+
 				
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(

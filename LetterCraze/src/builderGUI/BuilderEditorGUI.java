@@ -22,7 +22,9 @@ import javax.swing.border.EmptyBorder;
 import builderControllers.BuilderAddLetterController;
 import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
+import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderOutsideGridController;
 import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
 import builderControllers.BuilderTypeSpecificInfoController;
@@ -79,6 +81,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new BuilderOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -108,7 +111,6 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(titleTextField);
 		
 		JLabel subtitleLabel = new JLabel(properSubtitleType()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
-		
 		subtitleLabel.setForeground(Color.WHITE);
 		subtitleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		subtitleLabel.setFont(new Font("Dialog", Font.BOLD, h * 1/30));
@@ -211,18 +213,6 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
-	}
-	
-	private String getTypeIdentifier() {
-		if (l instanceof BuilderPuzzleLevel) {
-			return "P";
-		} else if (l instanceof BuilderLightningLevel) {
-			return "L";
-		} else if (l instanceof BuilderThemeLevel) {
-			return "T";
-		} else {
-			return "";
-		}
 	}
 	
 	private String properTitle() {

@@ -1,4 +1,4 @@
-package playerGUI;
+package builderGUI;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,19 +17,17 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
-import playerControllers.PlayerLvlBackController;
-import playerControllers.PlayerOutsideGridController;
-import playerControllers.PlayerSquareController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
 import playerFiles.PlayerThemeLevel;
+import playerGUI.IPlayerGUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
+public class BuilderPreviewGUI extends JFrame implements IPlayerGUI {
 
 	private JPanel contentPane;
 	private static PlayerLevel l;
@@ -41,7 +39,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLevelGUI frame = new PlayerLevelGUI(l);
+					BuilderPreviewGUI frame = new BuilderPreviewGUI(l);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,8 +51,8 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevelGUI(PlayerLevel level) {
-		PlayerLevelGUI.l = level;
+	public BuilderPreviewGUI(PlayerLevel level) {
+		BuilderPreviewGUI.l = level;
 		initialize();
 	}
 	
@@ -72,7 +70,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 200, 640, 480);
 		contentPane = new JPanel();
-		contentPane.addMouseListener(new PlayerOutsideGridController(this));
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -113,7 +110,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		for (int i = 0; i < 6; i++) { // i is the row number
 			for (int j = 0; j < 6; j++) { // j is the column number
 				squarePanels[i][j] = new JPanel();
-				squarePanels[i][j].addMouseListener(new PlayerSquareController(this, i, j));
 				if (l.getBoard().getSquareArray()[i][j].getActive()) {
 					if (l.squareIsSelected(l.getBoard().getSquareArray()[i][j])) {
 						squarePanels[i][j].setBackground(Color.YELLOW);
@@ -134,15 +130,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			}
 		}
 		
-		String wordsFound = "<html>";
+		String wordsFound = "";
 		for (int i = 0; i < l.getWordsEntered().size(); i++) {
-			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "<br>";
+			wordsFound += l.getWordsEntered().get(i).getWord() + properWordPoints(i) + "\n";
 		}
-		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
-		wordsFoundLabel.setForeground(Color.BLACK);
+		wordsFoundLabel.setForeground(Color.WHITE);
 		wordsFoundLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		wordsFoundLabel.setVerticalAlignment(SwingConstants.TOP);
 		wordsFoundLabel.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 		wordsFoundLabel.setBounds(0, 0, w * 15/64, l.getWordsEntered().size() * h * 7/240);
 		JScrollPane wordsFoundScrollPane = new JScrollPane(wordsFoundLabel);
@@ -227,7 +221,6 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(resetButton);
 		
 		JButton backButton = new JButton("Back to Menu");
-		backButton.addActionListener(new PlayerLvlBackController(this));
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
@@ -279,12 +272,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
-			return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
+			return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
 		} else if (l instanceof PlayerLightningLevel) {
 			return "";
 		} else if (l instanceof PlayerThemeLevel) {
 			return "";
-		} else return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
+		} else return "\t\t\t" + l.getWordsEntered().get(i).getPointVal();
 	}
 	
 	private int properResetX(int w) {

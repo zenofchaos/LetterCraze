@@ -6,9 +6,6 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import builderFiles.*;
-import playerFiles.PlayerLevel;
-import playerFiles.PlayerPuzzleLevel;
-import playerFiles.PlayerThemeLevel;
 
 /**
  * BuilderFileAccessController is used to load and save information about the
@@ -53,6 +50,8 @@ public class BuilderFileAccessController {
 		BuilderModel model = new BuilderModel();
 		BuilderMenu menu = model.getMenu();
 
+		//Open and Read FileCount
+		
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		input = new Scanner(file);
@@ -371,10 +370,25 @@ public class BuilderFileAccessController {
 	}
 
 	public void adjustLightningCount(int offset) throws Exception {
+
+		//Open and read FileCount
+		
+		// Open FileCount
+		file = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(file);
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
+		//open FileCount again for writing
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(0); // the Lightning Count is always the first (2) byte(s)
 						// in FileCount.
-
+		
 		String newCount = String.format("%02d", (numL + offset));
 
 		rAFile.writeBytes(newCount);
@@ -383,6 +397,22 @@ public class BuilderFileAccessController {
 	}
 
 	public void adjustPuzzleCount(int offset) throws Exception {
+
+		//Open and read FileCount
+		
+		// Open FileCount
+		file = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(file);
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
+		//open FileCount again for writing
+
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(3);
 
@@ -394,6 +424,21 @@ public class BuilderFileAccessController {
 	}
 
 	public void adjustThemeCount(int offset) throws Exception {
+
+		//Open and read FileCount
+		
+		// Open FileCount
+		file = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(file);
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
+		//open FileCount again for writing
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(6);
 

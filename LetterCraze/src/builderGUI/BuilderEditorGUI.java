@@ -24,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 import builderControllers.BuilderAddLetterController;
 import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
-import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderOutsideGridController;
 import builderControllers.BuilderSaveController;
@@ -109,7 +108,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		titleTextField.addActionListener(new BuilderAddTitle(this));
 		titleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		titleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
-		titleTextField.setBounds(w * 5/16, h * 1/8, h * 1/2, h * 1/20);
+		titleTextField.setBounds(w * 5/16 + borderSize, h * 1/8, h * 1/2 - borderSize, h * 1/20);
 		contentPane.add(titleTextField);
 		
 		JLabel subtitleLabel = new JLabel(properSubtitleType()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
@@ -123,7 +122,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this));
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
-		subtitleTextField.setBounds(w * 5/16, h * 3/16, properSubtitleWidth(w, h), h * 1/20);
+		subtitleTextField.setBounds(w * 5/16 + borderSize, h * 3/16, properSubtitleWidth(w, h, borderSize), h * 1/20);
 		contentPane.add(subtitleTextField);
 		
 		JTextField[][] letterTextFields = new JTextField[6][6];
@@ -152,11 +151,10 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		
 		if (l instanceof BuilderThemeLevel) {
-			String wordsToFind = "<html>";
+			String wordsToFind = "";
 			for (int i = 0; i < ((BuilderThemeLevel)l).getThemeWords().size(); i++) {
-				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "<br>";
+				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "\n";
 			}
-			wordsToFind += "</html>";
 			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
 			wordsToFindTextPane.setBackground(Color.WHITE);
 			wordsToFindTextPane.setForeground(Color.BLACK);
@@ -169,6 +167,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
 		}
+		
+		JButton wordsToFindButton = new JButton("Save Word List");
+		wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
+		contentPane.add(wordsToFindButton);
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
 		scoreProgressBar.setForeground(Color.YELLOW);
@@ -201,7 +204,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
-		JButton saveButton = new JButton("Save");
+		JButton saveButton = new JButton("Save Level");
 		saveButton.addActionListener(new BuilderSaveController(this));
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
@@ -255,15 +258,15 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
-	private int properSubtitleWidth(int w, int h) {
+	private int properSubtitleWidth(int w, int h, int borderSize) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return w * 1/16;
 		} else if (l instanceof BuilderLightningLevel) {
 			return w * 1/16;
 		} else if (l instanceof BuilderThemeLevel) {
-			return h * 1/2;
+			return h * 1/2 - borderSize;
 		} else {
-			return h * 1/2;
+			return h * 1/2 - borderSize;
 		}
 	}
 	

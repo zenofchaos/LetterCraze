@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderAddLetterController;
 import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
@@ -115,7 +116,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(subtitleLabel);
 		
 		JTextField subtitleTextField = new JTextField(properSubtitle());
-		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this, getTypeIdentifier()));
+		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this));
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
 		subtitleTextField.setBounds(w * 5/16, h * 3/16, properSubtitleWidth(w, h), h * 1/20);
@@ -139,6 +140,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 					letterTextFields[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 					letterTextFields[i][j].setFont(new Font("Dialog", Font.BOLD, h * 1/24));
 					letterTextFields[i][j].setBounds(0, 0, h * 1/12, h * 1/16);
+					letterTextFields[i][j].addActionListener(new BuilderAddLetterController(this, i, j));
 					squarePanels[i][j].add(letterTextFields[i][j]);
 				}
 				contentPane.add(squarePanels[i][j]);

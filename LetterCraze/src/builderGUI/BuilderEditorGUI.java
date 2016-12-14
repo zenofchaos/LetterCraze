@@ -15,9 +15,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
+import builderControllers.BuilderTypeSpecificInfoController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
@@ -99,6 +102,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(subtitleLabel);
 		
 		JTextField subtitleTextField = new JTextField(properSubtitle());
+		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this, gettypeIdentifier()));
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, 16));
 		subtitleTextField.setBounds(200, 90, properSubtitleWidth(h), 24);
@@ -113,7 +117,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 				if (l.getBoard().getSquareArray()[i][j].getActive()) {
 					squarePanels[i][j].setBackground(Color.WHITE);
 				} else {
-					squarePanels[i][j].setBackground(Color.DARK_GRAY);
+					squarePanels[i][j].setBackground(Color.GRAY);
 				}
 				squarePanels[i][j].setBounds(w / 2 + h * (j - 3) / 12, h * (i + 3) / 12, h / 12, h / 12);
 				squarePanels[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1, false));
@@ -170,10 +174,12 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			starThresholdTextFields[i].setHorizontalAlignment(SwingConstants.LEFT);
 			starThresholdTextFields[i].setFont(new Font("Dialog", Font.PLAIN, 20));
 			starThresholdTextFields[i].setBounds(w - 60, (h - 60) - 20 - (h - 120) * (i + 1) / 3, 60, 20);
+			starThresholdTextFields[i].addActionListener(new BuilderAddStarThreshold(this, i));
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
 		JButton saveButton = new JButton("Save");
+		saveButton.addActionListener(new BuilderSaveController(this));
 		saveButton.setFont(new Font("Dialog", Font.BOLD, 15));
 		saveButton.setBounds(w / 2 - 110, h - 100, 100, 40);
 		contentPane.add(saveButton);
@@ -190,6 +196,18 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(backButton);
 	}
 	
+	private String gettypeIdentifier() {
+		if (l instanceof BuilderPuzzleLevel) {
+			return "P";
+		} else if (l instanceof BuilderLightningLevel) {
+			return "L";
+		} else if (l instanceof BuilderThemeLevel) {
+			return "T";
+		} else {
+			return "";
+		}
+	}
+
 	private String properTitle() {
 		try {
 			return l.getTitle();

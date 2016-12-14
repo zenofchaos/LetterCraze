@@ -4,19 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import builderGUI.BuilderEditorGUI;
-import builderGUI.BuilderSelectLevelGUI;
 
-public class BuilderCloseEditorController implements ActionListener{
+public class BuilderSaveController implements ActionListener{
 	BuilderEditorGUI editorView;
 	
-	public BuilderCloseEditorController(BuilderEditorGUI editorView) {
+	public BuilderSaveController(BuilderEditorGUI editorView) {
 		this.editorView = editorView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("save button pressed");
+		// code goes here to save the level information
 		editorView.closeWindow();
 	}
-	
-	
+
 }

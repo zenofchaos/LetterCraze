@@ -15,9 +15,13 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import builderControllers.BuilderCloseLevelMenuController;
+import builderControllers.BuilderOpenExistingEditorController;
+import builderControllers.BuilderOpenNewEditorController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
 import builderFiles.BuilderMenuIterator;
+import playerControllers.PlayerLSController;
 
 public class BuilderSelectLevelGUI implements IBuilderGUI{
 
@@ -97,6 +101,7 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		JLabel lblThemeLevels = new JLabel("Theme Levels");
 
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new BuilderCloseLevelMenuController(this));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 				gl_panel.createParallelGroup(Alignment.LEADING)
@@ -168,12 +173,15 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 			
 			if(levelTypes[j].equals("Puzzle")){
 				puzzleInnerPanel.add(newLevel);
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "P"));
 			}
 			else if(levelTypes[j].equals("Lightning")){
 				lightningInnerPanel.add(newLevel);
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "L"));
 			}
 			else if(levelTypes[j].equals("Theme")){
 				themeInnerPanel.add(newLevel);
+				newLevel.addMouseListener(new BuilderOpenNewEditorController(this, "T"));
 			}
 		}
 		
@@ -187,6 +195,25 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				BuilderLevel tempLevel = menuIterator.next(levelTypes[lType]);
 
 				JPanel thePanel = new JPanel();
+				String type = levelTypes[lType];
+				String levelLabel = "";
+				switch(type){
+					case "Puzzle":
+						levelLabel = "P";
+						levelLabel+= numLevels;
+						break;
+					case "Lightning":
+						levelLabel = "L";
+						levelLabel+= numLevels;
+						break;
+					case "Theme":
+						levelLabel = "T";
+						levelLabel+= numLevels;
+						break;
+					default:
+						System.out.println("switch statement error in Player Select Level GUI for determining level type");
+				}
+				thePanel.addMouseListener(new BuilderOpenExistingEditorController(this, levelLabel));
 				thePanel.setBackground(Color.gray);
 
 				JLabel label = new JLabel(tempLevel.getTitle());
@@ -259,5 +286,9 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 	public void refresh(Object o) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public BuilderMenu getMenu() {
+		return this.theMenu;
 	}
 }

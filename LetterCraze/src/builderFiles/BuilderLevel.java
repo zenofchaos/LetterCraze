@@ -47,7 +47,7 @@ public abstract class BuilderLevel {
 		}
 		
 		
-		boolean setStarThresholds(int[] starThresholds){
+		public boolean setStarThresholds(int[] starThresholds){
 			if(starThresholds.length == 3){
 				this.starThresholds = starThresholds;
 				return true;

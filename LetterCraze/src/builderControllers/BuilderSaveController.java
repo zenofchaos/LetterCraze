@@ -12,11 +12,15 @@ import builderGUI.BuilderEditorGUI;
 public class BuilderSaveController implements ActionListener{
 	BuilderEditorGUI editorView;
 	BuilderLevel level;
+	String levelIdentifier;
 	int levelNum;
 	
-	public BuilderSaveController(BuilderEditorGUI editorView, int levelNum) {
+	public BuilderSaveController(BuilderEditorGUI editorView, String levelIdentifier) {
 		this.editorView = editorView;
 		this.level = editorView.getLevel();
+		this.levelIdentifier = levelIdentifier;
+		char levelNumChar = levelIdentifier.charAt(1);
+		int levelNum = (int) levelNumChar - 48;
 		this.levelNum = levelNum;
 	}
 
@@ -28,15 +32,30 @@ public class BuilderSaveController implements ActionListener{
 		//THE STORED INFO IN EACH LEVEL? SO EACH LEVEL KNOWS IT'S T1 OR P4 FOR EXAMPLE?
 		BuilderFileAccessController fileAccessController = new BuilderFileAccessController();
 		if (level instanceof BuilderPuzzleLevel){
-			fileAccessController.savePuzzle(levelNum, level);
+			try {
+				fileAccessController.savePuzzle(levelNum,(BuilderPuzzleLevel) level);
+				editorView.refresh(level);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			
 		}
 		else if(level instanceof BuilderThemeLevel){
-			fileAccessController.saveTheme(levelNum, level);
+			try {
+				fileAccessController.saveTheme(levelNum,(BuilderThemeLevel) level);
+				editorView.refresh(level);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			
 		}
 		else if(level instanceof BuilderLightningLevel){
-			fileAccessController.saveLightning(levelNum, level);
+			try {
+				fileAccessController.saveLightning(levelNum,(BuilderLightningLevel) level);
+				editorView.refresh(level);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 		else{
 			System.out.println("Invalid level type sent to BuilderSaveController");

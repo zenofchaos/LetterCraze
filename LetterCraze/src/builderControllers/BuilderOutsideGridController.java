@@ -22,7 +22,7 @@ public class BuilderOutsideGridController implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		levelView.refresh(l());
+		//levelView.refresh(l());
 	}
 
 	@Override

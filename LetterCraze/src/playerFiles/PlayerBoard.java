@@ -59,10 +59,10 @@ public class PlayerBoard {
 	//	below this square
 	private PlayerSquare[][] findLetter(PlayerSquare[][] theBoard, int row, int col){
 		try{
-			if(!theBoard[row][col + 1].hasLetter()){
-				theBoard = findLetter(theBoard,row,col+1);
+			if(!theBoard[row + 1][col].hasLetter()){
+				theBoard = findLetter(theBoard,row + 1,col);
 			}
-			theBoard[row][col].setLetter(theBoard[row][col + 1].removeLetter());
+			theBoard[row][col].setLetter(theBoard[row + 1][col].removeLetter());
 			return theBoard;
 		}
 		catch (Exception e){

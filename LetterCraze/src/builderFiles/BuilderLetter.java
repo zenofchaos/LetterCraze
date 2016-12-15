@@ -23,7 +23,7 @@ public class BuilderLetter {
 	}
 	
 	//Get method for points
-	int getPoints(){
+	public int getPoints(){
 		return this.points;
 	}
 	

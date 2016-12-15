@@ -32,7 +32,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 		return true;
 		
 	}
-	boolean setThemeWords(LinkedList<String> themeWords){
+	public boolean setThemeWords(LinkedList<String> themeWords){
 		this.themeWords = themeWords;
 		return true;
 	}

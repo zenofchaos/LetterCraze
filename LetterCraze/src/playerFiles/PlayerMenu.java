@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerMenu.
+ */
 public class PlayerMenu {
 
+	/** The levels. */
 	List<List<PlayerLevel>> levels;
 	
+	/**
+	 * Instantiates a new player menu.
+	 */
 	//Constructor for a PlayerMenu object
 	public PlayerMenu(){
 		this.levels = new ArrayList<List<PlayerLevel>>();
@@ -16,17 +24,34 @@ public class PlayerMenu {
 		}
 	}
 	
+	/**
+	 * Gets the levels.
+	 *
+	 * @return the levels
+	 */
 	//Get method for levels
 	public List<List<PlayerLevel>> getLevels(){
 		return this.levels;
 	}
 
+	/**
+	 * Sets the levels.
+	 *
+	 * @param toSet the to set
+	 * @return true, if successful
+	 */
 	//Set method for levels
 	public boolean setLevels(List<List<PlayerLevel>> toSet){
 		this.levels = toSet;
 		return true;
 	}
 	
+	/**
+	 * Num level.
+	 *
+	 * @param levelType the level type
+	 * @return the int
+	 */
 	//returns the number of levels held in this menu of the given levelType
 	public int numLevel(String levelType){
 		switch(levelType){
@@ -47,6 +72,12 @@ public class PlayerMenu {
 	//Where the first character indicates the type of level,
 	//and number indicates the index in the list of levels.
 	//Returns null if the given letter is not T,L, or P,
+	/**
+	 * Gets the level.
+	 *
+	 * @param identifier the identifier
+	 * @return the level
+	 */
 	//	or if the given number is out of bounds of the arrayList
 	public PlayerLevel getLevel(String identifier){
 		char type = identifier.charAt(0);
@@ -80,6 +111,12 @@ public class PlayerMenu {
 	
 	//Adds the given level to this menu. If the given level is
 	//	false, or is not a puzzle, theme, or lightning level,
+	/**
+	 * Adds the level.
+	 *
+	 * @param toAdd the to add
+	 * @return true, if successful
+	 */
 	//	returns false.
 	public boolean addLevel(PlayerLevel toAdd){
 		if (toAdd == null){
@@ -108,6 +145,12 @@ public class PlayerMenu {
 	}
 	
 	//Removes the level corresponding to the given indicator from this menu. Returns true
+	/**
+	 * Removes the level.
+	 *
+	 * @param indicator the indicator
+	 * @return true, if successful
+	 */
 	//	if successful. Returns false if there is no level for the given indicator.
 	boolean removeLevel(String indicator){
 		char type = indicator.charAt(0);
@@ -140,6 +183,11 @@ public class PlayerMenu {
 		}
 	}
 	
+	/**
+	 * Iterator.
+	 *
+	 * @return the player menu iterator
+	 */
 	//Returns an iterator for this menu
 	public PlayerMenuIterator iterator(){
 		return new PlayerMenuIterator(this.levels);

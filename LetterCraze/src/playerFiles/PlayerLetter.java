@@ -3,13 +3,23 @@ package playerFiles;
 import java.util.Hashtable;
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerLetter.
+ */
 public class PlayerLetter {
 	
+	/** The letter. */
 	String letter;
+	
+	/** The points. */
 	int points;
 	
 	//Constructor for a PlayerLetter object. Generates a random letter
 	//	based on the provided letter frequency chart. Generates points
+	/**
+	 * Instantiates a new player letter.
+	 */
 	//	for the letter based off of the same table.
 	public PlayerLetter(){
 		letter = getRandomLetter();
@@ -20,6 +30,11 @@ public class PlayerLetter {
 	
 	//Constructor for a PlayerLetter object using the given string. 
 	//	Verifies the given string is a valid letter, and then generates
+	/**
+	 * Instantiates a new player letter.
+	 *
+	 * @param input the input
+	 */
 	//	a point value for the letter based off of the provided chart.
 	public PlayerLetter(String input){
 		if (isValid(input)){
@@ -33,22 +48,44 @@ public class PlayerLetter {
 		}
 	}
 	
+	/**
+	 * Gets the letter.
+	 *
+	 * @return the letter
+	 */
 	//Get method for letter
 	public String getLetter(){
 		return this.letter;
 	}
 	
+	/**
+	 * Gets the points.
+	 *
+	 * @return the points
+	 */
 	//Get method for points
 	public int getPoints(){
 		return this.points;
 	}
 	
+	/**
+	 * Sets the letter.
+	 *
+	 * @param toSet the to set
+	 * @return true, if successful
+	 */
 	//Set method for letter
 	public boolean setLetter(String toSet){
 		this.letter = toSet;
 		return true;
 	}
 	
+	/**
+	 * Sets the points.
+	 *
+	 * @param toSet the to set
+	 * @return true, if successful
+	 */
 	//Set method for points
 	public boolean setPoints(int toSet){
 		this.points = toSet;
@@ -56,6 +93,13 @@ public class PlayerLetter {
 	}
 	
 	//Returns the point value of the given letter (or Qu)
+	/**
+	 * Gets the point val.
+	 *
+	 * @param letter the letter
+	 * @param pointTable the point table
+	 * @return the point val
+	 */
 	// Returns -1 if the given letter is invalid.
 	int getPointVal(String letter, Hashtable<String,Integer> pointTable) {
 		if (isValid(letter)){
@@ -66,6 +110,11 @@ public class PlayerLetter {
 		}
 	}
 
+	/**
+	 * Generate points table.
+	 *
+	 * @return the hashtable
+	 */
 	Hashtable<String,Integer> generatePointsTable(){
 		Hashtable<String,Integer> pointTable = new Hashtable<String,Integer>();
 		
@@ -99,6 +148,11 @@ public class PlayerLetter {
 		return pointTable;
 	}
 	
+	/**
+	 * Gets the random letter.
+	 *
+	 * @return the random letter
+	 */
 	//Returns a random letter based on the provided letter frequency table.
 	String getRandomLetter(){
 		
@@ -193,6 +247,12 @@ public class PlayerLetter {
 	
 	//Verifies whether the given string is a valid LetterCraze letter
 	//	Valid letters are A-Z and Qu. Capitalization of the characters
+	/**
+	 * Checks if is valid.
+	 *
+	 * @param toCheck the to check
+	 * @return true, if is valid
+	 */
 	//	does NOT affect validity.
 	boolean isValid(String toCheck){
 		int length = toCheck.length();
@@ -225,6 +285,12 @@ public class PlayerLetter {
 	//	-	The first character is upper case
 	//	-	The second character (if any) is lower case.
 	//	Note: Operates only on valid strings. Returns null
+	/**
+	 * Format capitals.
+	 *
+	 * @param toFormat the to format
+	 * @return the string
+	 */
 	//			if string is invalid.
 	String formatCapitals(String toFormat){
 		if (isValid(toFormat)){

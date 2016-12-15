@@ -6,16 +6,31 @@ import java.awt.event.ActionListener;
 import playerFiles.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerResetController.
+ */
 public class PlayerResetController implements ActionListener{
 
+	/** The level view. */
 	PlayerLevelGUI levelView;
+	
+	/** The level. */
 	PlayerLevel level;
 	
+	/**
+	 * Instantiates a new player reset controller.
+	 *
+	 * @param window the window
+	 */
 	public PlayerResetController(PlayerLevelGUI window){
 		this.levelView = window;
 		this.level = levelView.getLevel();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.level.reset();

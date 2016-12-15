@@ -27,13 +27,22 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderPreviewGUI.
+ */
 public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The l. */
 	private static BuilderLevel l;
 
 	/**
 	 * Create the application.
+	 *
+	 * @param level the level
 	 */
 	public BuilderPreviewGUI(BuilderLevel level) {
 		BuilderPreviewGUI.l = level;
@@ -41,6 +50,8 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
+	 * Gets the level.
+	 *
 	 * @return current static level object
 	 */
 	public BuilderLevel getLevel() {
@@ -63,6 +74,9 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		showComponents();
 	}
 	
+	/**
+	 * Show components.
+	 */
 	private void showComponents() {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
@@ -196,6 +210,11 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(backButton);
 	}
 	
+	/**
+	 * Proper subtitle.
+	 *
+	 * @return the string
+	 */
 	private String properSubtitle() {
 		if (l instanceof BuilderPuzzleLevel) {
 			return "Words Left: " + ((BuilderPuzzleLevel)l).getWordLimit();
@@ -206,6 +225,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return "";
 	}
 	
+	/**
+	 * Proper subtitle size.
+	 *
+	 * @param h the h
+	 * @return the int
+	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return h * 1/24;
@@ -216,6 +241,14 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return h * 1/24;
 	}
 	
+	/**
+	 * Proper letter size.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @param h the h
+	 * @return the int
+	 */
 	private int properLetterSize(int i, int j, int h) {
 		try{
 			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof BuilderPuzzleLevel)) {
@@ -229,6 +262,13 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	/**
+	 * Proper letter points.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return the string
+	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
 		try{
@@ -255,6 +295,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
 	}
 	
+	/**
+	 * Proper reset X.
+	 *
+	 * @param w the w
+	 * @return the int
+	 */
 	private int properResetX(int w) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return w * 33/64;
@@ -265,6 +311,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return w * 33/64;
 	}
 	
+	/**
+	 * Make subscript.
+	 *
+	 * @param n the n
+	 * @return the string
+	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
 		String subscripts = "";
@@ -297,22 +349,34 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		return subscripts;
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#openWindow()
+	 */
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#closeWindow()
+	 */
 	@Override
 	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
 	}
 	
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#refresh(java.lang.Object)
+	 */
 	@Override
 	public void refresh(Object level) {
 		l = (BuilderLevel)level;

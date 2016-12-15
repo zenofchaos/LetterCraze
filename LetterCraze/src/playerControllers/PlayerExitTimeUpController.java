@@ -11,18 +11,35 @@ import playerFiles.PlayerThemeLevel;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerTimeUpGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerExitTimeUpController.
+ */
 public class PlayerExitTimeUpController implements ActionListener{
 
+	/** The window. */
 	PlayerTimeUpGUI window;
+	
+	/** The level. */
 	PlayerLevel level;
+	
+	/** The identifier. */
 	String identifier;
 	
+	/**
+	 * Instantiates a new player exit time up controller.
+	 *
+	 * @param w the w
+	 */
 	public PlayerExitTimeUpController(PlayerTimeUpGUI w){
 		this.window = w;
 		this.level = w.getLevel();
 		this.identifier = w.getIdentifier();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int bestScore = this.level.getBestScore();

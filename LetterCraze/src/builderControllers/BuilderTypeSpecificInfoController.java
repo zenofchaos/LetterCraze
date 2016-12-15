@@ -23,44 +23,16 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
 		input.trim();
-		if (builderEditorView.getLevel() instanceof BuilderPuzzleLevel){
-			BuilderPuzzleLevel level = (BuilderPuzzleLevel) builderEditorView.getLevel();
-			if(isValidNumber(input)){
-				int maxMoves = Integer.parseInt(input);
-				level.setWordLimit(maxMoves);
-				builderEditorView.refresh(level);
-			}
-			else{
-				System.out.println("max number of moves not a valid input");
-				builderEditorView.refresh(level);
-			}
-		}
-		else if(builderEditorView.getLevel() instanceof BuilderThemeLevel){
-			BuilderThemeLevel level = (BuilderThemeLevel) builderEditorView.getLevel();
-			level.setDescription(input);
-			builderEditorView.refresh(level);
-			
-		}
-		else if(builderEditorView.getLevel() instanceof BuilderLightningLevel){
-			BuilderLightningLevel level = (BuilderLightningLevel) builderEditorView.getLevel();
-			if(isValidNumber(input)){
-				int maxTime = Integer.parseInt(input);
-				level.setMaxTime(maxTime);
-				builderEditorView.refresh(level);
-			}
-			else{
-				System.out.println("max time of moves not a valid input");
-				builderEditorView.refresh(level);
-				
-			}
+		if(typeSpecificInfo(input)){
+			return;
 		}
 		else{
-			System.out.println("Invalid level type sent to BuilderOpenNewEditorController");
+			System.out.println("Builder Type Specific Controller Failed");
 		}
 
 	}
 	
-	private boolean isValidNumber(String value){
+	boolean isValidNumber(String value){
 		boolean validNum = false;
 		for(int i = 0; i < value.length(); i++){
 			if ((value.charAt(i) >= '0') && (value.charAt(i) <= '9')){
@@ -71,6 +43,49 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 			}
 		}
 		return validNum;
+	}
+	
+	boolean typeSpecificInfo(String input){
+		if (builderEditorView.getLevel() instanceof BuilderPuzzleLevel){
+			BuilderPuzzleLevel level = (BuilderPuzzleLevel) builderEditorView.getLevel();
+			if(isValidNumber(input)){
+				int maxMoves = Integer.parseInt(input);
+				level.setWordLimit(maxMoves);
+				builderEditorView.refresh(level);
+				return true;
+			}
+			else{
+				System.out.println("max number of moves not a valid input");
+				builderEditorView.refresh(level);
+				return false;
+			}
+		}
+		else if(builderEditorView.getLevel() instanceof BuilderThemeLevel){
+			BuilderThemeLevel level = (BuilderThemeLevel) builderEditorView.getLevel();
+			level.setDescription(input);
+			builderEditorView.refresh(level);
+			return true;
+			
+		}
+		else if(builderEditorView.getLevel() instanceof BuilderLightningLevel){
+			BuilderLightningLevel level = (BuilderLightningLevel) builderEditorView.getLevel();
+			if(isValidNumber(input)){
+				int maxTime = Integer.parseInt(input);
+				level.setMaxTime(maxTime);
+				builderEditorView.refresh(level);
+				return true;
+			}
+			else{
+				System.out.println("max time of moves not a valid input");
+				builderEditorView.refresh(level);
+				return false;
+				
+			}
+		}
+		else{
+			System.out.println("Invalid level type sent to BuilderOpenNewEditorController");
+			return false;
+		}
 	}
 
 }

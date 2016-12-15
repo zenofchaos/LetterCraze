@@ -158,7 +158,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				try {
+					letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				}
+				catch (NullPointerException e) {
+					letterLabels[i][j] = new JLabel();
+				}
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j, h)));

@@ -21,20 +21,20 @@ public class PlayerThemeLevel extends PlayerLevel {
 		return this.description;
 	}
 
-	LinkedList<String> getThemeWords() {
+	public LinkedList<String> getThemeWords() {
 		return this.themeWords;
 	}
 
-	PlayerBoard getBoardPreset() {
+	public PlayerBoard getBoardPreset() {
 		return this.boardPreset;
 	}
 
-	boolean setThemeWords(LinkedList<String> themeWords) {
+	public boolean setThemeWords(LinkedList<String> themeWords) {
 		this.themeWords = themeWords;
 		return true;
 	}
 
-	boolean setBoardPreset(PlayerBoard boardPreset) {
+	public boolean setBoardPreset(PlayerBoard boardPreset) {
 		this.boardPreset = boardPreset;
 		return true;
 	}
@@ -78,7 +78,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 		Iterator<String> iterator = themeWords.iterator();
 
 		while (iterator.hasNext()) {
-			if (iterator.next() == toMatch) {
+			if (iterator.next().equals(toMatch)) {
 				return true;
 			}
 		}
@@ -98,6 +98,49 @@ public class PlayerThemeLevel extends PlayerLevel {
 		this.pointScore = 0;
 		this.selectedWord = new PlayerWord();
 		this.starCount = 0;
+		for(int i = 0; i < this.wordsEntered.size(); i++){
+			this.themeWords.add(wordsEntered.get(i).getWord());
+		}
 		this.wordsEntered = new ArrayList<PlayerWord>();
+	}
+	
+	@Override
+	public boolean submitSelectedWord() {
+		System.out.println(selectedWord.getWord());
+		if (isValidWord(selectedWord)) {
+			wordsEntered.add(selectedWord);
+			pointScore += wordScore(selectedWord);
+			if (pointScore >= starThresholds[2]){
+				starCount = 3;
+			}
+			else if (pointScore >= starThresholds[1]){
+				starCount = 2;
+			}
+			else if (pointScore >= starThresholds[0]){
+				starCount = 1;
+			}
+			
+			boolean wordFound = false;
+			int index = 0;
+			while (!wordFound && (index < this.themeWords.size())){
+				if(selectedWord.getWord().equals(this.themeWords.get(index))){
+					wordFound = true;
+					this.themeWords.remove(index);
+				}
+				index++;
+			}
+			
+			if(!wordFound){
+				System.out.println("Selected Word not found in Theme Words");
+			}
+			
+			this.board.removeWord(selectedWord);
+			this.board.rise();
+			
+			selectedWord = new PlayerWord();
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

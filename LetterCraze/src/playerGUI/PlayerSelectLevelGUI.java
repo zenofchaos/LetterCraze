@@ -178,18 +178,30 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 					default:
 						System.out.println("switch statement error in Player Select Level GUI for determining level type");
 				}
-				thePanel.addMouseListener(new PlayerLSController(this, levelLabel));
+				if(!tempLevel.getIsLocked()){
+					thePanel.addMouseListener(new PlayerLSController(this, levelLabel));
+				}
 				thePanel.setBackground(Color.gray);
 
 				JLabel label = new JLabel(tempLevel.getTitle());
 				label.setHorizontalAlignment(SwingConstants.CENTER);
 				label.setToolTipText(tempLevel.getTitle());
 				label.setFont(new Font("Dialog", Font.BOLD, 10));
-				label.setForeground(Color.WHITE);
+				if(tempLevel.getIsLocked()){
+					label.setForeground(Color.RED);
+				}
+				else{
+					label.setForeground(Color.WHITE);
+				}
 
 				JLabel lblHighScore = new JLabel("<html><center>High Score: <br>" + tempLevel.getBestScore() + "</center></html>");
 				lblHighScore.setHorizontalAlignment(SwingConstants.CENTER);
-				lblHighScore.setForeground(Color.WHITE);
+				if(tempLevel.getIsLocked()){
+					lblHighScore.setForeground(Color.RED);
+				}
+				else{
+					lblHighScore.setForeground(Color.WHITE);
+				}
 				lblHighScore.setFont(new Font("Dialog", Font.BOLD, 10));
 
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);

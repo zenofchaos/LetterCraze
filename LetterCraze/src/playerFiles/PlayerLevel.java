@@ -149,37 +149,19 @@ public abstract class PlayerLevel {
 		return true;
 	}
 
-	public boolean submitSelectedWord() {
-		if (isValidWord(selectedWord)) {
-			wordsEntered.add(selectedWord);
-			pointScore += wordScore(selectedWord);
-			if (pointScore >= starThresholds[2]){
-				starCount = 3;
-			}
-			else if (pointScore >= starThresholds[1]){
-				starCount = 2;
-			}
-			else if (pointScore >= starThresholds[0]){
-				starCount = 1;
-			}
-			
-			this.board.removeWord(selectedWord);
-			this.board.rise();
-			this.board.replace();
-			
-			selectedWord = new PlayerWord();
-			return true;
-		} else {
-			return false;
-		}
-	}
+	abstract public boolean submitSelectedWord();
 
 	abstract public boolean isValidWord(PlayerWord w);
 	
 	abstract public int wordScore(PlayerWord w);
 	
 	public boolean squareIsSelected(PlayerSquare s) {
-		return selectedWord.contains(s);
+		try{
+			return selectedWord.contains(s);
+		}
+		catch (NullPointerException e){
+			return false;
+		}
 	}
 	
 	abstract public void reset();

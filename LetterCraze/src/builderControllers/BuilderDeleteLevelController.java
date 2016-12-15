@@ -14,8 +14,12 @@ public class BuilderDeleteLevelController implements ActionListener {
 
 	/**
 	 * Construct a BuilderDeleteLevelController
-	 * @param builderSelectLevelGUI just passed in so I can refresh the menu afterwards
-	 * @param levelID the 2-character identifier for the level to delete, so I can parse it to determine the level to delete
+	 * 
+	 * @param builderSelectLevelGUI
+	 *            just passed in so I can refresh the menu afterwards
+	 * @param levelID
+	 *            the 2-character identifier for the level to delete, so I can
+	 *            parse it to determine the level to delete
 	 */
 	public BuilderDeleteLevelController(BuilderSelectLevelGUI builderSelectLevelGUI, String levelID) {
 
@@ -27,16 +31,32 @@ public class BuilderDeleteLevelController implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 
 		levNum = levelID.charAt(1) - 48;
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 
 		switch (levelID.charAt(0)) {
 		case 'L':
 			deleteLightning(levNum);
+			try {
+				gui.refresh(fileAccess.getModel().getMenu());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		case 'P':
 			deletePuzzle(levNum);
+			try {
+				gui.refresh(fileAccess.getModel().getMenu());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		case 'T':
 			deleteTheme(levNum);
+			try {
+				gui.refresh(fileAccess.getModel().getMenu());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		default:
 			System.out

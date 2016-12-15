@@ -358,7 +358,7 @@ public class BuilderFileAccessController {
 	 */
 	public void saveTheme(int levelNum, BuilderThemeLevel level) throws Exception {
 		file = new java.io.File("Levels/Theme" + levelNum + ".txt");
-		if (file.createNewFile()) adjustLightningCount(+1);
+		if (file.createNewFile()) adjustThemeCount(+1);
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -372,7 +372,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoardPreset().getSquareArray()[i][j].getActive()) {
+				if (level.getBoard().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -386,8 +386,8 @@ public class BuilderFileAccessController {
 		String buffer;
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoardPreset().getSquareArray()[i][j].getLetter() != null) {
-					buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
+				if (level.getBoard().getSquareArray()[i][j].getLetter() != null) {
+					buffer = level.getBoard().getSquareArray()[i][j].getLetter().getLetter();
 					if (buffer == "Qu") {
 						writer.format("Q ");
 					} else {

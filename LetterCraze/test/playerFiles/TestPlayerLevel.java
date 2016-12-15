@@ -38,9 +38,9 @@ public class TestPlayerLevel {
 		
 		LinkedList<String> words = new LinkedList<String>();
 		
-		String themeWord1 = "apple";
-		String themeWord2 = "banana";
-		String themeWord3 = "pear";
+		String themeWord1 = "APPLE";
+		String themeWord2 = "BANANA";
+		String themeWord3 = "PEAR";
 		
 		words.add(themeWord1);
 		words.add(themeWord2);
@@ -65,22 +65,29 @@ public class TestPlayerLevel {
 		apple1.setLetter(appleLetter1);
 		PlayerSquare apple2 = new PlayerSquare(0, 1);
 		PlayerLetter appleLetter2 = new PlayerLetter("P");
-		apple1.setLetter(appleLetter2);
+		apple2.setLetter(appleLetter2);
 		PlayerSquare apple3 = new PlayerSquare(0, 2);
 		PlayerLetter appleLetter3 = new PlayerLetter("P");
-		apple1.setLetter(appleLetter3);
+		apple3.setLetter(appleLetter3);
 		PlayerSquare apple4 = new PlayerSquare(0, 3);
 		PlayerLetter appleLetter4 = new PlayerLetter("L");
-		apple1.setLetter(appleLetter4);
+		apple4.setLetter(appleLetter4);
 		PlayerSquare apple5 = new PlayerSquare(0, 4);
 		PlayerLetter appleLetter5 = new PlayerLetter("E");
-		apple1.setLetter(appleLetter5);
+		apple5.setLetter(appleLetter5);
+		appleStartSquares.add(apple1);
+		appleStartSquares.add(apple2);
+		appleStartSquares.add(apple3);
+		appleStartSquares.add(apple4);
+		appleStartSquares.add(apple5);
 		
+		PlayerWord appleWord = new PlayerWord(appleStartSquares);
 		
+		tl = new PlayerThemeLevel(tStarThresholds, 1, 1, isLocked, theme, description, words, themeBoard);
 		
+		tl.initBoard();
 		
-		tl = new PlayerThemeLevel(tStarThresholds, bestScore, bestStars, isLocked, theme, description, words, null);
-		
+		tl.board.addWord(appleWord);
 	}
 
 	@After
@@ -173,6 +180,49 @@ public class TestPlayerLevel {
 	
 	@Test
 	public void testThemeLevel(){
+		LinkedList<String> tWords = new LinkedList<String>();
+		
+		String themeWord1 = "APPLE";
+		String themeWord2 = "BANANA";
+		String themeWord3 = "PEAR";
+		
+		tWords.add(themeWord1);
+		tWords.add(themeWord2);
+		tWords.add(themeWord3);
+		
+		assertEquals(tWords.get(0), tl.getThemeWords().get(0));
+		
+		assertEquals(1, tl.getBestScore());
+		assertEquals(0, tl.getPointScore());
+		
+		ArrayList<PlayerSquare> appleSquares = new ArrayList<PlayerSquare>();
+		PlayerSquare apple1 = new PlayerSquare(0, 0);
+		PlayerLetter appleLetter1 = new PlayerLetter("A");
+		apple1.setLetter(appleLetter1);
+		PlayerSquare apple2 = new PlayerSquare(0, 1);
+		PlayerLetter appleLetter2 = new PlayerLetter("P");
+		apple2.setLetter(appleLetter2);
+		PlayerSquare apple3 = new PlayerSquare(0, 2);
+		PlayerLetter appleLetter3 = new PlayerLetter("P");
+		apple3.setLetter(appleLetter3);
+		PlayerSquare apple4 = new PlayerSquare(0, 3);
+		PlayerLetter appleLetter4 = new PlayerLetter("L");
+		apple4.setLetter(appleLetter4);
+		PlayerSquare apple5 = new PlayerSquare(0, 4);
+		PlayerLetter appleLetter5 = new PlayerLetter("E");
+		apple5.setLetter(appleLetter5);
+		appleSquares.add(apple1);
+		appleSquares.add(apple2);
+		appleSquares.add(apple3);
+		appleSquares.add(apple4);
+		appleSquares.add(apple5);
+		
+		PlayerWord apple = new PlayerWord(appleSquares);
+		
+		assertTrue(tl.setSelectedWord(apple));
+		tl.submitSelectedWord();
+		assertEquals(1, tl.getPointScore());
+		assertEquals(1, tl.getStarCount());
 		
 	}
 }

@@ -4,15 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+import builderGUI.BuilderSelectLevelGUI;
+
 public class BuilderDeleteLevelController implements ActionListener {
 
 	int levNum;
 	String levelID;
+	BuilderSelectLevelGUI gui;
 
-	public BuilderDeleteLevelController(String levelID) {
+	public BuilderDeleteLevelController(BuilderSelectLevelGUI builderSelectLevelGUI, String levelID) {
 
 		this.levelID = levelID;
-
+		this.gui = builderSelectLevelGUI;
 	}
 
 	@Override

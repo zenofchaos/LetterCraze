@@ -193,7 +193,7 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				btnDelete.setText("Delete");
 				btnDelete.setFont(new Font("Dialog", Font.BOLD, 12));
 				
-				btnDelete.addActionListener(new BuilderDeleteLevelController(levelLabel));
+				btnDelete.addActionListener(new BuilderDeleteLevelController(this, levelLabel));
 				
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(

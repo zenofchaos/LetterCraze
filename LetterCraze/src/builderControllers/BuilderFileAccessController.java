@@ -278,7 +278,7 @@ public class BuilderFileAccessController {
 	 */
 	public void saveLightning(int levelNum, BuilderLightningLevel level) throws Exception {
 		file = new java.io.File("Levels/Lightning" + levelNum + ".txt");
-		file.createNewFile();
+		if (file.createNewFile()) adjustLightningCount(+1);
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -312,7 +312,7 @@ public class BuilderFileAccessController {
 
 	public void savePuzzle(int levelNum, BuilderPuzzleLevel level) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + levelNum + ".txt");
-		file.createNewFile();
+		if (file.createNewFile()) adjustPuzzleCount(+1);
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -346,7 +346,7 @@ public class BuilderFileAccessController {
 
 	public void saveTheme(int levelNum, BuilderThemeLevel level) throws Exception {
 		file = new java.io.File("Levels/Theme" + levelNum + ".txt");
-		file.createNewFile();
+		if (file.createNewFile()) adjustLightningCount(+1);
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -408,8 +408,8 @@ public class BuilderFileAccessController {
 		// Open and read FileCount
 
 		// Open FileCount
-		file = new java.io.File("Levels/FileCount.txt");
-		input = new Scanner(file);
+		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(fileCount);
 
 		numL = input.nextInt();
 		numP = input.nextInt();
@@ -435,8 +435,8 @@ public class BuilderFileAccessController {
 		// Open and read FileCount
 
 		// Open FileCount
-		file = new java.io.File("Levels/FileCount.txt");
-		input = new Scanner(file);
+		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(fileCount);
 
 		numL = input.nextInt();
 		numP = input.nextInt();
@@ -462,8 +462,8 @@ public class BuilderFileAccessController {
 		// Open and read FileCount
 
 		// Open FileCount
-		file = new java.io.File("Levels/FileCount.txt");
-		input = new Scanner(file);
+		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
+		input = new Scanner(fileCount);
 
 		numL = input.nextInt();
 		numP = input.nextInt();

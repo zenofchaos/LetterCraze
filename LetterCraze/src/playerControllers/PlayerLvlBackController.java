@@ -31,8 +31,14 @@ public class PlayerLvlBackController implements ActionListener{
 		}
 		
 		int bestStars = this.level.getBestStars();
+		int previousBestStars = this.level.getBestStars();
 		if(this.level.getBestStars() < this.level.getStarCount()){
 			bestStars = this.level.getStarCount();
+		}
+		
+		boolean unlockNext = false;
+		if((previousBestStars == 0) && (previousBestStars < bestStars)){
+			unlockNext = true;
 		}
 		
 		PlayerFileAccessController fileAccessController = new PlayerFileAccessController();
@@ -40,6 +46,9 @@ public class PlayerLvlBackController implements ActionListener{
 		if (this.level instanceof PlayerPuzzleLevel){
 			try {
 				fileAccessController.updatePuzzle(this.identifier.charAt(1) - 48,bestScore,bestStars);
+				if(unlockNext){
+					fileAccessController.unlockPuzzle();
+				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -47,9 +56,10 @@ public class PlayerLvlBackController implements ActionListener{
 		}
 		else if (this.level instanceof PlayerLightningLevel){
 			try {
-				System.out.println("Best Score " + bestScore);
-				System.out.println("Identifier " + this.identifier);
 				fileAccessController.updateLightning(this.identifier.charAt(1) - 48,bestScore,bestStars);
+				if(unlockNext){
+					fileAccessController.unlockLightning();
+				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -57,6 +67,9 @@ public class PlayerLvlBackController implements ActionListener{
 		else if (this.level instanceof PlayerThemeLevel){
 			try {
 				fileAccessController.updateTheme(this.identifier.charAt(1) - 48,bestScore,bestStars);
+				if(unlockNext){
+					fileAccessController.unlockTheme();
+				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

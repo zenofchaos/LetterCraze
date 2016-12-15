@@ -25,18 +25,14 @@ public class PlayerFileAccessController {
 	Scanner input;
 
 	public PlayerFileAccessController() {
-	}
-
-	// Returns an entire model with all the levels generated.
-	// in code: opens the master FileCount file to get metadata about levels,
-	// then iterates through each to open.
-	public PlayerModel getModel() throws Exception {
-		PlayerModel model = new PlayerModel();
-		PlayerMenu menu = model.getMenu();
-
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
-		input = new Scanner(file);
+		try{
+			input = new Scanner(file);
+		}
+		catch (Exception e){
+			System.out.print(e);
+		}
 
 		numL = input.nextInt();
 		numP = input.nextInt();
@@ -48,6 +44,29 @@ public class PlayerFileAccessController {
 
 		// Close FileCount
 		input.close();
+	}
+
+	// Returns an entire model with all the levels generated.
+	// in code: opens the master FileCount file to get metadata about levels,
+	// then iterates through each to open.
+	public PlayerModel getModel() throws Exception {
+		PlayerModel model = new PlayerModel();
+		PlayerMenu menu = model.getMenu();
+
+//		// Open FileCount
+//		file = new java.io.File("Levels/FileCount.txt");
+//		input = new Scanner(file);
+//
+//		numL = input.nextInt();
+//		numP = input.nextInt();
+//		numT = input.nextInt();
+//
+//		unlockedL = input.nextInt();
+//		unlockedP = input.nextInt();
+//		unlockedT = input.nextInt();
+//
+//		// Close FileCount
+//		input.close();
 
 		// Iterate to add Puzzle levels
 		for (int i = 1; i <= numP; i++) {
@@ -290,7 +309,7 @@ public class PlayerFileAccessController {
 	public void unlockPuzzle() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(13);
-
+		System.out.println("unlockedP = " + unlockedP);
 		String newNum = String.format("%02d", (unlockedP + 1));
 
 		rAFile.writeBytes(newNum);

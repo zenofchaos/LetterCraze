@@ -33,7 +33,7 @@ public class BuilderFileAccessController {
 	 * 
 	 * @param menu
 	 */
-	public BuilderFileAccessController(BuilderMenu menu) {
+	public BuilderFileAccessController() {
 	}
 
 	/**
@@ -50,8 +50,8 @@ public class BuilderFileAccessController {
 		BuilderModel model = new BuilderModel();
 		BuilderMenu menu = model.getMenu();
 
-		//Open and Read FileCount
-		
+		// Open and Read FileCount
+
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		input = new Scanner(file);
@@ -82,10 +82,16 @@ public class BuilderFileAccessController {
 	}
 
 	/**
-	 * Opens the lightning level file corresponding to the input number, reads it, and returns a lightning level.
-	 * @param number the number of the level/file to open (i.e. passing 3 here reads Levels/Lightning3.txt)
+	 * Opens the lightning level file corresponding to the input number, reads
+	 * it, and returns a lightning level.
+	 * 
+	 * @param number
+	 *            the number of the level/file to open (i.e. passing 3 here
+	 *            reads Levels/Lightning3.txt)
 	 * @return One builder lightning level with all the proper data.
-	 * @throws Exception because there's always a remote possibility that the file doesn't exist.
+	 * @throws Exception
+	 *             because there's always a remote possibility that the file
+	 *             doesn't exist.
 	 */
 	public BuilderLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
@@ -125,10 +131,15 @@ public class BuilderFileAccessController {
 	}
 
 	/**
-	 * Opens the puzzle level file corresponding to the input number, reads it, and returns a lightning level.
-	 * @param number the number of the level/file to open (i.e. 5 opens Levels/Puzzle5.txt)
+	 * Opens the puzzle level file corresponding to the input number, reads it,
+	 * and returns a lightning level.
+	 * 
+	 * @param number
+	 *            the number of the level/file to open (i.e. 5 opens
+	 *            Levels/Puzzle5.txt)
 	 * @return builder puzzle level with all fields filled
-	 * @throws Exception in case someone deletes the file
+	 * @throws Exception
+	 *             in case someone deletes the file
 	 */
 	public BuilderLevel readPuzzle(int number) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
@@ -171,10 +182,14 @@ public class BuilderFileAccessController {
 	}
 
 	/**
-	 * Opens the theme level file corresponding to the input number, reads it, and returns a lightning level.
-	 * @param number opens the number-th level/file in the directory
+	 * Opens the theme level file corresponding to the input number, reads it,
+	 * and returns a lightning level.
+	 * 
+	 * @param number
+	 *            opens the number-th level/file in the directory
 	 * @return complete builder theme level, ready to be deployed
-	 * @throws Exception for the slim "file not found" possibility
+	 * @throws Exception
+	 *             for the slim "file not found" possibility
 	 */
 	public BuilderLevel readTheme(int number) throws Exception {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
@@ -205,6 +220,7 @@ public class BuilderFileAccessController {
 
 		input.nextLine();
 		String tempString;
+		BuilderLetter letter;
 		for (i = 0; i < 6; i++) {
 			input.nextLine();
 			for (j = 0; j < 6; j++) {
@@ -213,10 +229,17 @@ public class BuilderFileAccessController {
 				// tempString as its letter, then add that playerLetter to the
 				// PlayerSquare of row i and column j.
 				tempString = input.next();
-				if (tempString.equals("Q"))
-					tempString = "QU";
-				BuilderLetter letter = new BuilderLetter(tempString);
-				bitmap[i][j].setLetter(letter);
+				if (tempString.equals("*")) {
+					// event of no letter being specified, necessitating use of
+					// a random letter. in this case we want to leave the letter
+					// null for this square. do nothing.
+				} else if (tempString.equals("Q")) {
+					letter = new BuilderLetter("QU");
+					bitmap[i][j].setLetter(letter);
+				} else {
+					letter = new BuilderLetter(tempString);
+					bitmap[i][j].setLetter(letter);
+				}
 			}
 		}
 
@@ -243,9 +266,15 @@ public class BuilderFileAccessController {
 
 	/**
 	 * "saves" (completely re-writes) an edited lightning level back to disk
-	 * @param levelNum number you want to save the level to (like, a 3 would save it over Levels/Lightning3.txt)
-	 * @param level the level you want to save
-	 * @throws Exception the omni-present concern for losing a file that happens EVERY SINGLE TIME I open a file
+	 * 
+	 * @param levelNum
+	 *            number you want to save the level to (like, a 3 would save it
+	 *            over Levels/Lightning3.txt)
+	 * @param level
+	 *            the level you want to save
+	 * @throws Exception
+	 *             the omni-present concern for losing a file that happens EVERY
+	 *             SINGLE TIME I open a file
 	 */
 	public void saveLightning(int levelNum, BuilderLightningLevel level) throws Exception {
 		file = new java.io.File("Levels/Lightning" + levelNum + ".txt");
@@ -342,13 +371,18 @@ public class BuilderFileAccessController {
 		writer.format("\r\n");
 
 		// charmap
+		String buffer;
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				String buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
-				if (buffer == "Qu") {
-					writer.format("Q ");
-				} else {
-					writer.format(buffer + " ");
+				if (level.getBoardPreset().getSquareArray()[i][j].getLetter() != null) {
+					buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
+					if (buffer == "Qu") {
+						writer.format("Q ");
+					} else {
+						writer.format(buffer + " ");
+						}
+				} else {	//if null, meant to be a random letter. Represented by an asterisk in file.
+					writer.format("* ");
 				}
 			}
 			writer.format("\r\n");
@@ -371,8 +405,8 @@ public class BuilderFileAccessController {
 
 	public void adjustLightningCount(int offset) throws Exception {
 
-		//Open and read FileCount
-		
+		// Open and read FileCount
+
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		input = new Scanner(file);
@@ -384,11 +418,11 @@ public class BuilderFileAccessController {
 		// Close FileCount
 		input.close();
 
-		//open FileCount again for writing
+		// open FileCount again for writing
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(0); // the Lightning Count is always the first (2) byte(s)
 						// in FileCount.
-		
+
 		String newCount = String.format("%02d", (numL + offset));
 
 		rAFile.writeBytes(newCount);
@@ -398,8 +432,8 @@ public class BuilderFileAccessController {
 
 	public void adjustPuzzleCount(int offset) throws Exception {
 
-		//Open and read FileCount
-		
+		// Open and read FileCount
+
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		input = new Scanner(file);
@@ -411,7 +445,7 @@ public class BuilderFileAccessController {
 		// Close FileCount
 		input.close();
 
-		//open FileCount again for writing
+		// open FileCount again for writing
 
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(3);
@@ -425,8 +459,8 @@ public class BuilderFileAccessController {
 
 	public void adjustThemeCount(int offset) throws Exception {
 
-		//Open and read FileCount
-		
+		// Open and read FileCount
+
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		input = new Scanner(file);
@@ -438,7 +472,7 @@ public class BuilderFileAccessController {
 		// Close FileCount
 		input.close();
 
-		//open FileCount again for writing
+		// open FileCount again for writing
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(6);
 

@@ -30,8 +30,9 @@ public class BuilderOpenExistingEditorController implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		BuilderLevel level = menu.getLevel(levelIdentifier);
 		level.initBoard();
-		BuilderEditorGUI window = new BuilderEditorGUI(level);
+		BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 		window.openWindow();
+		menuView.closeWindow();
 		
 	}
 

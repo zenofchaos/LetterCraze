@@ -43,6 +43,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 
 	private JPanel contentPane;
 	private static BuilderLevel l;
+	private static String levelIdentifier;
 
 	/**
 	 * Launch the application.
@@ -51,7 +52,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BuilderEditorGUI frame = new BuilderEditorGUI(l);
+					BuilderEditorGUI frame = new BuilderEditorGUI(l, levelIdentifier);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,8 +64,9 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	/**
 	 * Create the application.
 	 */
-	public BuilderEditorGUI(BuilderLevel level) {
+	public BuilderEditorGUI(BuilderLevel level, String levelIdentifier) {
 		BuilderEditorGUI.l = level;
+		BuilderEditorGUI.levelIdentifier = levelIdentifier;
 		initialize();
 	}
 
@@ -166,12 +168,12 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
+			
+			JButton wordsToFindButton = new JButton("Save List");
+			wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+			wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
+			contentPane.add(wordsToFindButton);
 		}
-		
-		JButton wordsToFindButton = new JButton("Save Word List");
-		wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
-		wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
-		contentPane.add(wordsToFindButton);
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
 		scoreProgressBar.setForeground(Color.YELLOW);
@@ -205,7 +207,8 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		
 		JButton saveButton = new JButton("Save Level");
-		saveButton.addActionListener(new BuilderSaveController(this));
+		saveButton.addActionListener(new BuilderSaveController(this, levelIdentifier));
+
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);
@@ -286,6 +289,16 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			}
 		}
 		return new JScrollPane();
+	}
+	
+	private JTextArea getTextArea() {
+		Component[] components = contentPane.getComponents();
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JScrollPane) {
+				return (JTextArea)components[i];
+			}
+		}
+		return new JTextArea();
 	}
 	
 	@Override

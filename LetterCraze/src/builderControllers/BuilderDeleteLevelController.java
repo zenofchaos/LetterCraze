@@ -26,7 +26,7 @@ public class BuilderDeleteLevelController implements ActionListener {
 	 *            the number of the lightning level to be deleted
 	 */
 	public void deleteLightning(int levelNum) {
-		BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
 		java.io.File to = new java.io.File("Levels/Lightning" + levelNum + ".txt");
 		java.io.File from = new java.io.File("Levels/Lightning" + (levelNum + 1) + ".txt");
@@ -67,7 +67,7 @@ public class BuilderDeleteLevelController implements ActionListener {
 	 *            the number of the Puzzle level to be deleted
 	 */
 	public void deletePuzzle(int levelNum) {
-		BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
 		java.io.File to = new java.io.File("Levels/Puzzle" + levelNum + ".txt");
 		java.io.File from = new java.io.File("Levels/Puzzle" + (levelNum + 1) + ".txt");
@@ -108,7 +108,7 @@ public class BuilderDeleteLevelController implements ActionListener {
 	 *            the number of the Theme level to be deleted
 	 */
 	public void deleteTheme(int levelNum) {
-		BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 		java.io.File fileCount = new java.io.File("Levels/FileCount.txt");
 		java.io.File to = new java.io.File("Levels/Theme" + levelNum + ".txt");
 		java.io.File from = new java.io.File("Levels/Theme" + (levelNum + 1) + ".txt");

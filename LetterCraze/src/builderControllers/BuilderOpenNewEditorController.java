@@ -14,13 +14,15 @@ import builderGUI.BuilderSelectLevelGUI;
 public class BuilderOpenNewEditorController implements MouseListener{
 
 	BuilderSelectLevelGUI menuView;
-	String type;
+	char type;
+	String levelIdentifier;
 	BuilderMenu menu;
 	
 	
-	public BuilderOpenNewEditorController(BuilderSelectLevelGUI menuView, String type) {
+	public BuilderOpenNewEditorController(BuilderSelectLevelGUI menuView, String levelIdentifier) {
 		this.menuView = menuView;
-		this.type = type;
+		this.levelIdentifier = levelIdentifier;
+		this.type = levelIdentifier.charAt(0);
 		this.menu = menuView.getMenu();
 	}
 
@@ -32,26 +34,26 @@ public class BuilderOpenNewEditorController implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(this.type == "P"){
+		if(this.type == 'P'){
 			int[] empty = new int[3];
 			BuilderPuzzleLevel level = new BuilderPuzzleLevel(empty, "", 0);
 			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
 		}
-		else if(this.type == "T"){
+		else if(this.type == 'T'){
 			int[] empty = new int[3];
 			LinkedList<String> words = new LinkedList<String>();
 			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", words, null);
 			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
 		}
-		else if(this.type == "L"){
+		else if(this.type == 'L'){
 			int[] empty = new int[3];
 			BuilderLightningLevel level = new BuilderLightningLevel(empty, "", 0);
 			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level);
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
 		}
 		else{

@@ -24,12 +24,13 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 		// Close menu window
 		menuView.closeWindow();
 		//Generate the model
-		BuilderFileAccessController fileAccess = new BuilderFileAccessController(new BuilderMenu());
+		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 		BuilderModel model;
 		try{
 			model = fileAccess.getModel();
 			BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(model.getMenu());
 			selectView.openWindow();
+			
 			
 		}
 		catch (Exception exception){

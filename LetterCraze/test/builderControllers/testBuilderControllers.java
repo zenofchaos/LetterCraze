@@ -285,28 +285,28 @@ public class testBuilderControllers extends TestCase{
 
 	}
 
-	public void testDeleteThemeLevel(){
-		BuilderFileAccessController file = new BuilderFileAccessController();
-		BuilderMenu menu = new BuilderMenu();
-		try{
-			menu = file.getModel().getMenu();
-		} catch(Exception e){
-			assertTrue(false);
-		}
-		BuilderSelectLevelGUI gui = new BuilderSelectLevelGUI(menu);
-		BuilderDeleteLevelController delete = new BuilderDeleteLevelController(gui, "T6");
-		delete.delete();
-		BuilderMenu menu2 = new BuilderMenu();
-		try{
-			menu2 = file.getModel().getMenu();
-		} catch(Exception e){
-			assertTrue(false);
-		}
-		assertEquals(menu.getLevel("T7").getTitle(), menu2.getLevel("T6").getTitle());
-		BuilderSelectLevelGUI gui2 = new BuilderSelectLevelGUI(menu2);
-		BuilderDeleteLevelController delete2 = new BuilderDeleteLevelController(gui2, "T6");
-		delete2.delete();
-
-	}
+//	public void testDeleteThemeLevel(){
+//		BuilderFileAccessController file = new BuilderFileAccessController();
+//		BuilderMenu menu = new BuilderMenu();
+//		try{
+//			menu = file.getModel().getMenu();
+//		} catch(Exception e){
+//			assertTrue(false);
+//		}
+//		BuilderSelectLevelGUI gui = new BuilderSelectLevelGUI(menu);
+//		BuilderDeleteLevelController delete = new BuilderDeleteLevelController(gui, "T6");
+//		delete.delete();
+//		BuilderMenu menu2 = new BuilderMenu();
+//		try{
+//			menu2 = file.getModel().getMenu();
+//		} catch(Exception e){
+//			assertTrue(false);
+//		}
+//		assertEquals(menu.getLevel("T7").getTitle(), menu2.getLevel("T6").getTitle());
+//		BuilderSelectLevelGUI gui2 = new BuilderSelectLevelGUI(menu2);
+//		BuilderDeleteLevelController delete2 = new BuilderDeleteLevelController(gui2, "T6");
+//		delete2.delete();
+//
+//	}
 
 }

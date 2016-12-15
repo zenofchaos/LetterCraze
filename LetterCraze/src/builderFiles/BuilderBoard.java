@@ -1,5 +1,7 @@
 package builderFiles;
 
+import playerFiles.PlayerLetter;
+
 public class BuilderBoard {
 
 BuilderSquare[][] squares;
@@ -12,6 +14,17 @@ BuilderSquare[][] squares;
 			System.err.println ("incorrect square array passed to build board");
 		}
 		
+	}
+	
+	boolean replace(){
+		for(int i = 0; i < 6; i++){
+			for(int j = 0; j < 6; j++){
+				if(!this.squares[i][j].hasLetter()){
+					this.squares[i][j].setLetter(new BuilderLetter());
+				}
+			}
+		}
+		return true;
 	}
 	
 	public BuilderSquare[][] getSquareArray(){

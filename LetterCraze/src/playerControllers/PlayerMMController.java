@@ -8,14 +8,27 @@ import playerFiles.*;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerMMController.
+ */
 public class PlayerMMController implements ActionListener{
 
+	/** The menu view. */
 	PlayerMainMenuGUI menuView;
 	
+	/**
+	 * Instantiates a new player MM controller.
+	 *
+	 * @param theWindow the the window
+	 */
 	public PlayerMMController(PlayerMainMenuGUI theWindow) {
 		this.menuView = theWindow;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Close menu window

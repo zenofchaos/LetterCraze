@@ -12,12 +12,27 @@ import playerFiles.PlayerMenu;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerLSController.
+ */
 public class PlayerLSController implements MouseListener{
 
+	/** The select view. */
 	PlayerSelectLevelGUI selectView;
+	
+	/** The menu. */
 	PlayerMenu menu;
+	
+	/** The level identifier. */
 	String levelIdentifier;
 	
+	/**
+	 * Instantiates a new player LS controller.
+	 *
+	 * @param window the window
+	 * @param levelIdentifier the level identifier
+	 */
 	public PlayerLSController(PlayerSelectLevelGUI window, String levelIdentifier){
 		this.selectView = window;
 		this.levelIdentifier = levelIdentifier;
@@ -25,12 +40,18 @@ public class PlayerLSController implements MouseListener{
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//Access files to build level
@@ -45,18 +66,27 @@ public class PlayerLSController implements MouseListener{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub

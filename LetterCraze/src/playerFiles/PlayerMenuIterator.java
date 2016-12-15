@@ -2,15 +2,35 @@ package playerFiles;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerMenuIterator.
+ */
 public class PlayerMenuIterator {
 
+	/** The puzzle list. */
 	List<PlayerLevel> puzzleList;
+	
+	/** The lightning list. */
 	List<PlayerLevel> lightningList;
+	
+	/** The theme list. */
 	List<PlayerLevel> themeList;
+	
+	/** The puzzle index. */
 	int puzzleIndex;
+	
+	/** The lightning index. */
 	int lightningIndex;
+	
+	/** The theme index. */
 	int themeIndex;
 	
+	/**
+	 * Instantiates a new player menu iterator.
+	 *
+	 * @param givenMenuList the given menu list
+	 */
 	public PlayerMenuIterator(List<List<PlayerLevel>> givenMenuList){
 		this.puzzleList = givenMenuList.get(0);
 		this.lightningList = givenMenuList.get(1);
@@ -21,6 +41,12 @@ public class PlayerMenuIterator {
 		this.themeIndex = 0;
 	}
 	
+	/**
+	 * Checks for next.
+	 *
+	 * @param levelType the level type
+	 * @return true, if successful
+	 */
 	//Returns true if there is another level of the given type in the menu
 	public boolean hasNext(String levelType){
 		switch(levelType){
@@ -54,6 +80,12 @@ public class PlayerMenuIterator {
 		}
 	}
 	
+	/**
+	 * Next.
+	 *
+	 * @param levelType the level type
+	 * @return the player level
+	 */
 	//Returns the next level of the given type in the menu
 	public PlayerLevel next(String levelType){
 		PlayerLevel levelToReturn;

@@ -24,7 +24,7 @@ public class PlayerFileAccessController {
 	java.io.File file;
 	Scanner input;
 
-	public PlayerFileAccessController(PlayerMenu menu) {
+	public PlayerFileAccessController() {
 	}
 
 	// Returns an entire model with all the levels generated.

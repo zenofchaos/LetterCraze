@@ -119,7 +119,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				try{
+					letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				}
+				catch (Exception e){
+					letterLabels[i][j] = new JLabel("<html><b>" + " " + "</b>" + properLetterPoints(i, j) + "</html>");
+				}
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j, h)));
@@ -226,22 +231,37 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	private int properLetterSize(int i, int j, int h) {
-		if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof BuilderPuzzleLevel)) {
-			return h * 1/30;
-		} else {
+		try{
+			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof BuilderPuzzleLevel)) {
+				return h * 1/30;
+			} else {
+				return h * 1/24;
+			}
+		}
+		catch(Exception e){
 			return h * 1/24;
 		}
 	}
 	
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
-		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
-			spaceIfNotQu = "";
-		} else {
+		try{
+			if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
+				spaceIfNotQu = "";
+			} else {
+				spaceIfNotQu = " ";
+			}
+		}
+		catch(Exception e){
 			spaceIfNotQu = " ";
 		}
 		if (l instanceof BuilderPuzzleLevel) {
-			return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
+			try{
+				return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
+			}
+			catch(Exception e){
+				return spaceIfNotQu + " ";
+			}
 		} else if (l instanceof BuilderLightningLevel) {
 			return "";
 		} else if (l instanceof BuilderThemeLevel) {

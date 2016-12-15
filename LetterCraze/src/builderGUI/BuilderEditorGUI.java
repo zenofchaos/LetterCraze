@@ -2,6 +2,7 @@ package builderGUI;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -153,26 +154,29 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		
 		if (l instanceof BuilderThemeLevel) {
-			String wordsToFind = "";
+			JPanel wordsToFindPanel = new JPanel();
+			wordsToFindPanel.setLayout(new GridLayout(0, 1));
+			wordsToFindPanel.setAlignmentX(SwingConstants.LEFT);
+			wordsToFindPanel.setBounds(0, 0, w * 15/64, ((BuilderThemeLevel)l).getThemeWords().size() * h * 7/240);
+			JLabel[] wordsToFindLabels = new JLabel[((BuilderThemeLevel)l).getThemeWords().size()];
 			for (int i = 0; i < ((BuilderThemeLevel)l).getThemeWords().size(); i++) {
-				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "\n";
+				wordsToFindLabels[i] = new JLabel(((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase());
+				wordsToFindLabels[i].setBackground(Color.WHITE);
+				wordsToFindLabels[i].setForeground(Color.BLACK);
+				wordsToFindLabels[i].setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
+				wordsToFindPanel.add(wordsToFindLabels[i]);
 			}
-			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
-			wordsToFindTextPane.setBackground(Color.WHITE);
-			wordsToFindTextPane.setForeground(Color.BLACK);
-			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
-			wordsToFindTextPane.setBounds(0, 0, w * 15/64, ((BuilderThemeLevel)l).getThemeWords().size() * h * 7/240);
-			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindTextPane);
+			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindPanel);
 			wordsToFindScrollPane.getVerticalScrollBar().setValue(placeToScroll);
 			wordsToFindScrollPane.setForeground(Color.WHITE);
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
 			
-			JButton wordsToFindButton = new JButton("Save List");
-			wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
-			wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
-			contentPane.add(wordsToFindButton);
+			JTextField wordsToFindTextField = new JTextField();
+			wordsToFindTextField.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
+			wordsToFindTextField.setBounds(w * 1/32, h * 19/24, w * 15/64, h * 1/20);
+			contentPane.add(wordsToFindTextField);
 		}
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
@@ -208,7 +212,6 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		
 		JButton saveButton = new JButton("Save Level");
 		saveButton.addActionListener(new BuilderSaveController(this, levelIdentifier));
-
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);
@@ -289,16 +292,6 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			}
 		}
 		return new JScrollPane();
-	}
-	
-	private JTextArea getTextArea() {
-		Component[] components = contentPane.getComponents();
-		for (int i = 0; i < components.length; i++) {
-			if (components[i] instanceof JScrollPane) {
-				return (JTextArea)components[i];
-			}
-		}
-		return new JTextArea();
 	}
 	
 	@Override

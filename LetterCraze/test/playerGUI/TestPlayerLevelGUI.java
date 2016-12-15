@@ -41,6 +41,36 @@ public class TestPlayerLevelGUI extends TestCase {
 		
 		// select word
 		
+		// assert
+		
+		// attempt to submit non-word
+		
+		// assert
+		
+		// select word
+		
+		// assert
+		
+		// attempt to submit 2-letter word
+		
+		// assert
+		
+		// select word
+		
+		// assert
+				
+		// submit word
+				
+		// assert
+		
+		// select word
+		
+		// assert
+				
+		// attempt to submit word beyond limit
+				
+		// assert
+		
 		// hide level
 		levelView.hideWindow();
 		
@@ -111,7 +141,7 @@ public class TestPlayerLevelGUI extends TestCase {
 		
 		//assert
 		
-		// attempt to submit non-word
+		// attempt to submit non-theme word
 		
 		// assert
 		
@@ -148,8 +178,6 @@ public class TestPlayerLevelGUI extends TestCase {
 		// select word
 		
 		// assert
-		
-		// attempt to submit 2-letter word
 		
 		// attempt to select word with inactive square
 		

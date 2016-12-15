@@ -85,7 +85,7 @@ public class testBuilderControllers extends TestCase{
 		t2.typeSpecificInfo("Bugs");
 		assertEquals("Bugs", levelT.getDescription());
 		t2.typeSpecificInfo("7");
-		assertEquals(7, levelT.getDescription());
+		assertEquals("7", levelT.getDescription());
 		t2.typeSpecificInfo("k");
 		assertEquals("k", levelT.getDescription());
 	}

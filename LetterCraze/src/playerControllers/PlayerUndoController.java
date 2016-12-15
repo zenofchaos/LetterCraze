@@ -3,9 +3,11 @@ package playerControllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import playerFiles.PlayerBoard;
 import playerFiles.PlayerLevel;
+import playerFiles.PlayerThemeLevel;
 import playerFiles.PlayerWord;
 import playerGUI.PlayerLevelGUI;
 
@@ -37,6 +39,12 @@ public class PlayerUndoController implements ActionListener{
 		PlayerWord toUndo = wordsEntered.remove(wordsEntered.size() - 1);
 		//update the level to reflect this extraction
 		this.level.setWordsEntered(wordsEntered);
+		
+		if(this.level instanceof PlayerThemeLevel){
+			LinkedList<String> themeWords = ((PlayerThemeLevel)this.level).getThemeWords();
+			themeWords.add(toUndo.getWord());
+			((PlayerThemeLevel)this.level).setThemeWords(themeWords);
+		}
 		
 		//add the extracted word back to the board
 		PlayerBoard theBoard = this.level.getBoard();

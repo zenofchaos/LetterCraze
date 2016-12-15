@@ -1,6 +1,8 @@
 package playerControllers;
 
 import java.util.Scanner;
+
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import playerFiles.*;
@@ -23,20 +25,14 @@ public class PlayerFileAccessController {
 	Scanner input;
 
 	public PlayerFileAccessController() {
-	}
-
-	/**
-	 * Returns an entire model with all the levels generated. in code: opens the master FileCount file to get metadata about levels, then iterates through each to open.
-	 * @return the model, complete with every level, board, square and letter.
-	 * @throws Exception I couldn't write this without throwing an exception, so that's why it's here
-	 */
-	public PlayerModel getModel() throws Exception {
-		PlayerModel model = new PlayerModel();
-		PlayerMenu menu = model.getMenu();
-
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
-		input = new Scanner(file);
+		try{
+			input = new Scanner(file);
+		}
+		catch (Exception e){
+			System.out.print(e);
+		}
 
 		numL = input.nextInt();
 		numP = input.nextInt();
@@ -48,6 +44,16 @@ public class PlayerFileAccessController {
 
 		// Close FileCount
 		input.close();
+	}
+
+	/**
+	 * Returns an entire model with all the levels generated. in code: opens the master FileCount file to get metadata about levels, then iterates through each to open.
+	 * @return the model, complete with every level, board, square and letter.
+	 * @throws Exception I couldn't write this without throwing an exception, so that's why it's here
+	 */
+	public PlayerModel getModel() throws Exception {
+		PlayerModel model = new PlayerModel();
+		PlayerMenu menu = model.getMenu();
 
 		// Iterate to add Puzzle levels
 		for (int i = 1; i <= numP; i++) {
@@ -67,17 +73,13 @@ public class PlayerFileAccessController {
 		return model;
 	}
 
-	/**
-	 * Opens the lightning level file corresponding to number, then reads and returns a lightning level.
-	 * @param number lightning level number to read (like, a 2 here makes it read Lightning2.txt
-	 * @return one full lightning level
-	 * @throws Exception obligatory filenotfound exception handler
-	 */
+	// opens the lightning level file corresponding to number, reads, and
+	// returns a lightning level.
 	public PlayerLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
 		input = new Scanner(file);
 
-		boolean isLocked = (i <= unlockedL);
+		boolean isLocked = (number > unlockedL);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -88,8 +90,8 @@ public class PlayerFileAccessController {
 		// Now I process the bitmap.
 
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				bitmap[i][j] = new PlayerSquare(i, j);
 				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
@@ -110,17 +112,13 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-	/**
-	 * opens the puzzle level file corresponding to number, then reads and returns a puzzle level.
-	 * @param Number number of the level to be read
-	 * @return Fully read and loaded puzzle level
-	 * @throws Exception FileNotFound
-	 */
+	// opens the puzzle level file corresponding to number, reads, and
+	// returns a puzzle level.
 	public PlayerLevel readPuzzle(int number) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
 		input = new Scanner(file);
 
-		boolean isLocked = (i <= unlockedP);
+		boolean isLocked = (number > unlockedP);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -131,8 +129,8 @@ public class PlayerFileAccessController {
 		// Now process the bitmap.
 
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				bitmap[i][j] = new PlayerSquare(i, j);
 				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
@@ -153,18 +151,14 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-
-	/**
-	 * opens The theme level corresponding to number, then reads and returns a theme level
-	 * @param Number number of the Theme level to be played
-	 * @return Complete theme level, ready to be played
-	 * @throws Exception FileNotFound
-	 */
+	// opens the theme level file corresponding to number, reads, and
+	// returns a theme level.
 	public PlayerLevel readTheme(int number) throws Exception {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
 		input = new Scanner(file);
 
-		boolean isLocked = (i > unlockedT);
+		
+		boolean isLocked = (number > unlockedT);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -176,8 +170,8 @@ public class PlayerFileAccessController {
 
 		// first create the bitmap
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				// here I create a playerSquare in each cell of the array
 				bitmap[i][j] = new PlayerSquare(i, j);
 				// then I set whether the given square is active or inactive
@@ -190,9 +184,9 @@ public class PlayerFileAccessController {
 		input.nextLine();
 		String tempString;
 		PlayerLetter letter;
-		for (i = 0; i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			input.nextLine();
-			for (j = 0; j < 6; j++) {
+			for (int j = 0; j < 6; j++) {
 				// here I put the next char into tempString, check if tempString
 				// is actually supposed to be QU, create a letter with
 				// tempString as its letter, then add that playerLetter to the
@@ -235,14 +229,8 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-
-	/**
-	 * Opens a lightning level, and replaces the previous high scores and stars with the given values
-	 * @param levelnum number of the lightning level to modify
-	 * @param bestScore new best score to add
-	 * @param bestStars new number of stars to add
-	 * @throws Exception FileNotFound
-	 */
+	// opens a lightning level and replaces the previous high scores and stars
+	// with the given values
 	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -258,13 +246,8 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	/**
-	 * Opens a puzzle level, and replaces the previous high scores and stars with the given values
-	 * @param levelnum number of the puzzle level to modify
-	 * @param bestScore new best score to add
-	 * @param bestStars new number of stars to add
-	 * @throws Exception FileNotFound
-	 */
+	// opens a puzzle level and replaces the previous high scores and stars
+	// with the given values
 	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -280,13 +263,8 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	/**
-	 * Opens a theme level, and replaces the previous high scores and stars with the given values
-	 * @param levelnum number of the theme level to modify
-	 * @param bestScore new best score to add
-	 * @param bestStars new number of stars to add
-	 * @throws Exception FileNotFound
-	 */
+	// opens a theme level and replaces the previous high scores and stars
+	// with the given values
 	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -302,10 +280,6 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	/**
-	 * Increments the "unlocked lightning field" in FileCount
-	 * @throws Exception FileNotFound
-	 */
 	public void unlockLightning() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(10); // maybe someday I'll remember to explain these numbers
@@ -319,14 +293,10 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	/**
-	 * Increments the "unlocked puzzle field" in FileCount
-	 * @throws Exception FileNotFound
-	 */
 	public void unlockPuzzle() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(13);
-
+		System.out.println("unlockedP = " + unlockedP);
 		String newNum = String.format("%02d", (unlockedP + 1));
 
 		rAFile.writeBytes(newNum);
@@ -334,10 +304,6 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	/**
-	 * Increments the "unlocked theme field" in FileCount
-	 * @throws Exception FileNotFound
-	 */
 	public void unlockTheme() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(16);

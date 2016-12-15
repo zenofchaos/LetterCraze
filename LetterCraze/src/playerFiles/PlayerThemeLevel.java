@@ -1,5 +1,6 @@
 package playerFiles;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -39,7 +40,12 @@ public class PlayerThemeLevel extends PlayerLevel {
 	
 	@Override
 	public boolean initBoard(){
-		this.board = this.boardPreset;
+		for(int i = 0; i < 6; i++){
+			for(int j = 0; j < 6; j++){
+				this.board.getSquareArray()[i][j].setLetter(this.boardPreset.getSquareArray()[i][j].getLetter());
+			}
+		}
+		this.board.replace();
 		return true;
 	}
 	
@@ -52,7 +58,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 	}
 	
 	@Override
-	boolean isValidWord(PlayerWord w) {
+	public boolean isValidWord(PlayerWord w) {
 		String toMatch = w.getWord();
 		Iterator<String> iterator = themeWords.iterator();
 		
@@ -61,7 +67,6 @@ public class PlayerThemeLevel extends PlayerLevel {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -70,5 +75,14 @@ public class PlayerThemeLevel extends PlayerLevel {
 	@Override
 	public int wordScore(PlayerWord w) {
 		return 1;
+	}
+
+	@Override
+	public void reset() {
+		this.initBoard();
+		this.pointScore = 0;
+		this.selectedWord = new PlayerWord();
+		this.starCount = 0;
+		this.wordsEntered = new ArrayList<PlayerWord>();
 	}
 }

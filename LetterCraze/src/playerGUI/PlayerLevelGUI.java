@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerLvlBackController;
 import playerControllers.PlayerOutsideGridController;
+import playerControllers.PlayerResetController;
 import playerControllers.PlayerSquareController;
 import playerControllers.PlayerUndoController;
 import playerFiles.PlayerLevel;
@@ -227,6 +228,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		}
 		
 		JButton resetButton = new JButton("Reset");
+		resetButton.addActionListener(new PlayerResetController(this));
 		resetButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		resetButton.setBounds(properResetX(w), h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(resetButton);
@@ -240,7 +242,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
-			return "Words Left: " + ((PlayerPuzzleLevel)l).getWordLimit();
+			int wordsEntered = ((PlayerPuzzleLevel)l).getWordsEntered().size();
+			int wordLimit = ((PlayerPuzzleLevel)l).getWordLimit();
+			return "Words Left: " + (wordLimit - wordsEntered);
 		} else if (l instanceof PlayerLightningLevel) {
 			return "Time Left: " + ((PlayerLightningLevel)l).getMaxTime();
 		} else if (l instanceof PlayerThemeLevel) {

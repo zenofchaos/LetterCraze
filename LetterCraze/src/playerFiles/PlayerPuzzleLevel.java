@@ -1,5 +1,7 @@
 package playerFiles;
 
+import java.util.ArrayList;
+
 public class PlayerPuzzleLevel extends PlayerLevel {
 	
 	int wordLimit;
@@ -42,5 +44,24 @@ public class PlayerPuzzleLevel extends PlayerLevel {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean isValidWord(PlayerWord w) {
+		return w.isValidWord();
+	}
+
+	@Override
+	public int wordScore(PlayerWord w) {
+		return w.getPointVal();
+	}
+
+	@Override
+	public void reset() {
+		this.initBoard();
+		this.pointScore = 0;
+		this.selectedWord = new PlayerWord();
+		this.starCount = 0;
+		this.wordsEntered = new ArrayList<PlayerWord>();
 	}
 }

@@ -6,20 +6,19 @@ import java.awt.event.ActionListener;
 import playerFiles.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 
-public class PlayerLvlBackController implements ActionListener{
+public class PlayerResetController implements ActionListener{
 
 	PlayerLevelGUI levelView;
 	PlayerLevel level;
 	
-	public PlayerLvlBackController(PlayerLevelGUI window){
+	public PlayerResetController(PlayerLevelGUI window){
 		this.levelView = window;
-		this.level = this.levelView.getLevel();
+		this.level = levelView.getLevel();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.level.reset();
-		levelView.closeWindow();
+		levelView.refresh(this.level);
 	}
-
 }

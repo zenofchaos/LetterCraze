@@ -27,7 +27,7 @@ public abstract class PlayerLevel {
 			this.title = title;
 			this.pointScore = 0;
 			this.starCount = 0;
-			this.wordsEntered = new ArrayList<>();
+			this.wordsEntered = new ArrayList<PlayerWord>();
 			this.selectedWord = new PlayerWord();			
 		}
 	}
@@ -161,15 +161,13 @@ public abstract class PlayerLevel {
 		}
 	}
 
-	boolean isValidWord(PlayerWord w) { // overridable
-		return w.isValidWord();
-	}
+	abstract public boolean isValidWord(PlayerWord w);
 	
-	public int wordScore(PlayerWord w) { // overridable
-		return w.getPointVal();
-	}
+	abstract public int wordScore(PlayerWord w);
 	
 	public boolean squareIsSelected(PlayerSquare s) {
 		return selectedWord.contains(s);
 	}
+	
+	abstract public void reset();
 }

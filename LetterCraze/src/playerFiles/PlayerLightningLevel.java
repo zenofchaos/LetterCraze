@@ -1,5 +1,7 @@
 package playerFiles;
 
+import java.util.ArrayList;
+
 public class PlayerLightningLevel extends PlayerLevel {
 	int maxTime;
 	
@@ -20,5 +22,19 @@ public class PlayerLightningLevel extends PlayerLevel {
 	@Override
 	public int wordScore(PlayerWord w) {
 		return 1;
+	}
+
+	@Override
+	public boolean isValidWord(PlayerWord w) {
+		return w.isValidWord();
+	}
+
+	@Override
+	public void reset() {
+		this.initBoard();
+		this.pointScore = 0;
+		this.selectedWord = new PlayerWord();
+		this.starCount = 0;
+		this.wordsEntered = new ArrayList<PlayerWord>();
 	}
 }

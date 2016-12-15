@@ -151,6 +151,7 @@ public class PlayerFileAccessController {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
 		input = new Scanner(file);
 
+		
 		boolean isLocked = (i > unlockedT);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();

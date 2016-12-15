@@ -21,7 +21,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 		return this.description;
 	}
 
-	LinkedList<String> getThemeWords() {
+	public LinkedList<String> getThemeWords() {
 		return this.themeWords;
 	}
 
@@ -78,7 +78,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 		Iterator<String> iterator = themeWords.iterator();
 
 		while (iterator.hasNext()) {
-			if (iterator.next() == toMatch) {
+			if (iterator.next().equals(toMatch)) {
 				return true;
 			}
 		}
@@ -99,5 +99,45 @@ public class PlayerThemeLevel extends PlayerLevel {
 		this.selectedWord = new PlayerWord();
 		this.starCount = 0;
 		this.wordsEntered = new ArrayList<PlayerWord>();
+	}
+	
+	@Override
+	public boolean submitSelectedWord() {
+		System.out.println(selectedWord.getWord());
+		if (isValidWord(selectedWord)) {
+			wordsEntered.add(selectedWord);
+			pointScore += wordScore(selectedWord);
+			if (pointScore >= starThresholds[2]){
+				starCount = 3;
+			}
+			else if (pointScore >= starThresholds[1]){
+				starCount = 2;
+			}
+			else if (pointScore >= starThresholds[0]){
+				starCount = 1;
+			}
+			
+			boolean wordFound = false;
+			int index = 0;
+			while (!wordFound && (index < this.themeWords.size())){
+				if(selectedWord.getWord().equals(this.themeWords.get(index))){
+					wordFound = true;
+					this.themeWords.remove(index);
+				}
+				index++;
+			}
+			
+			if(!wordFound){
+				System.out.println("Selected Word not found in Theme Words");
+			}
+			
+			this.board.removeWord(selectedWord);
+			this.board.rise();
+			
+			selectedWord = new PlayerWord();
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

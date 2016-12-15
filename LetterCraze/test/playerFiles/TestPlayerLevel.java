@@ -49,6 +49,17 @@ public class TestPlayerLevel {
 		PlayerBoard board = new PlayerBoard(boardSquares);
 		
 		ll.initBoard();
+		int[] thresh = new int[3];
+		thresh[0] = 2;
+		thresh[1] = 4;
+		thresh[2] = 6;
+		assertEquals(thresh[1], ll.getStarThresholds()[1]);
+		
+		assertFalse(ll.getIsLocked());
+		
+		assertEquals(1, ll.getBestStars());
+		
+		assertEquals(0, ll.getStarCount());
 		
 		assertEquals(35, ll.getMaxTime());
 		assertTrue(ll.setMaxTime(50));
@@ -60,6 +71,7 @@ public class TestPlayerLevel {
 		
 		ArrayList<PlayerSquare> word1Squares = new ArrayList<PlayerSquare>();
 		ArrayList<PlayerSquare> word2Squares = new ArrayList<PlayerSquare>();
+		ArrayList<PlayerSquare> word3Squares = new ArrayList<PlayerSquare>();
 		PlayerSquare square1 = new PlayerSquare(0, 0);
 		PlayerLetter letter1 = new PlayerLetter("C");
 		square1.setLetter(letter1);
@@ -77,6 +89,14 @@ public class TestPlayerLevel {
 		word2Squares.add(square2);
 		word2Squares.add(square3);
 		PlayerWord word2 = new PlayerWord(word2Squares);
+		word3Squares.add(square1);
+		word3Squares.add(square2);
+		word3Squares.add(square3);
+		PlayerWord word3 = new PlayerWord(word3Squares);
+		ArrayList<PlayerWord> entered = new ArrayList<PlayerWord>();
+		entered.add(word3);
+		
+		assertTrue(ll.setPointScore(1));
 		
 		board.addWord(word);
 		
@@ -84,12 +104,20 @@ public class TestPlayerLevel {
 		assertEquals(1, ll.wordScore(word2));
 		
 		assertTrue(ll.setSelectedWord(word2));
+		assertEquals(word2, ll.getSelectedWord());
+		assertTrue(ll.setSelectedWord(word2));
 		ll.submitSelectedWord();
-		assertEquals(1, ll.pointScore);
+		assertEquals(2, ll.pointScore);
+		assertEquals(1, ll.getStarCount());
+		assertEquals(entered.get(0).word, ll.getWordsEntered().get(0).word);
 		
 		ll.reset();
 		
 		assertEquals(0, ll.pointScore);
+		assertEquals(0, ll.getStarCount());
+		
+		ll.setIsLocked(true);
+		assertTrue(ll.getIsLocked());
 	}
 
 }

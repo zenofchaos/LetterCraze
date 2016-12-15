@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import builderControllers.BuilderCloseLevelMenuController;
+import builderControllers.BuilderDeleteLevelController;
 import builderControllers.BuilderOpenExistingEditorController;
 import builderControllers.BuilderOpenNewEditorController;
 import builderFiles.BuilderLevel;
@@ -191,6 +192,8 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				JButton btnDelete = new JButton();
 				btnDelete.setText("Delete");
 				btnDelete.setFont(new Font("Dialog", Font.BOLD, 12));
+				
+				btnDelete.addActionListener(new BuilderDeleteLevelController(levelLabel));
 				
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(

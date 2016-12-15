@@ -4,12 +4,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
-import builderFiles.BuilderMenu;
-
 public class BuilderDeleteLevelController implements ActionListener {
+	
+	int levNum;
 
 	public BuilderDeleteLevelController(String levelID) {
-//		levelID.get
+
+		levNum = levelID.charAt(1) - 48;
+		
+		switch (levelID.charAt(0)) {
+			case 'L':
+				deleteLightning(levNum);
+				break;
+			case 'P':
+				deletePuzzle(levNum);
+				break;
+			case 'T':
+				deleteTheme(levNum);
+				break;
+			default:
+				System.out.println("Someone's passing in weird values for the levelID into BuilderDeleteLevelController...");
+				break;
+		}
 	}
 
 	@Override

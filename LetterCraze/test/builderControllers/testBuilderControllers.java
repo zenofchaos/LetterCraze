@@ -83,7 +83,7 @@ public class testBuilderControllers extends TestCase{
 		
 		BuilderThemeLevel levelT = (BuilderThemeLevel) menu.getLevel("T2");
 		t2.typeSpecificInfo("Bugs");
-		assertEquals("bugs", levelT.getDescription());
+		assertEquals("Bugs", levelT.getDescription());
 		t2.typeSpecificInfo("7");
 		assertEquals(7, levelT.getDescription());
 		t2.typeSpecificInfo("k");

@@ -49,6 +49,10 @@ public class BuilderAddLetterController implements ActionListener {
 				return false;
 			}
 		}
+		else if ((input.length() == 0)){
+			return true;
+		}
+		
 		else{
 			return false;
 		}
@@ -58,7 +62,12 @@ public class BuilderAddLetterController implements ActionListener {
 	boolean addLetter(String input){
 		System.out.println(input);
 		if(isValidLetter(input)){
-			if((input.charAt(0) == 'Q')|| (input.charAt(0) == 'q')){
+			if(input.length() == 0){
+				level.getBoard().getSquare(row, col).setLetter(null);
+				builderEditorView.refresh(level);
+				return true;
+			}
+			else if((input.charAt(0) == 'Q')|| (input.charAt(0) == 'q')){
 				BuilderLetter letter  = new BuilderLetter("qu");
 				level.getBoard().getSquare(row, col).setLetter(letter);
 				builderEditorView.refresh(level);

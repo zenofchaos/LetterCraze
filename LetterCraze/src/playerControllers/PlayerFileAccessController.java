@@ -185,12 +185,11 @@ public class PlayerFileAccessController {
 				// tempString as its letter, then add that playerLetter to the
 				// PlayerSquare of row i and column j.
 				tempString = input.next();
-				if (tempString.equals("*")){
-				// event of no letter being specified, necessitating use of
-				// a random letter. in this case we want to leave the letter
-				// null for this square. do nothing.
-				}
-				else if (tempString.equals("Q")) {
+				if (tempString.equals("*")) {
+					// event of no letter being specified, necessitating use of
+					// a random letter. in this case we want to leave the letter
+					// null for this square. do nothing.
+				} else if (tempString.equals("Q")) {
 					// just the Q. need to add the u.
 					letter = new PlayerLetter("QU");
 					bitmap[i][j].setLetter(letter);

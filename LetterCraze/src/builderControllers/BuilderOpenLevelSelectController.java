@@ -31,6 +31,7 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 			BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(model.getMenu());
 			selectView.openWindow();
 			
+			
 		}
 		catch (Exception exception){
 			System.out.println("Builder File Access threw an exception");

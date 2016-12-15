@@ -12,13 +12,13 @@ Placeholder Level
 1 1 1 1 1 1
 1 1 1 1 1 1
 
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
-Q Q Q Q Q Q
+Q * Q * Q *
+Q Q Q Q Q *
+Q Q Q Q Q *
+Q Q Q Q Q *
+* * * * * *
+Q Q Q Q Q *
 
 Everybody loves placeholders!
 
-QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+QQQQQQQQQQQ

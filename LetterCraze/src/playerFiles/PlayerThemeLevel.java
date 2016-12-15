@@ -98,6 +98,9 @@ public class PlayerThemeLevel extends PlayerLevel {
 		this.pointScore = 0;
 		this.selectedWord = new PlayerWord();
 		this.starCount = 0;
+		for(int i = 0; i < this.wordsEntered.size(); i++){
+			this.themeWords.add(wordsEntered.get(i).getWord());
+		}
 		this.wordsEntered = new ArrayList<PlayerWord>();
 	}
 	

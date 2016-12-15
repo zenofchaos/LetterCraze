@@ -27,14 +27,6 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 			BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(model.getMenu());
 			selectView.openWindow();
 			
-			
-			
-			
-			//DELETE THIS AS SOON AS TESTING IS DONE!!!
-//			BuilderDeleteLevelController del = new BuilderDeleteLevelController("P6");
-			//DELETE THAT AS SOON AS TESTING IS DONE!!!
-			
-			
 		}
 		catch (Exception exception){
 			System.out.println("Builder File Access threw an exception");

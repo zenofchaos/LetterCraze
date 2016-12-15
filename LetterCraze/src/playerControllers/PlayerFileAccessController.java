@@ -7,49 +7,30 @@ import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import playerFiles.*;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PlayerFileAccessController.
- */
+
 public class PlayerFileAccessController {
 
-	/** The num L. */
 	// Store the number of available levels in the directory.
 	int numL;
-	
-	/** The num P. */
 	int numP;
-	
-	/** The num T. */
 	int numT;
 
-	/** The unlocked L. */
 	// Store the number of unlocked levels in each category.
 	int unlockedL;
-	
-	/** The unlocked P. */
 	int unlockedP;
-	
-	/** The unlocked T. */
 	int unlockedT;
 
-	/** The i. */
 	int i; // handy dandy re-usable iterator through files
-	
-	/** The j. */
 	int j; // and the backup
 	
-	/** The file. */
 	java.io.File file;
 	
-	/** The input. */
 	Scanner input;
 
 	/**
 	 * Instantiates a new player file access controller.
 	 */
 	public PlayerFileAccessController() {
-		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
 		try{
 			input = new Scanner(file);
@@ -97,15 +78,13 @@ public class PlayerFileAccessController {
 		return model;
 	}
 
-	// opens the lightning level file corresponding to number, reads, and
 	/**
-	 * Read lightning.
+	 * Opens the lightning level file corresponding to number, then reads and returns a lightning level
 	 *
-	 * @param number the number
-	 * @return the player level
-	 * @throws Exception the exception
+	 * @param number the number of the level to read (i.e. a 2 here reads Levels/Lightning2.txt)
+	 * @return one fully formatted lightning level
+	 * @throws Exception (Ok so I had to add this in case of a fileNotFound exception, so you'll see this in literally every method I wrote because they ALL access files like this. Sorry to my teammates, who had to deal with exceptions because of this.)
 	 */
-	// returns a lightning level.
 	public PlayerLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
 		input = new Scanner(file);
@@ -143,15 +122,13 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-	// opens the puzzle level file corresponding to number, reads, and
 	/**
-	 * Read puzzle.
+	 * Opens the puzzle level file corresponding to the number, then reads and returns a puzzle level.
 	 *
-	 * @param number the number
-	 * @return the player level
-	 * @throws Exception the exception
+	 * @param number The number (index) of the file to be read
+	 * @return the newly read level
+	 * @throws Exception obligatory fileNotFound exception
 	 */
-	// returns a puzzle level.
 	public PlayerLevel readPuzzle(int number) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
 		input = new Scanner(file);
@@ -189,15 +166,13 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-	// opens the theme level file corresponding to number, reads, and
 	/**
-	 * Read theme.
+	 * Opens a theme level file corresponding to number, then reads and returns a theme level.
 	 *
-	 * @param number the number
-	 * @return the player level
-	 * @throws Exception the exception
+	 * @param number the number of the level that should be read
+	 * @return a brand new level
+	 * @throws Exception fileNotFound
 	 */
-	// returns a theme level.
 	public PlayerLevel readTheme(int number) throws Exception {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
 		input = new Scanner(file);
@@ -274,16 +249,14 @@ public class PlayerFileAccessController {
 		return level;
 	}
 
-	// opens a lightning level and replaces the previous high scores and stars
 	/**
-	 * Update lightning.
+	 * Opens a lightning level and replaces the previous high scores and stars with the given values.
 	 *
-	 * @param levelnum the levelnum
-	 * @param bestScore the best score
-	 * @param bestStars the best stars
-	 * @throws Exception the exception
+	 * @param levelnum the number of the level to be changed
+	 * @param bestScore the new best score
+	 * @param bestStars the new best stars
+	 * @throws Exception fileNotFound
 	 */
-	// with the given values
 	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -299,16 +272,14 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	// opens a puzzle level and replaces the previous high scores and stars
 	/**
-	 * Update puzzle.
+	 * Opens a puzzle level and replaces the previous high scores and stars with the given values.
 	 *
-	 * @param levelnum the levelnum
-	 * @param bestScore the best score
-	 * @param bestStars the best stars
-	 * @throws Exception the exception
+	 * @param levelnum the number of the level to be changed
+	 * @param bestScore the new best score
+	 * @param bestStars the new best stars
+	 * @throws Exception fileNotFound
 	 */
-	// with the given values
 	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -324,16 +295,14 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
-	// opens a theme level and replaces the previous high scores and stars
 	/**
-	 * Update theme.
+	 * Opens a theme level and replaces the previous high scores and stars with the given values.
 	 *
-	 * @param levelnum the levelnum
-	 * @param bestScore the best score
-	 * @param bestStars the best stars
-	 * @throws Exception the exception
+	 * @param levelnum the number of the level to be changed
+	 * @param bestScore the new best score
+	 * @param bestStars the new best stars
+	 * @throws Exception fileNotFound
 	 */
-	// with the given values
 	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
 		rAFile.seek(0);
@@ -350,9 +319,9 @@ public class PlayerFileAccessController {
 	}
 
 	/**
-	 * Unlock lightning.
+	 * Unlock the next locked lightning level.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception fileNotFound
 	 */
 	public void unlockLightning() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
@@ -368,9 +337,9 @@ public class PlayerFileAccessController {
 	}
 
 	/**
-	 * Unlock puzzle.
+	 * Unlock the next locked puzzle level.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception fileNotFound
 	 */
 	public void unlockPuzzle() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
@@ -384,9 +353,9 @@ public class PlayerFileAccessController {
 	}
 
 	/**
-	 * Unlock theme.
+	 * Unlock the next locked theme level.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception fileNotFound
 	 */
 	public void unlockTheme() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");

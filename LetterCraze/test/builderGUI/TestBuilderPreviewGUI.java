@@ -22,6 +22,7 @@ public class TestBuilderPreviewGUI extends TestCase{
 	
 	public void testWindowManipulation(){
 		BuilderLevel level = this.model.getMenu().getLevel("P1");
+		level.initBoard();
 		BuilderPreviewGUI prev = new BuilderPreviewGUI(level);
 
 		prev.openWindow();
@@ -32,6 +33,7 @@ public class TestBuilderPreviewGUI extends TestCase{
 		prev.closeWindow();
 		
 		level = this.model.getMenu().getLevel("L1");
+		level.initBoard();
 		prev = new BuilderPreviewGUI(level);
 
 		prev.openWindow();
@@ -41,12 +43,17 @@ public class TestBuilderPreviewGUI extends TestCase{
 		
 		prev.closeWindow();
 		
-		level = this.model.getMenu().getLevel("T1");
+		level = this.model.getMenu().getLevel("T2");
+		level.initBoard();
 		prev = new BuilderPreviewGUI(level);
 
 		prev.openWindow();
 		assertEquals(true, prev.isVisible());
+		prev.refresh(level);
+		assertEquals(true, prev.isVisible());
 		prev.hideWindow();
+		assertEquals(false, prev.isVisible());
+		prev.refresh(level);
 		assertEquals(false, prev.isVisible());
 		
 		prev.closeWindow();

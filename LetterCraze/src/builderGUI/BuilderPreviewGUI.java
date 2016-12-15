@@ -32,22 +32,6 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	private static BuilderLevel l;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderPreviewGUI frame = new BuilderPreviewGUI(l);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public BuilderPreviewGUI(BuilderLevel level) {

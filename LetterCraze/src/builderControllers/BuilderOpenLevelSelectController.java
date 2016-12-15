@@ -2,14 +2,10 @@ package builderControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
-import playerFiles.PlayerMenu;
-import playerGUI.PlayerSelectLevelGUI;
-import playerGUI.PlayerMainMenuGUI;
 
 public class BuilderOpenLevelSelectController implements ActionListener{
 
@@ -30,7 +26,6 @@ public class BuilderOpenLevelSelectController implements ActionListener{
 			model = fileAccess.getModel();
 			BuilderSelectLevelGUI selectView = new BuilderSelectLevelGUI(model.getMenu());
 			selectView.openWindow();
-			
 			
 		}
 		catch (Exception exception){

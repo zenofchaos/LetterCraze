@@ -128,6 +128,19 @@ public abstract class PlayerLevel {
 	}
 	
 	public boolean initBoard(){
+		if (this.board != null) {
+		} else { // This means the board doesn't exist. go through and make all
+					// the squares real quick before continuing.
+			PlayerSquare[][] emptyarray = new PlayerSquare[6][6];
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					emptyarray[i][j] = new PlayerSquare(i, j);
+				}
+			}
+			PlayerBoard board = new PlayerBoard(emptyarray);
+			this.setBoard(board);
+		}
+
 		for(int row = 0; row < 6; row++){
 			for(int col = 0; col < 6; col++){
 				this.board.getSquareArray()[row][col].setLetter(new PlayerLetter());

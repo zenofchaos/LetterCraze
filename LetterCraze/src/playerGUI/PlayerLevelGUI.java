@@ -1,15 +1,10 @@
 package playerGUI;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -39,17 +34,27 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/**
+ * _____
+ * @author Craig Bursey
+ */
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
+	/**_*/
 	private JPanel contentPane;
+	/**_*/
 	private static PlayerLevel l;
+	/**_*/
 	String levelIdentifier;
+	/**_*/
 	long initialTime;
+	/**_*/
 	Timer gameTimer;
+	/**_*/
 	Timer refreshTimer;
 
 	/**
-	 * Create the application.
+	 * ___
 	 */
 	public PlayerLevelGUI(PlayerLevel level, String identifier) {
 		PlayerLevelGUI.l = level;
@@ -59,27 +64,27 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * @return current static level object
+	 * @return The current static level object.
 	 */
 	public PlayerLevel getLevel() {
 		return l;
 	}
 	/**
-	 * @return levelIdentifier A string identifying this level.
+	 * @return A string identifying this level.
 	 */
 	public String getIdentifier(){
 		return this.levelIdentifier;
 	}
 	
 	/**
-	 * @return timerCount The current number of seconds which have passed since this level started.
+	 * @return The current number of seconds which have passed since this level started.
 	 */
 	public long getInitalTime(){
 		return this.initialTime;
 	}
 	
 	/**
-	 * Initialize the contents of the frame.
+	 * _____
 	 */
 	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,6 +112,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		showComponents(0);
 	}
 	
+	/**
+	 * ______
+	 * @param placeToScroll
+	 */
 	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
@@ -261,6 +270,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.add(backButton);
 	}
 	
+	/**
+	 * _____
+	 * @return
+	 */
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
 			int wordsEntered = ((PlayerPuzzleLevel)l).getWordsEntered().size();
@@ -274,6 +287,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return "";
 	}
 	
+	/**
+	 * ____
+	 * @param h
+	 * @return
+	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof PlayerPuzzleLevel) {
 			return h * 1/24;
@@ -284,6 +302,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return h * 1/24;
 	}
 	
+	/**
+	 * _____
+	 * @param i
+	 * @param j
+	 * @param h
+	 * @return
+	 */
 	private int properLetterSize(int i, int j, int h) {
 		if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
 			return h * 1/30;
@@ -292,6 +317,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		}
 	}
 	
+	/**
+	 * ______
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
 		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
@@ -308,6 +339,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
 	}
 	
+	/**
+	 * ____
+	 */
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
 			return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
@@ -318,6 +352,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return " (" + l.getWordsEntered().get(i).getPointVal() + ")";
 	}
 	
+	/**
+	 * _____
+	 * @param w
+	 * @return
+	 */
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
 			return w * 33/64;
@@ -328,6 +367,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		} else return w * 33/64;
 	}
 	
+	/**
+	 * _______
+	 * @param n
+	 * @return
+	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
 		String subscripts = "";
@@ -360,6 +404,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		return subscripts;
 	}
 	
+	/**
+	 * _____
+	 * @return
+	 */
 	private JScrollPane getScrollPane() {
 		Component[] components = contentPane.getComponents();
 		for (int i = 0; i < components.length; i++) {
@@ -370,11 +418,17 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		return new JScrollPane();
 	}
 
+	/**
+	 * _
+	 */
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
 	}
 
+	/**
+	 * ___
+	 */
 	@Override
 	public void closeWindow() {
 		if(l instanceof PlayerLightningLevel){
@@ -385,11 +439,17 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		this.dispose();
 	}
 
+	/**
+	 * _
+	 */
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
 	}
 	
+	/**
+	 * __
+	 */
 	@Override
 	public void refresh(Object level) {
 		int placeToScroll = getScrollPane().getVerticalScrollBar().getValue();
@@ -400,6 +460,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.validate();
 	}
 	
+	/**
+	 * ______
+	 * @param level
+	 */
 	public void refreshAndScroll(Object level) {
 		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();
 		l = (PlayerLevel)level;

@@ -78,12 +78,6 @@ public class TestPlayerLevelGUI extends TestCase {
 		
 		// close level
 		levelView.closeWindow();
-		
-		try {
-			int w = (int)levelView.getBounds().getWidth();
-			fail("Width (" + w + ") of a closed window should not exist.");
-		} catch (Exception e) {}
-		
 	}
 	
 	public void testLightning() {

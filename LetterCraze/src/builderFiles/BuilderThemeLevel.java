@@ -2,6 +2,9 @@ package builderFiles;
 
 import java.util.LinkedList;
 
+import playerFiles.PlayerBoard;
+import playerFiles.PlayerSquare;
+
 public class BuilderThemeLevel extends BuilderLevel{
 
 	String description;
@@ -44,7 +47,26 @@ public class BuilderThemeLevel extends BuilderLevel{
 	
 	@Override
 	public boolean initBoard(){
-		this.board = this.boardPreset;
+		if (this.board != null) {
+		} else { // This means the board doesn't exist. go through and make all
+					// the squares real quick before continuing.
+			BuilderSquare[][] emptyarray = new BuilderSquare[6][6];
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					emptyarray[i][j] = new BuilderSquare(i, j);
+				}
+			}
+			BuilderBoard board = new BuilderBoard(emptyarray);
+			this.setBoard(board);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
+				this.board.getSquareArray()[i][j].setLetter(this.boardPreset.getSquareArray()[i][j].getLetter());
+				this.board.getSquareArray()[i][j].setActive(this.boardPreset.getSquareArray()[i][j].getActive());
+			}
+		}
+		this.board.replace();
 		return true;
 	}
 	

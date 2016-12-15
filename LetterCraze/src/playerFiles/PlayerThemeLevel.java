@@ -8,70 +8,85 @@ public class PlayerThemeLevel extends PlayerLevel {
 	String description;
 	LinkedList<String> themeWords;
 	PlayerBoard boardPreset;
-	
-	public PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme, String description, LinkedList<String> themeWords, PlayerBoard boardPreset) {
+
+	public PlayerThemeLevel(int[] starThresholds, int bestScore, int bestStars, boolean isLocked, String theme,
+			String description, LinkedList<String> themeWords, PlayerBoard boardPreset) {
 		super(starThresholds, bestScore, bestStars, isLocked, theme);
 		this.description = description;
 		this.themeWords = themeWords;
 		this.boardPreset = boardPreset;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return this.description;
 	}
-	
-	LinkedList<String> getThemeWords(){
+
+	LinkedList<String> getThemeWords() {
 		return this.themeWords;
 	}
-	
-	PlayerBoard getBoardPreset(){
+
+	PlayerBoard getBoardPreset() {
 		return this.boardPreset;
 	}
-	
-	boolean setThemeWords(LinkedList<String> themeWords){
+
+	boolean setThemeWords(LinkedList<String> themeWords) {
 		this.themeWords = themeWords;
 		return true;
 	}
-	
-	boolean setBoardPreset(PlayerBoard boardPreset){
+
+	boolean setBoardPreset(PlayerBoard boardPreset) {
 		this.boardPreset = boardPreset;
 		return true;
 	}
-	
+
 	@Override
-	public boolean initBoard(){
-		for(int i = 0; i < 6; i++){
-			for(int j = 0; j < 6; j++){
+	public boolean initBoard() {
+		if (this.board != null) {
+		} else { // This means the board doesn't exist. go through and make all
+					// the squares real quick before continuing.
+			PlayerSquare[][] emptyarray = new PlayerSquare[6][6];
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					emptyarray[i][j] = new PlayerSquare(i, j);
+				}
+			}
+			PlayerBoard board = new PlayerBoard(emptyarray);
+			this.setBoard(board);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				this.board.getSquareArray()[i][j].setLetter(this.boardPreset.getSquareArray()[i][j].getLetter());
+				this.board.getSquareArray()[i][j].setActive(this.boardPreset.getSquareArray()[i][j].getActive());
 			}
 		}
 		this.board.replace();
 		return true;
 	}
-	
-	boolean addThemeWord(String word){
+
+	boolean addThemeWord(String word) {
 		return themeWords.add(word);
 	}
-	
-	boolean removeThemeWord(String word){
+
+	boolean removeThemeWord(String word) {
 		return themeWords.remove(word);
 	}
-	
+
 	@Override
 	public boolean isValidWord(PlayerWord w) {
 		String toMatch = w.getWord();
 		Iterator<String> iterator = themeWords.iterator();
-		
-		while(iterator.hasNext()){
-			if(iterator.next() == toMatch){
+
+		while (iterator.hasNext()) {
+			if (iterator.next() == toMatch) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	//Only the number of words matters for lightning levels,
-	//	so their point values are all 1
+
+	// Only the number of words matters for lightning levels,
+	// so their point values are all 1
 	@Override
 	public int wordScore(PlayerWord w) {
 		return 1;

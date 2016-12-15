@@ -168,12 +168,12 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
+			
+			JButton wordsToFindButton = new JButton("Save List");
+			wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+			wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
+			contentPane.add(wordsToFindButton);
 		}
-		
-		JButton wordsToFindButton = new JButton("Save Word List");
-		wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
-		wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
-		contentPane.add(wordsToFindButton);
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
 		scoreProgressBar.setForeground(Color.YELLOW);

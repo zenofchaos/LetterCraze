@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -21,7 +23,6 @@ import javax.swing.border.EmptyBorder;
 
 import builderControllers.BuilderAddLetterController;
 import builderControllers.BuilderAddStarThreshold;
-import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderOutsideGridController;
@@ -90,10 +91,10 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		showComponents();
+		showComponents(0);
 	}
 	
-	private void showComponents() {
+	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
 		int borderSize = h * 1/80;
@@ -109,7 +110,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		titleTextField.addActionListener(new BuilderAddTitle(this));
 		titleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		titleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
-		titleTextField.setBounds(w * 5/16, h * 1/8, h * 1/2, h * 1/20);
+		titleTextField.setBounds(w * 5/16 + borderSize, h * 1/8, h * 1/2 - borderSize, h * 1/20);
 		contentPane.add(titleTextField);
 		
 		JLabel subtitleLabel = new JLabel(properSubtitleType()); // holds moves left (puzzle), time left (lightning), or theme description (theme)
@@ -123,7 +124,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		subtitleTextField.addActionListener(new BuilderTypeSpecificInfoController(this));
 		subtitleTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		subtitleTextField.setFont(new Font("Dialog", Font.PLAIN, h * 1/30));
-		subtitleTextField.setBounds(w * 5/16, h * 3/16, properSubtitleWidth(w, h), h * 1/20);
+		subtitleTextField.setBounds(w * 5/16 + borderSize, h * 3/16, properSubtitleWidth(w, h, borderSize), h * 1/20);
 		contentPane.add(subtitleTextField);
 		
 		JTextField[][] letterTextFields = new JTextField[6][6];
@@ -154,19 +155,25 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		if (l instanceof BuilderThemeLevel) {
 			String wordsToFind = "";
 			for (int i = 0; i < ((BuilderThemeLevel)l).getThemeWords().size(); i++) {
-				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i) + "\n";
+				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "\n";
 			}
 			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
-			wordsToFindTextPane.setForeground(Color.WHITE);
+			wordsToFindTextPane.setBackground(Color.WHITE);
+			wordsToFindTextPane.setForeground(Color.BLACK);
 			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 			wordsToFindTextPane.setBounds(0, 0, w * 15/64, ((BuilderThemeLevel)l).getThemeWords().size() * h * 7/240);
 			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindTextPane);
-			wordsToFindScrollPane.getVerticalScrollBar().setValue(wordsToFindScrollPane.getVerticalScrollBar().getMaximum());
+			wordsToFindScrollPane.getVerticalScrollBar().setValue(placeToScroll);
 			wordsToFindScrollPane.setForeground(Color.WHITE);
 			wordsToFindScrollPane.setBackground(Color.DARK_GRAY);
 			wordsToFindScrollPane.setBounds(w * 1/32, h * 1/4, w * 15/64, h * 1/2);
 			contentPane.add(wordsToFindScrollPane);
 		}
+		
+		JButton wordsToFindButton = new JButton("Save Word List");
+		wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
+		wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
+		contentPane.add(wordsToFindButton);
 		
 		JProgressBar scoreProgressBar = new JProgressBar();
 		scoreProgressBar.setForeground(Color.YELLOW);
@@ -199,8 +206,9 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			contentPane.add(starThresholdTextFields[i]);
 		}
 		
-		JButton saveButton = new JButton("Save");
+		JButton saveButton = new JButton("Save Level");
 		saveButton.addActionListener(new BuilderSaveController(this, levelIdentifier));
+
 		saveButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		saveButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(saveButton);
@@ -253,15 +261,15 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
-	private int properSubtitleWidth(int w, int h) {
+	private int properSubtitleWidth(int w, int h, int borderSize) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return w * 1/16;
 		} else if (l instanceof BuilderLightningLevel) {
 			return w * 1/16;
 		} else if (l instanceof BuilderThemeLevel) {
-			return h * 1/2;
+			return h * 1/2 - borderSize;
 		} else {
-			return h * 1/2;
+			return h * 1/2 - borderSize;
 		}
 	}
 	
@@ -271,6 +279,16 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		} catch (NullPointerException e) {
 			return "   ";
 		}
+	}
+	
+	private JScrollPane getScrollPane() {
+		Component[] components = contentPane.getComponents();
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JScrollPane) {
+				return (JScrollPane)components[i];
+			}
+		}
+		return new JScrollPane();
 	}
 	
 	@Override
@@ -291,9 +309,19 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	
 	@Override
 	public void refresh(Object level) {
+		int placeToScroll = getScrollPane().getVerticalScrollBar().getValue();
 		l = (BuilderLevel)level;
 		contentPane.removeAll();
-		showComponents();
+		showComponents(placeToScroll);
+		contentPane.repaint();
+		contentPane.validate();
+	}
+	
+	public void refreshAndScroll(Object level) {
+		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();
+		l = (BuilderLevel)level;
+		contentPane.removeAll();
+		showComponents(placeToScroll);
 		contentPane.repaint();
 		contentPane.validate();
 	}

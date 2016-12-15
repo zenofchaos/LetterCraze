@@ -25,16 +25,16 @@ public class PlayerThemeLevel extends PlayerLevel {
 		return this.themeWords;
 	}
 
-	PlayerBoard getBoardPreset() {
+	public PlayerBoard getBoardPreset() {
 		return this.boardPreset;
 	}
 
-	boolean setThemeWords(LinkedList<String> themeWords) {
+	public boolean setThemeWords(LinkedList<String> themeWords) {
 		this.themeWords = themeWords;
 		return true;
 	}
 
-	boolean setBoardPreset(PlayerBoard boardPreset) {
+	public boolean setBoardPreset(PlayerBoard boardPreset) {
 		this.boardPreset = boardPreset;
 		return true;
 	}

@@ -25,9 +25,11 @@ import builderControllers.BuilderAddLetterController;
 import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
+import builderControllers.BuilderEnterWordListController;
 import builderControllers.BuilderOutsideGridController;
 import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
+import builderControllers.BuilderTextPaneController;
 import builderControllers.BuilderTypeSpecificInfoController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
@@ -158,6 +160,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 				wordsToFind += ((BuilderThemeLevel)l).getThemeWords().get(i).toUpperCase() + "\n";
 			}
 			JTextArea wordsToFindTextPane = new JTextArea(wordsToFind);
+			wordsToFindTextPane.addKeyListener(new BuilderTextPaneController(this));
 			wordsToFindTextPane.setBackground(Color.WHITE);
 			wordsToFindTextPane.setForeground(Color.BLACK);
 			wordsToFindTextPane.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
@@ -170,6 +173,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			contentPane.add(wordsToFindScrollPane);
 			
 			JButton wordsToFindButton = new JButton("Save List");
+			//wordsToFindButton.addActionListener(new BuilderEnterWordListController(this, getTextArea().getText()));
 			wordsToFindButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 			wordsToFindButton.setBounds(w * 1/32, h * 3/4, w * 15/64, h * 1/16);
 			contentPane.add(wordsToFindButton);
@@ -291,10 +295,10 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		return new JScrollPane();
 	}
 	
-	private JTextArea getTextArea() {
+	public JTextArea getTextArea() {
 		Component[] components = contentPane.getComponents();
 		for (int i = 0; i < components.length; i++) {
-			if (components[i] instanceof JScrollPane) {
+			if (components[i] instanceof JTextArea) {
 				return (JTextArea)components[i];
 			}
 		}

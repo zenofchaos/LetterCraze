@@ -69,10 +69,10 @@ public class BuilderMainMenuGUI extends JFrame implements IBuilderGUI {
 		gl_contentPane.setVerticalGroup(
 				gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addContainerGap(60, Short.MAX_VALUE)
-						.addComponent(lblLetterCrazeBuilder, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						.addGap(60)
+						.addComponent(lblLetterCrazeBuilder, 100, 100, 100)
 						.addGap(20)
-						.addComponent(btnLevels, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLevels, 25, 25, 25)
 						.addContainerGap(120, Short.MAX_VALUE))
 				);
 		contentPane.setLayout(gl_contentPane);

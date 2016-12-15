@@ -1,5 +1,6 @@
-00005
-0Placeholder Level
+00000
+0
+Placeholder Level
 10
 20
 30

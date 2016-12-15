@@ -73,7 +73,7 @@ public class PlayerFileAccessController {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
 		input = new Scanner(file);
 
-		boolean isLocked = (i <= unlockedL);
+		boolean isLocked = (number > unlockedL);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -84,8 +84,8 @@ public class PlayerFileAccessController {
 		// Now I process the bitmap.
 
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				bitmap[i][j] = new PlayerSquare(i, j);
 				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
@@ -112,7 +112,7 @@ public class PlayerFileAccessController {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
 		input = new Scanner(file);
 
-		boolean isLocked = (i <= unlockedP);
+		boolean isLocked = (number > unlockedP);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -123,8 +123,8 @@ public class PlayerFileAccessController {
 		// Now process the bitmap.
 
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				bitmap[i][j] = new PlayerSquare(i, j);
 				bitmap[i][j].setActive(input.nextInt() == 1);
 			}
@@ -152,7 +152,7 @@ public class PlayerFileAccessController {
 		input = new Scanner(file);
 
 		
-		boolean isLocked = (i > unlockedT);
+		boolean isLocked = (number > unlockedT);
 		int bestScore = input.nextInt();
 		int bestStars = input.nextInt();
 		input.nextLine(); // Advances the cursor to the next line
@@ -164,8 +164,8 @@ public class PlayerFileAccessController {
 
 		// first create the bitmap
 		PlayerSquare[][] bitmap = new PlayerSquare[6][6];
-		for (i = 0; i < 6; i++) {
-			for (j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 6; j++) {
 				// here I create a playerSquare in each cell of the array
 				bitmap[i][j] = new PlayerSquare(i, j);
 				// then I set whether the given square is active or inactive
@@ -178,9 +178,9 @@ public class PlayerFileAccessController {
 		input.nextLine();
 		String tempString;
 		PlayerLetter letter;
-		for (i = 0; i < 6; i++) {
+		for (int i = 0; i < 6; i++) {
 			input.nextLine();
-			for (j = 0; j < 6; j++) {
+			for (int j = 0; j < 6; j++) {
 				// here I put the next char into tempString, check if tempString
 				// is actually supposed to be QU, create a letter with
 				// tempString as its letter, then add that playerLetter to the

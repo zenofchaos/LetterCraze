@@ -291,6 +291,16 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		return new JScrollPane();
 	}
 	
+	private JTextArea getTextArea() {
+		Component[] components = contentPane.getComponents();
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JScrollPane) {
+				return (JTextArea)components[i];
+			}
+		}
+		return new JTextArea();
+	}
+	
 	@Override
 	public void openWindow() {
 		this.setVisible(true);

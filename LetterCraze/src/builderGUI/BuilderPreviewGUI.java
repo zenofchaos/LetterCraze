@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderPreviewBackController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
@@ -188,7 +189,8 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		resetButton.setBounds(properResetX(w), h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(resetButton);
 		
-		JButton backButton = new JButton("Back to Menu");
+		JButton backButton = new JButton("Back to Editor");
+		backButton.addActionListener(new BuilderPreviewBackController(this));
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);

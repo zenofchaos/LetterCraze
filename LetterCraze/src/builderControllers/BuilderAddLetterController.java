@@ -38,22 +38,18 @@ public class BuilderAddLetterController implements ActionListener {
 	boolean isValidLetter(String input){
 		if((input.length() == 1)){
 			if ((input.charAt(0) >= 'A') && (input.charAt(0) <= 'Z') || (input.charAt(0) >= 'a') && (input.charAt(0) <= 'z')){
-				System.out.println("HERE");
 				return true;
 			}
 		}
 		else if ((input.length() == 2)){
 			if((input.equals("QU")) || (input.equals("Qu")) || (input.equals("qU")) || (input.equals("qu"))){
-				System.out.println("HERE1");
 				return true;
 			}
 			else{
-				System.out.println("HERE2");
 				return false;
 			}
 		}
 		else{
-			System.out.println("HERE3");
 			return false;
 		}
 		return false;

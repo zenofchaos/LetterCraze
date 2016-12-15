@@ -34,35 +34,7 @@ public class BuilderOpenNewEditorController implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(this.type == 'P'){
-			int[] empty = new int[3];
-			BuilderPuzzleLevel level = new BuilderPuzzleLevel(empty, "", 0);
-			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
-			window.openWindow();
-			menuView.closeWindow();
-		}
-		else if(this.type == 'T'){
-			int[] empty = new int[3];
-			LinkedList<String> words = new LinkedList<String>();
-			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", words, null);
-			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
-			window.openWindow();
-			menuView.closeWindow();
-		}
-		else if(this.type == 'L'){
-			int[] empty = new int[3];
-			BuilderLightningLevel level = new BuilderLightningLevel(empty, "", 0);
-			level.initEmptyBoard();
-			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
-			window.openWindow();
-			menuView.closeWindow();
-		}
-		else{
-			System.out.println("Invalid type sent to BuilderOpenNewEditorController");
-		}
-		
+		openLevel();
 		
 	}
 
@@ -82,6 +54,44 @@ public class BuilderOpenNewEditorController implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	BuilderEditorGUI openLevel(){
+		if(this.type == 'P'){
+			int[] empty = new int[3];
+			BuilderPuzzleLevel level = new BuilderPuzzleLevel(empty, "", 0);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
+			window.openWindow();
+			menuView.closeWindow();
+			return window;
+		}
+		else if(this.type == 'T'){
+			int[] empty = new int[3];
+			LinkedList<String> words = new LinkedList<String>();
+			BuilderThemeLevel level = new BuilderThemeLevel(empty, "", "", words, null);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
+			window.openWindow();
+			menuView.closeWindow();
+			return window;
+		}
+		else if(this.type == 'L'){
+			int[] empty = new int[3];
+			BuilderLightningLevel level = new BuilderLightningLevel(empty, "", 0);
+			level.initEmptyBoard();
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
+			window.openWindow();
+			menuView.closeWindow();
+			return window;
+		}
+		else{
+			System.out.println("Invalid type sent to BuilderOpenNewEditorController");
+			int[] empty = new int[3];
+			BuilderLightningLevel level = new BuilderLightningLevel(empty, "", 0);
+			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
+			return window;
+		}
 	}
 
 	

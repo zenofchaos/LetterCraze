@@ -21,8 +21,13 @@ public class BuilderAddTitle implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	String title = e.getActionCommand();
 	title.trim();
-	level.setTitle(title);
-	builderEditorView.refresh(level);
+	addTitle(title);
+	}
+	
+	void addTitle(String title){
+		level.setTitle(title);
+		builderEditorView.refresh(level);
+		
 	}
 
 	

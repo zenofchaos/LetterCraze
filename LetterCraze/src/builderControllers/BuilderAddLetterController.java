@@ -25,28 +25,17 @@ public class BuilderAddLetterController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
 		input = input.trim();
-		System.out.println(input);
-		if(isValidLetter(input)){
-			if((input.charAt(0) == 'Q')|| (input.charAt(0) == 'q')){
-				BuilderLetter letter  = new BuilderLetter("qu");
-				level.getBoard().getSquare(row, col).setLetter(letter);
-				builderEditorView.refresh(level);
-			}
-			else{
-				BuilderLetter letter  = new BuilderLetter(input);
-				level.getBoard().getSquare(row, col).setLetter(letter);
-				builderEditorView.refresh(level);
-			}
+		if(addLetter(input)){
+			return;
 		}
 		else{
-			System.out.println("invalid Letter entered");
-			builderEditorView.refresh(level);
+			System.out.println("Builder add letter controller failed");
 		}
 
 
 	}
 
-	private boolean isValidLetter(String input){
+	boolean isValidLetter(String input){
 		if((input.length() == 1)){
 			if ((input.charAt(0) >= 'A') && (input.charAt(0) <= 'Z') || (input.charAt(0) >= 'a') && (input.charAt(0) <= 'z')){
 				System.out.println("HERE");
@@ -68,6 +57,29 @@ public class BuilderAddLetterController implements ActionListener {
 			return false;
 		}
 		return false;
+	}
+	
+	boolean addLetter(String input){
+		System.out.println(input);
+		if(isValidLetter(input)){
+			if((input.charAt(0) == 'Q')|| (input.charAt(0) == 'q')){
+				BuilderLetter letter  = new BuilderLetter("qu");
+				level.getBoard().getSquare(row, col).setLetter(letter);
+				builderEditorView.refresh(level);
+				return true;
+			}
+			else{
+				BuilderLetter letter  = new BuilderLetter(input);
+				level.getBoard().getSquare(row, col).setLetter(letter);
+				builderEditorView.refresh(level);
+				return true;
+			}
+		}
+		else{
+			System.out.println("invalid Letter entered");
+			builderEditorView.refresh(level);
+			return false;
+		}
 	}
 
 }

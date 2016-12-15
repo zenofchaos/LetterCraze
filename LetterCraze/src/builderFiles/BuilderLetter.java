@@ -66,7 +66,7 @@ public class BuilderLetter {
 		pointTable.put("K", 5);
 		pointTable.put("J", 7);
 		pointTable.put("X", 7);
-		pointTable.put("Qu", 11);
+		pointTable.put("QU", 11);
 		pointTable.put("Z", 8);
 
 		return pointTable;
@@ -179,7 +179,7 @@ public class BuilderLetter {
 			return "X";
 		}
 		else if (val < 9993){
-			return "Qu";
+			return "QU";
 		}
 		else if (val < 10000){
 			return "Z";
@@ -232,7 +232,7 @@ public class BuilderLetter {
 			case 1:
 				return toFormat.toUpperCase();
 			case 2:
-				return "Qu";
+				return "QU";
 			default:
 				return null;
 			}

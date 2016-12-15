@@ -37,23 +37,9 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderSelectLevelGUI window = new BuilderSelectLevelGUI(new BuilderMenu());
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
+	 * 
+	 * @param menu The menu object that contains the levels to be displayed.
 	 */
 	public BuilderSelectLevelGUI(BuilderMenu menu) {
 		this.theMenu = menu;
@@ -74,6 +60,9 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		showComponents();
 	}
 
+	/**
+	 * Create the components that will be displayed in the frame.
+	 */
 	private void showComponents(){
 		String[] levelTypes = new String[3];
 		levelTypes[0] = "Puzzle";

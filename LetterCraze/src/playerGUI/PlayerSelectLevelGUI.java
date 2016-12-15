@@ -37,23 +37,9 @@ public class PlayerSelectLevelGUI implements IPlayerGUI{
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PlayerSelectLevelGUI window = new PlayerSelectLevelGUI(new PlayerMenu());
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
+	 * 
+	 * @param menu The menu object that contains the levels to display.
 	 */
 	public PlayerSelectLevelGUI(PlayerMenu menu) {
 		this.theMenu = menu;

@@ -9,16 +9,30 @@ import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
+// TODO: Auto-generated Javadoc
 //TODO:WEIRD CASTING STUFF GOING ON WITH LEVEL TYPES HERE, NOT SURE THIS IS GOOD.... MIGHT WANT TO MAKE THREE DIFFERENT CONTROLLERS
 
+/**
+ * The Class BuilderTypeSpecificInfoController.
+ */
 public class BuilderTypeSpecificInfoController implements ActionListener {
+	
+	/** The builder editor view. */
 	BuilderEditorGUI builderEditorView;
 	
+	/**
+	 * Instantiates a new builder type specific info controller.
+	 *
+	 * @param builderEditorView the builder editor view
+	 */
 	public BuilderTypeSpecificInfoController(BuilderEditorGUI builderEditorView){
 		this.builderEditorView = builderEditorView;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
@@ -32,6 +46,12 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 
 	}
 	
+	/**
+	 * Checks if is valid number.
+	 *
+	 * @param value the value
+	 * @return true, if is valid number
+	 */
 	boolean isValidNumber(String value){
 		boolean validNum = false;
 		for(int i = 0; i < value.length(); i++){
@@ -45,6 +65,12 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 		return validNum;
 	}
 	
+	/**
+	 * Type specific info.
+	 *
+	 * @param input the input
+	 * @return true, if successful
+	 */
 	boolean typeSpecificInfo(String input){
 		if (builderEditorView.getLevel() instanceof BuilderPuzzleLevel){
 			BuilderPuzzleLevel level = (BuilderPuzzleLevel) builderEditorView.getLevel();

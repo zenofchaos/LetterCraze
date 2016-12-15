@@ -7,14 +7,27 @@ import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderOpenLevelSelectController.
+ */
 public class BuilderOpenLevelSelectController implements ActionListener{
 
+	/** The menu view. */
 	BuilderMainMenuGUI menuView;
 	
+	/**
+	 * Instantiates a new builder open level select controller.
+	 *
+	 * @param theWindow the the window
+	 */
 	public BuilderOpenLevelSelectController(BuilderMainMenuGUI theWindow) {
 		this.menuView = theWindow;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Close menu window

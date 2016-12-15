@@ -7,13 +7,30 @@ import builderFiles.BuilderLetter;
 import builderFiles.BuilderLevel;
 import builderGUI.BuilderEditorGUI;
 
+// TODO: Auto-generated Javadoc
 //TODO: add some way to know which square the letter is in!! then add the letter to that square
 
+/**
+ * The Class BuilderAddLetterController.
+ */
 public class BuilderAddLetterController implements ActionListener {
+	
+	/** The builder editor view. */
 	BuilderEditorGUI builderEditorView;
+	
+	/** The col. */
 	int row, col;
+	
+	/** The level. */
 	BuilderLevel level;
 
+	/**
+	 * Instantiates a new builder add letter controller.
+	 *
+	 * @param builderEditorView the builder editor view
+	 * @param row the row
+	 * @param col the col
+	 */
 	public BuilderAddLetterController(BuilderEditorGUI builderEditorView, int row, int col){
 		this.builderEditorView = builderEditorView;
 		this.row = row; 
@@ -21,6 +38,9 @@ public class BuilderAddLetterController implements ActionListener {
 		this.level = builderEditorView.getLevel();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
@@ -35,6 +55,12 @@ public class BuilderAddLetterController implements ActionListener {
 
 	}
 
+	/**
+	 * Checks if is valid letter.
+	 *
+	 * @param input the input
+	 * @return true, if is valid letter
+	 */
 	boolean isValidLetter(String input){
 		if((input.length() == 1)){
 			if ((input.charAt(0) >= 'A') && (input.charAt(0) <= 'Z') || (input.charAt(0) >= 'a') && (input.charAt(0) <= 'z')){
@@ -59,6 +85,12 @@ public class BuilderAddLetterController implements ActionListener {
 		return false;
 	}
 	
+	/**
+	 * Adds the letter.
+	 *
+	 * @param input the input
+	 * @return true, if successful
+	 */
 	boolean addLetter(String input){
 		System.out.println(input);
 		if(isValidLetter(input)){

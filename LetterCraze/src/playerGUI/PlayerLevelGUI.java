@@ -34,27 +34,37 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+// TODO: Auto-generated Javadoc
 /**
- * _____
+ * _____.
+ *
  * @author Craig Bursey
  */
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
-	/**_*/
+	/** _. */
 	private JPanel contentPane;
-	/**_*/
+	
+	/** _. */
 	private static PlayerLevel l;
-	/**_*/
+	
+	/** _. */
 	String levelIdentifier;
-	/**_*/
+	
+	/** _. */
 	long initialTime;
-	/**_*/
+	
+	/** _. */
 	Timer gameTimer;
-	/**_*/
+	
+	/** _. */
 	Timer refreshTimer;
 
 	/**
-	 * ___
+	 * ___.
+	 *
+	 * @param level the level
+	 * @param identifier the identifier
 	 */
 	public PlayerLevelGUI(PlayerLevel level, String identifier) {
 		PlayerLevelGUI.l = level;
@@ -64,12 +74,17 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
+	 * Gets the level.
+	 *
 	 * @return The current static level object.
 	 */
 	public PlayerLevel getLevel() {
 		return l;
 	}
+	
 	/**
+	 * Gets the identifier.
+	 *
 	 * @return A string identifying this level.
 	 */
 	public String getIdentifier(){
@@ -77,6 +92,8 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
+	 * Gets the inital time.
+	 *
 	 * @return The current number of seconds which have passed since this level started.
 	 */
 	public long getInitalTime(){
@@ -84,7 +101,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
+	 * _____.
 	 */
 	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,8 +130,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______
-	 * @param placeToScroll
+	 * ______.
+	 *
+	 * @param placeToScroll the place to scroll
 	 */
 	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
@@ -276,8 +294,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @return
+	 * _____.
+	 *
+	 * @return the string
 	 */
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -293,9 +312,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____
-	 * @param h
-	 * @return
+	 * ____.
+	 *
+	 * @param h the h
+	 * @return the int
 	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -308,11 +328,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @param i
-	 * @param j
-	 * @param h
-	 * @return
+	 * _____.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @param h the h
+	 * @return the int
 	 */
 	private int properLetterSize(int i, int j, int h) {
 		try {
@@ -327,10 +348,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______
-	 * @param i
-	 * @param j
-	 * @return
+	 * ______.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return the string
 	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
@@ -349,7 +371,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____
+	 * ____.
+	 *
+	 * @param i the i
+	 * @return the string
 	 */
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -362,9 +387,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @param w
-	 * @return
+	 * _____.
+	 *
+	 * @param w the w
+	 * @return the int
 	 */
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -377,9 +403,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _______
-	 * @param n
-	 * @return
+	 * _______.
+	 *
+	 * @param n the n
+	 * @return the string
 	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
@@ -414,8 +441,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @return
+	 * _____.
+	 *
+	 * @return the scroll pane
 	 */
 	private JScrollPane getScrollPane() {
 		Component[] components = contentPane.getComponents();
@@ -428,7 +456,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * _
+	 * _.
 	 */
 	@Override
 	public void openWindow() {
@@ -436,7 +464,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * ___
+	 * ___.
 	 */
 	@Override
 	public void closeWindow() {
@@ -449,7 +477,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * _
+	 * _.
 	 */
 	@Override
 	public void hideWindow() {
@@ -457,7 +485,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * __
+	 * __.
+	 *
+	 * @param level the level
 	 */
 	@Override
 	public void refresh(Object level) {
@@ -470,8 +500,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______
-	 * @param level
+	 * ______.
+	 *
+	 * @param level the level
 	 */
 	public void refreshAndScroll(Object level) {
 		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();

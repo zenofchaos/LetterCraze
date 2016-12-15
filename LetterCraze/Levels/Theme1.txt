@@ -1,23 +1,23 @@
-00000
-0
+00005
+2
 Placeholder Level
 1
 2
 3
 
-1 1 1 1 1 1 
-1 1 1 1 1 1 
-1 1 1 1 1 1 
-1 1 1 1 1 1 
-1 1 1 1 1 1 
-1 1 1 1 1 1 
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
 
-QU * QU * QU * 
-QU QU QU QU QU * 
-QU QU QU QU QU * 
-QU QU QU QU QU * 
-* * * * * * 
-QU QU QU QU QU * 
+Q * Q * Q *
+Q Q Q Q Q *
+Q Q Q Q Q *
+Q Q Q Q Q *
+* * * * * *
+Q Q Q Q Q *
 
 Everybody loves placeholders!
 

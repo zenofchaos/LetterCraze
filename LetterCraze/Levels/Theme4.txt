@@ -5,19 +5,19 @@ Berry Blast
 4
 5
 
-0 1 1 1 1 1 
-1 0 1 1 1 1 
-1 1 0 1 1 1 
-1 1 1 0 1 1 
-1 1 1 1 0 1 
-1 1 1 1 1 0 
+0 1 1 1 1 1
+1 0 1 1 1 1
+1 1 0 1 1 1
+1 1 1 0 1 1
+1 1 1 1 0 1
+1 1 1 1 1 0
 
-* W A T D O 
-M B I P E P 
-E N E P M U 
-L R A K A A 
-N R A A C V 
-G O N A N O 
+* W A T D O
+M B I P E P
+E N E P M U
+L R A K A A
+N R A A C V
+G O N A N O
 
 Botanical Berries
 

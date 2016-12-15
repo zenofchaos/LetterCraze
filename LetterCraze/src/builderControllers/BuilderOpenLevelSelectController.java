@@ -2,14 +2,10 @@ package builderControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
-import playerFiles.PlayerMenu;
-import playerGUI.PlayerSelectLevelGUI;
-import playerGUI.PlayerMainMenuGUI;
 
 public class BuilderOpenLevelSelectController implements ActionListener{
 

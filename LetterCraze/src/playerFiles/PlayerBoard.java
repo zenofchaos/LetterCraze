@@ -1,5 +1,8 @@
 package playerFiles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerBoard {
 	PlayerSquare[][] squares;
 	
@@ -56,10 +59,10 @@ public class PlayerBoard {
 	//	below this square
 	private PlayerSquare[][] findLetter(PlayerSquare[][] theBoard, int row, int col){
 		try{
-			if(!theBoard[row][col + 1].hasLetter()){
-				theBoard = findLetter(theBoard,row,col+1);
+			if(!theBoard[row + 1][col].hasLetter()){
+				theBoard = findLetter(theBoard,row + 1,col);
 			}
-			theBoard[row][col].setLetter(theBoard[row][col + 1].removeLetter());
+			theBoard[row][col].setLetter(theBoard[row + 1][col].removeLetter());
 			return theBoard;
 		}
 		catch (Exception e){
@@ -78,5 +81,44 @@ public class PlayerBoard {
 			}
 		}
 		return true;
+	}
+	
+	public PlayerBoard addWord(PlayerWord toAdd){
+		List<PlayerSquare> squaresToAdd = toAdd.getSquares();
+		
+		//while there are still squares to add
+		while(squaresToAdd.size() > 0){
+			PlayerSquare next = squaresToAdd.get(0);
+
+			//make the next square to add the one highest up in the board (lowest column val)
+			for(int i = 1; i < squaresToAdd.size(); i++){
+				if (squaresToAdd.get(i).getRow() < next.getRow()){
+					next = squaresToAdd.get(i);
+				}
+			}
+			
+			int rowToUpdate = next.getRow();
+			int colToUpdate = next.getCol();
+			PlayerLetter letterToAdd = next.getLetter();
+			
+			while(rowToUpdate < 6){
+				//replace the current square with the letter to add, saving the letter it held previously
+				letterToAdd = this.squares[rowToUpdate][colToUpdate].changeLetter(letterToAdd);
+				//increment the column
+				rowToUpdate++;
+			}
+			squaresToAdd.remove(next);
+		}
+		return this;
+	}
+	
+	public boolean removeWord(PlayerWord word){
+		List<PlayerSquare> squares = word.getSquares();
+		PlayerSquare toRemove;
+		for(int i = 0; i < squares.size(); i++){
+			toRemove = squares.get(i);
+			this.squares[toRemove.getRow()][toRemove.getCol()].removeLetter();
+		}
+		return false;
 	}
 }

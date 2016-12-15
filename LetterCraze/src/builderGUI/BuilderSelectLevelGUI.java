@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import builderControllers.BuilderCloseLevelMenuController;
+import builderControllers.BuilderDeleteLevelController;
 import builderControllers.BuilderOpenExistingEditorController;
 import builderControllers.BuilderOpenNewEditorController;
 import builderFiles.BuilderLevel;
@@ -69,7 +70,11 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		showComponents();
+	}
 
+	private void showComponents(){
 		String[] levelTypes = new String[3];
 		levelTypes[0] = "Puzzle";
 		levelTypes[1] = "Lightning";
@@ -192,6 +197,8 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 				btnDelete.setText("Delete");
 				btnDelete.setFont(new Font("Dialog", Font.BOLD, 12));
 				
+				btnDelete.addActionListener(new BuilderDeleteLevelController(this, levelLabel));
+				
 				GroupLayout gl_thePanel = new GroupLayout(thePanel);
 				gl_thePanel.setHorizontalGroup(
 						gl_thePanel.createParallelGroup(Alignment.LEADING)
@@ -271,7 +278,6 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
 	
 	// Opens (set visible) this frame
 	public void openWindow(){
@@ -290,9 +296,12 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 	}
 
 	@Override
-	public void refresh(Object o) {
-		// TODO Auto-generated method stub
-		
+	public void refresh(Object menu) {
+		theMenu = (BuilderMenu) menu;
+		frame.removeAll();
+		showComponents();
+		frame.repaint();
+		frame.validate();		
 	}
 
 	public BuilderMenu getMenu() {

@@ -14,11 +14,13 @@ import playerFiles.PlayerWord;
 public class PlayerSquareController implements MouseListener {
 
 	PlayerLevelGUI levelView;
+	PlayerLevel level;
 	int row;
 	int col;
 	
 	public PlayerSquareController(PlayerLevelGUI window, int i, int j){
 		this.levelView = window;
+		this.level = levelView.getLevel();
 		this.row = i;
 		this.col = j;
 	}
@@ -31,14 +33,15 @@ public class PlayerSquareController implements MouseListener {
 		if (   (e.getModifiers() == MouseEvent.BUTTON1_MASK)
 			&& (thisSquare().getActive())
 			&& (adjacencyRuleIsFollowed())) {
-			if (l().squareIsSelected(thisSquare())) {
-				if (thisSquare() == l().getSelectedWord().recentSquare(2)) {
-					l().getSelectedWord().removeSquare();
-					levelView.refresh(l());
+			if (this.level.squareIsSelected(thisSquare())) {
+				if (thisSquare().equals(this.level.getSelectedWord().recentSquare(2))) {
+					this.level.getSelectedWord().removeSquare();
+					levelView.refresh(this.level);
 				}
 			} else {
-				l().getSelectedWord().addSquare(thisSquare());
-				levelView.refresh(l());
+				this.level.getSelectedWord().addSquare(thisSquare());
+				levelView.refresh(this.level);
+				
 			}
 		}
 	}
@@ -49,13 +52,13 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if ((SwingUtilities.isLeftMouseButton(e)) && (thisSquare().getActive())) {
-			l().setSelectedWord(new PlayerWord(thisSquare()));
-			levelView.refresh(l());
+			this.level.setSelectedWord(new PlayerWord(thisSquare()));
+			levelView.refresh(this.level);
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			if (l().submitSelectedWord()) {
-				levelView.refreshAndScroll(l());
+			if (this.level.submitSelectedWord()) {
+				levelView.refreshAndScroll(this.level);
 			} else {
-				levelView.refresh(l());
+				levelView.refresh(this.level);
 			}
 		}
 	}
@@ -63,16 +66,12 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 	
-	private PlayerLevel l() {
-		return levelView.getLevel();
-	}
-	
 	private PlayerSquare thisSquare() {
-		return l().getBoard().getSquareArray()[row][col];
+		return this.level.getBoard().getSquareArray()[row][col];
 	}
 	
 	private boolean adjacencyRuleIsFollowed() {
-		return     (l().getSelectedWord().getSquares().isEmpty())
-				|| (thisSquare().isNeighbor(l().getSelectedWord().recentSquare(1)));
+		return     (this.level.getSelectedWord().getSquares().isEmpty())
+				|| (thisSquare().isNeighbor(this.level.getSelectedWord().recentSquare(1)));
 	}
 }

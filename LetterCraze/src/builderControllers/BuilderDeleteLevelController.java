@@ -4,17 +4,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
-import builderFiles.BuilderMenu;
+import builderGUI.BuilderSelectLevelGUI;
 
 public class BuilderDeleteLevelController implements ActionListener {
 
-	public BuilderDeleteLevelController(String levelID) {
-//		levelID.get
+	int levNum;
+	String levelID;
+	BuilderSelectLevelGUI gui;
+
+	public BuilderDeleteLevelController(BuilderSelectLevelGUI builderSelectLevelGUI, String levelID) {
+
+		this.levelID = levelID;
+		this.gui = builderSelectLevelGUI;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
+		levNum = levelID.charAt(1) - 48;
+
+		switch (levelID.charAt(0)) {
+		case 'L':
+			deleteLightning(levNum);
+			break;
+		case 'P':
+			deletePuzzle(levNum);
+			break;
+		case 'T':
+			deleteTheme(levNum);
+			break;
+		default:
+			System.out
+					.println("Someone's passing in weird values for the levelID into BuilderDeleteLevelController...");
+			break;
+		}
 	}
 
 	/**
@@ -99,7 +122,6 @@ public class BuilderDeleteLevelController implements ActionListener {
 
 	}
 
-	
 	/**
 	 * safely deletes the Theme Level file corresponding to levelNum, then
 	 * properly decrements the names of each and decrements in FileCount.txt.
@@ -119,7 +141,6 @@ public class BuilderDeleteLevelController implements ActionListener {
 			int numL = input.nextInt();
 			int numP = input.nextInt();
 			int numT = input.nextInt();
-
 
 			// Close FileCount
 			input.close();

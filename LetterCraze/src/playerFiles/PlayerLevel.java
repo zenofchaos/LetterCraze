@@ -27,7 +27,7 @@ public abstract class PlayerLevel {
 			this.title = title;
 			this.pointScore = 0;
 			this.starCount = 0;
-			this.wordsEntered = new ArrayList<>();
+			this.wordsEntered = new ArrayList<PlayerWord>();
 			this.selectedWord = new PlayerWord();			
 		}
 	}
@@ -72,27 +72,27 @@ public abstract class PlayerLevel {
 		return this.isLocked;
 	}
 	
-	boolean setTitle(String title){
+	public boolean setTitle(String title){
 		this.title = title;
 		return true;
 	}
 	
-	boolean setPointScore(int pointScore){
+	public boolean setPointScore(int pointScore){
 		this.pointScore = pointScore;
 		return true;
 	}
 	
-	boolean setStarCount(int starCount){
+	public boolean setStarCount(int starCount){
 		this.starCount = starCount;
 		return true;
 	}
 	
-	boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
+	public boolean setWordsEntered(ArrayList<PlayerWord> wordsEntered){
 		this.wordsEntered = wordsEntered;
 		return true;
 	}
 	
-	boolean setStarThresholds(int[] starThresholds){
+	public boolean setStarThresholds(int[] starThresholds){
 		if (starThresholds.length == 3){
 			this.starThresholds = starThresholds;
 			return true;
@@ -102,12 +102,12 @@ public abstract class PlayerLevel {
 		}
 	}
 	
-	boolean setBestScore(int bestScore){
+	public boolean setBestScore(int bestScore){
 		this.bestScore = bestScore;
 		return true;
 	}
 	
-	boolean setBestStars(int bestStars){
+	public boolean setBestStars(int bestStars){
 		this.bestStars = bestStars;
 		return true;
 	}
@@ -122,12 +122,25 @@ public abstract class PlayerLevel {
 		return true;
 	}
 	
-	boolean setIsLocked(boolean isLocked){
+	public boolean setIsLocked(boolean isLocked){
 		this.isLocked = isLocked;
 		return true;
 	}
 	
 	public boolean initBoard(){
+		if (this.board != null) {
+		} else { // This means the board doesn't exist. go through and make all
+					// the squares real quick before continuing.
+			PlayerSquare[][] emptyarray = new PlayerSquare[6][6];
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					emptyarray[i][j] = new PlayerSquare(i, j);
+				}
+			}
+			PlayerBoard board = new PlayerBoard(emptyarray);
+			this.setBoard(board);
+		}
+
 		for(int row = 0; row < 6; row++){
 			for(int col = 0; col < 6; col++){
 				this.board.getSquareArray()[row][col].setLetter(new PlayerLetter());
@@ -135,7 +148,7 @@ public abstract class PlayerLevel {
 		}
 		return true;
 	}
-	
+
 	public boolean submitSelectedWord() {
 		if (isValidWord(selectedWord)) {
 			wordsEntered.add(selectedWord);
@@ -149,6 +162,11 @@ public abstract class PlayerLevel {
 			else if (pointScore >= starThresholds[0]){
 				starCount = 1;
 			}
+			
+			this.board.removeWord(selectedWord);
+			this.board.rise();
+			this.board.replace();
+			
 			selectedWord = new PlayerWord();
 			return true;
 		} else {
@@ -156,15 +174,13 @@ public abstract class PlayerLevel {
 		}
 	}
 
-	boolean isValidWord(PlayerWord w) { // overridable
-		return w.isValidWord();
-	}
+	abstract public boolean isValidWord(PlayerWord w);
 	
-	int wordScore(PlayerWord w) { // overridable
-		return w.getPointVal();
-	}
+	abstract public int wordScore(PlayerWord w);
 	
 	public boolean squareIsSelected(PlayerSquare s) {
-		return selectedWord.getSquares().contains(s);
+		return selectedWord.contains(s);
 	}
+	
+	abstract public void reset();
 }

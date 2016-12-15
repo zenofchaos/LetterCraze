@@ -39,8 +39,9 @@ public class PlayerLSController implements MouseListener{
 		PlayerLevel level = menu.getLevel(levelIdentifier);
 		System.out.println(levelIdentifier);
 		level.initBoard();
-		PlayerLevelGUI window = new PlayerLevelGUI(level);
+		PlayerLevelGUI window = new PlayerLevelGUI(level, levelIdentifier);
 		window.openWindow();
+		this.selectView.closeWindow();
 		
 	}
 

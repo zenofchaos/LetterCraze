@@ -20,7 +20,13 @@ public class PlayerWord {
 	//Constructs a word with this given square
 	public PlayerWord(PlayerSquare theSquare){
 		this.squares = new ArrayList<PlayerSquare>();
-		this.squares.add(theSquare);
+		
+		//generate copy of the given square
+		PlayerSquare toAdd = new PlayerSquare(theSquare.getRow(), theSquare.getCol());
+		toAdd.setLetter(theSquare.getLetter());
+		toAdd.setActive(theSquare.getActive());
+		//add the copied square to this word
+		this.squares.add(toAdd);
 		
 		this.updateWord();
 	}
@@ -110,8 +116,13 @@ public class PlayerWord {
 	//Adds the given square to the end of this word
 	//Returns false if the square has no letter
 	public boolean addSquare(PlayerSquare square) {
-		if (square.hasLetter()){
-			this.squares.add(square);
+		//make a copy of the given square
+		PlayerSquare toAdd = new PlayerSquare(square.getRow(), square.getCol());
+		toAdd.setLetter(square.getLetter());
+		toAdd.setActive(square.getActive());
+		
+		if (toAdd.hasLetter()){
+			this.squares.add(toAdd);
 			return this.updateWord();
 		}
 		else{
@@ -122,8 +133,13 @@ public class PlayerWord {
 	//Adds the given square to this word at the given index
 	//Returns false if the square has no letter
 	public boolean addSquare(PlayerSquare square, int index) {
-		if (square.hasLetter()){
-			this.squares.add(index, square);
+		//make a copy of the given square
+		PlayerSquare toAdd = new PlayerSquare(square.getRow(), square.getCol());
+		toAdd.setLetter(square.getLetter());
+		toAdd.setActive(square.getActive());
+		
+		if (toAdd.hasLetter()){
+			this.squares.add(index, toAdd);
 			return this.updateWord();
 		}
 		else{
@@ -151,5 +167,17 @@ public class PlayerWord {
 		} else {
 			return squares.get(squares.size() - n);
 		}
+	}
+	
+	public boolean contains(PlayerSquare toCheck){
+		boolean squareFound = false;
+		int index = 0;
+		PlayerSquare currentSquare;
+		while (!squareFound && (index < this.squares.size())){
+			currentSquare = this.squares.get(index);
+			squareFound = currentSquare.equals(toCheck);
+			index++;
+		}
+		return squareFound;
 	}
 }

@@ -8,19 +8,19 @@ import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerModel;
 import playerFiles.PlayerPuzzleLevel;
 import playerFiles.PlayerThemeLevel;
-import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
+import playerGUI.PlayerTimeUpGUI;
 
-public class PlayerLvlBackController implements ActionListener{
+public class PlayerExitTimeUpController implements ActionListener{
 
-	PlayerLevelGUI levelView;
+	PlayerTimeUpGUI window;
 	PlayerLevel level;
 	String identifier;
 	
-	public PlayerLvlBackController(PlayerLevelGUI window){
-		this.levelView = window;
-		this.level = this.levelView.getLevel();
-		this.identifier = this.levelView.getIdentifier();
+	public PlayerExitTimeUpController(PlayerTimeUpGUI w){
+		this.window = w;
+		this.level = w.getLevel();
+		this.identifier = w.getIdentifier();
 	}
 	
 	@Override
@@ -47,12 +47,11 @@ public class PlayerLvlBackController implements ActionListener{
 		}
 		else if (this.level instanceof PlayerLightningLevel){
 			try {
-				System.out.println("Best Score " + bestScore);
-				System.out.println("Identifier " + this.identifier);
 				fileAccessController.updateLightning(this.identifier.charAt(1) - 48,bestScore,bestStars);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
+			
 		}
 		else if (this.level instanceof PlayerThemeLevel){
 			try {
@@ -67,7 +66,7 @@ public class PlayerLvlBackController implements ActionListener{
 		}
 		
 		this.level.reset();
-		levelView.closeWindow();
+		window.closeWindow();
 		
 		PlayerFileAccessController fileAccess = new PlayerFileAccessController();
 		try{

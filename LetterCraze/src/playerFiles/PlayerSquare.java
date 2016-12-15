@@ -117,4 +117,13 @@ public class PlayerSquare {
 		
 		return (topleft || topcenter || topright || left || right || bottomleft || bottomcenter || bottomright);
 	}
+	
+	public boolean equals(PlayerSquare toMatch){
+		boolean matchingLetter = this.toString() == toMatch.toString();
+		boolean matchingRow = this.row == toMatch.getRow();
+		boolean matchingCol = this.col == toMatch.getCol();
+		boolean matchingActivity = this.active == toMatch.getActive();
+		
+		return matchingLetter && matchingRow && matchingCol && matchingActivity;
+	}
 }

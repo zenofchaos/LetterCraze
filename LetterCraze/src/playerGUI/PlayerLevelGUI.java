@@ -3,9 +3,12 @@ package playerGUI;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,12 +19,17 @@ import java.awt.Component;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import playerControllers.PlayerLvlBackController;
 import playerControllers.PlayerOutsideGridController;
+import playerControllers.PlayerRefreshController;
+import playerControllers.PlayerResetController;
 import playerControllers.PlayerSquareController;
+import playerControllers.PlayerTimerController;
+import playerControllers.PlayerUndoController;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerPuzzleLevel;
@@ -35,28 +43,18 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
 	private JPanel contentPane;
 	private static PlayerLevel l;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PlayerLevelGUI frame = new PlayerLevelGUI(l);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	String levelIdentifier;
+	long initialTime;
+	Timer gameTimer;
+	Timer refreshTimer;
 
 	/**
 	 * Create the application.
 	 */
-	public PlayerLevelGUI(PlayerLevel level) {
+	public PlayerLevelGUI(PlayerLevel level, String identifier) {
 		PlayerLevelGUI.l = level;
+		this.levelIdentifier = identifier;
+		this.initialTime = System.currentTimeMillis();
 		initialize();
 	}
 	
@@ -65,6 +63,19 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	 */
 	public PlayerLevel getLevel() {
 		return l;
+	}
+	/**
+	 * @return levelIdentifier A string identifying this level.
+	 */
+	public String getIdentifier(){
+		return this.levelIdentifier;
+	}
+	
+	/**
+	 * @return timerCount The current number of seconds which have passed since this level started.
+	 */
+	public long getInitalTime(){
+		return this.initialTime;
 	}
 	
 	/**
@@ -80,6 +91,18 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		if(l instanceof PlayerLightningLevel){
+			gameTimer = new Timer(((PlayerLightningLevel)l).getMaxTime()*1000,new PlayerTimerController(this));
+			gameTimer.setRepeats(false);
+			gameTimer.start();
+		}
+		
+		if(l instanceof PlayerLightningLevel){
+			PlayerRefreshController rc = new PlayerRefreshController(this);
+			refreshTimer = new Timer(250,rc);
+			refreshTimer.start();
+		}
 		
 		showComponents(0);
 	}
@@ -222,9 +245,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 			undoButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 			undoButton.setBounds(w * 21/64, h * 19/24, w * 5/32, h * 1/12);
 			contentPane.add(undoButton);
+			undoButton.addActionListener(new PlayerUndoController(this));
 		}
 		
 		JButton resetButton = new JButton("Reset");
+		resetButton.addActionListener(new PlayerResetController(this));
 		resetButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		resetButton.setBounds(properResetX(w), h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(resetButton);
@@ -238,9 +263,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
-			return "Words Left: " + ((PlayerPuzzleLevel)l).getWordLimit();
+			int wordsEntered = ((PlayerPuzzleLevel)l).getWordsEntered().size();
+			int wordLimit = ((PlayerPuzzleLevel)l).getWordLimit();
+			return "Words Left: " + (wordLimit - wordsEntered);
 		} else if (l instanceof PlayerLightningLevel) {
-			return "Time Left: " + ((PlayerLightningLevel)l).getMaxTime();
+			int maxTime = ((PlayerLightningLevel)l).getMaxTime();
+			return "Time Left: " + (maxTime - (System.currentTimeMillis() - this.initialTime)/1000);
 		} else if (l instanceof PlayerThemeLevel) {
 			return ((PlayerThemeLevel)l).getDescription();
 		} else return "";
@@ -349,6 +377,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
 	@Override
 	public void closeWindow() {
+		if(l instanceof PlayerLightningLevel){
+			refreshTimer.stop();
+			gameTimer.stop();
+		}
 		this.setVisible(false);
 		this.dispose();
 	}

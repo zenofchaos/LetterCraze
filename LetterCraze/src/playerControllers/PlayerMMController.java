@@ -21,7 +21,7 @@ public class PlayerMMController implements ActionListener{
 		// Close menu window
 		menuView.closeWindow();
 		//Generate the model
-		PlayerFileAccessController fileAccess = new PlayerFileAccessController(new PlayerMenu());
+		PlayerFileAccessController fileAccess = new PlayerFileAccessController();
 		try{
 			PlayerModel model = fileAccess.getModel();
 			

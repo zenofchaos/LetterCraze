@@ -310,6 +310,12 @@ public class BuilderFileAccessController {
 		writer.close();
 	}
 
+	/**
+	 * saves a puzzle level to the disk. could be a new level, or an edit
+	 * @param levelNum number of file to save level to (i.e. 6 -> Puzzle6.txt)
+	 * @param level BuilderPuzzleLevel to save
+	 * @throws Exception for filenotfound exception
+	 */
 	public void savePuzzle(int levelNum, BuilderPuzzleLevel level) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + levelNum + ".txt");
 		if (file.createNewFile()) adjustPuzzleCount(+1);
@@ -344,9 +350,15 @@ public class BuilderFileAccessController {
 		writer.close();
 	}
 
+	/**
+	 * saves a theme level to the disk. could be a new level, or an edit
+	 * @param levelNum number of file to save level to (i.e. 1 -> Theme1.txt)
+	 * @param level BuilderThemeLevel to save
+	 * @throws Exception 404
+	 */
 	public void saveTheme(int levelNum, BuilderThemeLevel level) throws Exception {
 		file = new java.io.File("Levels/Theme" + levelNum + ".txt");
-		if (file.createNewFile()) adjustLightningCount(+1);
+		if (file.createNewFile()) adjustThemeCount(+1);
 
 		PrintWriter writer = new PrintWriter(file);
 
@@ -360,7 +372,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoardPreset().getSquareArray()[i][j].getActive()) {
+				if (level.getBoard().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -374,8 +386,8 @@ public class BuilderFileAccessController {
 		String buffer;
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoardPreset().getSquareArray()[i][j].getLetter() != null) {
-					buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
+				if (level.getBoard().getSquareArray()[i][j].getLetter() != null) {
+					buffer = level.getBoard().getSquareArray()[i][j].getLetter().getLetter();
 					if (buffer == "Qu") {
 						writer.format("Q ");
 					} else {
@@ -403,6 +415,11 @@ public class BuilderFileAccessController {
 		writer.close();
 	}
 
+	/**
+	 * changes the number of lightning levels by an offset. Used to add a level, or delete.
+	 * @param offset a delta to adjust the number of levels by. generally +1 or -1
+	 * @throws Exception inevitable filenotfound exception
+	 */
 	public void adjustLightningCount(int offset) throws Exception {
 
 		// Open and read FileCount
@@ -430,6 +447,11 @@ public class BuilderFileAccessController {
 		rAFile.close();
 	}
 
+	/**
+	 * changes the number of puzzle levels by an offset. Used to add a level, or delete.
+	 * @param offset a delta to adjust the number of levels by. generally +1 or -1
+	 * @throws Exception filenotfound
+	 */
 	public void adjustPuzzleCount(int offset) throws Exception {
 
 		// Open and read FileCount
@@ -457,6 +479,11 @@ public class BuilderFileAccessController {
 		rAFile.close();
 	}
 
+	/**
+	 * changes the number of theme levels by an offset. Used to add a level, or delete.
+	 * @param offset a delta to adjust the number of levels by. generally +1 or -1
+	 * @throws Exception filenotfound
+	 */
 	public void adjustThemeCount(int offset) throws Exception {
 
 		// Open and read FileCount

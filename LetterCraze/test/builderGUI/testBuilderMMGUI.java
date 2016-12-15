@@ -30,7 +30,7 @@ public class testBuilderMMGUI extends TestCase {
 		BuilderSelectLevelGUI ls = new BuilderSelectLevelGUI(menu);
 		ls.openWindow();
 		assertEquals(menu,ls.getMenu());
-		assertEquals("Nine", ls.getMenu().getLevel("P2").getTitle());
+		assertEquals("nine", ls.getMenu().getLevel("P2").getTitle());
 		
 		ls.closeWindow();
 	}

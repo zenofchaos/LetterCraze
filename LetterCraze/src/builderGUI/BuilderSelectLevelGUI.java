@@ -23,37 +23,40 @@ import builderFiles.BuilderLevel;
 import builderFiles.BuilderMenu;
 import builderFiles.BuilderMenuIterator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderSelectLevelGUI.
+ */
 public class BuilderSelectLevelGUI implements IBuilderGUI{
 
+	/** The panels puzzle. */
 	JPanel[] panelsPuzzle;
+	
+	/** The panels theme. */
 	JPanel[] panelsTheme;
+	
+	/** The panels lightning. */
 	JPanel[] panelsLightning;
 
+	/** The lvl width. */
 	final int lvlWidth = 100;
+	
+	/** The lvl height. */
 	final int lvlHeight = 100;
 
+	/** The menu. */
 	BuilderMenu theMenu;
 
+	/** The frame. */
 	private JFrame frame;
+	
+	JPanel panel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderSelectLevelGUI window = new BuilderSelectLevelGUI(new BuilderMenu());
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param menu The menu object that contains the levels to be displayed.
 	 */
 	public BuilderSelectLevelGUI(BuilderMenu menu) {
 		this.theMenu = menu;
@@ -74,6 +77,9 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		showComponents();
 	}
 
+	/**
+	 * Create the components that will be displayed in the frame.
+	 */
 	private void showComponents(){
 		String[] levelTypes = new String[3];
 		levelTypes[0] = "Puzzle";
@@ -279,31 +285,47 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 		frame.getContentPane().setLayout(groupLayout);
 	}
 	
-	// Opens (set visible) this frame
+	/**
+	 * Opens this window after creation.
+	 */
 	public void openWindow(){
 		this.frame.setVisible(true);
 	}
 
-	// Hides and disposes of this frame
+	/**
+	 * Hides and disposes of this window.
+	 */
 	public void closeWindow(){
 		this.frame.setVisible(false);
 		this.frame.dispose();
 	}
 
-	// Hides this frame from view
+	/**
+	 * Hides this window from view, without closing it.
+	 */
 	public void hideWindow(){
 		this.frame.setVisible(false);
 	}
 
+	/**
+	 * Refreshes the menu to avoid having to close and reopen it to load in the fact that a level has been deleted.
+	 * 
+	 * @param menu The menu object that contains the levels to be displayed.
+	 */
 	@Override
 	public void refresh(Object menu) {
 		theMenu = (BuilderMenu) menu;
-		frame.removeAll();
+		frame.getContentPane().removeAll();
 		showComponents();
-		frame.repaint();
-		frame.validate();		
+		frame.getContentPane().repaint();
+		frame.getContentPane().validate();		
 	}
 
+	/**
+	 * Gets the menu.
+	 *
+	 * @return the menu
+	 */
 	public BuilderMenu getMenu() {
 		return this.theMenu;
 	}

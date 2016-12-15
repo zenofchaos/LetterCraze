@@ -20,19 +20,19 @@ public class testBuilderLetter extends TestCase{
 		String toSet3 = "Qu";
 		BuilderLetter letter3 = new BuilderLetter(toSet3);
 		
-		assertEquals("Qu",letter3.getLetter());
+		assertEquals("QU",letter3.getLetter());
 		assertEquals(11,letter3.getPoints());
 		
 		String toSet4 = "QU";
 		BuilderLetter letter4 = new BuilderLetter(toSet4);
 		
-		assertEquals("Qu",letter4.getLetter());
+		assertEquals("QU",letter4.getLetter());
 		assertEquals(11,letter4.getPoints());
 		
 		String toSet5 = "qu";
 		BuilderLetter letter5 = new BuilderLetter(toSet5);
 		
-		assertEquals("Qu",letter5.getLetter());
+		assertEquals("QU",letter5.getLetter());
 		assertEquals(11,letter5.getPoints());
 		
 		String toSet6 = "Z";

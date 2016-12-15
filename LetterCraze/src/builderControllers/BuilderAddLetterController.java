@@ -13,7 +13,7 @@ public class BuilderAddLetterController implements ActionListener {
 	BuilderEditorGUI builderEditorView;
 	int row, col;
 	BuilderLevel level;
-	
+
 	public BuilderAddLetterController(BuilderEditorGUI builderEditorView, int row, int col){
 		this.builderEditorView = builderEditorView;
 		this.row = row; 
@@ -25,31 +25,61 @@ public class BuilderAddLetterController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
 		input = input.trim();
+		if(addLetter(input)){
+			return;
+		}
+		else{
+			System.out.println("Builder add letter controller failed");
+		}
+
+
+	}
+
+	boolean isValidLetter(String input){
+		if((input.length() == 1)){
+			if ((input.charAt(0) >= 'A') && (input.charAt(0) <= 'Z') || (input.charAt(0) >= 'a') && (input.charAt(0) <= 'z')){
+				System.out.println("HERE");
+				return true;
+			}
+		}
+		else if ((input.length() == 2)){
+			if((input.equals("QU")) || (input.equals("Qu")) || (input.equals("qU")) || (input.equals("qu"))){
+				System.out.println("HERE1");
+				return true;
+			}
+			else{
+				System.out.println("HERE2");
+				return false;
+			}
+		}
+		else{
+			System.out.println("HERE3");
+			return false;
+		}
+		return false;
+	}
+	
+	boolean addLetter(String input){
 		System.out.println(input);
 		if(isValidLetter(input)){
-			BuilderLetter letter  = new BuilderLetter(input);
-			level.getBoard().getSquare(row, col).setLetter(letter);
-			builderEditorView.refresh(level);
+			if((input.charAt(0) == 'Q')|| (input.charAt(0) == 'q')){
+				BuilderLetter letter  = new BuilderLetter("qu");
+				level.getBoard().getSquare(row, col).setLetter(letter);
+				builderEditorView.refresh(level);
+				return true;
+			}
+			else{
+				BuilderLetter letter  = new BuilderLetter(input);
+				level.getBoard().getSquare(row, col).setLetter(letter);
+				builderEditorView.refresh(level);
+				return true;
+			}
 		}
 		else{
 			System.out.println("invalid Letter entered");
 			builderEditorView.refresh(level);
+			return false;
 		}
-		
-		
-	}
-	
-	private boolean isValidLetter(String input){
-		boolean validLetter = false;
-		for(int i = 0; i < input.length(); i++){
-			if ((input.charAt(i) >= 'A') && (input.charAt(i) <= 'Z') || (input.charAt(i) >= 'a') && (input.charAt(i) <= 'z')){
-				validLetter = true;
-			}
-			else{
-				return false;
-			}
-		}
-		return validLetter;
 	}
 
 }

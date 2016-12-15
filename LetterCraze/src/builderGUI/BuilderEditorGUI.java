@@ -27,8 +27,11 @@ import builderControllers.BuilderAddStarThreshold;
 import builderControllers.BuilderAddTitle;
 import builderControllers.BuilderCloseEditorController;
 import builderControllers.BuilderOutsideGridController;
+import builderControllers.BuilderPreviewController;
+import builderControllers.BuilderRemoveWordController;
 import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
+import builderControllers.BuilderAddWordController;
 import builderControllers.BuilderTypeSpecificInfoController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
@@ -164,6 +167,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 				wordsToFindLabels[i].setBackground(Color.WHITE);
 				wordsToFindLabels[i].setForeground(Color.BLACK);
 				wordsToFindLabels[i].setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
+				wordsToFindLabels[i].addMouseListener(new BuilderRemoveWordController(this, i));
 				wordsToFindPanel.add(wordsToFindLabels[i]);
 			}
 			JScrollPane wordsToFindScrollPane = new JScrollPane(wordsToFindPanel);
@@ -174,6 +178,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 			contentPane.add(wordsToFindScrollPane);
 			
 			JTextField wordsToFindTextField = new JTextField();
+			wordsToFindTextField.addActionListener(new BuilderAddWordController(this));
 			wordsToFindTextField.setFont(new Font("Dialog", Font.PLAIN, h * 7/240));
 			wordsToFindTextField.setBounds(w * 1/32, h * 19/24, w * 15/64, h * 1/20);
 			contentPane.add(wordsToFindTextField);
@@ -217,6 +222,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(saveButton);
 		
 		JButton previewButton = new JButton("Preview");
+		previewButton.addActionListener(new BuilderPreviewController(this));
 		previewButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		previewButton.setBounds(w * 33/64, h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(previewButton);
@@ -293,6 +299,7 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 		return new JScrollPane();
 	}
+	
 	
 	@Override
 	public void openWindow() {

@@ -46,27 +46,14 @@ public class PlayerFileAccessController {
 		input.close();
 	}
 
-	// Returns an entire model with all the levels generated.
-	// in code: opens the master FileCount file to get metadata about levels,
-	// then iterates through each to open.
+	/**
+	 * Returns an entire model with all the levels generated. in code: opens the master FileCount file to get metadata about levels, then iterates through each to open.
+	 * @return the model, complete with every level, board, square and letter.
+	 * @throws Exception I couldn't write this without throwing an exception, so that's why it's here
+	 */
 	public PlayerModel getModel() throws Exception {
 		PlayerModel model = new PlayerModel();
 		PlayerMenu menu = model.getMenu();
-
-//		// Open FileCount
-//		file = new java.io.File("Levels/FileCount.txt");
-//		input = new Scanner(file);
-//
-//		numL = input.nextInt();
-//		numP = input.nextInt();
-//		numT = input.nextInt();
-//
-//		unlockedL = input.nextInt();
-//		unlockedP = input.nextInt();
-//		unlockedT = input.nextInt();
-//
-//		// Close FileCount
-//		input.close();
 
 		// Iterate to add Puzzle levels
 		for (int i = 1; i <= numP; i++) {

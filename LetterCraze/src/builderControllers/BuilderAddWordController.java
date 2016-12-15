@@ -7,11 +7,11 @@ import java.util.LinkedList;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
-public class BuilderTextPaneController implements KeyListener {
+public class BuilderAddWordController implements KeyListener {
 	BuilderEditorGUI editorView;
 	BuilderThemeLevel level;
 	
-	public BuilderTextPaneController(BuilderEditorGUI editorView){
+	public BuilderAddWordController(BuilderEditorGUI editorView){
 		this.editorView = editorView;
 		this.level = (BuilderThemeLevel) editorView.getLevel();
 	}

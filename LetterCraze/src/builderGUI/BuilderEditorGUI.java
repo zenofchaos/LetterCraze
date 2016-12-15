@@ -30,7 +30,7 @@ import builderControllers.BuilderEnterWordListController;
 import builderControllers.BuilderOutsideGridController;
 import builderControllers.BuilderSaveController;
 import builderControllers.BuilderSquareController;
-import builderControllers.BuilderTextPaneController;
+import builderControllers.BuilderAddWordController;
 import builderControllers.BuilderTypeSpecificInfoController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;

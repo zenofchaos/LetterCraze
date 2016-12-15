@@ -40,6 +40,7 @@ public class BuilderOpenNewEditorController implements MouseListener{
 			level.initEmptyBoard();
 			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
+			menuView.closeWindow();
 		}
 		else if(this.type == 'T'){
 			int[] empty = new int[3];
@@ -48,6 +49,7 @@ public class BuilderOpenNewEditorController implements MouseListener{
 			level.initEmptyBoard();
 			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
+			menuView.closeWindow();
 		}
 		else if(this.type == 'L'){
 			int[] empty = new int[3];
@@ -55,6 +57,7 @@ public class BuilderOpenNewEditorController implements MouseListener{
 			level.initEmptyBoard();
 			BuilderEditorGUI window = new BuilderEditorGUI(level, levelIdentifier);
 			window.openWindow();
+			menuView.closeWindow();
 		}
 		else{
 			System.out.println("Invalid type sent to BuilderOpenNewEditorController");

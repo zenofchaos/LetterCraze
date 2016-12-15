@@ -49,6 +49,9 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 
 	/** The frame. */
 	private JFrame frame;
+	
+	JPanel panel;
+
 
 	/**
 	 * Create the application.
@@ -312,10 +315,10 @@ public class BuilderSelectLevelGUI implements IBuilderGUI{
 	@Override
 	public void refresh(Object menu) {
 		theMenu = (BuilderMenu) menu;
-		frame.removeAll();
+		frame.getContentPane().removeAll();
 		showComponents();
-		frame.repaint();
-		frame.validate();		
+		frame.getContentPane().repaint();
+		frame.getContentPane().validate();		
 	}
 
 	/**

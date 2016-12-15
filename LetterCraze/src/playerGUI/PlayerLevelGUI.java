@@ -158,11 +158,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				try{
+				try {
 					letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				}
-				catch (NullPointerException e){
-					letterLabels[i][j] = new JLabel("<html><b>" + " " + "</b>" + properLetterPoints(i, j) + "</html>");
+				catch (NullPointerException e) {
+					letterLabels[i][j] = new JLabel();
 				}
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,16 +172,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				contentPane.add(squarePanels[i][j]);
 			}
 		}
+		
 		String wordsFound = "<html>";
-		if (l instanceof PlayerThemeLevel){
-			for (int i = 0; i < ((PlayerThemeLevel)l).getThemeWords().size(); i++) {
-				wordsFound += ((PlayerThemeLevel)l).getThemeWords().get(i) + "<br>";
-			}
-		}
-		else{
-			for (int i = 0; i < l.getWordsEntered().size(); i++) {
-				wordsFound += l.getWordsEntered().get(i).getWord().toUpperCase() + properWordPoints(i) + "<br>";
-			}
+		for (int i = 0; i < l.getWordsEntered().size(); i++) {
+			wordsFound += l.getWordsEntered().get(i).getWord().toUpperCase() + properWordPoints(i) + "<br>";
 		}
 		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
@@ -321,14 +315,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	 * @return
 	 */
 	private int properLetterSize(int i, int j, int h) {
-		try{
-			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
-				return h * 1/30;
+		try {
+			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") && (l instanceof PlayerPuzzleLevel)) {
+				return h * 1/32;
 			} else {
 				return h * 1/24;
 			}
-		}
-		catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			return h * 1/24;
 		}
 	}
@@ -341,14 +334,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
-		try{
-			if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
-				spaceIfNotQu = "";
-			} else {
-				spaceIfNotQu = " ";
-			}
-		}
-		catch (NullPointerException e){
+		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") {
+			spaceIfNotQu = "";
+		} else {
 			spaceIfNotQu = " ";
 		}
 		if (l instanceof PlayerPuzzleLevel) {

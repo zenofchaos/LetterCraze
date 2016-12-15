@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class WordTable.
+ */
 public class WordTable {
+	
+	/** The table. */
 	static Hashtable<String,Boolean> table;
 	
 	/** Default word table. */
@@ -31,8 +37,8 @@ public class WordTable {
 	
 	/**
 	 * Converts word to lowercase and checks whether exists within table.
-	 * 
-	 * @param s
+	 *
+	 * @param s the s
 	 * @return     <code>true</code> if a word in the table; <code>false</code> otherwise.
 	 */
 	public static boolean isWord(String s) {

@@ -3,9 +3,20 @@ package playerFiles;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerBoard.
+ */
 public class PlayerBoard {
+	
+	/** The squares. */
 	PlayerSquare[][] squares;
 	
+	/**
+	 * Instantiates a new player board.
+	 *
+	 * @param squares the squares
+	 */
 	public PlayerBoard(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
@@ -16,10 +27,21 @@ public class PlayerBoard {
 		
 	}
 	
+	/**
+	 * Gets the square array.
+	 *
+	 * @return the square array
+	 */
 	public PlayerSquare[][] getSquareArray(){
 		return this.squares;
 	}
 	
+	/**
+	 * Sets the square array.
+	 *
+	 * @param squares the squares
+	 * @return true, if successful
+	 */
 	boolean setSquareArray(PlayerSquare[][] squares){
 		if((squares.length == 6) && squares[0].length == 6){
 			this.squares = squares;
@@ -30,10 +52,25 @@ public class PlayerBoard {
 		}
 	}
 	
+	/**
+	 * Gets the square.
+	 *
+	 * @param row the row
+	 * @param col the col
+	 * @return the square
+	 */
 	public PlayerSquare getSquare(int row, int col){
 		return this.squares[row][col];
 	}
 	
+	/**
+	 * Sets the square.
+	 *
+	 * @param toSet the to set
+	 * @param row the row
+	 * @param col the col
+	 * @return true, if successful
+	 */
 	public boolean setSquare(PlayerSquare toSet, int row, int col){
 		this.squares[row][col] = toSet;
 		return true;
@@ -42,6 +79,11 @@ public class PlayerBoard {
 	//Implements 'gravity' in this board by raising 
 	//	letters to fill empty squares where possible
 	//If no letters remain below a square, the square
+	/**
+	 * Rise.
+	 *
+	 * @return true, if successful
+	 */
 	//	remains empty
 	public boolean rise(){
 		for(int i = 0; i < 6; i++){
@@ -56,6 +98,14 @@ public class PlayerBoard {
 	
 	//Returns a board with the square corresponding to the given row and column filled
 	//	with the first letter found in the squares below or null if there are not letters
+	/**
+	 * Find letter.
+	 *
+	 * @param theBoard the the board
+	 * @param row the row
+	 * @param col the col
+	 * @return the player square[][]
+	 */
 	//	below this square
 	private PlayerSquare[][] findLetter(PlayerSquare[][] theBoard, int row, int col){
 		try{
@@ -71,6 +121,11 @@ public class PlayerBoard {
 		}
 	}
 	
+	/**
+	 * Replace.
+	 *
+	 * @return true, if successful
+	 */
 	//Fills all empty squares with random letters
 	boolean replace(){
 		for(int i = 0; i < 6; i++){
@@ -83,6 +138,12 @@ public class PlayerBoard {
 		return true;
 	}
 	
+	/**
+	 * Adds the word.
+	 *
+	 * @param toAdd the to add
+	 * @return the player board
+	 */
 	public PlayerBoard addWord(PlayerWord toAdd){
 		List<PlayerSquare> squaresToAdd = toAdd.getSquares();
 		
@@ -112,6 +173,12 @@ public class PlayerBoard {
 		return this;
 	}
 	
+	/**
+	 * Removes the word.
+	 *
+	 * @param word the word
+	 * @return true, if successful
+	 */
 	public boolean removeWord(PlayerWord word){
 		List<PlayerSquare> squares = word.getSquares();
 		PlayerSquare toRemove;

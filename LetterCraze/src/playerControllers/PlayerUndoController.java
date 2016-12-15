@@ -11,16 +11,31 @@ import playerFiles.PlayerThemeLevel;
 import playerFiles.PlayerWord;
 import playerGUI.PlayerLevelGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerUndoController.
+ */
 public class PlayerUndoController implements ActionListener{
 
+	/** The level view. */
 	PlayerLevelGUI levelView;
+	
+	/** The level. */
 	PlayerLevel level;
 	
+	/**
+	 * Instantiates a new player undo controller.
+	 *
+	 * @param window the window
+	 */
 	public PlayerUndoController(PlayerLevelGUI window){
 		this.levelView = window;
 		this.level = levelView.getLevel();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		undoSubmission();
@@ -28,6 +43,9 @@ public class PlayerUndoController implements ActionListener{
 		this.levelView.refresh(this.level);
 	}
 
+	/**
+	 * Undo submission.
+	 */
 	private void undoSubmission(){
 		//extract the last word submitted
 		ArrayList<PlayerWord> wordsEntered = this.level.getWordsEntered();

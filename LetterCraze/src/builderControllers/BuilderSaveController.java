@@ -9,12 +9,30 @@ import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderSaveController.
+ */
 public class BuilderSaveController implements ActionListener{
+	
+	/** The editor view. */
 	BuilderEditorGUI editorView;
+	
+	/** The level. */
 	BuilderLevel level;
+	
+	/** The level identifier. */
 	String levelIdentifier;
+	
+	/** The level num. */
 	int levelNum;
 	
+	/**
+	 * Instantiates a new builder save controller.
+	 *
+	 * @param editorView the editor view
+	 * @param levelIdentifier the level identifier
+	 */
 	public BuilderSaveController(BuilderEditorGUI editorView, String levelIdentifier) {
 		this.editorView = editorView;
 		this.level = editorView.getLevel();
@@ -24,6 +42,9 @@ public class BuilderSaveController implements ActionListener{
 		this.levelNum = levelNum;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("save button pressed");
@@ -31,6 +52,11 @@ public class BuilderSaveController implements ActionListener{
 		
 	}
 	
+	/**
+	 * Save.
+	 *
+	 * @return true, if successful
+	 */
 	boolean save(){
 		BuilderFileAccessController fileAccessController = new BuilderFileAccessController();
 		if (level instanceof BuilderPuzzleLevel){

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
 /**
  * Return an Iterator&lt;String&gt; for the strings in a File.
  * 
@@ -21,11 +22,12 @@ public class StringFileIterator implements Iterator<String> {
 	/** Use scanner to process file. If null, then no elements. */
 	Scanner sc;
 	
-	/** 
+	/**
+	 *  
 	 * On constructor set up the Scanner, if possible.
-	 * 
+	 *
 	 * @param f   File from which to read strings, one per line.
-	 * @exception  FileNotFoundException  if file cannot be opened.
+	 * @throws FileNotFoundException the file not found exception
 	 */
 	public StringFileIterator(File f) throws FileNotFoundException {
 		sc = new Scanner(f);

@@ -7,23 +7,47 @@ import java.io.RandomAccessFile;
 import java.util.LinkedList;
 import playerFiles.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerFileAccessController.
+ */
 public class PlayerFileAccessController {
 
+	/** The num L. */
 	// Store the number of available levels in the directory.
 	int numL;
+	
+	/** The num P. */
 	int numP;
+	
+	/** The num T. */
 	int numT;
 
+	/** The unlocked L. */
 	// Store the number of unlocked levels in each category.
 	int unlockedL;
+	
+	/** The unlocked P. */
 	int unlockedP;
+	
+	/** The unlocked T. */
 	int unlockedT;
 
+	/** The i. */
 	int i; // handy dandy re-usable iterator through files
+	
+	/** The j. */
 	int j; // and the backup
+	
+	/** The file. */
 	java.io.File file;
+	
+	/** The input. */
 	Scanner input;
 
+	/**
+	 * Instantiates a new player file access controller.
+	 */
 	public PlayerFileAccessController() {
 		// Open FileCount
 		file = new java.io.File("Levels/FileCount.txt");
@@ -74,6 +98,13 @@ public class PlayerFileAccessController {
 	}
 
 	// opens the lightning level file corresponding to number, reads, and
+	/**
+	 * Read lightning.
+	 *
+	 * @param number the number
+	 * @return the player level
+	 * @throws Exception the exception
+	 */
 	// returns a lightning level.
 	public PlayerLevel readLightning(int number) throws Exception {
 		file = new java.io.File("Levels/Lightning" + number + ".txt");
@@ -113,6 +144,13 @@ public class PlayerFileAccessController {
 	}
 
 	// opens the puzzle level file corresponding to number, reads, and
+	/**
+	 * Read puzzle.
+	 *
+	 * @param number the number
+	 * @return the player level
+	 * @throws Exception the exception
+	 */
 	// returns a puzzle level.
 	public PlayerLevel readPuzzle(int number) throws Exception {
 		file = new java.io.File("Levels/Puzzle" + number + ".txt");
@@ -152,6 +190,13 @@ public class PlayerFileAccessController {
 	}
 
 	// opens the theme level file corresponding to number, reads, and
+	/**
+	 * Read theme.
+	 *
+	 * @param number the number
+	 * @return the player level
+	 * @throws Exception the exception
+	 */
 	// returns a theme level.
 	public PlayerLevel readTheme(int number) throws Exception {
 		file = new java.io.File("Levels/Theme" + number + ".txt");
@@ -230,6 +275,14 @@ public class PlayerFileAccessController {
 	}
 
 	// opens a lightning level and replaces the previous high scores and stars
+	/**
+	 * Update lightning.
+	 *
+	 * @param levelnum the levelnum
+	 * @param bestScore the best score
+	 * @param bestStars the best stars
+	 * @throws Exception the exception
+	 */
 	// with the given values
 	public void updateLightning(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Lightning" + levelnum + ".txt", "rw");
@@ -247,6 +300,14 @@ public class PlayerFileAccessController {
 	}
 
 	// opens a puzzle level and replaces the previous high scores and stars
+	/**
+	 * Update puzzle.
+	 *
+	 * @param levelnum the levelnum
+	 * @param bestScore the best score
+	 * @param bestStars the best stars
+	 * @throws Exception the exception
+	 */
 	// with the given values
 	public void updatePuzzle(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Puzzle" + levelnum + ".txt", "rw");
@@ -264,6 +325,14 @@ public class PlayerFileAccessController {
 	}
 
 	// opens a theme level and replaces the previous high scores and stars
+	/**
+	 * Update theme.
+	 *
+	 * @param levelnum the levelnum
+	 * @param bestScore the best score
+	 * @param bestStars the best stars
+	 * @throws Exception the exception
+	 */
 	// with the given values
 	public void updateTheme(int levelnum, int bestScore, int bestStars) throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/Theme" + levelnum + ".txt", "rw");
@@ -280,6 +349,11 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
+	/**
+	 * Unlock lightning.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void unlockLightning() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(10); // maybe someday I'll remember to explain these numbers
@@ -293,6 +367,11 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
+	/**
+	 * Unlock puzzle.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void unlockPuzzle() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(13);
@@ -304,6 +383,11 @@ public class PlayerFileAccessController {
 		rAFile.close();
 	}
 
+	/**
+	 * Unlock theme.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void unlockTheme() throws Exception {
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(16);

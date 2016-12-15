@@ -2,15 +2,35 @@ package builderFiles;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderMenuIterator.
+ */
 public class BuilderMenuIterator {
 
+	/** The puzzle list. */
 	List<BuilderLevel> puzzleList;
+	
+	/** The lightning list. */
 	List<BuilderLevel> lightningList;
+	
+	/** The theme list. */
 	List<BuilderLevel> themeList;
+	
+	/** The puzzle index. */
 	int puzzleIndex;
+	
+	/** The lightning index. */
 	int lightningIndex;
+	
+	/** The theme index. */
 	int themeIndex;
 
+	/**
+	 * Instantiates a new builder menu iterator.
+	 *
+	 * @param givenMenuList the given menu list
+	 */
 	public BuilderMenuIterator(List<List<BuilderLevel>> givenMenuList){
 		this.puzzleList = givenMenuList.get(0);
 		this.lightningList = givenMenuList.get(1);
@@ -21,6 +41,12 @@ public class BuilderMenuIterator {
 		this.themeIndex = 0;
 	}
 
+	/**
+	 * Checks for next.
+	 *
+	 * @param levelType the level type
+	 * @return true, if successful
+	 */
 	//Returns true if there is another level of the given type in the menu
 	public boolean hasNext(String levelType){
 		switch(levelType){
@@ -54,6 +80,12 @@ public class BuilderMenuIterator {
 		}
 	}
 
+	/**
+	 * Next.
+	 *
+	 * @param levelType the level type
+	 * @return the builder level
+	 */
 	//Returns the next level of the given type in the menu
 	public BuilderLevel next(String levelType){
 		BuilderLevel levelToReturn;

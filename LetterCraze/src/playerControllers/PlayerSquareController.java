@@ -33,16 +33,7 @@ public class PlayerSquareController implements MouseListener {
 		if (   (e.getModifiers() == MouseEvent.BUTTON1_MASK)
 			&& (thisSquare().getActive())
 			&& (adjacencyRuleIsFollowed())) {
-			if (this.level.squareIsSelected(thisSquare())) {
-				if (thisSquare().equals(this.level.getSelectedWord().recentSquare(2))) {
-					this.level.getSelectedWord().removeSquare();
-					levelView.refresh(this.level);
-				}
-			} else {
-				this.level.getSelectedWord().addSquare(thisSquare());
-				levelView.refresh(this.level);
-				
-			}
+			doMouseLeftHeldEntered();
 		}
 	}
 
@@ -52,19 +43,9 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if ((SwingUtilities.isLeftMouseButton(e)) && (thisSquare().getActive())) {
-			try{
-				this.level.setSelectedWord(new PlayerWord(thisSquare()));
-			}
-			catch(NullPointerException npe){
-				
-			}
-			levelView.refresh(this.level);
+			doMouseLeftPressed();
 		} else if (SwingUtilities.isRightMouseButton(e)) {
-			if (this.level.submitSelectedWord()) {
-				levelView.refreshAndScroll(this.level);
-			} else {
-				levelView.refresh(this.level);
-			}
+			doMouseRightPressed();
 		}
 	}
 
@@ -79,4 +60,39 @@ public class PlayerSquareController implements MouseListener {
 		return     (this.level.getSelectedWord().getSquares().isEmpty())
 				|| (thisSquare().isNeighbor(this.level.getSelectedWord().recentSquare(1)));
 	}
+	
+	public boolean doMouseLeftHeldEntered() {
+		if (this.level.squareIsSelected(thisSquare())) {
+			if (thisSquare().equals(this.level.getSelectedWord().recentSquare(2))) {
+				this.level.getSelectedWord().removeSquare();
+				levelView.refresh(this.level);
+			}
+		} else {
+			this.level.getSelectedWord().addSquare(thisSquare());
+			levelView.refresh(this.level);
+			
+		}
+		return true;
+	}
+	
+	public boolean doMouseLeftPressed() {
+		try{
+			this.level.setSelectedWord(new PlayerWord(thisSquare()));
+		}
+		catch(NullPointerException npe){
+			
+		}
+		levelView.refresh(this.level);
+		return true;
+	}
+	
+	public boolean doMouseRightPressed() {
+		if (this.level.submitSelectedWord()) {
+			levelView.refreshAndScroll(this.level);
+		} else {
+			levelView.refresh(this.level);
+		}
+		return true;
+	}
+	
 }

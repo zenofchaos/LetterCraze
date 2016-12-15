@@ -315,9 +315,13 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	 * @return
 	 */
 	private int properLetterSize(int i, int j, int h) {
-		if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") && (l instanceof PlayerPuzzleLevel)) {
-			return h * 1/32;
-		} else {
+		try {
+			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") && (l instanceof PlayerPuzzleLevel)) {
+				return h * 1/32;
+			} else {
+				return h * 1/24;
+			}
+		} catch (NullPointerException e) {
 			return h * 1/24;
 		}
 	}

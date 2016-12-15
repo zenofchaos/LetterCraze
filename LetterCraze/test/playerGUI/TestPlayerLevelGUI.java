@@ -11,8 +11,24 @@ import playerFiles.PlayerLightningLevel;
 import playerFiles.PlayerThemeLevel;
 
 public class TestPlayerLevelGUI extends TestCase {
-
-	public void testGeneral() {
+	
+	public void testPuzzle() {
+		// hide level
+		
+		
+		
+		// close level
+		
+		
+		
+	}
+	
+	public void testLightning() {
+		//
+	}
+	
+	public void testTheme() {
+		// set up theme level
 		PlayerSquare[][] s = new PlayerSquare[6][6];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
@@ -32,23 +48,43 @@ public class TestPlayerLevelGUI extends TestCase {
 		starThresholds[1] = 40;
 		starThresholds[2] = 60;
 		LinkedList<String> themeWords = new LinkedList<String>();
-		themeWords.add("BUZZ");
+		themeWords.add("MAGIC");
 		PlayerThemeLevel level = new PlayerThemeLevel(starThresholds, 0, 0, false, "Abracadabra", "Test-o Case-o!", themeWords, board);
 		level.setBoard(board);
 		PlayerLevelGUI levelView = new PlayerLevelGUI(level, "P0");
 		levelView.openWindow();
-	}
-	
-	public void testPuzzle() {
 		
-	}
-	
-	public void testLightning() {
+		//assert
 		
-	}
-
-	public void testTheme() {
-	
+		// select word
+		
+		//assert
+		
+		// attempt to submit invalid word
+		
+		// assert
+		
+		// attempt to back up two letters
+		
+		//assert
+		
+		// back up one letter
+		
+		// assert
+		
+		// attempt to add non-adjacent letter
+		
+		// select word
+		
+		// assert
+		
+		// click outside grid
+		
+		// assert
+		
+		// go back to level select screen
+		
+		// assert
 	}
 
 }

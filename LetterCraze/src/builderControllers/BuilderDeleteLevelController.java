@@ -12,6 +12,11 @@ public class BuilderDeleteLevelController implements ActionListener {
 	String levelID;
 	BuilderSelectLevelGUI gui;
 
+	/**
+	 * Construct a BuilderDeleteLevelController
+	 * @param builderSelectLevelGUI just passed in so I can refresh the menu afterwards
+	 * @param levelID the 2-character identifier for the level to delete, so I can parse it to determine the level to delete
+	 */
 	public BuilderDeleteLevelController(BuilderSelectLevelGUI builderSelectLevelGUI, String levelID) {
 
 		this.levelID = levelID;

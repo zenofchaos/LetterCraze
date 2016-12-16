@@ -29,18 +29,20 @@ import javax.swing.JButton;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class BuilderPreviewGUI.
+ * An object of the class BuilderPreviewGUI represents every graphical component needed to display what a built level 
+ * would look like in the player application. Essentially, it is a PlayerLevelGUI, minus the ActionListeners and 
+ * MouseListeners that constitute a playable level.
  */
 public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 
-	/** The content pane. */
+	/** The panel containing all other components. */
 	private JPanel contentPane;
 	
-	/** The l. */
+	/** The level being previewed. */
 	private static BuilderLevel l;
 
 	/**
-	 * Create the application.
+	 * Creates a window and components from a given set of initial level entities.
 	 *
 	 * @param level the level
 	 */
@@ -75,7 +77,8 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Show components.
+	 * Instantiates Swing components each representing an interactive level element. Instantiates different sets of 
+	 * components depending on which level subclass the static level belongs to.
 	 */
 	private void showComponents() {
 		int w = (int)getBounds().getWidth();
@@ -211,9 +214,9 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Proper subtitle.
+	 * Determines what the line below the title should be labeled based on the level type.
 	 *
-	 * @return the string
+	 * @return the string to display
 	 */
 	private String properSubtitle() {
 		if (l instanceof BuilderPuzzleLevel) {
@@ -226,10 +229,10 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Proper subtitle size.
+	 * Determines how large to display the subtitle.
 	 *
-	 * @param h the h
-	 * @return the int
+	 * @param h the window height
+	 * @return the font size
 	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof BuilderPuzzleLevel) {
@@ -242,12 +245,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Proper letter size.
+	 * Determines how large to display the letter in a given square so that the text fits.
 	 *
-	 * @param i the i
-	 * @param j the j
-	 * @param h the h
-	 * @return the int
+	 * @param i the board row
+	 * @param j the board column
+	 * @param h the window height
+	 * @return the font size
 	 */
 	private int properLetterSize(int i, int j, int h) {
 		try{
@@ -263,11 +266,11 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Proper letter points.
+	 * Determines what point value to display for a given letter, if any.
 	 *
-	 * @param i the i
-	 * @param j the j
-	 * @return the string
+	 * @param i the board row
+	 * @param j the board column
+	 * @return the string comprised of a subscript point value, or a blank string
 	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
@@ -296,10 +299,10 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Proper reset X.
+	 * Determines the drawing location of the reset button.
 	 *
-	 * @param w the w
-	 * @return the int
+	 * @param w the window width
+	 * @return the x-coordinate of the top-left corner of the reset button
 	 */
 	private int properResetX(int w) {
 		if (l instanceof BuilderPuzzleLevel) {
@@ -312,10 +315,10 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
-	 * Make subscript.
+	 * Converts the given number into a subscript.
 	 *
-	 * @param n the n
-	 * @return the string
+	 * @param n the number to turn into a subscript
+	 * @return the string comprised of the number as a subscript
 	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;

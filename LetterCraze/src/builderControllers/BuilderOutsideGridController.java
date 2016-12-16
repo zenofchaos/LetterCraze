@@ -9,23 +9,19 @@ import builderFiles.BuilderLevel;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class BuilderOutsideGridController.
+ * When added to the panel containing all other components of a BuilderEditorGUI, an object of the class 
+ * BuilderOutsideGridController allows the panel to detect clicks and mouse motion by the user while the cursor is not 
+ * on any other GUI component. The BuilderSquareController refreshes the display when appropriate.
  */
 public class BuilderOutsideGridController implements MouseListener {
 
-	/** The level view. */
+	/** The The graphical display of the level that is being built. */
 	BuilderEditorGUI levelView;
 	
-	/** The row. */
-	int row;
-	
-	/** The col. */
-	int col;
-	
 	/**
-	 * Instantiates a new builder outside grid controller.
+	 * Instantiates a new controller for the content panel.
 	 *
-	 * @param window the window
+	 * @param window the window containing editor GUI components
 	 */
 	public BuilderOutsideGridController(BuilderEditorGUI window){
 		this.levelView = window;
@@ -37,7 +33,10 @@ public class BuilderOutsideGridController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 
-	/* (non-Javadoc)
+	/**
+	 * Refreshes the display. Is useful after the user resizes the game window to ensure that all components resize
+	 * along with the window before the user attempts to interact with them.
+	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -64,9 +63,9 @@ public class BuilderOutsideGridController implements MouseListener {
 	public void mouseReleased(MouseEvent e) {}
 	
 	/**
-	 * L.
+	 * Gets the level being edited.
 	 *
-	 * @return the builder level
+	 * @return the associated level entity
 	 */
 	private BuilderLevel l() {
 		return levelView.getLevel();

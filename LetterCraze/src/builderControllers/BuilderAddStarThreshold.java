@@ -41,9 +41,13 @@ public class BuilderAddStarThreshold implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String threshold = e.getActionCommand();
 		threshold = threshold.trim();
+		setStar(threshold);
+	}
+	
+	public void setStar(String input){
 		boolean validNum = false;
-		for(int i = 0; i < threshold.length(); i++){
-			if ((threshold.charAt(i) >= '0') && (threshold.charAt(i) <= '9')){
+		for(int i = 0; i < input.length(); i++){
+			if ((input.charAt(i) >= '0') && (input.charAt(i) <= '9')){
 				validNum = true;
 			}
 			else{
@@ -52,7 +56,7 @@ public class BuilderAddStarThreshold implements ActionListener {
 			}
 		}
 		if (validNum){
-			int starThreshold = Integer.parseInt(threshold);
+			int starThreshold = Integer.parseInt(input);
 			System.out.println(starThreshold);
 			int[] thresholds = level.getStarThresholds();
 			thresholds[starNum] = starThreshold;

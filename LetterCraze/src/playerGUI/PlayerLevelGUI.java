@@ -36,35 +36,35 @@ import javax.swing.JButton;
 
 // TODO: Auto-generated Javadoc
 /**
- * _____.
- *
- * @author Craig Bursey
+ * An object of the class PlayerLevelGUI represents every graphical component needed to display a level for the user to 
+ * play. Every component either provides a view for players to interact with or informs the player of the current 
+ * status of the level.
  */
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
-	/** _. */
+	/** The panel containing all other components. */
 	private JPanel contentPane;
 	
-	/** _. */
+	/** The level being played. */
 	private PlayerLevel l;
 	
-	/** _. */
+	/** The string denoting the type and number of the level. */
 	String levelIdentifier;
 	
-	/** _. */
+	/** The time the user started the level. */
 	long initialTime;
 	
-	/** _. */
+	/** The timer that determines when the level will end automatically. */
 	Timer gameTimer;
 	
-	/** _. */
+	/** The timer used to update the time-remaining label automatically. */
 	Timer refreshTimer;
 
 	/**
-	 * ___.
+	 * Creates a window and components from a given set of initial level entities.
 	 *
 	 * @param level the level
-	 * @param identifier the identifier
+	 * @param levelIddentifier the code for the type and the number of the level
 	 */
 	public PlayerLevelGUI(PlayerLevel level, String identifier) {
 		this.l = level;

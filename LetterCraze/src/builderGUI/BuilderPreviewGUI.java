@@ -29,18 +29,20 @@ import javax.swing.JButton;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class BuilderPreviewGUI.
+ * An object of the class BuilderPreviewGUI represents every graphical component needed to display what a built level 
+ * would look like in the player application. Essentially, it is a PlayerLevelGUI, minus the ActionListeners and 
+ * MouseListeners that constitute a playable level.
  */
 public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 
-	/** The content pane. */
+	/** The panel containing all other components. */
 	private JPanel contentPane;
 	
-	/** The l. */
+	/** The level being previewed. */
 	private static BuilderLevel l;
 
 	/**
-	 * Create the application.
+	 * Creates a window and components from a given set of initial level entities.
 	 *
 	 * @param level the level
 	 */

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerWord.
  */
@@ -20,9 +19,8 @@ public class PlayerWord {
 	String word;
 	
 	/**
-	 * Instantiates a new player word.
+	 * Instantiates a new empty player word.
 	 */
-	//Constructs a word with this given square
 	public PlayerWord() {
 		this.squares = new ArrayList<PlayerSquare>();
 		
@@ -30,7 +28,7 @@ public class PlayerWord {
 	}
 	
 	/**
-	 * Instantiates a new player word.
+	 * Instantiates a new player word with a square.
 	 *
 	 * @param theSquare the the square
 	 */
@@ -49,7 +47,7 @@ public class PlayerWord {
 	}
 	
 	/**
-	 * Instantiates a new player word.
+	 * Instantiates a new player word with a list of squares.
 	 *
 	 * @param theSquares the the squares
 	 */
@@ -127,7 +125,7 @@ public class PlayerWord {
 	}
 	
 	/**
-	 * Update word.
+	 * Updates the word.
 	 *
 	 * @return true, if successful
 	 */
@@ -138,7 +136,7 @@ public class PlayerWord {
 	}
 	
 	/**
-	 * To string.
+	 * To string, changes player squares into strings.
 	 *
 	 * @param squares the squares
 	 * @return the string
@@ -156,16 +154,12 @@ public class PlayerWord {
 		return theString;
 	}
 	
-	//Returns the point value of the word defined by the given list of squares
-	//The equation used to calculate points is:
-	//	wordLength < 3  --> points = 0
 	/**
-	 * Calc points.
+	 * Calc points, points = sum(letterScores) * (wordLength - 2).
 	 *
 	 * @param squares the squares
-	 * @return the int
+	 * @return the point value of the word defined by the given list of squares
 	 */
-	//	wordLength >= 3 --> points = sum(letterScores) * (wordLength - 2)
 	int calcPoints(List<PlayerSquare> squares){
 		int score = 0;
 		int wordLength = 0;
@@ -195,14 +189,13 @@ public class PlayerWord {
 		return (this.word.length() >= 3) && (WordTable.isWord(this.word.toLowerCase()));
 	}
 	
-	//Adds the given square to the end of this word
+
 	/**
-	 * Adds the square.
+	 * Adds the square to the end of the word.
 	 *
 	 * @param square the square
 	 * @return true, if successful
 	 */
-	//Returns false if the square has no letter
 	public boolean addSquare(PlayerSquare square) {
 		//make a copy of the given square
 		PlayerSquare toAdd = new PlayerSquare(square.getRow(), square.getCol());
@@ -218,15 +211,14 @@ public class PlayerWord {
 		}
 	}
 	
-	//Adds the given square to this word at the given index
+
 	/**
-	 * Adds the square.
+	 * Adds the square to the word at a given index.
 	 *
 	 * @param square the square
 	 * @param index the index
 	 * @return true, if successful
 	 */
-	//Returns false if the square has no letter
 	public boolean addSquare(PlayerSquare square, int index) {
 		//make a copy of the given square
 		PlayerSquare toAdd = new PlayerSquare(square.getRow(), square.getCol());
@@ -242,9 +234,8 @@ public class PlayerWord {
 		}
 	}
 	
-	//Removes the last square from the end of this word
 	/**
-	 * Removes the square.
+	 * Removes the last square for the word.
 	 *
 	 * @return true, if successful
 	 */

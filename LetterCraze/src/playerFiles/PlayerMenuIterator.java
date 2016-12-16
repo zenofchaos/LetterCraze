@@ -2,7 +2,6 @@ package playerFiles;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerMenuIterator.
  */
@@ -81,12 +80,11 @@ public class PlayerMenuIterator {
 	}
 	
 	/**
-	 * Next.
+	 * Next .
 	 *
 	 * @param levelType the level type
-	 * @return the player level
+	 * @return the next level of the given type
 	 */
-	//Returns the next level of the given type in the menu
 	public PlayerLevel next(String levelType){
 		PlayerLevel levelToReturn;
 		switch(levelType){

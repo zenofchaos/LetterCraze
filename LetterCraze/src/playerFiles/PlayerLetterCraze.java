@@ -1,6 +1,5 @@
 package playerFiles;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerLetterCraze.
  */

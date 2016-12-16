@@ -1,8 +1,8 @@
 package playerFiles;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class PlayerModel.
+ * The Class PlayerModel, a model for the player.
  */
 public class PlayerModel {
 

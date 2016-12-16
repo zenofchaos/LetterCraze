@@ -2,9 +2,8 @@ package playerFiles;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerPuzzleLevel.
+ * The Class PlayerPuzzleLevel a puzzle level in the player.
  */
 public class PlayerPuzzleLevel extends PlayerLevel {
 	

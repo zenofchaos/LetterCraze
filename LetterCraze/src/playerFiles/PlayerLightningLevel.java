@@ -2,7 +2,6 @@ package playerFiles;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerLightningLevel.
  */

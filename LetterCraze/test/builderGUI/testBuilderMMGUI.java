@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import builderControllers.BuilderFileAccessController;
 import builderFiles.BuilderMenu;
 import junit.framework.TestCase;
+import playerGUI.PlayerSplashGUI;
 
 public class testBuilderMMGUI extends TestCase {
 
@@ -50,6 +51,10 @@ public class testBuilderMMGUI extends TestCase {
 		assertEquals(true, menu.getLevel("P2").getBoard().getSquare(2, 1).getActive());
 		assertEquals(false, menu.getLevel("P2").getBoard().getSquare(3, 0).getActive());
 		
+	}
+	
+	public void testGameFromScratch() {
+		BuilderSplashGUI.main(null);
 	}
 }
 

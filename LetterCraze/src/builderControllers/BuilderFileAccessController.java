@@ -372,7 +372,7 @@ public class BuilderFileAccessController {
 		// bitmap
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquareArray()[i][j].getActive()) {
+				if (level.getBoardPreset().getSquareArray()[i][j].getActive()) {
 					writer.format("1 ");
 				} else {
 					writer.format("0 ");
@@ -386,8 +386,8 @@ public class BuilderFileAccessController {
 		String buffer;
 		for (i = 0; i < 6; i++) {
 			for (j = 0; j < 6; j++) {
-				if (level.getBoard().getSquareArray()[i][j].getLetter() != null) {
-					buffer = level.getBoard().getSquareArray()[i][j].getLetter().getLetter();
+				if (level.getBoardPreset().getSquareArray()[i][j].getLetter() != null) {
+					buffer = level.getBoardPreset().getSquareArray()[i][j].getLetter().getLetter();
 					if (buffer == "Qu" || buffer == "QU") {
 						writer.format("Q ");
 					} else {

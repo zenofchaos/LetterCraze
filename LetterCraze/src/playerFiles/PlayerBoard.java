@@ -3,9 +3,8 @@ package playerFiles;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerBoard.
+ * The Class PlayerBoard a baord for the player.
  */
 public class PlayerBoard {
 	
@@ -53,7 +52,7 @@ public class PlayerBoard {
 	}
 	
 	/**
-	 * Gets the square.
+	 * Gets the square at a given row and column.
 	 *
 	 * @param row the row
 	 * @param col the col
@@ -76,15 +75,15 @@ public class PlayerBoard {
 		return true;
 	}
 	
-	//Implements 'gravity' in this board by raising 
-	//	letters to fill empty squares where possible
-	//If no letters remain below a square, the square
+
 	/**
-	 * Rise.
+	 * Rise Implements 'gravity' in this board by raising
+	 * letters to fill empty squares where possible.
+	 * If no letters remain below a square, the square
+	 * remains empty
 	 *
 	 * @return true, if successful
 	 */
-	//	remains empty
 	public boolean rise(){
 		for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 6; j++){
@@ -96,17 +95,17 @@ public class PlayerBoard {
 		return true;
 	}
 	
-	//Returns a board with the square corresponding to the given row and column filled
-	//	with the first letter found in the squares below or null if there are not letters
+	
 	/**
-	 * Find letter.
+	 * Find letter Returns a board with the square corresponding 
+	 * to the given row and column filled with the first letter found 
+	 * in the squares below.
 	 *
 	 * @param theBoard the the board
 	 * @param row the row
 	 * @param col the col
 	 * @return the player square[][]
 	 */
-	//	below this square
 	private PlayerSquare[][] findLetter(PlayerSquare[][] theBoard, int row, int col){
 		try{
 			if(!theBoard[row + 1][col].hasLetter()){
@@ -122,11 +121,11 @@ public class PlayerBoard {
 	}
 	
 	/**
-	 * Replace.
+	 * Replace, once gravity happens fills all 
+	 * empty squares with random letters.
 	 *
 	 * @return true, if successful
 	 */
-	//Fills all empty squares with random letters
 	boolean replace(){
 		for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 6; j++){
@@ -139,7 +138,7 @@ public class PlayerBoard {
 	}
 	
 	/**
-	 * Adds the word.
+	 * Adds the word to the list of words.
 	 *
 	 * @param toAdd the to add
 	 * @return the player board
@@ -174,7 +173,7 @@ public class PlayerBoard {
 	}
 	
 	/**
-	 * Removes the word.
+	 * Removes the word, from the list of words.
 	 *
 	 * @param word the word
 	 * @return true, if successful

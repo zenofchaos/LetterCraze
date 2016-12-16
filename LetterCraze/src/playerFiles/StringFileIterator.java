@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-// TODO: Auto-generated Javadoc
 /**
  * Return an Iterator&lt;String&gt; for the strings in a File.
  * 

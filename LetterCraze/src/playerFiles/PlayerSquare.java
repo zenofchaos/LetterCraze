@@ -1,8 +1,7 @@
 package playerFiles;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerSquare.
+ * The Class PlayerSquare a square in the player.
  */
 public class PlayerSquare {
 
@@ -18,15 +17,12 @@ public class PlayerSquare {
 	/** The active. */
 	boolean active;
 	
-	//The constructor for a PlayerSquare
-	//	Takes in the square's row and column.
 	/**
-	 * Instantiates a new player square.
+	 * Instantiates a new player square, squares are inactive by default.
 	 *
 	 * @param row the row
 	 * @param col the col
 	 */
-	//	Squares are inactive by default
 	public PlayerSquare(int row, int col){
 		this.row = row;
 		this.col = col;
@@ -130,51 +126,44 @@ public class PlayerSquare {
 		return this.letter.getLetter();
 	}
 	
-	//Returns the point value of the letter in this square
+
 	/**
 	 * Gets the points.
 	 *
-	 * @return the points
+	 * @return the point value of the letter in the square
 	 */
-	//Throws a Null Pointer Exception if this square has no letter
 	public int getPoints(){
 		return this.letter.getPoints();
 	}
 	
-	//Returns true if this square has a letter
+
 	/**
-	 * Checks for letter.
+	 * Checks for letter in a square.
 	 *
 	 * @return true, if successful
 	 */
-	//Otherwise, returns false
 	public boolean hasLetter(){
 		return !(this.letter == null);
 	}
 	
-	//Replaces the letter held by this square with the given letter.
-	//	Returns the letter previously held by this square (Returns
 	/**
-	 * Change letter.
+	 * Change letter, replaces the letter in the square
+	 * with the given letter. 
 	 *
 	 * @param toChange the to change
-	 * @return the player letter
+	 * @return the player letter previously held in the square
 	 */
-	//	null if this square held no letter)
 	public PlayerLetter changeLetter (PlayerLetter toChange){
 		PlayerLetter tempLetter = this.letter;
 		this.letter = toChange;
 		return tempLetter;
 	}
 	
-	//Removes the letter currently held by this square
-	//	Returns true if successful, returns false if this 
 	/**
-	 * Removes the letter.
+	 * Removes the letter in the square.
 	 *
 	 * @return the player letter
 	 */
-	//	Square was already empty
 	public PlayerLetter removeLetter(){
 		if (this.letter == null){
 			return null;
@@ -189,12 +178,12 @@ public class PlayerSquare {
 	//returns true if this square neighbors the given square. A neighbor is defined as
 	//	a square which can be reached from this square by adding or subtracting 1 from
 	/**
-	 * Checks if is neighbor.
-	 *
+	 * Checks if the square given is a neighbor,
+	 * either on a side or diagonally.
+	 * 
 	 * @param toCheck the to check
 	 * @return true, if is neighbor
 	 */
-	//	the row and/or column.
 	public boolean isNeighbor(PlayerSquare toCheck){
 		
 		boolean topleft = (this.row - 1 == toCheck.getRow()) && (this.col - 1 == toCheck.getCol());

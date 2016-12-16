@@ -1,8 +1,7 @@
 package builderFiles;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderSquare.
+ * The Class BuilderSquare, a square in the builder board.
  */
 public class BuilderSquare {
 
@@ -18,14 +17,13 @@ public class BuilderSquare {
 	/** The active. */
 	boolean active;
 	
-	//The constructor for a BuilderSquare
+
 	/**
 	 * Instantiates a new builder square.
 	 *
 	 * @param row the row
 	 * @param col the col
 	 */
-	//	Takes in the square's row and column.
 	public BuilderSquare(int row, int col){
 		this.row = row;
 		this.col = col;
@@ -33,11 +31,10 @@ public class BuilderSquare {
 	}
 	
 	/**
-	 * Gets the letter.
+	 * Gets the letter in the square.
 	 *
 	 * @return the letter
 	 */
-	//Get method for letter
 	public BuilderLetter getLetter(){
 		return this.letter;
 	}
@@ -47,7 +44,6 @@ public class BuilderSquare {
 	 *
 	 * @return the row
 	 */
-	//Get method for row
 	public int getRow(){
 		return this.row;
 	}
@@ -57,7 +53,6 @@ public class BuilderSquare {
 	 *
 	 * @return the col
 	 */
-	//Get method for column
 	public int getCol(){
 		return this.col;
 	}
@@ -67,7 +62,6 @@ public class BuilderSquare {
 	 *
 	 * @return the active
 	 */
-	//Get method for isActive
 	public boolean getActive(){
 		return this.active;
 	}
@@ -78,7 +72,6 @@ public class BuilderSquare {
 	 * @param toSet the to set
 	 * @return true, if successful
 	 */
-	//Set method for letter
 	public boolean setLetter(BuilderLetter toSet){
 		this.letter = toSet;
 		return true;
@@ -121,7 +114,7 @@ public class BuilderSquare {
 	}
 	
 	/**
-	 * Checks for letter.
+	 * Checks for a letter in the square.
 	 *
 	 * @return true, if successful
 	 */
@@ -129,15 +122,13 @@ public class BuilderSquare {
 		return !(this.letter == null);
 	}
 	
-	//Replaces the letter held by this square with the given letter.
-	//	Returns the letter previously held by this square (Returns
+
 	/**
-	 * Change letter.
+	 * Change letter replaces the letter in the square with the given letter.
 	 *
 	 * @param toChange the to change
-	 * @return the builder letter
+	 * @return the builder letter previously in the square
 	 */
-	//	null if this square held no letter)
 	public BuilderLetter changeLetter (BuilderLetter toChange){
 		if (this.letter == null){
 			this.letter = toChange;
@@ -150,14 +141,11 @@ public class BuilderSquare {
 		}
 	}
 	
-	//Removes the letter currently held by this square
-	//	Returns true if successful, returns false if this 
 	/**
-	 * Removes the letter.
+	 * Removes the letter currently in the square.
 	 *
 	 * @return true, if successful
 	 */
-	//	Square was already empty
 	public boolean removeLetter(){
 		if (this.letter == null){
 			return false;

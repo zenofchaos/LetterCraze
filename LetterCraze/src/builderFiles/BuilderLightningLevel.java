@@ -1,8 +1,7 @@
 package builderFiles;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderLightningLevel.
+ * The Class BuilderLightningLevel is a lightning level for builder.
  */
 public class BuilderLightningLevel extends BuilderLevel{
 

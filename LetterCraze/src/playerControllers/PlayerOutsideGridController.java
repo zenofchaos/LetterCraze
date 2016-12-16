@@ -10,12 +10,12 @@ import javax.swing.SwingUtilities;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerWord;
 
-// TODO: Auto-generated Javadoc
 /**
  * When added to the panel containing all other components of a PlayerLevelGUI, an object of the class 
  * PlayerOutsideGridController allows the panel to detect clicks and mouse motion by the user while the cursor is not 
  * on any other GUI component. The BuilderSquareController updates level entities and refreshes the display when 
  * appropriate.
+ * 
  */
 public class PlayerOutsideGridController implements MouseListener {
 

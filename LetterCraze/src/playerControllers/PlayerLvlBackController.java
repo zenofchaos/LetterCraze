@@ -11,9 +11,9 @@ import playerFiles.PlayerThemeLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class PlayerLvlBackController.
+ * The Class PlayerLvlBackController, a back button in the player gui to go back to the menu.
  */
 public class PlayerLvlBackController implements ActionListener{
 

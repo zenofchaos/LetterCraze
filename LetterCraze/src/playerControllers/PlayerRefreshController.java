@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import playerFiles.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerRefreshController.
+ * The Class PlayerRefreshController, refreshes the given window.
  */
 public class PlayerRefreshController implements ActionListener{
 

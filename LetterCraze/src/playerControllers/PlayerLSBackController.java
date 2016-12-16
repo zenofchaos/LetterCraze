@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import playerGUI.PlayerMainMenuGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerLSBackController.
+ * The Class PlayerLSBackController, goes back to the main menu when the back 
+ * button is pressed in the level select gui.
  */
 public class PlayerLSBackController implements ActionListener{
 

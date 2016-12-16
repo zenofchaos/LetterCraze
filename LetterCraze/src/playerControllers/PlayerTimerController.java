@@ -7,9 +7,8 @@ import playerFiles.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerTimeUpGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerTimerController.
+ * The Class PlayerTimerController, controlls the time for the lightning levels.
  */
 public class PlayerTimerController implements ActionListener{
 

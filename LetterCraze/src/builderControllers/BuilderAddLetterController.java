@@ -7,11 +7,9 @@ import builderFiles.BuilderLetter;
 import builderFiles.BuilderLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
-//TODO: add some way to know which square the letter is in!! then add the letter to that square
 
 /**
- * The Class BuilderAddLetterController.
+ * The Class BuilderAddLetterController is the controller that adds a letter to a desired square for the theme builder.
  */
 public class BuilderAddLetterController implements ActionListener {
 	
@@ -56,7 +54,7 @@ public class BuilderAddLetterController implements ActionListener {
 	}
 
 	/**
-	 * Checks if is valid letter.
+	 * Checks if is valid letter, must by one letter capital or lowercase or a qu in any capital/lowercase arrangement.
 	 *
 	 * @param input the input
 	 * @return true, if is valid letter

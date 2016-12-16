@@ -2,8 +2,6 @@ package playerFiles;
 
 import java.util.*;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerLevel.
  */
@@ -271,7 +269,7 @@ public abstract class PlayerLevel {
 	}
 	
 	/**
-	 * Inits the board.
+	 * Inits the board with a given board if theme or with random letters otherwise.
 	 *
 	 * @return true, if successful
 	 */
@@ -315,15 +313,15 @@ public abstract class PlayerLevel {
 	/**
 	 * Word score.
 	 *
-	 * @param w the w
-	 * @return the int
+	 * @param w the PlayerWord
+	 * @return the score of the word
 	 */
 	abstract public int wordScore(PlayerWord w);
 	
 	/**
 	 * Square is selected.
 	 *
-	 * @param s the s
+	 * @param s the PlayerSquare
 	 * @return true, if successful
 	 */
 	public boolean squareIsSelected(PlayerSquare s) {

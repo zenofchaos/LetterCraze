@@ -9,9 +9,8 @@ import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderSaveController.
+ * The Class BuilderSaveController saves a level to the file system when the button is pressed.
  */
 public class BuilderSaveController implements ActionListener{
 	
@@ -55,7 +54,9 @@ public class BuilderSaveController implements ActionListener{
 	/**
 	 * Save.
 	 *
-	 * @return true, if successful
+	 * @return true, if the save was successful and refreshes the gui. The 
+	 * type of the level is determined and then the file access controller is used to
+	 * save that type of level to file with the given level indicator (type and number)
 	 */
 	boolean save(){
 		BuilderFileAccessController fileAccessController = new BuilderFileAccessController();

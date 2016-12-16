@@ -10,9 +10,8 @@ import builderFiles.BuilderLetter;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderAddWordController.
+ * The Class BuilderAddWordController adds a word to the wordlist for the theme editor.
  */
 public class BuilderAddWordController implements ActionListener {
 	
@@ -40,7 +39,8 @@ public class BuilderAddWordController implements ActionListener {
 		String input = e.getActionCommand();
 		input = input.trim();
 		if(isValidInput(input)){
-			level.addThemeWord(input);
+			String word = input.toUpperCase();
+			level.addThemeWord(word);
 			editorView.refresh(level);
 		}
 		else{
@@ -50,7 +50,7 @@ public class BuilderAddWordController implements ActionListener {
 	}
 
 	/**
-	 * Checks if is valid input.
+	 * Checks if is valid input, must be all a-z characters.
 	 *
 	 * @param input the input
 	 * @return true, if is valid input

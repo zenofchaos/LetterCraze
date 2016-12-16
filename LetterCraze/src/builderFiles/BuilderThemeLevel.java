@@ -5,9 +5,8 @@ import java.util.LinkedList;
 import playerFiles.PlayerBoard;
 import playerFiles.PlayerSquare;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderThemeLevel.
+ * The Class BuilderThemeLevel is a theme level for the builder.
  */
 public class BuilderThemeLevel extends BuilderLevel{
 

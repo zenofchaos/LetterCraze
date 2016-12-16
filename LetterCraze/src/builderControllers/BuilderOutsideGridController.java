@@ -7,7 +7,6 @@ import builderGUI.BuilderEditorGUI;
 
 import builderFiles.BuilderLevel;
 
-// TODO: Auto-generated Javadoc
 /**
  * When added to the panel containing all other components of a BuilderEditorGUI, an object of the class 
  * BuilderOutsideGridController allows the panel to detect clicks and mouse motion by the user while the cursor is not 

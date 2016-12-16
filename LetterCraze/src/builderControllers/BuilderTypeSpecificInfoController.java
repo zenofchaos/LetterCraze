@@ -9,11 +9,10 @@ import builderFiles.BuilderPuzzleLevel;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
-//TODO:WEIRD CASTING STUFF GOING ON WITH LEVEL TYPES HERE, NOT SURE THIS IS GOOD.... MIGHT WANT TO MAKE THREE DIFFERENT CONTROLLERS
 
 /**
- * The Class BuilderTypeSpecificInfoController.
+ * The Class BuilderTypeSpecificInfoController edits word limit, time limit, 
+ * or theme description based on level type.
  */
 public class BuilderTypeSpecificInfoController implements ActionListener {
 	
@@ -47,7 +46,7 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 	}
 	
 	/**
-	 * Checks if is valid number.
+	 * Checks if is valid number, every character is 0-9.
 	 *
 	 * @param value the value
 	 * @return true, if is valid number
@@ -66,7 +65,8 @@ public class BuilderTypeSpecificInfoController implements ActionListener {
 	}
 	
 	/**
-	 * Type specific info.
+	 * Type specific info actually sets the info based on if it is a valid type
+	 * for the type of level and refreshes the gui.
 	 *
 	 * @param input the input
 	 * @return true, if successful

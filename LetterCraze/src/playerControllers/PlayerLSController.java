@@ -12,9 +12,8 @@ import playerFiles.PlayerMenu;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerLSController.
+ * The Class PlayerLSController, opens a level selection gui from the main menu.
  */
 public class PlayerLSController implements MouseListener{
 

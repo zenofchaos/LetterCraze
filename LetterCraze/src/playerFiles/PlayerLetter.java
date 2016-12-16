@@ -3,9 +3,8 @@ package playerFiles;
 import java.util.Hashtable;
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerLetter.
+ * The Class PlayerLetter, a letter for the player.
  */
 public class PlayerLetter {
 	
@@ -15,12 +14,9 @@ public class PlayerLetter {
 	/** The points. */
 	int points;
 	
-	//Constructor for a PlayerLetter object. Generates a random letter
-	//	based on the provided letter frequency chart. Generates points
 	/**
 	 * Instantiates a new player letter.
 	 */
-	//	for the letter based off of the same table.
 	public PlayerLetter(){
 		letter = getRandomLetter();
 		
@@ -28,14 +24,12 @@ public class PlayerLetter {
 		points = getPointVal(this.formatCapitals(this.letter),pointTable);
 	}
 	
-	//Constructor for a PlayerLetter object using the given string. 
-	//	Verifies the given string is a valid letter, and then generates
 	/**
-	 * Instantiates a new player letter.
+	 * Instantiates a new player letter using the given string if valid
+	 * and sets the appropriate point for it.
 	 *
 	 * @param input the input
 	 */
-	//	a point value for the letter based off of the provided chart.
 	public PlayerLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
@@ -245,15 +239,14 @@ public class PlayerLetter {
 		}
 	}
 	
-	//Verifies whether the given string is a valid LetterCraze letter
-	//	Valid letters are A-Z and Qu. Capitalization of the characters
+
 	/**
-	 * Checks if is valid.
+	 * Checks if is valid Verifies whether the given string is a valid LetterCraze letter
+	 * note: capitalizations do not effect this.
 	 *
 	 * @param toCheck the to check
 	 * @return true, if is valid
 	 */
-	//	does NOT affect validity.
 	boolean isValid(String toCheck){
 		int length = toCheck.length();
 		
@@ -281,17 +274,12 @@ public class PlayerLetter {
 		}
 	}
 	
-	//Returns the given string formatted as follows:
-	//	-	The first character is upper case
-	//	-	The second character (if any) is lower case.
-	//	Note: Operates only on valid strings. Returns null
 	/**
 	 * Format capitals.
 	 *
 	 * @param toFormat the to format
-	 * @return the string
+	 * @return the string given but as all capitals
 	 */
-	//			if string is invalid.
 	String formatCapitals(String toFormat){
 		if (isValid(toFormat)){
 			int length = toFormat.length();

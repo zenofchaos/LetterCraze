@@ -2,9 +2,8 @@ package builderFiles;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderMenuIterator.
+ * The Class BuilderMenuIterator to iterate every level in the menu.
  */
 public class BuilderMenuIterator {
 
@@ -81,12 +80,11 @@ public class BuilderMenuIterator {
 	}
 
 	/**
-	 * Next.
+	 * Next return the next level of the given type.
 	 *
 	 * @param levelType the level type
 	 * @return the builder level
 	 */
-	//Returns the next level of the given type in the menu
 	public BuilderLevel next(String levelType){
 		BuilderLevel levelToReturn;
 		switch(levelType){

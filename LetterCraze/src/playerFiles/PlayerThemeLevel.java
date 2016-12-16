@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PlayerThemeLevel.
  */
@@ -127,7 +126,7 @@ public class PlayerThemeLevel extends PlayerLevel {
 	}
 
 	/**
-	 * Removes the theme word.
+	 * Removes the theme word given.
 	 *
 	 * @param word the word
 	 * @return true, if successful

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerMenu.
+ * The Class PlayerMenu, a menu for the player.
  */
 public class PlayerMenu {
 
@@ -50,9 +49,8 @@ public class PlayerMenu {
 	 * Num level.
 	 *
 	 * @param levelType the level type
-	 * @return the int
+	 * @return the number of levels in the menu of the given level type
 	 */
-	//returns the number of levels held in this menu of the given levelType
 	public int numLevel(String levelType){
 		switch(levelType){
 		case "Puzzle":
@@ -73,7 +71,10 @@ public class PlayerMenu {
 	//and number indicates the index in the list of levels.
 	//Returns null if the given letter is not T,L, or P,
 	/**
-	 * Gets the level.
+	 * Gets the level corresponding to the given identifier.
+	 * Identifier should be in one of the following forms:
+	 * T# or	L# or P# , where the first character indicates the type of level,
+	 * and number indicates the index in the list of levels.
 	 *
 	 * @param identifier the identifier
 	 * @return the level
@@ -109,15 +110,12 @@ public class PlayerMenu {
 		}
 	}
 	
-	//Adds the given level to this menu. If the given level is
-	//	false, or is not a puzzle, theme, or lightning level,
 	/**
-	 * Adds the level.
+	 * Adds the given level to the menu.
 	 *
 	 * @param toAdd the to add
 	 * @return true, if successful
 	 */
-	//	returns false.
 	public boolean addLevel(PlayerLevel toAdd){
 		if (toAdd == null){
 			return false;
@@ -144,14 +142,12 @@ public class PlayerMenu {
 		}
 	}
 	
-	//Removes the level corresponding to the given indicator from this menu. Returns true
 	/**
-	 * Removes the level.
+	 * Removes the level corresponding to the given indicator from the menu.
 	 *
 	 * @param indicator the indicator
 	 * @return true, if successful
 	 */
-	//	if successful. Returns false if there is no level for the given indicator.
 	boolean removeLevel(String indicator){
 		char type = indicator.charAt(0);
 		int index = ((int) indicator.charAt(1)) - 48 - 1;

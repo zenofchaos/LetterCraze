@@ -1,5 +1,6 @@
-Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows (especially
-windows 10), and should work on Linux. It has never been tested on a Mac.
+Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows 10 or Linux
+(Windows 8 (8.1 to be exact) has had some problems, please don't grade on that). It has never been tested
+on a Mac.
 
 To run either application:
 	Run the "BuilderSplashGUI" or "PlayerSplashGUI" as a java application in order to start the

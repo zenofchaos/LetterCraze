@@ -1,9 +1,9 @@
 00000
 0
-Placeholder Level
-1
-2
+Letter Craze
 3
+4
+5
 
 1 1 1 1 1 1 
 1 1 1 1 1 1 
@@ -12,13 +12,17 @@ Placeholder Level
 1 1 1 1 1 1 
 1 1 1 1 1 1 
 
-QU * QU * QU * 
-QU QU QU QU QU * 
-QU QU QU QU QU * 
-QU QU QU QU QU * 
-* * * * * * 
-QU QU QU QU QU * 
+B O A T E * 
+E R D R * L 
+M * T S Q * 
+E * E R A * 
+T H V L E * 
+L E * E * * 
 
-Everybody loves placeholders!
+Objects in Letter Craze
 
-QQQQQQQQQQQ
+Board
+theme
+level
+square
+letter

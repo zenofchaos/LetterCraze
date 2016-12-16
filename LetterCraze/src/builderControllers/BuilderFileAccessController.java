@@ -388,7 +388,7 @@ public class BuilderFileAccessController {
 			for (j = 0; j < 6; j++) {
 				if (level.getBoard().getSquareArray()[i][j].getLetter() != null) {
 					buffer = level.getBoard().getSquareArray()[i][j].getLetter().getLetter();
-					if (buffer == "Qu") {
+					if (buffer == "Qu" || buffer == "QU") {
 						writer.format("Q ");
 					} else {
 						writer.format(buffer + " ");

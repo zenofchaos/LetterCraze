@@ -35,6 +35,7 @@ public class TestPlayerLevelGUI extends TestCase {
 		PlayerPuzzleLevel level = new PlayerPuzzleLevel(starThresholds, 0, 0, false, "Abracadabra", 1);
 		level.setBoard(board);
 		PlayerLevelGUI levelView = new PlayerLevelGUI(level, "P0");
+		assertTrue(levelView.getLevel() instanceof PlayerPuzzleLevel);
 		levelView.openWindow();
 		
 		//assert

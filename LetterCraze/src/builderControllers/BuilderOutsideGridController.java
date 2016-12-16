@@ -18,12 +18,6 @@ public class BuilderOutsideGridController implements MouseListener {
 	/** The The graphical display of the level that is being built. */
 	BuilderEditorGUI levelView;
 	
-	/** The board row in which the associated panel is located. */
-	int row;
-	
-	/** The board column in which the associated panel is located. */
-	int col;
-	
 	/**
 	 * Instantiates a new controller for the content panel.
 	 *
@@ -40,7 +34,7 @@ public class BuilderOutsideGridController implements MouseListener {
 	public void mouseClicked(MouseEvent e) {}
 
 	/**
-	 * Refreshes the display. Useful after the user resizes the game window to ensure that all components resize
+	 * Refreshes the display. Is useful after the user resizes the game window to ensure that all components resize
 	 * along with the window before the user attempts to interact with them.
 	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)

@@ -12,26 +12,23 @@ import playerFiles.PlayerWord;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PlayerOutsideGridController.
+ * When added to the panel containing all other components of a PlayerLevelGUI, an object of the class 
+ * PlayerOutsideGridController allows the panel to detect clicks and mouse motion by the user while the cursor is not 
+ * on any other GUI component. The BuilderSquareController updates level entities and refreshes the display when 
+ * appropriate.
  */
 public class PlayerOutsideGridController implements MouseListener {
 
-	/** The level view. */
+	/** The The graphical display of the level that is being played. */
 	PlayerLevelGUI levelView;
 	
-	/** The level. */
+	/** The level entity. */
 	PlayerLevel level;
 	
-	/** The row. */
-	int row;
-	
-	/** The col. */
-	int col;
-	
 	/**
-	 * Instantiates a new player outside grid controller.
+	 * Instantiates a new controller for the content panel.
 	 *
-	 * @param window the window
+	 * @param window the window containing level GUI components
 	 */
 	public PlayerOutsideGridController(PlayerLevelGUI window){
 		this.levelView = window;
@@ -58,8 +55,11 @@ public class PlayerOutsideGridController implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
+	/**
+	 * Refreshes the display. Is useful after the user resizes the game window to ensure that all components resize
+	 * along with the window before the user attempts to interact with them.
+	 * 
+	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -76,12 +76,14 @@ public class PlayerOutsideGridController implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {}
 	
+	/** Testable helper method detailing the left pressed event. */
 	public boolean doMouseLeftPressed() {
 		this.level.setSelectedWord(new PlayerWord());
 		levelView.refresh(this.level);
 		return true;
 	}
 	
+	/** Testable helper method detailing the right pressed event. */
 	public boolean doMouseRightPressed() {
 		if (this.level.submitSelectedWord()) {
 			levelView.refreshAndScroll(this.level);

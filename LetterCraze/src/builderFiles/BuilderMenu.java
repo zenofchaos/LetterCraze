@@ -7,10 +7,18 @@ import java.util.List;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerMenuIterator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderMenu.
+ */
 public class BuilderMenu {
 
+/** The levels. */
 List<List<BuilderLevel>> levels;
 	
+	/**
+	 * Instantiates a new builder menu.
+	 */
 	//Constructor for a BuilderMenu object
 	public BuilderMenu(){
 		this.levels = new ArrayList<List<BuilderLevel>>(3);
@@ -19,17 +27,34 @@ List<List<BuilderLevel>> levels;
 		}
 	}
 	
+	/**
+	 * Gets the levels.
+	 *
+	 * @return the levels
+	 */
 	//Get method for levels
 	public List<List<BuilderLevel>> getLevels(){
 		return this.levels;
 	}
 	
+	/**
+	 * Sets the levels.
+	 *
+	 * @param toSet the to set
+	 * @return true, if successful
+	 */
 	//Set method for levels
 	public boolean setLevels(List<List<BuilderLevel>> toSet){
 		this.levels = toSet;
 		return true;
 	}
 	
+	/**
+	 * Num level.
+	 *
+	 * @param levelType the level type
+	 * @return the int
+	 */
 	//returns the number of levels held in this menu of the given levelType
 	public int numLevel(String levelType){
 		switch(levelType){
@@ -50,6 +75,12 @@ List<List<BuilderLevel>> levels;
 	//Where the first character indicates the type of level,
 	//and number indicates the index in the list of levels.
 	//Returns null if the given letter is not T,L, or P,
+	/**
+	 * Gets the level.
+	 *
+	 * @param identifier the identifier
+	 * @return the level
+	 */
 	//	or if the given number is out of bounds of the arrayList
 	public BuilderLevel getLevel(String identifier){
 		char type = identifier.charAt(0);
@@ -83,6 +114,12 @@ List<List<BuilderLevel>> levels;
 	
 	//Adds the given level to this menu. If the given level is
 	//	false, or is not a puzzle, theme, or lightning level,
+	/**
+	 * Adds the level.
+	 *
+	 * @param toAdd the to add
+	 * @return true, if successful
+	 */
 	//	returns false.
 	public boolean addLevel(BuilderLevel toAdd){
 		if (toAdd == null){
@@ -111,6 +148,12 @@ List<List<BuilderLevel>> levels;
 	}
 	
 	//Removes the level with the given title from this menu. Returns true
+	/**
+	 * Removes the level.
+	 *
+	 * @param indicator the indicator
+	 * @return true, if successful
+	 */
 	//	if successful. Returns false if the given title does not match any level.
 	boolean removeLevel(String indicator){
 		char type = indicator.charAt(0);
@@ -143,6 +186,11 @@ List<List<BuilderLevel>> levels;
 		}
 	}
 	
+	/**
+	 * Iterator.
+	 *
+	 * @return the builder menu iterator
+	 */
 	//Returns an iterator for this menu
 	public BuilderMenuIterator iterator(){
 		return new BuilderMenuIterator(this.levels);

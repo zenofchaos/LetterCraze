@@ -7,18 +7,35 @@ import playerFiles.PlayerLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerTimeUpGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerTimerController.
+ */
 public class PlayerTimerController implements ActionListener{
 
+	/** The window. */
 	PlayerLevelGUI window;
+	
+	/** The level. */
 	PlayerLevel level;
+	
+	/** The identifier. */
 	String identifier;
 	
+	/**
+	 * Instantiates a new player timer controller.
+	 *
+	 * @param w the w
+	 */
 	public PlayerTimerController(PlayerLevelGUI w){
 		this.window = w;
 		this.level = this.window.getLevel();
 		this.identifier = this.window.getIdentifier();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		window.closeWindow();

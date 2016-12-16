@@ -29,7 +29,10 @@ public class BuilderDeleteLevelController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-
+		delete();
+	}
+	
+	void delete(){
 		levNum = levelID.charAt(1) - 48;
 		BuilderFileAccessController fileAccess = new BuilderFileAccessController();
 

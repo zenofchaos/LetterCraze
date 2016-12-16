@@ -10,15 +10,31 @@ import builderFiles.BuilderLetter;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderAddWordController.
+ */
 public class BuilderAddWordController implements ActionListener {
+	
+	/** The editor view. */
 	BuilderEditorGUI editorView;
+	
+	/** The level. */
 	BuilderThemeLevel level;
 
+	/**
+	 * Instantiates a new builder add word controller.
+	 *
+	 * @param editorView the editor view
+	 */
 	public BuilderAddWordController(BuilderEditorGUI editorView){
 		this.editorView = editorView;
 		this.level = (BuilderThemeLevel) editorView.getLevel();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String input = e.getActionCommand();
@@ -33,6 +49,12 @@ public class BuilderAddWordController implements ActionListener {
 		}
 	}
 
+	/**
+	 * Checks if is valid input.
+	 *
+	 * @param input the input
+	 * @return true, if is valid input
+	 */
 	private boolean isValidInput(String input){
 		boolean validLetter = false;
 		for(int i = 0; i < input.length(); i++){

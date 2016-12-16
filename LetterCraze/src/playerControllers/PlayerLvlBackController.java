@@ -11,18 +11,35 @@ import playerFiles.PlayerThemeLevel;
 import playerGUI.PlayerLevelGUI;
 import playerGUI.PlayerSelectLevelGUI;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PlayerLvlBackController.
+ */
 public class PlayerLvlBackController implements ActionListener{
 
+	/** The level view. */
 	PlayerLevelGUI levelView;
+	
+	/** The level. */
 	PlayerLevel level;
+	
+	/** The identifier. */
 	String identifier;
 	
+	/**
+	 * Instantiates a new player lvl back controller.
+	 *
+	 * @param window the window
+	 */
 	public PlayerLvlBackController(PlayerLevelGUI window){
 		this.levelView = window;
 		this.level = this.levelView.getLevel();
 		this.identifier = this.levelView.getIdentifier();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int bestScore = this.level.getBestScore();

@@ -34,42 +34,57 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+// TODO: Auto-generated Javadoc
 /**
- * _____
+ * _____.
+ *
  * @author Craig Bursey
  */
 public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 
-	/**_*/
+	/** _. */
 	private JPanel contentPane;
-	/**_*/
-	private static PlayerLevel l;
-	/**_*/
+	
+	/** _. */
+	private PlayerLevel l;
+	
+	/** _. */
 	String levelIdentifier;
-	/**_*/
+	
+	/** _. */
 	long initialTime;
-	/**_*/
+	
+	/** _. */
 	Timer gameTimer;
-	/**_*/
+	
+	/** _. */
 	Timer refreshTimer;
 
 	/**
-	 * ___
+	 * ___.
+	 *
+	 * @param level the level
+	 * @param identifier the identifier
 	 */
 	public PlayerLevelGUI(PlayerLevel level, String identifier) {
-		PlayerLevelGUI.l = level;
+		this.l = level;
 		this.levelIdentifier = identifier;
 		this.initialTime = System.currentTimeMillis();
 		initialize();
 	}
 	
 	/**
+	 * Gets the level.
+	 *
 	 * @return The current static level object.
 	 */
 	public PlayerLevel getLevel() {
 		return l;
 	}
+	
 	/**
+	 * Gets the identifier.
+	 *
 	 * @return A string identifying this level.
 	 */
 	public String getIdentifier(){
@@ -77,6 +92,8 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
+	 * Gets the inital time.
+	 *
 	 * @return The current number of seconds which have passed since this level started.
 	 */
 	public long getInitalTime(){
@@ -84,7 +101,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
+	 * _____.
 	 */
 	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,8 +130,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______
-	 * @param placeToScroll
+	 * ______.
+	 *
+	 * @param placeToScroll the place to scroll
 	 */
 	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
@@ -158,11 +176,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				try{
+				try {
 					letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
 				}
-				catch (NullPointerException e){
-					letterLabels[i][j] = new JLabel("<html><b>" + " " + "</b>" + properLetterPoints(i, j) + "</html>");
+				catch (NullPointerException e) {
+					letterLabels[i][j] = new JLabel();
 				}
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,16 +190,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 				contentPane.add(squarePanels[i][j]);
 			}
 		}
+		
 		String wordsFound = "<html>";
-		if (l instanceof PlayerThemeLevel){
-			for (int i = 0; i < ((PlayerThemeLevel)l).getThemeWords().size(); i++) {
-				wordsFound += ((PlayerThemeLevel)l).getThemeWords().get(i) + "<br>";
-			}
-		}
-		else{
-			for (int i = 0; i < l.getWordsEntered().size(); i++) {
-				wordsFound += l.getWordsEntered().get(i).getWord().toUpperCase() + properWordPoints(i) + "<br>";
-			}
+		for (int i = 0; i < l.getWordsEntered().size(); i++) {
+			wordsFound += l.getWordsEntered().get(i).getWord().toUpperCase() + properWordPoints(i) + "<br>";
 		}
 		wordsFound += "</html>";
 		JLabel wordsFoundLabel = new JLabel(wordsFound);
@@ -282,8 +294,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @return
+	 * _____.
+	 *
+	 * @return the string
 	 */
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -299,9 +312,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____
-	 * @param h
-	 * @return
+	 * ____.
+	 *
+	 * @param h the h
+	 * @return the int
 	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -314,41 +328,37 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @param i
-	 * @param j
-	 * @param h
-	 * @return
+	 * _____.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @param h the h
+	 * @return the int
 	 */
 	private int properLetterSize(int i, int j, int h) {
-		try{
-			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof PlayerPuzzleLevel)) {
-				return h * 1/30;
+		try {
+			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") && (l instanceof PlayerPuzzleLevel)) {
+				return h * 1/32;
 			} else {
 				return h * 1/24;
 			}
-		}
-		catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			return h * 1/24;
 		}
 	}
 	
 	/**
-	 * ______
-	 * @param i
-	 * @param j
-	 * @return
+	 * ______.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return the string
 	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
-		try{
-			if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
-				spaceIfNotQu = "";
-			} else {
-				spaceIfNotQu = " ";
-			}
-		}
-		catch (NullPointerException e){
+		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "QU") {
+			spaceIfNotQu = "";
+		} else {
 			spaceIfNotQu = " ";
 		}
 		if (l instanceof PlayerPuzzleLevel) {
@@ -361,7 +371,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____
+	 * ____.
+	 *
+	 * @param i the i
+	 * @return the string
 	 */
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -374,9 +387,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @param w
-	 * @return
+	 * _____.
+	 *
+	 * @param w the w
+	 * @return the int
 	 */
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -389,9 +403,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _______
-	 * @param n
-	 * @return
+	 * _______.
+	 *
+	 * @param n the n
+	 * @return the string
 	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
@@ -426,8 +441,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____
-	 * @return
+	 * _____.
+	 *
+	 * @return the scroll pane
 	 */
 	private JScrollPane getScrollPane() {
 		Component[] components = contentPane.getComponents();
@@ -440,7 +456,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * _
+	 * _.
 	 */
 	@Override
 	public void openWindow() {
@@ -448,7 +464,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * ___
+	 * ___.
 	 */
 	@Override
 	public void closeWindow() {
@@ -461,7 +477,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 
 	/**
-	 * _
+	 * _.
 	 */
 	@Override
 	public void hideWindow() {
@@ -469,7 +485,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * __
+	 * __.
+	 *
+	 * @param level the level
 	 */
 	@Override
 	public void refresh(Object level) {
@@ -482,8 +500,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______
-	 * @param level
+	 * ______.
+	 *
+	 * @param level the level
 	 */
 	public void refreshAndScroll(Object level) {
 		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();

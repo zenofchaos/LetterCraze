@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import builderControllers.BuilderPreviewBackController;
 import builderFiles.BuilderLevel;
 import builderFiles.BuilderLightningLevel;
 import builderFiles.BuilderPuzzleLevel;
@@ -26,29 +27,22 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuilderPreviewGUI.
+ */
 public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The l. */
 	private static BuilderLevel l;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderPreviewGUI frame = new BuilderPreviewGUI(l);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
+	 *
+	 * @param level the level
 	 */
 	public BuilderPreviewGUI(BuilderLevel level) {
 		BuilderPreviewGUI.l = level;
@@ -56,6 +50,8 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 	}
 	
 	/**
+	 * Gets the level.
+	 *
 	 * @return current static level object
 	 */
 	public BuilderLevel getLevel() {
@@ -78,6 +74,9 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		showComponents();
 	}
 	
+	/**
+	 * Show components.
+	 */
 	private void showComponents() {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
@@ -119,7 +118,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 					squarePanels[i][j].setBackground(Color.DARK_GRAY);
 				}
 				squarePanels[i][j].setBounds(w * 1/2 + h * (j - 3) * 1/12 + borderSize, h * (i + 3) * 1/12 + borderSize, h * 1/12 - borderSize, h * 1/12 - borderSize);
-				letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				try{
+					letterLabels[i][j] = new JLabel("<html><b>" + l.getBoard().getSquareArray()[i][j].getLetter().getLetter() + "</b>" + properLetterPoints(i, j) + "</html>");
+				}
+				catch (Exception e){
+					letterLabels[i][j] = new JLabel("<html><b>" + " " + "</b>" + properLetterPoints(i, j) + "</html>");
+				}
 				letterLabels[i][j].setForeground(Color.BLACK);
 				letterLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
 				letterLabels[i][j].setFont(new Font("Dialog", Font.PLAIN, properLetterSize(i, j, h)));
@@ -199,12 +203,18 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		resetButton.setBounds(properResetX(w), h * 19/24, w * 5/32, h * 1/12);
 		contentPane.add(resetButton);
 		
-		JButton backButton = new JButton("Back to Menu");
+		JButton backButton = new JButton("Back to Editor");
+		backButton.addActionListener(new BuilderPreviewBackController(this));
 		backButton.setFont(new Font("Dialog", Font.BOLD, h * 1/32));
 		backButton.setBounds(w * 1/32, h * 1/24, w * 15/64, h * 5/96);
 		contentPane.add(backButton);
 	}
 	
+	/**
+	 * Proper subtitle.
+	 *
+	 * @return the string
+	 */
 	private String properSubtitle() {
 		if (l instanceof BuilderPuzzleLevel) {
 			return "Words Left: " + ((BuilderPuzzleLevel)l).getWordLimit();
@@ -215,6 +225,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return "";
 	}
 	
+	/**
+	 * Proper subtitle size.
+	 *
+	 * @param h the h
+	 * @return the int
+	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return h * 1/24;
@@ -225,23 +241,53 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return h * 1/24;
 	}
 	
+	/**
+	 * Proper letter size.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @param h the h
+	 * @return the int
+	 */
 	private int properLetterSize(int i, int j, int h) {
-		if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof BuilderPuzzleLevel)) {
-			return h * 1/30;
-		} else {
+		try{
+			if ((l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") && (l instanceof BuilderPuzzleLevel)) {
+				return h * 1/30;
+			} else {
+				return h * 1/24;
+			}
+		}
+		catch(Exception e){
 			return h * 1/24;
 		}
 	}
 	
+	/**
+	 * Proper letter points.
+	 *
+	 * @param i the i
+	 * @param j the j
+	 * @return the string
+	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
-		if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
-			spaceIfNotQu = "";
-		} else {
+		try{
+			if (l.getBoard().getSquareArray()[i][j].getLetter().getLetter() == "Qu") {
+				spaceIfNotQu = "";
+			} else {
+				spaceIfNotQu = " ";
+			}
+		}
+		catch(Exception e){
 			spaceIfNotQu = " ";
 		}
 		if (l instanceof BuilderPuzzleLevel) {
-			return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
+			try{
+				return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
+			}
+			catch(Exception e){
+				return spaceIfNotQu + " ";
+			}
 		} else if (l instanceof BuilderLightningLevel) {
 			return "";
 		} else if (l instanceof BuilderThemeLevel) {
@@ -249,6 +295,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return spaceIfNotQu + makeSubscript(l.getBoard().getSquareArray()[i][j].getLetter().getPoints());
 	}
 	
+	/**
+	 * Proper reset X.
+	 *
+	 * @param w the w
+	 * @return the int
+	 */
 	private int properResetX(int w) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return w * 33/64;
@@ -259,6 +311,12 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		} else return w * 33/64;
 	}
 	
+	/**
+	 * Make subscript.
+	 *
+	 * @param n the n
+	 * @return the string
+	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
 		String subscripts = "";
@@ -291,22 +349,34 @@ public class BuilderPreviewGUI extends JFrame implements IBuilderGUI {
 		return subscripts;
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#openWindow()
+	 */
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#closeWindow()
+	 */
 	@Override
 	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
 	}
 	
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#refresh(java.lang.Object)
+	 */
 	@Override
 	public void refresh(Object level) {
 		l = (BuilderLevel)level;

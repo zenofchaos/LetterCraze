@@ -38,7 +38,22 @@ public class testBuilderControllers extends TestCase{
 		controller.addLetter("Q");
 		assertEquals("QU", menu.getLevel("P2").getBoard().getSquare(2, 2).getLetter().getLetter());
 	}
-
+	
+	public void testThresholds(){
+		BuilderFileAccessController file = new BuilderFileAccessController();
+		BuilderMenu menu = new BuilderMenu();
+		try{
+			menu = file.getModel().getMenu();
+		} catch(Exception e){
+			assertTrue(false);
+		}
+		BuilderEditorGUI gui = new BuilderEditorGUI(menu.getLevel("P2"), "P2");
+		BuilderAddStarThreshold controller = new BuilderAddStarThreshold(gui, 1);
+		controller.setStar("3");
+		assertEquals(3, gui.getLevel().getStarThresholds()[1]);
+	}
+		
+		
 	public void testTypeSpecific(){
 		BuilderFileAccessController file = new BuilderFileAccessController();
 		BuilderMenu menu = new BuilderMenu();

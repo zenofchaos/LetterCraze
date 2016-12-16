@@ -21,8 +21,8 @@ L E * E * *
 
 Objects in Letter Craze
 
-Board
-theme
-level
-square
-letter
+BOARD
+THEME
+LEVEL
+SQUARE
+LETTER

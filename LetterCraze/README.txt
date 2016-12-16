@@ -1,4 +1,4 @@
-Welcome to Yttrium's LetterCraze!
+Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows, and should work on Linux. It has never been tested on a Mac.
 
 To run either application:
 	Run the "BuilderSplashGUI" or "PlayerSplashGUI" as a java application in order to start the
@@ -24,8 +24,50 @@ How gravity works:
 	the letters inside inactive squares cannot be selected.
 
 Theme level:
-	In our theme level, we decided to show the theme words to the side, to make the game more fair.
-	each word is then removed from the list on the lefthand side when it is removed from the board.
+	Here is a list of words for each theme level:
+-1-
+
+
+-2-
+QUAIL
+EAGLE
+DOVE
+FINCH
+RAVEN
+OWL
+WREN
+OSPREY
+
+-3-
+HARDING
+JACKSON
+NIXON
+OBAMA
+TAFT
+
+-4-
+PUMPKIN
+AVOCADO
+BANANA
+GRAPE
+WATERMELON
+
+-5-
+APPETIZER
+APPLE
+PAPAYA
+PAPAYAS
+PEPPER
+PEPPER
+PEPPERS
+PEPPERY
+PINEAPPLE
+PPAP
+PPAP
+PPAP
+PPAP
+SUPPER
+
 
 -Inside Builder Level-
 Controls:
@@ -41,4 +83,5 @@ Controls:
 	the square is active or inactive. When editing a theme level, to add words type each word into
 	the text field on the left, then press enter to add it to the list. To remove a word, right click
 	on it in the list. Click save to save the level to the disk. 
+
 	

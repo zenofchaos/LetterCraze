@@ -87,6 +87,8 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 	}
 
 	/**
+	 * Gets the level.
+	 *
 	 * @return current static level object
 	 */
 	public BuilderLevel getLevel() {
@@ -110,6 +112,13 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		showComponents(0);
 	}
 	
+	/**
+	 * Instantiates Swing components each representing an interactive level element. Instantiates different sets of 
+	 * components depending on which level subclass the static level belongs to.
+	 * 
+	 * @param placeToScroll the number of pixels downward the scroll pane must be scrolled, counting from the top of 
+	 * the contained panel.
+	 */
 	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
 		int h = (int)getBounds().getHeight();
@@ -246,6 +255,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.add(backButton);
 	}
 	
+	/**
+	 * Determines the title to display at the top of the screen.
+	 * 
+	 * @return the title to display
+	 */
 	private String properTitle() {
 		try {
 			return l.getTitle();
@@ -254,6 +268,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 
+	/**
+	 * Determines what text label to display in the line under the title.
+	 * 
+	 * @return the string to display
+	 */
 	private String properSubtitleType() {
 		if (l instanceof BuilderPuzzleLevel) {
 			return "Word Limit:";
@@ -266,6 +285,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	/**
+	 * Determines what the line below the title should be labeled based on the level type.
+	 *
+	 * @return the string to display
+	 */
 	private String properSubtitle() {
 		try {
 			if (l instanceof BuilderPuzzleLevel) {
@@ -282,6 +306,14 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	/**
+	 * Determines how large to draw the bar in which to type information below the title.
+	 * 
+	 * @param w window width
+	 * @param h window height
+	 * @param borderSize spacing between squares in the board
+	 * @return the x-dimension of the bar
+	 */
 	private int properSubtitleWidth(int w, int h, int borderSize) {
 		if (l instanceof BuilderPuzzleLevel) {
 			return w * 1/16;
@@ -294,6 +326,13 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	/**
+	 * Determines what letter to display inside a given square's text field.
+	 * 
+	 * @param i the board row
+	 * @param j the board column
+	 * @return the string to display
+	 */
 	private String properLetter(int i, int j) {
 		try {
 			return l.getBoard().getSquareArray()[i][j].getLetter().getLetter();
@@ -302,6 +341,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		}
 	}
 	
+	/**
+	 * Gets the scroll pane.
+	 *
+	 * @return the scroll pane component, or a blank pane if not found
+	 */
 	private JScrollPane getScrollPane() {
 		Component[] components = contentPane.getComponents();
 		for (int i = 0; i < components.length; i++) {
@@ -312,23 +356,34 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		return new JScrollPane();
 	}
 	
-	
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#openWindow()
+	 */
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#closeWindow()
+	 */
 	@Override
 	public void closeWindow() {
 		this.setVisible(false);
 		this.dispose();
 	}
 
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#hideWindow()
+	 */
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
 	}
 	
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#refresh(java.lang.Object)
+	 */
 	@Override
 	public void refresh(Object level) {
 		int placeToScroll = getScrollPane().getVerticalScrollBar().getValue();
@@ -339,6 +394,11 @@ public class BuilderEditorGUI extends JFrame implements IBuilderGUI {
 		contentPane.validate();
 	}
 	
+	/**
+	 * Refreshes the display as normal and then moves the scroll bar of the scoll pane to a specified position.
+	 *
+	 * @param level the level
+	 */
 	public void refreshAndScroll(Object level) {
 		int placeToScroll = 2 * getScrollPane().getVerticalScrollBar().getMaximum();
 		l = (BuilderLevel)level;

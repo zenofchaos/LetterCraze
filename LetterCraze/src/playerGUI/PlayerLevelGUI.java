@@ -101,7 +101,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____.
+	 * Initializes the contents of the frame.
 	 */
 	private void initialize() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,9 +130,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______.
-	 *
-	 * @param placeToScroll the place to scroll
+	 * Instantiates Swing components each representing an interactive level element. Instantiates different sets of 
+	 * components depending on which level subclass the static level belongs to.
+	 * 
+	 * @param placeToScroll the number of pixels downward the scroll pane must be scrolled, counting from the top of 
+	 * the contained panel.
 	 */
 	private void showComponents(int placeToScroll) {
 		int w = (int)getBounds().getWidth();
@@ -294,9 +296,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____.
+	 * Determines what the line below the title should be labeled based on the level type.
 	 *
-	 * @return the string
+	 * @return the string to display
 	 */
 	private String properSubtitle() {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -312,10 +314,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____.
+	 * Determines how large to display the subtitle.
 	 *
-	 * @param h the h
-	 * @return the int
+	 * @param h the window height
+	 * @return the font size
 	 */
 	private int properSubtitleSize(int h) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -328,12 +330,12 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____.
+	 * Determines how large to display the letter in a given square so that the text fits.
 	 *
-	 * @param i the i
-	 * @param j the j
-	 * @param h the h
-	 * @return the int
+	 * @param i the board row
+	 * @param j the board column
+	 * @param h the window height
+	 * @return the font size
 	 */
 	private int properLetterSize(int i, int j, int h) {
 		try {
@@ -348,11 +350,11 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______.
+	 * Determines what point value to display for a given letter, if any.
 	 *
-	 * @param i the i
-	 * @param j the j
-	 * @return the string
+	 * @param i the board row
+	 * @param j the board column
+	 * @return the string comprised of a subscript point value, or a blank string
 	 */
 	private String properLetterPoints(int i, int j) {
 		String spaceIfNotQu;
@@ -371,10 +373,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ____.
+	 * Determines what point value to display for a given submitted word, if any.
 	 *
-	 * @param i the i
-	 * @return the string
+	 * @param i the number of words submitted before the word in question
+	 * @return the string comprised of a point value, or a blank string
 	 */
 	private String properWordPoints(int i) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -387,10 +389,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____.
+	 * Determines the drawing location of the reset button.
 	 *
-	 * @param w the w
-	 * @return the int
+	 * @param w the window width
+	 * @return the x-coordinate of the top-left corner of the reset button
 	 */
 	private int properResetX(int w) {
 		if (l instanceof PlayerPuzzleLevel) {
@@ -403,10 +405,10 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _______.
+	 * Converts the given number into a subscript.
 	 *
-	 * @param n the n
-	 * @return the string
+	 * @param n the number to turn into a subscript
+	 * @return the string comprised of the number as a subscript
 	 */
 	private String makeSubscript(int n) {
 		String regulars = "" + n;
@@ -441,9 +443,9 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * _____.
+	 * Gets the scroll pane.
 	 *
-	 * @return the scroll pane
+	 * @return the scroll pane component, or a blank pane if not found
 	 */
 	private JScrollPane getScrollPane() {
 		Component[] components = contentPane.getComponents();
@@ -455,16 +457,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		return new JScrollPane();
 	}
 
-	/**
-	 * _.
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#openWindow()
 	 */
 	@Override
 	public void openWindow() {
 		this.setVisible(true);
 	}
 
-	/**
-	 * ___.
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#closeWindow()
 	 */
 	@Override
 	public void closeWindow() {
@@ -476,18 +478,16 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 		this.dispose();
 	}
 
-	/**
-	 * _.
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#hideWindow()
 	 */
 	@Override
 	public void hideWindow() {
 		this.setVisible(false);
 	}
 	
-	/**
-	 * __.
-	 *
-	 * @param level the level
+	/* (non-Javadoc)
+	 * @see builderGUI.IBuilderGUI#refresh(java.lang.Object)
 	 */
 	@Override
 	public void refresh(Object level) {
@@ -500,7 +500,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	}
 	
 	/**
-	 * ______.
+	 * Refreshes the display as normal and then moves the scroll bar of the scoll pane to a specified position.
 	 *
 	 * @param level the level
 	 */

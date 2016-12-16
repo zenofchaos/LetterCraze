@@ -1,4 +1,5 @@
-Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows (especially windows 10), and should work on Linux. It has never been tested on a Mac.
+Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows (especially
+windows 10), and should work on Linux. It has never been tested on a Mac.
 
 To run either application:
 	Run the "BuilderSplashGUI" or "PlayerSplashGUI" as a java application in order to start the
@@ -11,6 +12,17 @@ On the Main menu:
 	star in an unlocked level will unlock the next level in the same group. In the builder, creation
 	of each type of level is as simple as clicking the '+' sign at the end of the group. Once a new
 	level is saved, it can be seen appended to the end of its respective group of levels.
+
+-Adjusting level statuses-
+	If you'd like to unlock all of the levels, open up Levels/FileCount.txt, and change the 5th, 6th, and
+	7th line from "01" (or similar) to "05". This number represents the highest unlocked level in each
+	set, so changing that value will change the unlocked state of levels. It's kinda hacky and not ideal
+	but personally I think it's worth you understanding how our code works in case something unexpected
+	happens. Similarly, if there is a fileNotFound exception occurring, and no levels are appearing,
+	please replace the first 3 numbers in FileCount.txt with "05". That tells the application how many
+	levels it should be looking for, and every once in a while something hiccups and increments that
+	value too high. It's a very rare occurence, but in the event that it does happen while you are grading
+	our work, it seems preferable to admit this kludge than for you to be unable to access any of our levels.
 
 -Inside Player Level-
 Controls:
@@ -26,6 +38,11 @@ How gravity works:
 Theme level:
 	Here is a list of words for each theme level:
 -1-
+BOARD
+THEME
+LEVEL
+SQUARE
+LETTER
 
 -2-
 QUAIL

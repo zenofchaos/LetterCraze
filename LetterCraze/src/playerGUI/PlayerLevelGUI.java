@@ -46,7 +46,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	private JPanel contentPane;
 	
 	/** _. */
-	private static PlayerLevel l;
+	private PlayerLevel l;
 	
 	/** _. */
 	String levelIdentifier;
@@ -67,7 +67,7 @@ public class PlayerLevelGUI extends JFrame implements IPlayerGUI{
 	 * @param identifier the identifier
 	 */
 	public PlayerLevelGUI(PlayerLevel level, String identifier) {
-		PlayerLevelGUI.l = level;
+		this.l = level;
 		this.levelIdentifier = identifier;
 		this.initialTime = System.currentTimeMillis();
 		initialize();

@@ -121,7 +121,7 @@ public class BuilderThemeLevel extends BuilderLevel{
 				this.board.getSquareArray()[i][j].setActive(this.boardPreset.getSquareArray()[i][j].getActive());
 			}
 		}
-//		this.board.replace();
+		this.board.replace();
 		return true;
 	}
 	

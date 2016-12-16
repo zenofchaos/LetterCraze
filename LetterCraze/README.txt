@@ -1,4 +1,4 @@
-Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows, and should work on Linux. It has never been tested on a Mac.
+Welcome to Yttrium's LetterCraze! The application is 100% guaranteed functional on Windows (especially windows 10), and should work on Linux. It has never been tested on a Mac.
 
 To run either application:
 	Run the "BuilderSplashGUI" or "PlayerSplashGUI" as a java application in order to start the
@@ -26,7 +26,6 @@ How gravity works:
 Theme level:
 	Here is a list of words for each theme level:
 -1-
-
 
 -2-
 QUAIL

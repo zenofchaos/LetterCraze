@@ -13,28 +13,30 @@ import playerFiles.PlayerWord;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PlayerSquareController.
+ * When added to a panel representing a square in a PlayerLevelGUI, an object of the class PlayerSquareController 
+ * allows the panel to detect clicks and mouse motion by the user while the cursor is on the panel. The 
+ * BuilderSquareController also updates the level entities and refreshes the display when appropriate.
  */
 public class PlayerSquareController implements MouseListener {
 
-	/** The level view. */
+	/** The graphical display of the level that is being played. */
 	PlayerLevelGUI levelView;
 	
-	/** The level. */
+	/** The level entity. */
 	PlayerLevel level;
 	
-	/** The row. */
+	/** The board row in which the associated panel is located. */
 	int row;
 	
-	/** The col. */
+	/** The board column in which the associated panel is located. */
 	int col;
 	
 	/**
-	 * Instantiates a new player square controller.
+	 * Instantiates a new controller for a single panel.
 	 *
-	 * @param window the window
-	 * @param i the i
-	 * @param j the j
+	 * @param window the window containing level GUI components
+	 * @param i the row of the panel within the board
+	 * @param j the column of the panel within the board
 	 */
 	public PlayerSquareController(PlayerLevelGUI window, int i, int j){
 		this.levelView = window;
@@ -49,7 +51,9 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {}
 
-	/* (non-Javadoc)
+	/**
+	 * Adds this square to the selected word during a drag if active and adjacent to previous square.
+	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -67,7 +71,10 @@ public class PlayerSquareController implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
-	/* (non-Javadoc)
+	/**
+	 * Starts new selected word on left click or submits selected word on right click. Refreshes the display (and 
+	 * scrolls the submission pane if submission occurs).
+	 * 
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -86,24 +93,25 @@ public class PlayerSquareController implements MouseListener {
 	public void mouseReleased(MouseEvent e) {}
 	
 	/**
-	 * This square.
+	 * Gets the square being watched by the controller.
 	 *
-	 * @return the player square
+	 * @return the associated square entity
 	 */
 	private PlayerSquare thisSquare() {
 		return this.level.getBoard().getSquareArray()[row][col];
 	}
 	
 	/**
-	 * Adjacency rule is followed.
+	 * Checks whether two squares are allowed to be selected one immediately after the other.
 	 *
-	 * @return true, if successful
+	 * @return true, if no word is selected or if the last selected square is adjacent to this square
 	 */
 	private boolean adjacencyRuleIsFollowed() {
 		return     (this.level.getSelectedWord().getSquares().isEmpty())
 				|| (thisSquare().isNeighbor(this.level.getSelectedWord().recentSquare(1)));
 	}
 	
+	/** Testable helper method detailing the left mouse drag event. */
 	public boolean doMouseLeftHeldEntered() {
 		if (this.level.squareIsSelected(thisSquare())) {
 			if (thisSquare().equals(this.level.getSelectedWord().recentSquare(2))) {
@@ -118,6 +126,7 @@ public class PlayerSquareController implements MouseListener {
 		return true;
 	}
 	
+	/** Testable helper method detailing the left pressed event. */
 	public boolean doMouseLeftPressed() {
 		try{
 			this.level.setSelectedWord(new PlayerWord(thisSquare()));
@@ -129,6 +138,7 @@ public class PlayerSquareController implements MouseListener {
 		return true;
 	}
 	
+	/** Testable helper method detailing the right pressed event. */
 	public boolean doMouseRightPressed() {
 		if (this.level.submitSelectedWord()) {
 			levelView.refreshAndScroll(this.level);

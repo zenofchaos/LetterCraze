@@ -11,9 +11,9 @@ import playerFiles.PlayerThemeLevel;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerTimeUpGUI;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class PlayerExitTimeUpController.
+ * The Class PlayerExitTimeUpController, exits the lightning when time is up.
  */
 public class PlayerExitTimeUpController implements ActionListener{
 

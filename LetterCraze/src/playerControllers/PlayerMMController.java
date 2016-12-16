@@ -8,9 +8,8 @@ import playerFiles.*;
 import playerGUI.PlayerSelectLevelGUI;
 import playerGUI.PlayerMainMenuGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerMMController.
+ * The Class PlayerMMController, opens the main menu gui.
  */
 public class PlayerMMController implements ActionListener{
 

@@ -10,9 +10,8 @@ import javax.swing.SwingUtilities;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerWord;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PlayerOutsideGridController.
+ * The Class PlayerOutsideGridController, controls the squares.
  */
 public class PlayerOutsideGridController implements MouseListener {
 

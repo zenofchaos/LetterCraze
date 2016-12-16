@@ -8,7 +8,7 @@ import playerGUI.PlayerLevelGUI;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PlayerResetController.
+ * The Class PlayerResetController, works the reset button on the player.
  */
 public class PlayerResetController implements ActionListener{
 

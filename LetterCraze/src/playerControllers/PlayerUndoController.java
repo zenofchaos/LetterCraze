@@ -13,7 +13,7 @@ import playerGUI.PlayerLevelGUI;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PlayerUndoController.
+ * The Class PlayerUndoController, controls undoing while a level is being played.
  */
 public class PlayerUndoController implements ActionListener{
 

@@ -13,7 +13,7 @@ import playerFiles.PlayerWord;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PlayerSquareController.
+ * The Class PlayerSquareController, controls everything for the mouse events for the squares.
  */
 public class PlayerSquareController implements MouseListener {
 

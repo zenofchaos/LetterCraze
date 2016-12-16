@@ -39,7 +39,8 @@ public class BuilderAddWordController implements ActionListener {
 		String input = e.getActionCommand();
 		input = input.trim();
 		if(isValidInput(input)){
-			level.addThemeWord(input);
+			String word = input.toUpperCase();
+			level.addThemeWord(word);
 			editorView.refresh(level);
 		}
 		else{

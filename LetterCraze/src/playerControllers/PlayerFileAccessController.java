@@ -324,10 +324,27 @@ public class PlayerFileAccessController {
 	 * @throws Exception fileNotFound
 	 */
 	public void unlockLightning() throws Exception {
+		file = new java.io.File("Levels/FileCount.txt");
+		try{
+			input = new Scanner(file);
+		}
+		catch (Exception e){
+			System.out.print(e);
+		}
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		unlockedL = input.nextInt();
+		unlockedP = input.nextInt();
+		unlockedT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
-		rAFile.seek(10); // maybe someday I'll remember to explain these numbers
-							// (hint: it's the number of characters I have to
-							// jump forward)
+		rAFile.seek(10);
 
 		String newNum = String.format("%02d", (unlockedL + 1));
 
@@ -342,6 +359,25 @@ public class PlayerFileAccessController {
 	 * @throws Exception fileNotFound
 	 */
 	public void unlockPuzzle() throws Exception {
+		file = new java.io.File("Levels/FileCount.txt");
+		try{
+			input = new Scanner(file);
+		}
+		catch (Exception e){
+			System.out.print(e);
+		}
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		unlockedL = input.nextInt();
+		unlockedP = input.nextInt();
+		unlockedT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(13);
 		System.out.println("unlockedP = " + unlockedP);
@@ -358,6 +394,25 @@ public class PlayerFileAccessController {
 	 * @throws Exception fileNotFound
 	 */
 	public void unlockTheme() throws Exception {
+		file = new java.io.File("Levels/FileCount.txt");
+		try{
+			input = new Scanner(file);
+		}
+		catch (Exception e){
+			System.out.print(e);
+		}
+
+		numL = input.nextInt();
+		numP = input.nextInt();
+		numT = input.nextInt();
+
+		unlockedL = input.nextInt();
+		unlockedP = input.nextInt();
+		unlockedT = input.nextInt();
+
+		// Close FileCount
+		input.close();
+
 		RandomAccessFile rAFile = new RandomAccessFile("Levels/FileCount.txt", "rw");
 		rAFile.seek(16);
 

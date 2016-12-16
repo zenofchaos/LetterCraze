@@ -11,25 +11,27 @@ import builderGUI.BuilderEditorGUI;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class BuilderSquareController.
+ * When added to a panel representing a square in a BuilderEditorGUI, an object of the class BuilderSquareController 
+ * allows the panel to detect clicks and mouse motion by the user while the cursor is on the panel. The 
+ * BuilderSquareController also updates the level entities and refreshes the display when appropriate.
  */
 public class BuilderSquareController implements MouseListener {
 
-	/** The level view. */
+	/** The graphical display of the level that is being built. */
 	BuilderEditorGUI levelView;
 	
-	/** The row. */
+	/** The board row in which the associated panel is located. */
 	int row;
 	
-	/** The col. */
+	/** The board column in which the associated panel is located. */
 	int col;
 	
 	/**
-	 * Instantiates a new builder square controller.
+	 * Instantiates a new controller for a single panel.
 	 *
-	 * @param window the window
-	 * @param i the i
-	 * @param j the j
+	 * @param window the window containing editor GUI components
+	 * @param i the row of the panel within the board
+	 * @param j the column of the panel within the board
 	 */
 	public BuilderSquareController(BuilderEditorGUI window, int i, int j){
 		this.levelView = window;
@@ -37,7 +39,7 @@ public class BuilderSquareController implements MouseListener {
 		this.col = j;
 	}
 
-	/* (non-Javadoc)
+	/* ftdh
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -49,7 +51,9 @@ public class BuilderSquareController implements MouseListener {
 	@Override
 	public void mouseEntered(MouseEvent e) {}
 
-	/* (non-Javadoc)
+	/**
+	 * Toggles the activity of the panel during a drag and refreshes the display.
+	 *
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -66,7 +70,9 @@ public class BuilderSquareController implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {}
 
-	/* (non-Javadoc)
+	/**
+	 * Toggles the activity of the panel and refreshes the display.
+	 * 
 	 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 	 */
 	@Override
@@ -78,25 +84,25 @@ public class BuilderSquareController implements MouseListener {
 	}
 	
 	/**
-	 * L.
+	 * Gets the level being edited.
 	 *
-	 * @return the builder level
+	 * @return the associated level entity
 	 */
 	private BuilderLevel l() {
 		return levelView.getLevel();
 	}
 	
 	/**
-	 * This square.
+	 * Gets the square being watched by the controller.
 	 *
-	 * @return the builder square
+	 * @return the associated square entity
 	 */
 	private BuilderSquare thisSquare() {
 		return l().getBoard().getSquareArray()[row][col];
 	}
 	
 	/**
-	 * Toggle.
+	 * Sets this square as active if currently inactive and vice versa.
 	 */
 	private void toggle() {
 		thisSquare().setActive(!(thisSquare().getActive()));

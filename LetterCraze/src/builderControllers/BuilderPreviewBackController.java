@@ -5,9 +5,8 @@ import java.awt.event.ActionListener;
 
 import builderGUI.BuilderPreviewGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderPreviewBackController.
+ * The Class BuilderPreviewBackController closes the builder preview when the back button is pressed.
  */
 public class BuilderPreviewBackController implements ActionListener {
 	

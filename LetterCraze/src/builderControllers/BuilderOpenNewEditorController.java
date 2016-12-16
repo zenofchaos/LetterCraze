@@ -11,9 +11,8 @@ import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderOpenNewEditorController.
+ * The Class BuilderOpenNewEditorController opens a new blank level to be created of whatever type was selected.
  */
 public class BuilderOpenNewEditorController implements MouseListener{
 
@@ -89,7 +88,9 @@ public class BuilderOpenNewEditorController implements MouseListener{
 	}
 	
 	/**
-	 * Open level.
+	 * Open level is where the new level is build and the gui is opened. 
+	 * Based on what type of level identifier was sent, a specific level type
+	 * is created and sent to the gui when opening. 
 	 *
 	 * @return the builder editor GUI
 	 */

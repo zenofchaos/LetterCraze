@@ -7,7 +7,6 @@ import builderGUI.BuilderEditorGUI;
 
 import builderFiles.BuilderLevel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BuilderOutsideGridController.
  */

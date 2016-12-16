@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderPreviewGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderPreviewController.
+ * The Class BuilderPreviewController opens a preview gui of the level being built.
  */
 public class BuilderPreviewController implements ActionListener {
 	

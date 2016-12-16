@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderCloseLevelMenuController.
+ * The Class BuilderCloseLevelMenuController closes the level menu gui when the back button is pressed and opens the main menu.
  */
 public class BuilderCloseLevelMenuController implements ActionListener {
 	

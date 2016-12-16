@@ -1,8 +1,7 @@
 package builderFiles;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderPuzzleLevel.
+ * The Class BuilderPuzzleLevel, a puzzle level for the builder.
  */
 public class BuilderPuzzleLevel extends BuilderLevel{
 

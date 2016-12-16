@@ -7,9 +7,8 @@ import java.util.List;
 import playerFiles.PlayerLevel;
 import playerFiles.PlayerMenuIterator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderMenu.
+ * The Class BuilderMenu, menu for the builder application.
  */
 public class BuilderMenu {
 
@@ -19,7 +18,6 @@ List<List<BuilderLevel>> levels;
 	/**
 	 * Instantiates a new builder menu.
 	 */
-	//Constructor for a BuilderMenu object
 	public BuilderMenu(){
 		this.levels = new ArrayList<List<BuilderLevel>>(3);
 		for (int i = 0; i < 3; i++){
@@ -32,7 +30,6 @@ List<List<BuilderLevel>> levels;
 	 *
 	 * @return the levels
 	 */
-	//Get method for levels
 	public List<List<BuilderLevel>> getLevels(){
 		return this.levels;
 	}
@@ -43,7 +40,6 @@ List<List<BuilderLevel>> levels;
 	 * @param toSet the to set
 	 * @return true, if successful
 	 */
-	//Set method for levels
 	public boolean setLevels(List<List<BuilderLevel>> toSet){
 		this.levels = toSet;
 		return true;
@@ -53,9 +49,8 @@ List<List<BuilderLevel>> levels;
 	 * Num level.
 	 *
 	 * @param levelType the level type
-	 * @return the int
+	 * @return the number of levels held in this menu of the given level type
 	 */
-	//returns the number of levels held in this menu of the given levelType
 	public int numLevel(String levelType){
 		switch(levelType){
 		case "Puzzle":
@@ -69,19 +64,15 @@ List<List<BuilderLevel>> levels;
 		}
 	}
 	
-	//Returns the level corresponding to the given identifier
-	//Identifier should be in one of the following forms:
-	//		T#	L#	P#
-	//Where the first character indicates the type of level,
-	//and number indicates the index in the list of levels.
-	//Returns null if the given letter is not T,L, or P,
 	/**
-	 * Gets the level.
+	 * Gets the level corresponding to the given identifier.
+	 * Identifier should be in one of the following forms:
+	 *T# or	L# or P# , where the first character indicates the type of level,
+	 *and number indicates the index in the list of levels.
 	 *
 	 * @param identifier the identifier
 	 * @return the level
 	 */
-	//	or if the given number is out of bounds of the arrayList
 	public BuilderLevel getLevel(String identifier){
 		char type = identifier.charAt(0);
 		int index = ((int) identifier.charAt(1)) - 48 - 1;
@@ -112,15 +103,13 @@ List<List<BuilderLevel>> levels;
 		}
 	}
 	
-	//Adds the given level to this menu. If the given level is
-	//	false, or is not a puzzle, theme, or lightning level,
+
 	/**
-	 * Adds the level.
+	 * Adds the given level to this menu, if the given level is valid.
 	 *
 	 * @param toAdd the to add
 	 * @return true, if successful
 	 */
-	//	returns false.
 	public boolean addLevel(BuilderLevel toAdd){
 		if (toAdd == null){
 			return false;
@@ -147,14 +136,12 @@ List<List<BuilderLevel>> levels;
 		}
 	}
 	
-	//Removes the level with the given title from this menu. Returns true
 	/**
-	 * Removes the level.
+	 * Removes the level with the given indicator for the menu.
 	 *
 	 * @param indicator the indicator
 	 * @return true, if successful
 	 */
-	//	if successful. Returns false if the given title does not match any level.
 	boolean removeLevel(String indicator){
 		char type = indicator.charAt(0);
 		int index = ((int) indicator.charAt(1)) - 48 - 1;

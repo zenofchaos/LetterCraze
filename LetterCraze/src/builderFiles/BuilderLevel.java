@@ -3,9 +3,8 @@ package builderFiles;
 import builderFiles.BuilderSquare;
 import playerFiles.PlayerLetter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderLevel.
+ * The Class BuilderLevel an abstract level for the builder application.
  */
 public abstract class BuilderLevel {
 	
@@ -111,7 +110,7 @@ public abstract class BuilderLevel {
 		}
 		
 		/**
-		 * Inits the empty board.
+		 * Inits an empty board.
 		 *
 		 * @return true, if successful
 		 */
@@ -128,7 +127,8 @@ public abstract class BuilderLevel {
 		}
 		
 		/**
-		 * Inits the board.
+		 * Inits the board with new letters in every square (can be re-written by
+		 * classes that inherit builderLevel).
 		 *
 		 * @return true, if successful
 		 */

@@ -7,9 +7,8 @@ import builderFiles.BuilderMenu;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderCloseEditorController.
+ * The Class BuilderCloseEditorController closes the editor gui when the back button is pressed.
  */
 public class BuilderCloseEditorController implements ActionListener{
 	

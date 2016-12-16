@@ -3,9 +3,8 @@ package builderFiles;
 import java.util.Hashtable;
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderLetter.
+ * The Class BuilderLetter a letter object for the builder application.
  */
 public class BuilderLetter {
 
@@ -15,12 +14,11 @@ public class BuilderLetter {
 	/** The points. */
 	int points;
 
-	//Constructor for a BuilderLetter object. Generates a random letter
-	//	based on the provided letter frequency chart. Generates points
 	/**
-	 * Instantiates a new builder letter.
+	 * Instantiates a new builder letter.Generates a random letter 
+	 * based on the provided letter frequency chart. Generates points
+	 * for the letter based off of the same table.
 	 */
-	//	for the letter based off of the same table.
 	BuilderLetter(){
 		letter = getRandomLetter();
 		Hashtable<String,Integer> pointTable = this.generatePointsTable();
@@ -109,14 +107,13 @@ public class BuilderLetter {
 		return pointTable;
 	}
 
-	//Constructor for a PlayerLetter object using the given string. 
-	//	Verifies the given string is a valid letter, and then generates
 	/**
-	 * Instantiates a new builder letter.
+	 * Instantiates a new builder letter using the given string.
+	 * Verifies the given string is a valid letter, and then generates
+	 * a point value for the letter based off of the provided chart.
 	 *
 	 * @param input the input
 	 */
-	//	a point value for the letter based off of the provided chart.
 	public BuilderLetter(String input){
 		if (isValid(input)){
 			letter = formatCapitals(input);
@@ -128,15 +125,13 @@ public class BuilderLetter {
 		}
 	}
 
-	//Returns the point value of the given letter (or Qu)
 	/**
-	 * Gets the point val.
+	 * Gets the point val and returns -1 if letter is invalid.
 	 *
 	 * @param letter the letter
 	 * @param pointTable the point table
 	 * @return the point val
 	 */
-	// Returns -1 if the given letter is invalid.
 	int getPointVal(String letter, Hashtable<String,Integer> pointTable) {
 		if (isValid(letter)){
 			return pointTable.get(letter);
@@ -147,11 +142,10 @@ public class BuilderLetter {
 	}
 
 	/**
-	 * Gets the random letter.
+	 * Gets the random letter based on letter frequency table.
 	 *
 	 * @return the random letter
 	 */
-	//Returns a random letter based on the provided letter frequency table.
 	String getRandomLetter(){
 
 		Random rand = new Random();
@@ -243,15 +237,15 @@ public class BuilderLetter {
 		}
 	}
 
-	//Verifies whether the given string is a valid LetterCraze letter
-	//	Valid letters are A-Z and Qu. Capitalization of the characters
+
 	/**
-	 * Checks if is valid.
+	 * Checks whether the given string is a valid LetterCraze letter.
+	 * Valid letters are A-Z and Qu. Capitalization of the characters
+	 *does NOT affect validity.
 	 *
 	 * @param toCheck the to check
 	 * @return true, if is valid
 	 */
-	//	does NOT affect validity.
 	boolean isValid(String toCheck){
 		int length = toCheck.length();
 		
@@ -279,17 +273,13 @@ public class BuilderLetter {
 		}
 	}
 
-	//Returns the given string formatted as follows:
-	//	-	The first character is upper case
-	//	-	The second character (if any) is lower case.
-	//	Note: Operates only on valid strings. Returns null
 	/**
-	 * Format capitals.
+	 * Format capitals, turns any valid letter in all capitals, 
+	 * all entity classes store letters as capital.
 	 *
 	 * @param toFormat the to format
 	 * @return the string
 	 */
-	//			if string is invalid.
 	String formatCapitals(String toFormat){
 		if (isValid(toFormat)){
 			int length = toFormat.length();

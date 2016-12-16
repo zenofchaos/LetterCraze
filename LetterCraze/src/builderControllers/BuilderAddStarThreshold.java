@@ -6,11 +6,10 @@ import java.awt.event.ActionListener;
 import builderFiles.BuilderLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
-//TODO: add the threshold to the level passed in, and actually pass in the level
 
 /**
- * The Class BuilderAddStarThreshold.
+ * The Class BuilderAddStarThreshold adds the entered value as a star 
+ * threshold for the threshold being edited.
  */
 public class BuilderAddStarThreshold implements ActionListener {
 	

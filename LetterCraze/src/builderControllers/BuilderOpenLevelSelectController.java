@@ -7,9 +7,8 @@ import builderFiles.*;
 import builderGUI.BuilderMainMenuGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderOpenLevelSelectController.
+ * The Class BuilderOpenLevelSelectController opens the menu gui with the levels from the main menu.
  */
 public class BuilderOpenLevelSelectController implements ActionListener{
 

@@ -6,11 +6,8 @@ import java.awt.event.ActionListener;
 import builderFiles.BuilderLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
-//TODO: actually add the title to the level object that also needs to be passed to the controller
-
 /**
- * The Class BuilderAddTitle.
+ * The Class BuilderAddTitle adds the inserted title to the level entity being edited.
  */
 public class BuilderAddTitle implements ActionListener {
 	
@@ -41,7 +38,7 @@ public class BuilderAddTitle implements ActionListener {
 	}
 	
 	/**
-	 * Adds the title.
+	 * Sets the title in the entity class and refreshes the level view.
 	 *
 	 * @param title the title
 	 */

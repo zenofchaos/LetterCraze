@@ -2,9 +2,8 @@ package builderFiles;
 
 import playerFiles.PlayerLetter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderBoard.
+ * The Class BuilderBoard stores a board for the builder applcation.
  */
 public class BuilderBoard {
 
@@ -27,7 +26,7 @@ BuilderSquare[][] squares;
 	}
 	
 	/**
-	 * Replace.
+	 * Replace, replaces a square will a null letter with a randomly generated letter.
 	 *
 	 * @return true, if successful
 	 */

@@ -9,9 +9,8 @@ import javax.swing.SwingUtilities;
 import builderFiles.BuilderThemeLevel;
 import builderGUI.BuilderEditorGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderRemoveWordController.
+ * The Class BuilderRemoveWordController removes a word from the word list in the theme builder.
  */
 public class BuilderRemoveWordController implements MouseListener {
 	

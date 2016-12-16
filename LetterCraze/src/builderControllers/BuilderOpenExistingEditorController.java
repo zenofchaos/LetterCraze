@@ -8,9 +8,8 @@ import builderFiles.BuilderMenu;
 import builderGUI.BuilderEditorGUI;
 import builderGUI.BuilderSelectLevelGUI;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BuilderOpenExistingEditorController.
+ * The Class BuilderOpenExistingEditorController opens an existing level to be edited from the level menu gui.
  */
 public class BuilderOpenExistingEditorController implements MouseListener {
 	

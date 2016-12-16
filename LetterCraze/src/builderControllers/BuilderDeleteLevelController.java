@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import builderGUI.BuilderSelectLevelGUI;
 
+/**
+ * The Class BuilderDeleteLevelController deletes a level from the builder menu
+ */
 public class BuilderDeleteLevelController implements ActionListener {
 
 	int levNum;

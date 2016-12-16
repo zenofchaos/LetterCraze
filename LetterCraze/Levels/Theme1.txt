@@ -12,12 +12,12 @@ Letter Craze
 1 1 1 1 1 1 
 1 1 1 1 1 1 
 
-B O A T E * 
-E R D R * L 
-M * T S Q * 
-E * E R A * 
-T H V L E * 
-L E * E * * 
+B O A T E W 
+E R D R C L 
+M I T S Q O 
+E R E R A X 
+T H V L E H 
+L E A E L T 
 
 Objects in Letter Craze
 

@@ -282,12 +282,12 @@ public class BuilderFileAccessController {
 
 		PrintWriter writer = new PrintWriter(file);
 
-		writer.format("00000\r\n");
-		writer.format("0\r\n");
-		writer.format("%s\r\n", level.getTitle());
-		writer.format("%d\r\n", level.getStarThresholds()[0]);
-		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
+		writer.format("00000\n");
+		writer.format("0\n");
+		writer.format("%s\n", level.getTitle());
+		writer.format("%d\n", level.getStarThresholds()[0]);
+		writer.format("%d\n", level.getStarThresholds()[1]);
+		writer.format("%d\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
@@ -298,9 +298,9 @@ public class BuilderFileAccessController {
 					writer.format("0 ");
 				}
 			}
-			writer.format("\r\n");
+			writer.format("\n");
 		}
-		writer.format("\r\n");
+		writer.format("\n");
 
 		writer.format("%d", ((BuilderLightningLevel) level).getMaxTime());
 
@@ -322,12 +322,12 @@ public class BuilderFileAccessController {
 
 		PrintWriter writer = new PrintWriter(file);
 
-		writer.format("00000\r\n");
-		writer.format("0\r\n");
-		writer.format("%s\r\n", level.getTitle());
-		writer.format("%d\r\n", level.getStarThresholds()[0]);
-		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
+		writer.format("00000\n");
+		writer.format("0\n");
+		writer.format("%s\n", level.getTitle());
+		writer.format("%d\n", level.getStarThresholds()[0]);
+		writer.format("%d\n", level.getStarThresholds()[1]);
+		writer.format("%d\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
@@ -338,9 +338,9 @@ public class BuilderFileAccessController {
 					writer.format("0 ");
 				}
 			}
-			writer.format("\r\n");
+			writer.format("\n");
 		}
-		writer.format("\r\n");
+		writer.format("\n");
 
 		writer.format("%d", ((BuilderPuzzleLevel) level).getWordLimit());
 
@@ -362,12 +362,12 @@ public class BuilderFileAccessController {
 
 		PrintWriter writer = new PrintWriter(file);
 
-		writer.format("00000\r\n");
-		writer.format("0\r\n");
-		writer.format("%s\r\n", level.getTitle());
-		writer.format("%d\r\n", level.getStarThresholds()[0]);
-		writer.format("%d\r\n", level.getStarThresholds()[1]);
-		writer.format("%d\r\n\n", level.getStarThresholds()[2]);
+		writer.format("00000\n");
+		writer.format("0\n");
+		writer.format("%s\n", level.getTitle());
+		writer.format("%d\n", level.getStarThresholds()[0]);
+		writer.format("%d\n", level.getStarThresholds()[1]);
+		writer.format("%d\n\n", level.getStarThresholds()[2]);
 
 		// bitmap
 		for (i = 0; i < 6; i++) {
@@ -378,9 +378,9 @@ public class BuilderFileAccessController {
 					writer.format("0 ");
 				}
 			}
-			writer.format("\r\n");
+			writer.format("\n");
 		}
-		writer.format("\r\n");
+		writer.format("\n");
 
 		// charmap
 		String buffer;
@@ -397,16 +397,16 @@ public class BuilderFileAccessController {
 					writer.format("* ");
 				}
 			}
-			writer.format("\r\n");
+			writer.format("\n");
 		}
-		writer.format("\r\n");
+		writer.format("\n");
 
 		// write theme
-		writer.format(level.getDescription() + "\r\n\n");
+		writer.format(level.getDescription() + "\n\n");
 
 		// iterate through theme words
 		for (String s : level.getThemeWords()) {
-			writer.format(s + "\r\n");
+			writer.format(s + "\n");
 		}
 
 		/// and now the file is finished.

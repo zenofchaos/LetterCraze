@@ -262,7 +262,7 @@ public class PlayerFileAccessController {
 		rAFile.seek(0);
 
 		// convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestScoreString = String.format("%05d\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
 
 		rAFile.writeBytes(bestScoreString);
@@ -285,7 +285,7 @@ public class PlayerFileAccessController {
 		rAFile.seek(0);
 
 		// convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestScoreString = String.format("%05d\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
 
 		rAFile.writeBytes(bestScoreString);
@@ -308,7 +308,7 @@ public class PlayerFileAccessController {
 		rAFile.seek(0);
 
 		// convert ints to strings
-		String bestScoreString = String.format("%05d\r\n", bestScore);
+		String bestScoreString = String.format("%05d\n", bestScore);
 		String bestStarsString = String.format("%01d", bestStars);
 
 		rAFile.writeBytes(bestScoreString);
